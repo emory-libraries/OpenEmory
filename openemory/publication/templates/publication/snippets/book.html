@@ -2,59 +2,169 @@
 <div id="journal" class="section">
 {% with article.descMetadata.content as mods %}
   {% with mods.book as b %}
+<div class="left" style="width: 140px; margin:0px;">
+{% if mods.book.book_title and mods.genre == 'Chapter' %}
+
+<p class="author"><span style="font-weight: bold;">Book Title: </span></p>
+{% endif %}
+
+{% if mods.genre == 'Conference' %} 
+{% if mods.conference.proceedings_title %}
+<p class="author"><span style="font-weight: bold;">Proceedings Title: </span></p>
+{% endif %}
+{% if mods.conference.conference_name %}
+<p class="author"><span style="font-weight: bold;">Conference Name: </span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.genre == 'Poster' %} 
+{% if mods.poster.conference_name %}
+<p class="author"><span style="font-weight: bold;">Conference Name: </span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.genre == 'Presentation' %} 
+{% if mods.presentation.presentation_place %}
+<p class="author"><span style="font-weight: bold;">Presentation Place: </span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.genre == 'Report' %}
     
-
-   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p class="journalTitle"><span>{{ mods.book.book_title }}</span></p>{% endif %}
-   {% if mods.genre == 'Conference' %} 
-
-   {% if mods.conference.conference_name %}<p><span>{{ mods.conference.conference_name }}</span></p>{% endif %}
-   {% if mods.conference.proceedings_title %}<p class="journalTitle"><span>{{ mods.conference.proceedings_title }}</span></p>{% endif %}
-
-   {% endif %}
-
-
-   {% if mods.genre == 'Poster' %} 
-
-   {% if mods.poster.conference_name %}<p><span>{{ mods.poster.conference_name }}</span></p>{% endif %}
-   
-
-   {% endif %} 
-
-   {% if mods.genre == 'Presentation' %} 
-
-   {% if mods.presentation.presentation_place %}<p><span>{{ mods.presentation.presentation_place }}</span></p>{% endif %}
-   
-
-   {% endif %} 
-
-   {% if mods.genre == 'Report' %}
+    {% if mods.report.report_title %}
+<p class="author"><span style="font-weight: bold;">Report Title: </span></p>
+    {% endif %}
     {% if mods.report.sponsor %}
-    {% if mods.report.report_title %}<p class="journalTitle"><span>{{ mods.report.report_title }}</span></p>{% endif %}
-    <p><span>{{ mods.report.sponsor }}</span></p>
+<p class="author"><span style="font-weight: bold;">Sponsor: </span></p>
+    {% endif %}
+{% endif %}
+
+{% if mods.publisher %} 
+<p class="author"><span style="font-weight: bold;">Publisher: </span></p>
+{% endif %}
+
+{% if mods.genre == 'Conference' %} 
+{% if mods.conference.conference_place %}
+<p class="author"><span style="font-weight: bold;">Conference Place: </span></p>
+{% endif %}
+
+{% if mods.conference.volume %}
+<p class="author"><span style="font-weight: bold;">Volume/Issue: </span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.publication_place %}
+<p class="author"><span style="font-weight: bold;">Publication Place: </span></p>
+{% endif %}
+<p class="author"><span style="font-weight: bold;">Publication Date: </span></p>
+
+{% if b.edition %}
+{% if b.edition %}
+<p class="author"><span style="font-weight: bold;">Edition: </span></p>
+{% endif %}
     {% endif %}
 
-   {% endif %}
-
-   {% if mods.publisher %} <p><span itemprop="datePublished">{{ mods.publisher }}</span></p>{% endif %} 
-   {% if mods.genre == 'Conference' %} 
-
-   {% if mods.conference.conference_place %}<p><span>{{ mods.conference.conference_place }}</span></p>{% endif %}
-
-   <p>{% if mods.conference.volume %}Volume {{ mods.conference.volume }}{% endif %}{% if mods.conference.volume and mods.conference.issue %} | {% endif %}
-        {% if mods.conference.issue %}Issue {{ mods.conference.issue }}{% endif %}</p>
-   {% endif %} 
 
 
-   {% if mods.publication_place %}<p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>{% endif %}
-    <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }} {% if mods.report.report_number %}| {{ mods.report.report_number }} {% endif %}</span></p>
-    {% if b.edition %}
-      <p>{% if b.edition %}{{ b.edition }}{% endif %}</p>
+
+
+
+<p class="author"><span style="font-weight: bold;">Type of Work: </span></p>
+{% if mods.ark_uri %}
+<p class="author" id="permalink"><span style="font-weight: bold;">Permanent URL: </span></p>
+{% endif %}
+{% if mods.final_version.doi %}
+<p class="author"><span style="font-weight: bold;">DOI: </span></p>
+{% endif %}
+
+  </div>
+
+ 
+
+
+ <div class="right" style="width: 550px; margin: 0px;">
+ {% if mods.book.book_title and mods.genre == 'Chapter' %}
+   <p class=""> <span>{{ mods.book.book_title }}</span></p>
+{% endif %}
+
+{% if mods.genre == 'Conference' %} 
+{% if mods.conference.proceedings_title %}
+<p class="author"><span>{{ mods.conference.proceedings_title }}</span></p>
+{% endif %}
+{% if mods.conference.conference_name %}
+<p class="author"><span> {{ mods.conference.conference_name }}</span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.genre == 'Poster' %} 
+{% if mods.poster.conference_name %}
+<p class="author"><span> {{ mods.poster.conference_name }}</span></p>
+{% endif %}
+{% endif %}
+
+{% if mods.genre == 'Presentation' %} 
+{% if mods.presentation.presentation_place %}
+<p class="author"><span>{{ mods.presentation.presentation_place }}</span></p>
+{% endif %}
+{% endif %}
+
+
+{% if mods.genre == 'Report' %}
+    
+    {% if mods.report.report_title %}
+<p class="author"><span>{{ mods.report.report_title }}</span></p>
     {% endif %}
-    <p><span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
-    {% endwith %}
-    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
-    {% if mods.ark_uri %}
-      <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    {% if mods.report.sponsor %}
+
+<p class="author"><span>{{ mods.report.sponsor }}</span></p>
     {% endif %}
+{% endif %}
+
+
+{% if mods.publisher %} 
+  <p class="author"><span itemprop="datePublished">{{ mods.publisher }}</span></p>
+{% endif %} 
+
+{% if mods.genre == 'Conference' %} 
+{% if mods.conference.conference_place %}
+<p class="author"><span> {{ mods.conference.conference_place }}</span></p>
+{% endif %}
+
+{% if mods.conference.volume %}
+<p class="author"><span>Volume {{ mods.conference.volume }}</span>
+{% if mods.conference.volume and mods.conference.issue %} | 
+
+{% endif %}
+
+{% if mods.conference.issue %}
+<span>Issue {{ mods.conference.issue }}</span></p>
+ {% endif %}
+{% endif %}
+
+{% endif %}
+
+{% if mods.publication_place %}
+<p class="author"><span itemprop="datePublished">{{ mods.publication_place }}</span></p>
+{% endif %}
+
+<p class="author"><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }} {% if mods.report.report_number %}| {{ mods.report.report_number }} {% endif %}</span></p>
+
+{% if b.edition %}
+{% if b.edition %}
+<p class="author"><span>{{ b.edition }}</span></p>
+{% endif %}
+    {% endif %}
+
+<p class="author"><span itemprop="genre">{{ mods.genre|default:"Article" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
+  {% if mods.ark_uri %}
+     <p class="author">  <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    {% endif %}
+    {% if mods.final_version.doi %}
+    <p class="author">{{ mods.final_version.doi|slice:"4:" }}</p>
+    {% endif %}
+
+  </div>
+
+{% endwith %}
 {% endwith %} {# mods #}
 </div>

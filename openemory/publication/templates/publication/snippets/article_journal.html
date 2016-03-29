@@ -1,18 +1,38 @@
 {# display full article journal information; expects Article object as `article` #}
-<div id="journal" class="section">
+<div id="journal" class="section" style="position: relative; height: auto;">
 {% with article.descMetadata.content as mods %}
   {% with mods.journal as j %}
-    <p class="journalTitle">{{ j.title|default:"(journal title)"}}</p>
-    {% if j.volume or j.number %}
-      <p>{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
+  <div class="left" style="width: 140px; margin:0px;">
+<p class="author"><span style="font-weight: bold;">Journal Title: </span></p>
+{% if j.volume or j.number %}
+<p class="author"><span style="font-weight: bold;">Volume: </span></p>
+{% endif %}
+<p class="author"><span style="font-weight: bold;">Publisher: </span></p>
+<p class="author"><span style="font-weight: bold;">Type of Work: </span></p>
+{% if mods.ark_uri %}
+<p class="author" id="author"><span style="font-weight: bold;">Permanent URL: </span></p>
+{% endif %}
+{% if mods.final_version.doi %}
+<p class="author"><span style="font-weight: bold;">DOI: </span></p>
+{% endif %}
+
+  </div>
+  <div class="right" style="width: 550px; margin: 0px;">
+   <p class=""> {{ j.title|default:"(journal title)"}}</p>
+   {% if j.volume or j.number %}
+   <p class="author">{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
         {% if j.number %}Number {{ j.number }}{% endif %}</p>
     {% endif %}
-    <p><span itemprop="datePublished">{{ j.publisher|default:"(publisher)" }} | {{ mods.publication_date|default:"(publication date)" }}</span>{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
-    <p><span itemprop="genre">{{ mods.genre|default:"Article" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
-    {% endwith %}
-    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
-    {% if mods.ark_uri %}
-      <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+
+  <p class="author"><span itemprop="datePublished">{{ j.publisher|default:"(publisher)" }} | {{ mods.publication_date|default:"(publication date)" }}</span>{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
+  <p class="author"><span itemprop="genre">{{ mods.genre|default:"Article" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
+  {% if mods.ark_uri %}
+     <p class="author">  <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
     {% endif %}
+    <p class="author">{{ mods.final_version.doi|slice:"4:" }}</p>
+  </div>
+   
+  {% endwith %}
+    
 {% endwith %} {# mods #}
 </div>

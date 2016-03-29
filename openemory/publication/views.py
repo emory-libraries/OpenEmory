@@ -17,10 +17,13 @@
 import datetime
 import json
 import logging
+import zipfile
+import time
+from pyPdf import PdfFileReader, PdfFileWriter
+from cStringIO import StringIO
 from urllib import urlencode
 from rdflib import URIRef, Literal
 from rdflib.graph import Graph as RdfGraph, Namespace
-
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -382,7 +385,7 @@ def view_article(request, pid):
     repo = Repository(username='fedoraAdmin',
                                      password='fedoraAdmin')
     obj = repo.get_object(pid=pid, type=Publication)
-
+    
     # *** SPECIAL CASE (should be semi-temporary)
     # (Added 12/2012; can be removed once openemory:* pids are no longer
     # indexed, possibly after a few months.)
@@ -631,12 +634,12 @@ def edit_metadata(request, pid):
 
 
 def download_pdf(request, pid):
-    '''View to allow access the PDF datastream of a
-    :class:`openemory.publication.models.Article` object.  Sets a
+    '''View to allow access the All datastream of a
+    :class:`openemory.publication.models.Publication` object.  Sets a
     content-disposition header that will prompt the file to be saved
     with a default title based on the object label.
 
-    Returns the original Article PDF with a cover page, if possible;
+    Returns the original Publication Mime Type with a cover page, if possible;
     if there is an error generating the cover page version of the PDF,
     the original PDF will be returned.
     '''
@@ -644,10 +647,16 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
+
+        if obj.what_mime_type() == 'pdf':
+            filename = "%s.pdf" % (obj.label).replace (" ", "_")
+        else:
+            filename = "%s.zip" % (obj.label).replace (" ", "_")
+
         extra_headers = {
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
-            'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid,
+            'Content-Disposition': "attachment; filename=%s" % filename,
             #'Last-Modified': obj.pdf.created,
         }
         # if the PDF is embargoed, check that user should have access (bail out if not)
@@ -664,15 +673,22 @@ def download_pdf(request, pid):
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed (but only if this is a GET)
         if request.method == 'GET':
+            
             if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
                 stats = obj.statistics()
                 stats.num_downloads += 1
                 stats.save()
-        genre = obj.descMetadata.content.genre 
-        if genre == "Article" or genre == "Book" or genre == "Chapter":
-            try:
+            # try:
+            if obj.what_mime_type() == 'pdf':
                 content = obj.pdf_with_cover()
                 response = HttpResponse(content, mimetype='application/pdf')
+                
+            elif obj.what_mime_type() == 'image':
+                content = obj.image_with_cover()
+                response = HttpResponse(content, mimetype='application/pdf')
+            else:
+                content = obj.zip_with_cover()
+                response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
                 # pdf+cover depends on metadata; if descMetadata changed more recently
                 # than pdf, use the metadata last-modified date.
                 #if obj.descMetadata.created > obj.pdf.created:
@@ -680,21 +696,19 @@ def download_pdf(request, pid):
                 # NOTE: could also potentially change based on cover logic changes...
 
                 # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
-                for key, val in extra_headers.iteritems():
-                    response[key] = val
-                return response
+            for key, val in extra_headers.iteritems():
+                response[key] = val
+            return response
 
-            except RequestFailed:
-                # re-raise so we can handle it below. TODO: simplify this logic a bit
-                raise
-            except:
-                logger.warn('Exception on %s; returning without cover page' % obj.pid)
-                # cover page failed - fall back to pdf without
-                # use generic raw datastream view from eulfedora
-                
-        else:
-            return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
-                                      repo=repo, headers=extra_headers)
+            # except RequestFailed:
+            #     # re-raise so we can handle it below. TODO: simplify this logic a bit
+            #     raise
+            # except:
+            #     logger.warn('Exception on %s; returning without cover page' % obj.pid)
+            #     # cover page failed - fall back to pdf without
+            #     # use generic raw datastream view from eulfedora
+            #     return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
+            #                           repo=repo, headers=extra_headers)
 
     except RequestFailed:
         raise Http404
@@ -792,6 +806,8 @@ def _article_as_ris(obj, request):
         reference_lines.append(u'TY  - POST')
     elif mods.genre == "Report":
         reference_lines.append(u'TY  - REPO')
+    elif mods.genre == "Presentation":
+        reference_lines.append(u'TY  - PRES')
 
 
     if mods.title_info:
@@ -825,6 +841,9 @@ def _article_as_ris(obj, request):
     if mods.book:
         if mods.book.edition:
             reference_lines.append(u'ED  - ' + mods.book.edition)
+    if mods.presentation:
+        if mods.presentation.presentation_place:
+            reference_lines.append(u'PL  - ' + mods.presentation.presentation_place)
     for keyword in mods.keywords:
         value = _mods_kw_as_ris_value(keyword)
         if value is not None:  # it's possible this could be empty (separate bug?)
