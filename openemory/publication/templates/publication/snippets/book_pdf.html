@@ -50,7 +50,7 @@
     {% if b.edition %}
       <p>{% if b.edition %}<span style="font-weight: bold;">Edition: </span>{{ b.edition }}{% endif %}</p>
     {% endif %}
-    <p><span style="font-weight: bold;">Genre: </span> <span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
+    <p><span style="font-weight: bold;">Type of Work: </span> <span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
     {% if mods.final_version.doi %}<p><span style="font-weight: bold;">Publisher DOI: </span>{{ mods.final_version.doi|slice:"4:" }}</p>{% endif %} {# TODO: linkify ? #}
     {% if mods.ark_uri %}
