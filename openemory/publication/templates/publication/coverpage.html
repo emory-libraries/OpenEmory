@@ -30,19 +30,13 @@
     {% include "publication/snippets/article_authors.html" %}
     <div class="hr">&nbsp;</div> 
     {% if article.descMetadata.content.genre == "Article" %}
-    {% include "publication/snippets/article_journal.html" %}
+    {% include "publication/snippets/article_journal_pdf.html" %}
     {% elif  article.descMetadata.content.genre == "Book" or  article.descMetadata.content.genre == "Chapter" or  article.descMetadata.content.genre == "Conference" or article.descMetadata.content.genre == "Report" or article.descMetadata.content.genre == "Poster" or article.descMetadata.content.genre == "Presentation" %}
-    {% include "publication/snippets/book.html" %}
+    {% include "publication/snippets/book_pdf.html" %}
     {% endif %}
     <div class="hr">&nbsp;</div> 
 
-    
-    {# links: ARK, final published version, other versions #}
-    {% if article.descMetadata.content.ark_uri %}
-      {% with article.descMetadata.content.ark_uri as ark %}
-        <p>Permanent URL: <a rel="bookmark" href="{{ ark }}">{{ ark }}</a></p>
-      {% endwith %}
-    {% endif %}
+  
 
     {% if article.descMetadata.content.final_version.url %}
       {% with article.descMetadata.content.final_version.url as final_url %}

@@ -18,6 +18,7 @@ import datetime
 import json
 import logging
 import zipfile
+from slugify import slugify
 import time
 from pyPdf import PdfFileReader, PdfFileWriter
 from cStringIO import StringIO
@@ -649,14 +650,14 @@ def download_pdf(request, pid):
         obj = repo.get_object(pid, type=Publication)
 
         if obj.what_mime_type() == 'pdf':
-            filename = "%s.pdf" % (obj.label).replace (" ", "_")
+            filename = "%s.pdf" % slugify(obj.label)
         else:
-            filename = "%s.zip" % (obj.label).replace (" ", "_")
+            filename = "%s.zip" % slugify(obj.label)
 
         extra_headers = {
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
-            'Content-Disposition': "attachment; filename=%s" % filename,
+            "Content-Disposition": "attachment;filename=%s" % filename,
             #'Last-Modified': obj.pdf.created,
         }
         # if the PDF is embargoed, check that user should have access (bail out if not)
