@@ -460,6 +460,8 @@ def edit_metadata(request, pid):
         editform = PosterEditForm
     elif genre == "Presentation":
         editform = PresentationEditForm
+    else:
+        editform = ArticleEditForm
 
 
     # on GET, instantiate the form with existing object data (if any)

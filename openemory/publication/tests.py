@@ -536,6 +536,7 @@ class ArticleTest(TestCase):
         amods.create_journal()
         amods.journal.title = 'The American Historical Review'
         amods.journal.publisher = 'American Historical Association'
+        amods.genre = 'Article'
         amods.create_abstract()
         amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
@@ -694,6 +695,7 @@ class ArticleTest(TestCase):
             'cover page should include second author name')
         self.assert_(amods.authors[0].affiliation in covertext,
             'cover page should include author affiliation')
+        print covertext
         self.assert_(amods.journal.title in covertext,
             'cover page should include journal title')
         # ARK
@@ -851,7 +853,7 @@ class ArticleTest(TestCase):
         pub, relations = self.article.as_symp()
 
         self.assertEqual(pub.type_id, '5')
-        self.assertEqual(pub.types[0], ['Article', 'Book', 'Chapter', 'Conference', 'Poster', 'Dataset'])
+        self.assertEqual(pub.types[0], ['Article'])
         self.assertEqual(pub.title, self.article.descMetadata.content.title_info.title)
         self.assertEqual(pub.abstract, self.article.descMetadata.content.abstract.text)
         self.assertEqual(pub.doi, self.article.descMetadata.content.final_version.doi)
@@ -903,7 +905,7 @@ class ArticleTest(TestCase):
         self.assertEqual(mods.publication_date, '2014-05-30')
         self.assertEqual(mods.journal.pages.start, 'e96165')
         self.assertEqual(mods.journal.pages.end, 'e96165')
-        self.assertEqual(mods.journal.publisher, 'Public Library of Science')
+        self.assertEqual(mods.journal.publisher, 'PUBLIC LIBRARY SCIENCE')
         self.assertEqual(mods.journal.title, 'PLoS ONE')
         self.assertEqual(mods.final_version.doi, 'doi:10.1371/journal.pone.0096165')
         self.assertEqual(mods.final_version.url, 'http://dx.doi.org/10.1371/journal.pone.0096165')
@@ -1161,6 +1163,7 @@ class PublicationViewsTest(TestCase):
 
         self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
 
+############# WE ARE NO LONGER USING INGEST FUNCTIONALITY  ##########################
     def test_ingest_from_harvestrecord(self):
         # test ajax post to ingest from havest queue
 
@@ -2038,8 +2041,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese'})
 
         mocksolr.query.assert_any_call('cheese')
-        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_any_call(state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese'])
         mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
@@ -2103,8 +2105,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                        state='A')
+        mocksolr.filter.assert_any_call(state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese', 'sharp cheddar'])
         mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
@@ -2151,7 +2152,7 @@ class PublicationViewsTest(TestCase):
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(state="A", content_model=Publication.ARTICLE_CONTENT_MODEL)
+        mocksolr.filter.assert_any_call(state="A")
         mocksolr.filter.assert_any_call('quality', 'discount')
 
         mocksolr.execute.assert_called_once()
@@ -2549,7 +2550,7 @@ class PublicationViewsTest(TestCase):
         amods.version = 'Preprint: Prior to Peer Review'
         amods.create_final_version()
         amods.final_version.url = 'http://www.jstor.org/stable/1852669'
-        amods.final_version.doi = 'doi:10.1007/s12012-008-9015-1'
+        amods.final_version.doi = 'doi:10/1073/pnas/1111088108'
         amods.author_notes.append(AuthorNote(text='published under a different name'))
         amods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
@@ -2799,7 +2800,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': 'test:1'}),
              msg_prefix='site admin should see edit link for unreviewed articles')
-        self.assertContains(response, 'Article 1 of 1',
+        self.assertContains(response, 'Work 1 of 1',
              msg_prefix='page should include total number of articles')
 
 
@@ -2938,8 +2939,7 @@ class PublicationViewsTest(TestCase):
 
 
         # inspect Solr query opts
-        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_called_with(state='A')
         mocksolr.facet_by.assert_called_with('creator_sorting', mincount=1,
                                              limit=-1, sort='index', prefix='')
         mocksolr.execute.assert_called_once()
@@ -3812,13 +3812,11 @@ class ArticleModsForm(TestCase):
     def test__license_desc(self):
         form = amods(pid='fake:pid')
         result = amods._license_desc(form, "http://creativecommons.org/licenses/by/3.0/")
+        print result
         self.assertIn('http://creativecommons.org/licenses/by/3.0/', result)
-        self.assertIn('distribution of derivative works', result)
-        self.assertIn('public display', result)
-        self.assertIn('publicly performance', result)
-        self.assertIn('making multiple copies', result)
-        self.assertIn('credit be given to copyright holder and/or author', result)
-        self.assertIn('copyright and license notices be kept intact', result)
+        self.assertIn('This is an Open Access work distributed', result)
+        self.assertIn('under the terms of the Creative Commons', result)
+        self.assertIn('Attribution 3.0 Unported License', result)
 
 class TestPdfObject(DigitalObject):
     pdf = FileDatastream("PDF", "PDF document", defaults={

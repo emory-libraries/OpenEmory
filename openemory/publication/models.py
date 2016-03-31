@@ -467,7 +467,9 @@ class PublicationMods(mods.MODSv34):
             return
         
         # parse publication date and convert to a datetime.date
-        
+        if not self.publication_date:
+            return
+
         date_parts = self.publication_date.split('-')
         
         # handle year only, year-month, or year-month day
@@ -1388,7 +1390,8 @@ class Publication(DigitalObject):
             dc.type_list =  types
 
             # language
-            dc.language = mods.language
+            if mods.language:
+                dc.language = mods.language
 
             # mime type
             if mods.physical_description:
@@ -1399,10 +1402,12 @@ class Publication(DigitalObject):
                 dc.description = mods.abstract.text
 
             # subject and keywords
-            subjects = mods.subjects
-            keywords = mods.keywords
-            dc.subject_list = [s.topic for s in subjects]
-            dc.subject_list.extend([k.topic for k in keywords])
+            if mods.subjects:
+                subjects = mods.subjects
+                dc.subject_list = [s.topic for s in subjects]
+            if mods.keywords:
+                keywords = mods.keywords
+                dc.subject_list.extend([k.topic for k in keywords])
 
 
 #            relations = []
@@ -1517,6 +1522,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_poster'
         elif self.descMetadata.content.genre == 'Presentation':
             data['record_type'] = 'publication_presentation'
+        else:
+            data['record_type'] = 'publication_article'
 
         # following django convention: app_label, model
 
@@ -1898,6 +1905,9 @@ class Publication(DigitalObject):
                 mymime = 'png'
             elif mime_type == 'image/tiff':
                 mymime = 'tiff'
+            else:
+                mymime = 'pdf'
+
 
         
         return mymime
