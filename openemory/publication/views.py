@@ -809,7 +809,8 @@ def _article_as_ris(obj, request):
         reference_lines.append(u'TY  - REPO')
     elif mods.genre == "Presentation":
         reference_lines.append(u'TY  - PRES')
-
+    else:
+        reference_lines.append(u'TY  - JOUR')
 
     if mods.title_info:
         if mods.title_info.title:
