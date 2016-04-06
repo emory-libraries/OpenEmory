@@ -1891,26 +1891,26 @@ class Publication(DigitalObject):
 
                 mime_type =  self.ds_list[mime].mimeType
 
-            if mime_type == 'application/pdf':
-                mymime = 'pdf'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mime_type == 'application/msword':
-                mymime = 'word'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
-                mymime = 'excel'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
-                mymime = 'powerpoint'
-            elif mime_type == 'image/jpeg':
-                mymime = 'jpg'
-            elif mime_type == 'image/png':
-                mymime = 'png'
-            elif mime_type == 'image/tiff':
-                mymime = 'tiff'
-            else:
-                mymime = 'pdf'
+                if mime_type == 'application/pdf':
+                    mymime = 'pdf'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mime_type == 'application/msword':
+                    mymime = 'word'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
+                    mymime = 'excel'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
+                    mymime = 'powerpoint'
+                elif mime_type == 'image/jpeg':
+                    mymime = 'jpg'
+                elif mime_type == 'image/png':
+                    mymime = 'png'
+                elif mime_type == 'image/tiff':
+                    mymime = 'tiff'
+                else:
+                    mymime = 'pdf'
 
 
         
-        return mymime
+                return mymime
 
                 
     def image_with_cover(self):
@@ -1969,6 +1969,8 @@ class Publication(DigitalObject):
                 mime = 'jpg'
             elif mime_type == 'tiff':
                 mime = 'tiff'
+            else:
+                mime = 'pdf'
 
                 # mime = 'pdf'
             # write the resulting pdf to a buffer and return it

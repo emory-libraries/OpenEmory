@@ -20,6 +20,7 @@ import datetime
 import json
 import logging
 import os
+from slugify import slugify
 from cStringIO import StringIO
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -668,6 +669,7 @@ class ArticleTest(TestCase):
         amods.create_journal()
         amods.journal.title = 'Collected Scholarly Works'
         amods.ark_uri = 'http://a.rk/ark:/1/b'
+        amods.genre = 'Article'
         amods.create_final_version()
         amods.final_version.url = 'http://fin.al/versi.on'
         amods.final_version.doi = 'doi:10.1/an-article'
@@ -704,7 +706,7 @@ class ArticleTest(TestCase):
         # final version, doi, other version
         self.assert_(amods.final_version.url in covertext,
             'cover page should include final version URL')
-        self.assert_(amods.final_version.doi in covertext,
+        self.assert_('10.1/an-article' in covertext,
             'cover page should include final version DOI')
         #self.assert_(amods.locations[0].url in covertext,
         #    'cover page should include other version URL')
@@ -853,7 +855,7 @@ class ArticleTest(TestCase):
         pub, relations = self.article.as_symp()
 
         self.assertEqual(pub.type_id, '5')
-        self.assertEqual(pub.types[0], ['Article'])
+        self.assertEqual(pub.types[0], 'Article')
         self.assertEqual(pub.title, self.article.descMetadata.content.title_info.title)
         self.assertEqual(pub.abstract, self.article.descMetadata.content.abstract.text)
         self.assertEqual(pub.doi, self.article.descMetadata.content.final_version.doi)
@@ -1035,12 +1037,12 @@ class PublicationViewsTest(TestCase):
                 msg_prefix='if assent is not selected, form is not valid and ' +
                             'error message indicates why it is required')
 
-        # test with non-pdf
-        xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
-        with open(xmlpath) as xml:
-            response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
-            self.assertContains(response, 'not a valid PDF',
-                msg_prefix='error message for uploading non-pdf')
+        # test with non-pdf it should work with non-pdfs
+        # xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
+        # with open(xmlpath) as xml:
+        #     response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
+        #     self.assertContains(response, 'not a valid PDF',
+        #         msg_prefix='error message for uploading non-pdf')
 
         # POST a test pdf
         with open(pdf_filename) as pdf:
@@ -1212,8 +1214,7 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
 
         # create a record to test ingesting
-        # self.client.post(reverse('accounts:logout'), TESTUSER_CREDENTIALS)
-        # self.client.post(reverse('accounts:login'), TESTADMIN_CREDENTIALS)
+        
         record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
         record.save()
         # add test user as record author
@@ -1353,11 +1354,13 @@ class PublicationViewsTest(TestCase):
         # only check custom logic implemented here
         # (not testing eulfedora.views.raw_datastream logic)
         content_disposition = response['Content-Disposition']
-        self.assert_(content_disposition.startswith('attachment; '),
+        
+        self.assert_(content_disposition.startswith('attachment;'),
                      'content disposition should be set to attachment, to prompt download')
         # PRELIMINARY download filename.....
-        self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
-                     'content disposition filename should be a .pdf based on object pid')
+        print content_disposition
+        self.assert_(content_disposition.endswith('%s.zip' % slugify(self.article.label)),
+                     'content disposition filename should be a .zip based on object pid')
         # last-modified - pdf or mods
         # FIXME: not applicable since we are adding access date to cover?
         # self.assertEqual(response['Last-Modified'],
@@ -1386,7 +1389,7 @@ class PublicationViewsTest(TestCase):
         # #                  'last-modified should be newer of mods or pdf datastream modification time')
         #
         # # pdf error
-        with patch.object(Publication, 'pdf_with_cover') as mockpdfcover:
+        with patch.object(Publication, 'zip_with_cover') as mockpdfcover:
             # pyPdf error reading the pdf
             mockpdfcover.side_effect = PdfReadError
         #TODO fix this block later
@@ -2050,10 +2053,9 @@ class PublicationViewsTest(TestCase):
                      'paginated solr result should be set in response context')
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(['cheese'], response.context['search_terms'])
-
         # no results found - should be indicated
         # (empty result because execute return value magicmock is currently empty)
-        self.assertContains(response, 'Your search term did not match any articles')
+        self.assertContains(response, 'Your search term did not match any work')
 
 
     @patch('openemory.publication.views.solr_interface')
@@ -2557,7 +2559,7 @@ class PublicationViewsTest(TestCase):
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
         amods.create_admin_note()
         amods.admin_note.text = 'The admin note'
-        amods.rights_research_date = '2011-011-11'
+        amods.rights_research_date = '2011-11-11'
         amods.supplemental_materials.append(SupplementalMaterial(url='http://interestingsupportingmaterial.com'))
         self.article.save()
 
@@ -2591,7 +2593,9 @@ class PublicationViewsTest(TestCase):
         # article links/versions
         self.assertContains(response, 'Final Published Version')
         self.assertContains(response, amods.final_version.url)
-        self.assertContains(response, amods.final_version.doi)
+        #stripped down version of doi
+        self.assertContains(response, '10/1073/pnas/1111088108')
+
         # journal/publication info
         self.assertContains(response, amods.journal.title)
         self.assertContains(response, 'Volume %s' % amods.journal.volume.number)
@@ -2809,8 +2813,7 @@ class PublicationViewsTest(TestCase):
         # should exclude records with any review date set
         mocksolr.exclude.assert_called_with(review_date__any=True)
         # should filter on content model & active (published) records
-        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_called_with(state='A')
         qargs, kwargs = mocksolr.sort_by.call_args
         self.assertEqual('created', qargs[0],
                          'solr results should be sort by record creation date')
