@@ -484,7 +484,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         # validators=[validate_netid],
+                         validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")

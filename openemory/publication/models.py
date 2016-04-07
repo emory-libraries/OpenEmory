@@ -1366,6 +1366,7 @@ class Publication(DigitalObject):
         Maps valies from MOS to DC for use with OAI
         '''
         if self.descMetadata and self.dc:
+            print "GOT HERE PEOPLE"
             mods = self.descMetadata.content
             dc = self.dc.content
 
@@ -2087,7 +2088,7 @@ class Publication(DigitalObject):
             symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
             symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
             symp_pub.journal = mods.journal.title if mods.journal.title else None
-            symp_pub.publisher = mods.publisher if mods.publisher else None
+            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
         if mods.publication_date:
             day, month, year = None, None, None
             date_info = mods.publication_date.split('-')

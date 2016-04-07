@@ -21,6 +21,7 @@ import json
 import logging
 import os
 from slugify import slugify
+from eulfedora.rdfns import model as relsextns
 from cStringIO import StringIO
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -67,7 +68,7 @@ from openemory.publication.models import NlmArticle, Publication, PublicationMod
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, PublicationPremis, \
      ArticleStatistics, year_quarter, FeaturedArticle, SupplementalMaterial
-from openemory.publication.forms import PublicationModsEditForm as amods
+from openemory.publication.forms import PublicationModsEditForm as amods, ArticleEditForm
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
@@ -853,6 +854,7 @@ class ArticleTest(TestCase):
         self.article.descMetadata.content.authors.extend([n1, n2])
 
         pub, relations = self.article.as_symp()
+        print pub.publisher
 
         self.assertEqual(pub.type_id, '5')
         self.assertEqual(pub.types[0], 'Article')
@@ -970,18 +972,22 @@ class PublicationViewsTest(TestCase):
             self.article.owner = TESTUSER_CREDENTIALS['username']
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
+            self.article.rels_ext.content.add((self.article.uriref, relsextns.hasModel, URIRef(self.article.ARTICLE_CONTENT_MODEL)))
+            print self.article.rels_ext.content.serialize(pretty=True)
             self.article.pdf.checksum_type = 'MD5'
             # descriptive metadata
+            self.article.descMetadata.content.genre = 'Article'
             self.article.descMetadata.content.title = 'A very scholarly article'
             self.article.descMetadata.content.create_abstract()
             self.article.descMetadata.content.abstract.text = 'An overly complicated description of a very scholarly article'
-            # self.article.dc.content.creator_list.append("Jim Smith")
-            # self.article.dc.content.contributor_list.append("John Smith")
-            # self.article.dc.content.date = "2011-08-24"
-            # self.article.dc.content.language = "english"
+            self.article.dc.content.creator_list.append("Jim Smith")
+            self.article.dc.content.contributor_list.append("John Smith")
+            self.article.dc.content.date = "2011-08-24"
+            self.article.dc.content.language = "english"
             self.article.descMetadata.content.create_journal()
             self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
+            print self.article.rels_ext.content.serialize(pretty=True)
 
         self.pids = [self.article.pid]
 
@@ -1038,13 +1044,13 @@ class PublicationViewsTest(TestCase):
                             'error message indicates why it is required')
 
         # test with non-pdf it should work with non-pdfs
-        # xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
-        # with open(xmlpath) as xml:
-        #     response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
-        #     self.assertContains(response, 'not a valid PDF',
-        #         msg_prefix='error message for uploading non-pdf')
+        xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
+        with open(xmlpath) as xml:
+            response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
+            self.assertContains(response, 'not a valid PDF',
+                msg_prefix='error message for uploading non-pdf')
 
-        # POST a test pdf
+        # POST a test pdf should create a new article (empty cmodel)
         with open(pdf_filename) as pdf:
             response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
             expected, got = 303, response.status_code
@@ -1562,9 +1568,10 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, edit_url))
 
         # real object but NOT owned by the user
-        admin_art = self.admin_repo.get_object(self.article.pid, type=Publication)
+        admin_art = self.repo.get_object(self.article.pid, type=Publication)
         admin_art.owner = 'somebodyElse'
         admin_art.save()
+        print self.article.pid
         try:
             edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
             response = self.client.get(edit_url)
@@ -1590,7 +1597,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (non-existent pid)' \
                 % (expected, got, edit_url))
-        self.assert_(isinstance(response.context['form'], ArticleModsEditForm),
+        self.assert_(isinstance(response.context['form'], ArticleEditForm),
                      'ArticleModsEditForm form should be set in response context on GET')
 
         # mods data should be pre-populated on the form
@@ -1695,7 +1702,7 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
 
         #empty out all non-required fields
-        for f in ['version', 'publication_date_year',
+        for f in ['publication_date_year',
                   'publication_date_month', 'language_code', 'subjects-0-id',
                   'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
             data[f] = ''
@@ -1704,6 +1711,7 @@ class PublicationViewsTest(TestCase):
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
         response = self.client.post(edit_url, data, follow=True)
+        print response
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
 
@@ -1732,7 +1740,6 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.itemID_relation not in self.article.rels_ext.content)
 
         # non-required, empty fields should not be present in xml
-        self.assertEqual(None, self.article.descMetadata.content.version)
         self.assertEqual(None, self.article.descMetadata.content.language_code)
         self.assertEqual(None, self.article.descMetadata.content.abstract)
         self.assertEqual(0, len(self.article.descMetadata.content.funders))

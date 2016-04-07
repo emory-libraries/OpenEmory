@@ -58,7 +58,7 @@ from openemory.publication.forms import UploadForm, AdminUploadForm, \
         BasicSearchForm, SearchWithinForm, PublicationModsEditForm, ConferenceEditForm, PresentationEditForm, OpenAccessProposalForm, BookEditForm, ReportEditForm, ChapterEditForm, ArticleEditForm, PosterEditForm
 
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
-        ResearchFields, FeaturedArticle
+        ResearchFields, FeaturedArticle, Article
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -199,7 +199,7 @@ def ingest(request):
                 # assent before processing file upload.
                 assert form.cleaned_data.get('assent', False)
 
-                obj = repo.get_object(type=Publication)
+                obj = repo.get_object(type=Article)
 
                 # a few metadata values depend on whether the user submitted
                 # as an author or mediated submission.
