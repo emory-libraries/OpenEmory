@@ -1366,7 +1366,6 @@ class Publication(DigitalObject):
         Maps valies from MOS to DC for use with OAI
         '''
         if self.descMetadata and self.dc:
-            print "GOT HERE PEOPLE"
             mods = self.descMetadata.content
             dc = self.dc.content
 
@@ -1898,8 +1897,10 @@ class Publication(DigitalObject):
                     mymime = 'word'
                 elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
                     mymime = 'excel'
-                elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
                     mymime = 'powerpoint'
+                elif mime_type == 'application/vnd.ms-powerpoint':
+                    mymime = 'powerpoint2'
                 elif mime_type == 'image/jpeg':
                     mymime = 'jpg'
                 elif mime_type == 'image/png':
@@ -1962,6 +1963,8 @@ class Publication(DigitalObject):
                 mime = 'pptx'
             elif mime_type == 'word':
                 mime = 'docx'
+            elif mime_type == 'powerpoint2':
+                mime = 'ppt'
             elif mime_type == 'excel':
                 mime = 'xlsx'
             elif mime_type == 'png':
@@ -2022,7 +2025,7 @@ class Publication(DigitalObject):
             # load and add cover page first
             cover = PdfFileReader(coverdoc)
             doc.addPage(cover.pages[0])
-            print "Got Here"
+            # print "Got Here"
             # load pdf datastream contents into a file-like object
             for ch in self.pdf.get_chunked_content():
 
@@ -2030,10 +2033,10 @@ class Publication(DigitalObject):
 
             # load pdf content into a pdf reader and add all pages
             content = PdfFileReader(pdfstream)
-            print content.numPages
+            # print content.numPages
             for p in range(content.numPages):
                 doc.addPage(content.pages[p])
-                print content.pages[p]
+                # print content.pages[p]
 
             # write the resulting pdf to a buffer and return it
             result = StringIO()

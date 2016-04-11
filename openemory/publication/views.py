@@ -651,17 +651,6 @@ def download_pdf(request, pid):
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
 
-        if obj.what_mime_type() == 'pdf':
-            filename = "%s.pdf" % slugify(obj.label)
-        else:
-            filename = "%s.zip" % slugify(obj.label)
-
-        extra_headers = {
-            # generate a default filename based on the object
-            # FIXME: what do we actually want here? ARK noid?
-            "Content-Disposition": "attachment;filename=%s" % filename,
-            #'Last-Modified': obj.pdf.created,
-        }
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed
@@ -684,14 +673,39 @@ def download_pdf(request, pid):
         # try:
 
         if obj.what_mime_type() == 'pdf':
-            content = obj.pdf_with_cover()
-            response = HttpResponse(content, mimetype='application/pdf')
+            try:
+                content = obj.pdf_with_cover()
+                filename = "%s.pdf" % slugify(obj.label)
+                extra_headers = {
+                    # generate a default filename based on the object
+                    # FIXME: what do we actually want here? ARK noid?
+                    "Content-Disposition": "attachment;filename=%s" % filename,
+                    #'Last-Modified': obj.pdf.created,
+                }
+                response = HttpResponse(content, mimetype='application/pdf')
+            except:
+                content = obj.zip_with_cover()
+                filename = "%s.zip" % slugify(obj.label)
+
+                extra_headers = {
+                    # generate a default filename based on the object
+                    # FIXME: what do we actually want here? ARK noid?
+                    "Content-Disposition": "attachment;filename=%s" % filename,
+                    #'Last-Modified': obj.pdf.created,
+                }
+                response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+
             
-        elif obj.what_mime_type() == 'image':
-            content = obj.image_with_cover()
-            response = HttpResponse(content, mimetype='application/pdf')
         else:
             content = obj.zip_with_cover()
+            filename = "%s.zip" % slugify(obj.label)
+
+            extra_headers = {
+                # generate a default filename based on the object
+                # FIXME: what do we actually want here? ARK noid?
+                "Content-Disposition": "attachment;filename=%s" % filename,
+                #'Last-Modified': obj.pdf.created,
+            }
             response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
             # pdf+cover depends on metadata; if descMetadata changed more recently
             # than pdf, use the metadata last-modified date.
