@@ -673,27 +673,27 @@ def download_pdf(request, pid):
         # try:
 
         if obj.what_mime_type() == 'pdf':
-            try:
-                content = obj.pdf_with_cover()
-                filename = "%s.pdf" % slugify(obj.label)
-                extra_headers = {
-                    # generate a default filename based on the object
-                    # FIXME: what do we actually want here? ARK noid?
-                    "Content-Disposition": "attachment;filename=%s" % filename,
-                    #'Last-Modified': obj.pdf.created,
-                }
-                response = HttpResponse(content, mimetype='application/pdf')
-            except:
-                content = obj.zip_with_cover()
-                filename = "%s.zip" % slugify(obj.label)
+            # try:
+            content = obj.pdf_with_cover()
+            filename = "%s.pdf" % slugify(obj.label)
+            extra_headers = {
+                # generate a default filename based on the object
+                # FIXME: what do we actually want here? ARK noid?
+                "Content-Disposition": "attachment;filename=%s" % filename,
+                #'Last-Modified': obj.pdf.created,
+            }
+            response = HttpResponse(content, mimetype='application/pdf')
+            # except:
+            #     content = obj.zip_with_cover()
+            #     filename = "%s.zip" % slugify(obj.label)
 
-                extra_headers = {
-                    # generate a default filename based on the object
-                    # FIXME: what do we actually want here? ARK noid?
-                    "Content-Disposition": "attachment;filename=%s" % filename,
-                    #'Last-Modified': obj.pdf.created,
-                }
-                response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+            #     extra_headers = {
+            #         # generate a default filename based on the object
+            #         # FIXME: what do we actually want here? ARK noid?
+            #         "Content-Disposition": "attachment;filename=%s" % filename,
+            #         #'Last-Modified': obj.pdf.created,
+            #     }
+            #     response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
 
             
         else:

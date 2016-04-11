@@ -1354,7 +1354,7 @@ class Publication(DigitalObject):
             if not self.pdf.exists:
     		return None
 
-            pdfreader = PdfFileReader(self.pdf.content)
+            pdfreader = PdfFileReader(self.pdf.content, strict=False)
             return pdfreader.getNumPages()
         except RequestFailed as rf:
             logger.error('Failed to determine number of pages for %s : %s' \
@@ -2023,7 +2023,7 @@ class Publication(DigitalObject):
             # create a new pdf file writer to merge cover & pdf into
             doc = PdfFileWriter()
             # load and add cover page first
-            cover = PdfFileReader(coverdoc)
+            cover = PdfFileReader(coverdoc, strict=False)
             doc.addPage(cover.pages[0])
             # print "Got Here"
             # load pdf datastream contents into a file-like object
@@ -2032,7 +2032,7 @@ class Publication(DigitalObject):
                 pdfstream.write(ch)
 
             # load pdf content into a pdf reader and add all pages
-            content = PdfFileReader(pdfstream)
+            content = PdfFileReader(pdfstream, strict=False)
             # print content.numPages
             for p in range(content.numPages):
                 doc.addPage(content.pages[p])
