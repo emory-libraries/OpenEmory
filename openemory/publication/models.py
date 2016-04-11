@@ -43,7 +43,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
-from pyPdf import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from rdflib.graph import Graph as RdfGraph, Namespace
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
