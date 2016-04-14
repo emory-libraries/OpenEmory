@@ -1758,7 +1758,8 @@ class AccountViewsTest(TestCase):
             msg_prefix='response is labeled by the requested tag')
         self.assertContains(response, mockart_by_tag.return_value[0]['title'])
         self.assertContains(response, mockart_by_tag.return_value[1]['title'])
-        self.assertContains(response, '2 articles',
+        
+        self.assertContains(response, '2 works',
             msg_prefix='response includes total number of articles')
 
         # bogus tag - 404

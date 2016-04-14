@@ -18,6 +18,7 @@ import datetime
 import json
 import logging
 import zipfile
+from slugify import slugify
 import time
 from pyPdf import PdfFileReader, PdfFileWriter
 from cStringIO import StringIO
@@ -57,7 +58,7 @@ from openemory.publication.forms import UploadForm, AdminUploadForm, \
         BasicSearchForm, SearchWithinForm, PublicationModsEditForm, ConferenceEditForm, PresentationEditForm, OpenAccessProposalForm, BookEditForm, ReportEditForm, ChapterEditForm, ArticleEditForm, PosterEditForm
 
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
-        ResearchFields, FeaturedArticle
+        ResearchFields, FeaturedArticle, Article
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -198,7 +199,7 @@ def ingest(request):
                 # assent before processing file upload.
                 assert form.cleaned_data.get('assent', False)
 
-                obj = repo.get_object(type=Publication)
+                obj = repo.get_object(type=Article)
 
                 # a few metadata values depend on whether the user submitted
                 # as an author or mediated submission.
@@ -459,6 +460,8 @@ def edit_metadata(request, pid):
         editform = PosterEditForm
     elif genre == "Presentation":
         editform = PresentationEditForm
+    else:
+        editform = ArticleEditForm
 
 
     # on GET, instantiate the form with existing object data (if any)
@@ -648,17 +651,6 @@ def download_pdf(request, pid):
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
 
-        if obj.what_mime_type() == 'pdf':
-            filename = "%s.pdf" % (obj.label).replace (" ", "_")
-        else:
-            filename = "%s.zip" % (obj.label).replace (" ", "_")
-
-        extra_headers = {
-            # generate a default filename based on the object
-            # FIXME: what do we actually want here? ARK noid?
-            'Content-Disposition': "attachment; filename=%s" % filename,
-            #'Last-Modified': obj.pdf.created,
-        }
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed
@@ -672,43 +664,69 @@ def download_pdf(request, pid):
 
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed (but only if this is a GET)
-        if request.method == 'GET':
-            
-            if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
+               
+        if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
+            if request.method == 'GET':
                 stats = obj.statistics()
                 stats.num_downloads += 1
                 stats.save()
+        # try:
+
+        if obj.what_mime_type() == 'pdf':
             # try:
-            if obj.what_mime_type() == 'pdf':
-                content = obj.pdf_with_cover()
-                response = HttpResponse(content, mimetype='application/pdf')
-                
-            elif obj.what_mime_type() == 'image':
-                content = obj.image_with_cover()
-                response = HttpResponse(content, mimetype='application/pdf')
-            else:
-                content = obj.zip_with_cover()
-                response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
-                # pdf+cover depends on metadata; if descMetadata changed more recently
-                # than pdf, use the metadata last-modified date.
-                #if obj.descMetadata.created > obj.pdf.created:
-                #    extra_headers['Last-Modified'] = obj.descMetadata.created
-                # NOTE: could also potentially change based on cover logic changes...
-
-                # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
-            for key, val in extra_headers.iteritems():
-                response[key] = val
-            return response
-
-            # except RequestFailed:
-            #     # re-raise so we can handle it below. TODO: simplify this logic a bit
-            #     raise
+            content = obj.pdf_with_cover()
+            filename = "%s.pdf" % slugify(obj.label)
+            extra_headers = {
+                # generate a default filename based on the object
+                # FIXME: what do we actually want here? ARK noid?
+                "Content-Disposition": "attachment;filename=%s" % filename,
+                #'Last-Modified': obj.pdf.created,
+            }
+            response = HttpResponse(content, mimetype='application/pdf')
             # except:
-            #     logger.warn('Exception on %s; returning without cover page' % obj.pid)
-            #     # cover page failed - fall back to pdf without
-            #     # use generic raw datastream view from eulfedora
-            #     return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
-            #                           repo=repo, headers=extra_headers)
+            #     content = obj.zip_with_cover()
+            #     filename = "%s.zip" % slugify(obj.label)
+
+            #     extra_headers = {
+            #         # generate a default filename based on the object
+            #         # FIXME: what do we actually want here? ARK noid?
+            #         "Content-Disposition": "attachment;filename=%s" % filename,
+            #         #'Last-Modified': obj.pdf.created,
+            #     }
+            #     response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+
+            
+        else:
+            content = obj.zip_with_cover()
+            filename = "%s.zip" % slugify(obj.label)
+
+            extra_headers = {
+                # generate a default filename based on the object
+                # FIXME: what do we actually want here? ARK noid?
+                "Content-Disposition": "attachment;filename=%s" % filename,
+                #'Last-Modified': obj.pdf.created,
+            }
+            response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+            # pdf+cover depends on metadata; if descMetadata changed more recently
+            # than pdf, use the metadata last-modified date.
+            #if obj.descMetadata.created > obj.pdf.created:
+            #    extra_headers['Last-Modified'] = obj.descMetadata.created
+            # NOTE: could also potentially change based on cover logic changes...
+
+            # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
+        for key, val in extra_headers.iteritems():
+            response[key] = val
+        return response
+
+        # except RequestFailed:
+        #     # re-raise so we can handle it below. TODO: simplify this logic a bit
+        #     raise
+        # except:
+        #     logger.warn('Exception on %s; returning without cover page' % obj.pid)
+        #     # cover page failed - fall back to pdf without
+        #     # use generic raw datastream view from eulfedora
+        #     return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
+        #                           repo=repo, headers=extra_headers)
 
     except RequestFailed:
         raise Http404
@@ -808,7 +826,8 @@ def _article_as_ris(obj, request):
         reference_lines.append(u'TY  - REPO')
     elif mods.genre == "Presentation":
         reference_lines.append(u'TY  - PRES')
-
+    else:
+        reference_lines.append(u'TY  - JOUR')
 
     if mods.title_info:
         if mods.title_info.title:

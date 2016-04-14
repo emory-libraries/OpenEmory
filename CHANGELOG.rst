@@ -1,3 +1,12 @@
+Release 2.1.0 Harmonization of Content Types
+--------------------------------------------
+* Fixed mime type issues with old pyPdf library
+* Resolved duplicates when adding a  different mime type
+* Fixed tests for publications
+* Adding new fields for Poster, Presentation
+* Revised design of of publications view
+* Added descriptive titles to mods in publica view for publications 
+
 Release 2.0.0 Presentation Content Type
 ---------------------------------------
 * Enhanced importing from symplectic script to work with a Presentation content type

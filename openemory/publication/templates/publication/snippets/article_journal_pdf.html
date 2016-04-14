@@ -1,0 +1,18 @@
+{# display full article journal information; expects Article object as `article` #}
+<div id="journal" class="section">
+{% with article.descMetadata.content as mods %}
+  {% with mods.journal as j %}
+    <p class="journalTitle"><span style="font-weight: bold;">Journal Title: </span> {{ j.title|default:"(journal title)"}}</p>
+    {% if j.volume or j.number %}
+      <p><span style="font-weight: bold;">Volume: </span>{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
+        {% if j.number %}Number {{ j.number }}{% endif %}</p>
+    {% endif %}
+    <p><span style="font-weight: bold;">Publisher: </span><span itemprop="datePublished">{{ j.publisher|default:"(publisher)" }} | {{ mods.publication_date|default:"(publication date)" }}</span>{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
+    <p><span style="font-weight: bold;">Type of Work: </span><span itemprop="genre">{{ mods.genre|default:"Article" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
+    {% endwith %}
+    {% if mods.final_version.doi %}<p><span style="font-weight: bold;">Publisher DOI: </span>{{ mods.final_version.doi|slice:"4:" }}</p>{% endif %} {# TODO: linkify ? #}
+    {% if mods.ark_uri %}
+      <p id="permalink"><span style="font-weight: bold;">Permanent URL: </span> <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    {% endif %}
+{% endwith %} {# mods #}
+</div>

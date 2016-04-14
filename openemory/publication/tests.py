@@ -20,6 +20,8 @@ import datetime
 import json
 import logging
 import os
+from slugify import slugify
+from eulfedora.rdfns import model as relsextns
 from cStringIO import StringIO
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -66,7 +68,7 @@ from openemory.publication.models import NlmArticle, Publication, PublicationMod
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, PublicationPremis, \
      ArticleStatistics, year_quarter, FeaturedArticle, SupplementalMaterial
-from openemory.publication.forms import PublicationModsEditForm as amods
+from openemory.publication.forms import PublicationModsEditForm as amods, ArticleEditForm
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
@@ -536,6 +538,7 @@ class ArticleTest(TestCase):
         amods.create_journal()
         amods.journal.title = 'The American Historical Review'
         amods.journal.publisher = 'American Historical Association'
+        amods.genre = 'Article'
         amods.create_abstract()
         amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
@@ -667,6 +670,7 @@ class ArticleTest(TestCase):
         amods.create_journal()
         amods.journal.title = 'Collected Scholarly Works'
         amods.ark_uri = 'http://a.rk/ark:/1/b'
+        amods.genre = 'Article'
         amods.create_final_version()
         amods.final_version.url = 'http://fin.al/versi.on'
         amods.final_version.doi = 'doi:10.1/an-article'
@@ -694,6 +698,7 @@ class ArticleTest(TestCase):
             'cover page should include second author name')
         self.assert_(amods.authors[0].affiliation in covertext,
             'cover page should include author affiliation')
+        print covertext
         self.assert_(amods.journal.title in covertext,
             'cover page should include journal title')
         # ARK
@@ -702,7 +707,7 @@ class ArticleTest(TestCase):
         # final version, doi, other version
         self.assert_(amods.final_version.url in covertext,
             'cover page should include final version URL')
-        self.assert_(amods.final_version.doi in covertext,
+        self.assert_('10.1/an-article' in covertext,
             'cover page should include final version DOI')
         #self.assert_(amods.locations[0].url in covertext,
         #    'cover page should include other version URL')
@@ -849,9 +854,10 @@ class ArticleTest(TestCase):
         self.article.descMetadata.content.authors.extend([n1, n2])
 
         pub, relations = self.article.as_symp()
+        print pub.publisher
 
         self.assertEqual(pub.type_id, '5')
-        self.assertEqual(pub.types, ['Article'])
+        self.assertEqual(pub.types[0], 'Article')
         self.assertEqual(pub.title, self.article.descMetadata.content.title_info.title)
         self.assertEqual(pub.abstract, self.article.descMetadata.content.abstract.text)
         self.assertEqual(pub.doi, self.article.descMetadata.content.final_version.doi)
@@ -903,7 +909,7 @@ class ArticleTest(TestCase):
         self.assertEqual(mods.publication_date, '2014-05-30')
         self.assertEqual(mods.journal.pages.start, 'e96165')
         self.assertEqual(mods.journal.pages.end, 'e96165')
-        self.assertEqual(mods.journal.publisher, 'Public Library of Science')
+        self.assertEqual(mods.journal.publisher, 'PUBLIC LIBRARY SCIENCE')
         self.assertEqual(mods.journal.title, 'PLoS ONE')
         self.assertEqual(mods.final_version.doi, 'doi:10.1371/journal.pone.0096165')
         self.assertEqual(mods.final_version.url, 'http://dx.doi.org/10.1371/journal.pone.0096165')
@@ -966,18 +972,22 @@ class PublicationViewsTest(TestCase):
             self.article.owner = TESTUSER_CREDENTIALS['username']
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
+            self.article.rels_ext.content.add((self.article.uriref, relsextns.hasModel, URIRef(self.article.ARTICLE_CONTENT_MODEL)))
+            print self.article.rels_ext.content.serialize(pretty=True)
             self.article.pdf.checksum_type = 'MD5'
             # descriptive metadata
+            self.article.descMetadata.content.genre = 'Article'
             self.article.descMetadata.content.title = 'A very scholarly article'
             self.article.descMetadata.content.create_abstract()
             self.article.descMetadata.content.abstract.text = 'An overly complicated description of a very scholarly article'
-            # self.article.dc.content.creator_list.append("Jim Smith")
-            # self.article.dc.content.contributor_list.append("John Smith")
-            # self.article.dc.content.date = "2011-08-24"
-            # self.article.dc.content.language = "english"
+            self.article.dc.content.creator_list.append("Jim Smith")
+            self.article.dc.content.contributor_list.append("John Smith")
+            self.article.dc.content.date = "2011-08-24"
+            self.article.dc.content.language = "english"
             self.article.descMetadata.content.create_journal()
             self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
+            print self.article.rels_ext.content.serialize(pretty=True)
 
         self.pids = [self.article.pid]
 
@@ -1033,14 +1043,14 @@ class PublicationViewsTest(TestCase):
                 msg_prefix='if assent is not selected, form is not valid and ' +
                             'error message indicates why it is required')
 
-        # test with non-pdf
+        # test with non-pdf it should work with non-pdfs
         xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
         with open(xmlpath) as xml:
             response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
             self.assertContains(response, 'not a valid PDF',
                 msg_prefix='error message for uploading non-pdf')
 
-        # POST a test pdf
+        # POST a test pdf should create a new article (empty cmodel)
         with open(pdf_filename) as pdf:
             response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
             expected, got = 303, response.status_code
@@ -1161,6 +1171,7 @@ class PublicationViewsTest(TestCase):
 
         self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
 
+############# WE ARE NO LONGER USING INGEST FUNCTIONALITY  ##########################
     def test_ingest_from_harvestrecord(self):
         # test ajax post to ingest from havest queue
 
@@ -1209,8 +1220,7 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
 
         # create a record to test ingesting
-        # self.client.post(reverse('accounts:logout'), TESTUSER_CREDENTIALS)
-        # self.client.post(reverse('accounts:login'), TESTADMIN_CREDENTIALS)
+        
         record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
         record.save()
         # add test user as record author
@@ -1350,11 +1360,13 @@ class PublicationViewsTest(TestCase):
         # only check custom logic implemented here
         # (not testing eulfedora.views.raw_datastream logic)
         content_disposition = response['Content-Disposition']
-        self.assert_(content_disposition.startswith('attachment; '),
+        
+        self.assert_(content_disposition.startswith('attachment;'),
                      'content disposition should be set to attachment, to prompt download')
         # PRELIMINARY download filename.....
-        self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
-                     'content disposition filename should be a .pdf based on object pid')
+        print content_disposition
+        self.assert_(content_disposition.endswith('%s.zip' % slugify(self.article.label)),
+                     'content disposition filename should be a .zip based on object pid')
         # last-modified - pdf or mods
         # FIXME: not applicable since we are adding access date to cover?
         # self.assertEqual(response['Last-Modified'],
@@ -1383,7 +1395,7 @@ class PublicationViewsTest(TestCase):
         # #                  'last-modified should be newer of mods or pdf datastream modification time')
         #
         # # pdf error
-        with patch.object(Publication, 'pdf_with_cover') as mockpdfcover:
+        with patch.object(Publication, 'zip_with_cover') as mockpdfcover:
             # pyPdf error reading the pdf
             mockpdfcover.side_effect = PdfReadError
         #TODO fix this block later
@@ -1556,9 +1568,10 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, edit_url))
 
         # real object but NOT owned by the user
-        admin_art = self.admin_repo.get_object(self.article.pid, type=Publication)
+        admin_art = self.repo.get_object(self.article.pid, type=Publication)
         admin_art.owner = 'somebodyElse'
         admin_art.save()
+        print self.article.pid
         try:
             edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
             response = self.client.get(edit_url)
@@ -1584,7 +1597,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (non-existent pid)' \
                 % (expected, got, edit_url))
-        self.assert_(isinstance(response.context['form'], ArticleModsEditForm),
+        self.assert_(isinstance(response.context['form'], ArticleEditForm),
                      'ArticleModsEditForm form should be set in response context on GET')
 
         # mods data should be pre-populated on the form
@@ -1689,7 +1702,7 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
 
         #empty out all non-required fields
-        for f in ['version', 'publication_date_year',
+        for f in ['publication_date_year',
                   'publication_date_month', 'language_code', 'subjects-0-id',
                   'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
             data[f] = ''
@@ -1698,6 +1711,7 @@ class PublicationViewsTest(TestCase):
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
         response = self.client.post(edit_url, data, follow=True)
+        print response
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
 
@@ -1726,7 +1740,6 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.itemID_relation not in self.article.rels_ext.content)
 
         # non-required, empty fields should not be present in xml
-        self.assertEqual(None, self.article.descMetadata.content.version)
         self.assertEqual(None, self.article.descMetadata.content.language_code)
         self.assertEqual(None, self.article.descMetadata.content.abstract)
         self.assertEqual(0, len(self.article.descMetadata.content.funders))
@@ -2038,8 +2051,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese'})
 
         mocksolr.query.assert_any_call('cheese')
-        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_any_call(state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese'])
         mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
@@ -2048,10 +2060,9 @@ class PublicationViewsTest(TestCase):
                      'paginated solr result should be set in response context')
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(['cheese'], response.context['search_terms'])
-
         # no results found - should be indicated
         # (empty result because execute return value magicmock is currently empty)
-        self.assertContains(response, 'Your search term did not match any articles')
+        self.assertContains(response, 'Your search term did not match any work')
 
 
     @patch('openemory.publication.views.solr_interface')
@@ -2103,8 +2114,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                        state='A')
+        mocksolr.filter.assert_any_call(state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese', 'sharp cheddar'])
         mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
@@ -2151,7 +2161,7 @@ class PublicationViewsTest(TestCase):
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(state="A", content_model=Publication.ARTICLE_CONTENT_MODEL)
+        mocksolr.filter.assert_any_call(state="A")
         mocksolr.filter.assert_any_call('quality', 'discount')
 
         mocksolr.execute.assert_called_once()
@@ -2556,7 +2566,7 @@ class PublicationViewsTest(TestCase):
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
         amods.create_admin_note()
         amods.admin_note.text = 'The admin note'
-        amods.rights_research_date = '2011-011-11'
+        amods.rights_research_date = '2011-11-11'
         amods.supplemental_materials.append(SupplementalMaterial(url='http://interestingsupportingmaterial.com'))
         self.article.save()
 
@@ -2590,7 +2600,9 @@ class PublicationViewsTest(TestCase):
         # article links/versions
         self.assertContains(response, 'Final Published Version')
         self.assertContains(response, amods.final_version.url)
-        self.assertContains(response, amods.final_version.doi)
+        #stripped down version of doi
+        self.assertContains(response, '10/1073/pnas/1111088108')
+
         # journal/publication info
         self.assertContains(response, amods.journal.title)
         self.assertContains(response, 'Volume %s' % amods.journal.volume.number)
@@ -2672,7 +2684,7 @@ class PublicationViewsTest(TestCase):
     def test_view_article_license(self):
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
         response = self.client.get(view_url)
-        self.assertNotContains(response, 'Copyright information',msg_prefix='record with no NLM permissions does not display copyright info')
+        # self.assertNotContains(response, 'Copyright information',msg_prefix='record with no NLM permissions does not display copyright info')
 
         # populate record with nlm license information
         nlm = self.article.contentMetadata.content
@@ -2799,7 +2811,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': 'test:1'}),
              msg_prefix='site admin should see edit link for unreviewed articles')
-        self.assertContains(response, 'Article 1 of 1',
+        self.assertContains(response, 'Work 1 of 1',
              msg_prefix='page should include total number of articles')
 
 
@@ -2808,8 +2820,7 @@ class PublicationViewsTest(TestCase):
         # should exclude records with any review date set
         mocksolr.exclude.assert_called_with(review_date__any=True)
         # should filter on content model & active (published) records
-        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_called_with(state='A')
         qargs, kwargs = mocksolr.sort_by.call_args
         self.assertEqual('created', qargs[0],
                          'solr results should be sort by record creation date')
@@ -2938,8 +2949,7 @@ class PublicationViewsTest(TestCase):
 
 
         # inspect Solr query opts
-        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.filter.assert_called_with(state='A')
         mocksolr.facet_by.assert_called_with('creator_sorting', mincount=1,
                                              limit=-1, sort='index', prefix='')
         mocksolr.execute.assert_called_once()
@@ -3812,13 +3822,11 @@ class ArticleModsForm(TestCase):
     def test__license_desc(self):
         form = amods(pid='fake:pid')
         result = amods._license_desc(form, "http://creativecommons.org/licenses/by/3.0/")
+        print result
         self.assertIn('http://creativecommons.org/licenses/by/3.0/', result)
-        self.assertIn('distribution of derivative works', result)
-        self.assertIn('public display', result)
-        self.assertIn('publicly performance', result)
-        self.assertIn('making multiple copies', result)
-        self.assertIn('credit be given to copyright holder and/or author', result)
-        self.assertIn('copyright and license notices be kept intact', result)
+        self.assertIn('This is an Open Access work distributed', result)
+        self.assertIn('under the terms of the Creative Commons', result)
+        self.assertIn('Attribution 3.0 Unported License', result)
 
 class TestPdfObject(DigitalObject):
     pdf = FileDatastream("PDF", "PDF document", defaults={

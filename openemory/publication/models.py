@@ -43,7 +43,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
-from pyPdf import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from rdflib.graph import Graph as RdfGraph, Namespace
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
@@ -467,7 +467,9 @@ class PublicationMods(mods.MODSv34):
             return
         
         # parse publication date and convert to a datetime.date
-        
+        if not self.publication_date:
+            return
+
         date_parts = self.publication_date.split('-')
         
         # handle year only, year-month, or year-month day
@@ -1352,7 +1354,7 @@ class Publication(DigitalObject):
             if not self.pdf.exists:
     		return None
 
-            pdfreader = PdfFileReader(self.pdf.content)
+            pdfreader = PdfFileReader(self.pdf.content, strict=False)
             return pdfreader.getNumPages()
         except RequestFailed as rf:
             logger.error('Failed to determine number of pages for %s : %s' \
@@ -1388,7 +1390,8 @@ class Publication(DigitalObject):
             dc.type_list =  types
 
             # language
-            dc.language = mods.language
+            if mods.language:
+                dc.language = mods.language
 
             # mime type
             if mods.physical_description:
@@ -1399,10 +1402,12 @@ class Publication(DigitalObject):
                 dc.description = mods.abstract.text
 
             # subject and keywords
-            subjects = mods.subjects
-            keywords = mods.keywords
-            dc.subject_list = [s.topic for s in subjects]
-            dc.subject_list.extend([k.topic for k in keywords])
+            if mods.subjects:
+                subjects = mods.subjects
+                dc.subject_list = [s.topic for s in subjects]
+            if mods.keywords:
+                keywords = mods.keywords
+                dc.subject_list.extend([k.topic for k in keywords])
 
 
 #            relations = []
@@ -1517,6 +1522,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_poster'
         elif self.descMetadata.content.genre == 'Presentation':
             data['record_type'] = 'publication_presentation'
+        else:
+            data['record_type'] = 'publication_article'
 
         # following django convention: app_label, model
 
@@ -1884,23 +1891,28 @@ class Publication(DigitalObject):
 
                 mime_type =  self.ds_list[mime].mimeType
 
-            if mime_type == 'application/pdf':
-                mymime = 'pdf'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mime_type == 'application/msword':
-                mymime = 'word'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
-                mymime = 'excel'
-            elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
-                mymime = 'powerpoint'
-            elif mime_type == 'image/jpeg':
-                mymime = 'jpg'
-            elif mime_type == 'image/png':
-                mymime = 'png'
-            elif mime_type == 'image/tiff':
-                mymime = 'tiff'
+                if mime_type == 'application/pdf':
+                    mymime = 'pdf'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mime_type == 'application/msword':
+                    mymime = 'word'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
+                    mymime = 'excel'
+                elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+                    mymime = 'powerpoint'
+                elif mime_type == 'application/vnd.ms-powerpoint':
+                    mymime = 'powerpoint2'
+                elif mime_type == 'image/jpeg':
+                    mymime = 'jpg'
+                elif mime_type == 'image/png':
+                    mymime = 'png'
+                elif mime_type == 'image/tiff':
+                    mymime = 'tiff'
+                else:
+                    mymime = 'pdf'
+
 
         
-        return mymime
+                return mymime
 
                 
     def image_with_cover(self):
@@ -1951,6 +1963,8 @@ class Publication(DigitalObject):
                 mime = 'pptx'
             elif mime_type == 'word':
                 mime = 'docx'
+            elif mime_type == 'powerpoint2':
+                mime = 'ppt'
             elif mime_type == 'excel':
                 mime = 'xlsx'
             elif mime_type == 'png':
@@ -1959,6 +1973,8 @@ class Publication(DigitalObject):
                 mime = 'jpg'
             elif mime_type == 'tiff':
                 mime = 'tiff'
+            else:
+                mime = 'pdf'
 
                 # mime = 'pdf'
             # write the resulting pdf to a buffer and return it
@@ -2007,20 +2023,20 @@ class Publication(DigitalObject):
             # create a new pdf file writer to merge cover & pdf into
             doc = PdfFileWriter()
             # load and add cover page first
-            cover = PdfFileReader(coverdoc)
+            cover = PdfFileReader(coverdoc, strict=False)
             doc.addPage(cover.pages[0])
-            print "Got Here"
+            # print "Got Here"
             # load pdf datastream contents into a file-like object
             for ch in self.pdf.get_chunked_content():
 
                 pdfstream.write(ch)
 
             # load pdf content into a pdf reader and add all pages
-            content = PdfFileReader(pdfstream)
-            print content.numPages
+            content = PdfFileReader(pdfstream, strict=False)
+            # print content.numPages
             for p in range(content.numPages):
                 doc.addPage(content.pages[p])
-                print content.pages[p]
+                # print content.pages[p]
 
             # write the resulting pdf to a buffer and return it
             result = StringIO()
@@ -2075,7 +2091,7 @@ class Publication(DigitalObject):
             symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
             symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
             symp_pub.journal = mods.journal.title if mods.journal.title else None
-            symp_pub.publisher = mods.publisher if mods.publisher else None
+            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
         if mods.publication_date:
             day, month, year = None, None, None
             date_info = mods.publication_date.split('-')
