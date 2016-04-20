@@ -46,8 +46,8 @@ from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
-from pyPdf import PdfFileReader
-from pyPdf.utils import PdfReadError
+from PyPDF2 import PdfFileReader
+from PyPDF2.utils import PdfReadError
 # from pdfminer.pdfparser import PDFParser, PDFDocument
 # from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 # from pdfminer.pdfdevice import PDFDevice
