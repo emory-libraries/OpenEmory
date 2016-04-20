@@ -1405,9 +1405,8 @@ def open_access_fund(request):
         #         connection=connection)
         # msg2.send()
         # add list serve email to context
-        
         #create plain text content
-        t = get_template("publication/email/openfund_request.txt")
+        t = get_template("publication/email/oa_fund_proposal.txt")
         context = Context({'form': form})
         text = t.render(context)
         print "===================="
@@ -1423,7 +1422,7 @@ def open_access_fund(request):
 
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
                                      text, sender, [form.data['email']], cc=[sender])
-        msg.attach_alternative(html, "text/html")
+        # msg.attach_alternative(html, "text/html")
         
         msg.send()
         
