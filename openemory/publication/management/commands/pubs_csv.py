@@ -55,6 +55,7 @@ class Command(BaseCommand):
             smart_str(u"CC License"),
             smart_str(u"Copyright Statement"),
             smart_str(u"Admin Note"),
+            smart_str(u"Date Reviewed"),
 
         ])
 
@@ -104,6 +105,7 @@ class Command(BaseCommand):
                             smart_str(mods.license.text if mods.license else ''),
                             smart_str(mods.copyright.text if mods.copyright else ''),
                             smart_str(mods.admin_note.text if mods.admin_note else ''),
+                            smart_str(article.provenance.content.date_reviewed if article.provenance else ''),
 
                         ])
         
