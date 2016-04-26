@@ -1,5 +1,5 @@
 # file openemory/accounts/migrations/0001_initial.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding model 'UserProfile'
         db.create_table('accounts_userprofile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -46,9 +46,38 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('accounts', ['Bookmark'])
 
+        db.create_table('"esdv"."v_oem_fclt"', (
+            ('_id', self.gf('django.db.models.fields.AutoField')(primary_key=True, db_column='prsn_i')),
+            ('ppid', self.gf('django.db.models.fields.CharField')(max_length=8, db_column='prsn_i_pblc')),
+            ('directory_name', self.gf('django.db.models.fields.CharField')(max_length=75, db_column='prsn_n_full_dtry')),
+            ('ad_name', self.gf('django.db.models.fields.CharField')(max_length=75, db_column='prsn_n_dspl_acdr')),
+            ('firstmid_name', self.gf('django.db.models.fields.CharField')(max_length=20, db_column='prsn_n_fm_dtry')),
+            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=25, db_column='prsn_n_last_dtry')),
+            ('name_suffix', self.gf('django.db.models.fields.CharField')(max_length=15, db_column='prsn_n_sufx_dtry')),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=70, db_column='prsn_e_titl_dtry')),
+            ('phone', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='prad_a_tlph_empe_fmtt')),
+            ('fax', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='prad_a_fax_empe_fmtt')),
+            ('department_id', self.gf('django.db.models.fields.CharField')(max_length=10, db_column='dprt_c')),
+            ('department_name', self.gf('django.db.models.fields.CharField')(max_length=40, db_column='dprt8dtry_n')),
+            ('division_code', self.gf('django.db.models.fields.CharField')(max_length=10, db_column='dvsn_i')),
+            ('division_name', self.gf('django.db.models.fields.CharField')(max_length=40, db_column='dvsn8dtry_n')),
+            ('mailstop_code', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='mlst_i')),
+            ('mailstop_name', self.gf('django.db.models.fields.CharField')(max_length=30, db_column='mlst_n')),
+            ('netid', self.gf('django.db.models.fields.CharField')(max_length=8, db_column='logn8ntwr_i')),
+            ('internet_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_intt')),
+            ('directory_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_dtry')),
+            ('information_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_infr')),
+            ('faculty_flag', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, max_length=1, db_column='empe_f_fclt')),
+            ('email', self.gf('django.db.models.fields.CharField')(max_length=100, db_column='emad_n')),
+            ('email_forward', self.gf('django.db.models.fields.CharField')(max_length=100, db_column='emad8frwd_n')),
+            ('employee_status', self.gf('django.db.models.fields.CharField')(max_length=1, db_column='emjo_c_stts_empe')),
+            ('person_type', self.gf('django.db.models.fields.CharField')(max_length=1, db_column='prsn_c_type')),
+        ))
+        db.send_create_signal(u'accounts', ['EsdPerson'])
+
 
     def backwards(self, orm):
-        
+
         # Deleting model 'UserProfile'
         db.delete_table('accounts_userprofile')
 
@@ -155,4 +184,3 @@ class Migration(SchemaMigration):
     }
 
     complete_apps = ['accounts']
-
