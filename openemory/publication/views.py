@@ -1392,7 +1392,7 @@ def open_access_fund(request):
         content = render_to_string('publication/email/oa_fund_proposal.txt', {
             'form': form
         })
-        mail_listserv('Open Access Fund Proposal from OpenEmory', content)
+        # mail_listserv('Open Access Fund Proposal from OpenEmory', content)
         list_serve_email = "openemory@listserv.cc.emory.edu"
         # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
@@ -1405,9 +1405,8 @@ def open_access_fund(request):
         #         connection=connection)
         # msg2.send()
         # add list serve email to context
-        
         #create plain text content
-        t = get_template("publication/email/openfund_request.txt")
+        t = get_template("publication/email/oa_fund_proposal.txt")
         context = Context({'form': form})
         text = t.render(context)
         print "===================="
@@ -1421,15 +1420,10 @@ def open_access_fund(request):
         print html
         print "===================="
 
-        #send mail
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, sender, [form.data['email']])
-        msg.attach_alternative(html, "text/html")
-        # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-        #                              content, sender, [list_serve_email])
-        # message1 = ('Subject here', 'Here is the message', 'from@example.com', ['openemory@listserv.cc.emory.edu', form.data['email']])
-        # message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['openemory@listserv.cc.emory.edu'])
-        # send_mass_mail((message1, message2), fail_silently=False)
+                                     text, sender, [form.data['email']], cc=[sender])
+        # msg.attach_alternative(html, "text/html")
+        
         msg.send()
         
         print "Mail Sent"
