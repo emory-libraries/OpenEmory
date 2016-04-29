@@ -23,13 +23,14 @@ from django.conf import settings
 from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
-from eulfedora.server import Repository
-from openemory.publication.models import Publication, LastRun, PublicationPremis
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
 
 from rdflib import Namespace, URIRef, Literal
+
+from openemory.common.fedora import ManagementRepository
+from openemory.publication.models import Publication, LastRun
 
 logger = logging.getLogger(__name__)
 
@@ -55,14 +56,12 @@ class Command(BaseCommand):
                     help='Keeps the changes from the duplicate pids by copying ATOM-FEED to original.'),
         )
 
-
-
     def handle(self, *args, **options):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
-        #counters
+        # counters
         self.counts = defaultdict(int)
 
         # duplicates list
@@ -72,8 +71,8 @@ class Command(BaseCommand):
         self.reportsdirectory = settings.REPORTS_DIR
         self.reportname = "replaces-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
 
-        #connection to repository
-        self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        # connection to repository
+        self.repo = ManagementRepository()
 
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
@@ -81,7 +80,7 @@ class Command(BaseCommand):
         last_run = LastRun.objects.get(name='Convert Symp to OE')
         date = last_run.start_time
 
-        self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
+        self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S"))
         date = time_zone.localize(date)
         date = date.astimezone(pytz.utc)
         date_str = date.strftime("%Y-%m-%dT%H:%M:%S")

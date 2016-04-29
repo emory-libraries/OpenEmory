@@ -58,7 +58,7 @@ from pprint import pprint
 import re
 import openemory
 from django.utils.crypto import get_random_string
-from openemory.common.fedora import DigitalObject
+from openemory.common.fedora import DigitalObject, ManagementRepository
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
@@ -2143,9 +2143,9 @@ class Publication(DigitalObject):
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Publication`
         '''
-        repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        repo = ManagementRepository()
         # Collection to which all articles will belong for use with OAI
-        coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+        coll = repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
         print coll
         symp = self.sympAtom.content
         mods = self.descMetadata.content
