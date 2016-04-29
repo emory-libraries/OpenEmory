@@ -58,7 +58,8 @@ from pprint import pprint
 import re
 import openemory
 from django.utils.crypto import get_random_string
-from openemory.common.fedora import DigitalObject, ManagementRepository
+from openemory.common.fedora import DigitalObject, ManagementRepository, \
+    absolutize_url
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
@@ -1282,7 +1283,6 @@ class Publication(DigitalObject):
     #: symplectic elements public url
     public_url = Relation(SYMPLECTIC_MODEL_NS.hasPublicUrl)
 
-
     allowed_mime_types = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','tiff':'image/tiff','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','tiff':'image/tiff','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','jpeg' : 'image/jpeg','png' : 'image/png','tiff':'image/tiff','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
@@ -1347,8 +1347,6 @@ class Publication(DigitalObject):
             'versionable': True,
         })
     '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
-
-
 
     def get_absolute_url(self):
         ark_uri = self.descMetadata.content.ark_uri
@@ -2139,6 +2137,27 @@ class Publication(DigitalObject):
 
         return (symp_pub, relations)
 
+    def ark_uri_from_pid(self):
+        # generate ark uri based on the object pid
+        # NOTE: ideally, we shouldn't have to reconstruct the ARK yuri like this
+        # but presumably the stub objects we get from symplectic don't
+        # store the full ARK anywhere in the metadata that we can access
+        try:
+            return '%sark:/%s/%s' % (settings.PIDMAN_HOST, settings.PID_NAAN,
+                                     self.noid)
+        except AttributeError:
+            # if DEV_ENV is configured and pidman is not, use absolute local
+            # url as a stand-in for the ARK
+            if getattr(settings, 'DEV_ENV', False):
+                return absolutize_url(self.get_absolute_url())
+            # otherwise, re-raise the errro
+            raise
+
+    def ark_identifier_from_pid(self):
+        # short-form ark identifier, starting with just ark:/
+        ark_uri = self.ark_uri_from_pid()
+        if 'ark:' in ark_uri:
+            return ark_uri[ark_uri.index('ark:'):]
 
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Publication`
@@ -2149,19 +2168,20 @@ class Publication(DigitalObject):
         print coll
         symp = self.sympAtom.content
         mods = self.descMetadata.content
-        mods.resource_type= 'text'
+        mods.resource_type = 'text'
         # object attributes
         self.label = symp.title
         self.collection = coll
-        print self.collection
-        print self.rels_ext.content.serialize()
         self.descMetadata.label = 'descMetadata(MODS)'
 
-        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        # determine ark uri based on the pid
+        ark_uri = self.ark_uri_from_pid()
+        self.dc.content.identifier_list.extend(ark_uri)
+        # full ark
+        mods.ark_uri = ark_uri
+        mods.ark = self.ark_identifier_from_pid()
+
         mods.publisher = symp.publisher
-        self.dc.content.identifier_list.extend([ark_uri])
-
-
         mods.publication_place = symp.pub_place
 
         #RELS-EXT attributes
@@ -2287,10 +2307,9 @@ class Publication(DigitalObject):
 
         # DS mapping for all content types
         mods.create_abstract()
-        mods.resource_type= 'text'
+        mods.resource_type = 'text'
         mods.create_final_version()
-        mods.ark_uri = ark_uri
-        mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
+        # mods ARK set above when ARK is added to dc:identifier
         mods.title = symp.title
         if symp.doi:
             mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi

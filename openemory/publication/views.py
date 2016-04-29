@@ -386,7 +386,7 @@ def view_article(request, pid):
     repo = Repository(username='fedoraAdmin',
                                      password='fedoraAdmin')
     obj = repo.get_object(pid=pid, type=Publication)
-    
+
     # *** SPECIAL CASE (should be semi-temporary)
     # (Added 12/2012; can be removed once openemory:* pids are no longer
     # indexed, possibly after a few months.)
@@ -445,7 +445,7 @@ def edit_metadata(request, pid):
     is_admin = 'Site Admin' in  [g.name for g in request.user.groups.all()]
     # see if article is nlm for use with modsEdit form
     is_nlm = obj.contentMetadata.exists
-    genre = obj.descMetadata.content.genre 
+    genre = obj.descMetadata.content.genre
     if genre == "Article":
         editform = ArticleEditForm
     elif genre == "Book":
@@ -482,7 +482,7 @@ def edit_metadata(request, pid):
         if 'save-record' in request.POST:
             form = editform(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
-            
+
         # publish
         else:
             print "got here"
@@ -518,11 +518,7 @@ def edit_metadata(request, pid):
                         obj.provenance.content.reviewed(request.user)
 
                         # RELS-EXT attributes
-                        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, obj.pid.split(':')[1])
-                        sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
-                        obj.rels_ext.content.bind('symp', sympns)
-                        public_url = (URIRef('info:fedora/' + obj.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
-                        obj.rels_ext.content.set(public_url)
+                        obj.public_url = URIRef(obj.ark_uri_from_pid())
 
                 # if withdrawal/reinstatement state on the form doesn't
                 # match the object, update the object
@@ -604,7 +600,7 @@ def edit_metadata(request, pid):
                     return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
 
                 # distinguish between save/publish in success message
-                
+
                 # otherwise, redisplay the edit form
 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
@@ -664,7 +660,7 @@ def download_pdf(request, pid):
 
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed (but only if this is a GET)
-               
+
         if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
             if request.method == 'GET':
                 stats = obj.statistics()
@@ -695,7 +691,7 @@ def download_pdf(request, pid):
             #     }
             #     response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
 
-            
+
         else:
             content = obj.zip_with_cover()
             filename = "%s.zip" % slugify(obj.label)
@@ -1395,11 +1391,11 @@ def open_access_fund(request):
         # mail_listserv('Open Access Fund Proposal from OpenEmory', content)
         list_serve_email = "openemory@listserv.cc.emory.edu"
         # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
-        
-        
+
+
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
         subject = 'Open Access Fund Proposal from OpenEmory'
-        
+
         # msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
         #         content, settings.SERVER_EMAIL, [list_serve_email],
         #         connection=connection)
@@ -1423,11 +1419,11 @@ def open_access_fund(request):
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
                                      text, sender, [form.data['email']], cc=[sender])
         # msg.attach_alternative(html, "text/html")
-        
+
         msg.send()
-        
+
         print "Mail Sent"
-    
+
         messages.success(request, "Thanks for your request! We've sent it to our Fund administrators.")
         return redirect('site-index')
 

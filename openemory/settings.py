@@ -153,6 +153,9 @@ PID_ALIASES = {
     'oe-collection' : 'info:fedora/emory-control:OpenEmory-collection'
 }
 
+# name authority number for pids managed by the configured pidmanager
+PID_NAAN = 25593
+
 FILE_UPLOAD_HANDLERS = (
     # removing default MemoryFileUploadHandler so all uploaded files can be treated the same
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
