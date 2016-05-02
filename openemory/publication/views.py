@@ -725,7 +725,7 @@ def download_pdf(request, pid):
         #     logger.warn('Exception on %s; returning without cover page' % obj.pid)
         #     # cover page failed - fall back to pdf without
         #     # use generic raw datastream view from eulfedora
-        #     return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
+        #     return raw_datastream(request, pid, Publication.pdf.id,
         #                           repo=repo, headers=extra_headers)
 
     except RequestFailed:
@@ -737,7 +737,7 @@ def view_datastream(request, pid, dsid):
     '''Access object datastreams on
     :class:`openemory.publication.model.Article` objects'''
     # initialize local repo with logged-in user credentials & call generic view
-    return raw_datastream(request, pid, dsid, type=Publication, repo=Repository(request=request))
+    return raw_datastream(request, pid, dsid, repo=Repository(request=request))
 
 def view_private_datastream(request, pid, dsid):
     '''Access raw object datastreams accessible only to object owners and
@@ -758,7 +758,7 @@ def view_private_datastream(request, pid, dsid):
         if (request.user.is_authenticated()) and \
            (request.user.username in obj.owner
                or request.user.is_superuser):
-            return raw_datastream(request, pid, dsid, type=Publication,
+            return raw_datastream(request, pid, dsid,
                                   repo=repo, headers=extra_headers)
         elif request.user.is_authenticated():
             tpl = get_template('403.html')
@@ -773,8 +773,7 @@ def view_private_datastream(request, pid, dsid):
 def audit_trail(request, pid):
     '''Access XML audit trail on
         :class:`openemory.publication.model.Article` objects'''
-    return raw_audit_trail(request, pid, type=Publication,
-                           repo=Repository(request=request))
+    return raw_audit_trail(request, pid, repo=Repository(request=request))
 
 
 def bibliographic_metadata(request, pid):
