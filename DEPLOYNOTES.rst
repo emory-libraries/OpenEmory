@@ -11,6 +11,26 @@ We recommend the use of `pip <http://pip.openplans.org/>`_ and `virtualenv
 in this and other Python projects. If you don't have them installed we
 recommend ``sudo easy_install pip`` and then ``sudo pip install virtualenv``.
 
+Bootstrapping a development environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Copy ``openemory/localsettings.py.dist`` to ``openemory/localsettings.py``
+  and configure any local settings: **DATABASES**,  **SECRET_KEY**,
+  **SOLR_**, **FEDORA_**,  customize **LOGGING**, etc.
+* Create a new virtualenv and activate it.
+* Install fabric: ``pip install fabric``
+* Use fabric to run a local build, which will install python dependencies in
+  your virtualenv, run unit tests, and build sphinx documentation: ``fab build``
+
+Deploy to QA and Production should be done using ``fab deploy``.
+
+After configuring your database, run syncdb::
+
+    python manage.py syncdb
+
+Use eulindexer to index repository content into your configured Solr instance.
+
+
 Configure the environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -84,7 +104,12 @@ To install python dependencies, cd into the repository checkout and::
 
   $ pip install -r pip-install-req.txt
 
-If you are a developer or are installing to a continuous ingration server
+*Note*: installation of some dependencies (i.e. django-tracking) requires
+that django settings are available. To install these manually, use this::
+
+  $ env DJANGO_SETTINGS_MODULE=openemory.settings pip install -r pip-install-after-config.txt
+
+If you are a developer or are installing to a continuous integration server
 where you plan to run unit tests, code coverage reports, or build sphinx
 documentation, you probably will also want to::
 
@@ -216,47 +241,47 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
-Release 2.1.0 - Content Type Harmonization 
+Release 2.1.0 - Content Type Harmonization
 ------------------------------------------
 * mime type debugging
 * fixing styles
 
-Release 2.0.0 - New Content Type (Presentation) 
+Release 2.0.0 - New Content Type (Presentation)
 -----------------------------------------------
 * adding new content
 
-Release 1.9.0 - New Content Type (Poster) 
+Release 1.9.0 - New Content Type (Poster)
 -----------------------------------------
 * adding new content
 
-Release 1.8.0 - New Content Type (Report) 
+Release 1.8.0 - New Content Type (Report)
 -----------------------------------------
 * debugging conflicting policies in XACML
 
-Release 1.7.0 - New Content Type (Conference) 
+Release 1.7.0 - New Content Type (Conference)
 ---------------------------------------------
 
 
-Release 1.6.0 - New Content Type (Chapter) 
+Release 1.6.0 - New Content Type (Chapter)
 ------------------------------------------
 * run this script to cleanup journal articles (updated)
 
     $ python manage.py journal_title
 
 
-Release 1.5.0 - New Content Type (Book) 
+Release 1.5.0 - New Content Type (Book)
 ---------------------------------------
 * run this script to match all content models for articles and books
 
     $ python manage.py cmodel_cleanup
 
-Release 1.4.0 - Author Enhancements 
+Release 1.4.0 - Author Enhancements
 -----------------------------------
 * run this script to match all current journal titles with Sherpa Romeo
 
     $ python manage.py journal_title
 
-Release 1.3 - Pre Fedora Migration 
+Release 1.3 - Pre Fedora Migration
 ----------------------------------
 * run migrations for downtime
 

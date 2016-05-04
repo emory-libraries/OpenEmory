@@ -20,7 +20,6 @@ python-dateutil
 xhtml2pdf
 PyPDF2
 python-magic
-#django-tracking
 django-widget-tweaks
 pyasn1
 progressbar
@@ -29,9 +28,12 @@ pdfminer==20110515
 requests
 pytz
 
-
 #version 1.0 breakes RDF parsing in python 2.x.  When bug is fixed requirement of 0.95 should be removed
 html5lib
 #latest version requires python 2.7 or 3.3+
 reportlab
 django-downtime
+
+# NOTE: django-tracking is not included here because install requires
+# django settings to be available.  See deploynotes for details.
+#django-tracking
