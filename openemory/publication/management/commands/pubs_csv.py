@@ -1,22 +1,23 @@
 from django.conf import settings
 from collections import defaultdict
+import csv
 from getpass import getpass
 import logging
 from optparse import make_option
 
+from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
 from django.core.paginator import Paginator
-
-from eulfedora.server import Repository
-
-from openemory.publication.models import Publication
-from openemory.accounts.models import EsdPerson, UserProfile
-from django.contrib.auth.models import User
-from openemory.common import romeo
 from django.utils.encoding import smart_str
-import csv
+
+from openemory.accounts.models import EsdPerson, UserProfile
+from openemory.common import romeo
+from openemory.common.fedora import ManagementRepository
+from openemory.publication.models import Publication
+
 
 logger = logging.getLogger(__name__)
+
 
 class Command(BaseCommand):
     ''' This command run through all the articles and makes sure that journal titles and publishers match against Sherpa Romeo
@@ -36,9 +37,8 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
-
-        #connection to repository
-        self.repo = Repository(settings.FEDORA_ROOT, username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        # connection to repository
+        self.repo = ManagementRepository()
         pid_set = self.repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, type=Publication)
         writer = csv.writer(open("publications_csv.csv", 'wb'))
         writer.writerow([
@@ -58,7 +58,6 @@ class Command(BaseCommand):
             smart_str(u"Date Reviewed"),
 
         ])
-
 
         try:
             articles = Paginator(pid_set, 100)
@@ -108,7 +107,7 @@ class Command(BaseCommand):
                             smart_str(article.provenance.content.date_reviewed if article.provenance else ''),
 
                         ])
-        
+
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     # self.counts['errors'] +=1

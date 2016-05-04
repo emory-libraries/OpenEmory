@@ -4,18 +4,18 @@ from getpass import getpass
 import logging
 from optparse import make_option
 
+from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
 from django.core.paginator import Paginator
 
-from eulfedora.server import Repository
-
-from openemory.publication.models import Publication
 from openemory.accounts.models import EsdPerson, UserProfile
-from django.contrib.auth.models import User
 from openemory.common import romeo
+from openemory.common.fedora import ManagementRepository
+from openemory.publication.models import Publication
 
 
 logger = logging.getLogger(__name__)
+
 
 class Command(BaseCommand):
     ''' This command run through all the articles and makes sure that journal titles and publishers match against Sherpa Romeo
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
-        ) 
+        )
 
     def handle(self, *args, **options):
 
@@ -53,11 +53,11 @@ class Command(BaseCommand):
             cmodel = Publication.ARTICLE_CONTENT_MODEL
 
         if options['book']:
-           cmodel = Publication.BOOK_CONTENT_MODEL 
-        #connection to repository
-        self.repo = Repository(settings.FEDORA_ROOT,username="fedoraAdmin", password="fedoraAdmin")
-        pid_set = self.repo.get_objects_with_cmodel(cmodel, type=Publication)
+           cmodel = Publication.BOOK_CONTENT_MODEL
 
+        # connection to repository
+        self.repo = ManagementRepository()
+        pid_set = self.repo.get_objects_with_cmodel(cmodel, type=Publication)
 
         try:
             publications = Paginator(pid_set, 100)
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                     else:
                         continue
 
-                        
+
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     # self.counts['errors'] +=1

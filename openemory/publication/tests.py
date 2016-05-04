@@ -1,5 +1,5 @@
 # file openemory/publication/tests.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -310,7 +310,7 @@ class NlmArticleTest(TestCase):
         self.article_multiauth.copyright= "this is a creative commons license statement"
         amods = self.article_multiauth.as_article_mods()
         self.assertEquals(amods.license.text, self.article_multiauth.copyright)
-        
+
         # copyright
         self.assertEquals(amods.copyright.text, self.article_multiauth.copyright)
 
@@ -883,6 +883,64 @@ class ArticleTest(TestCase):
         self.assertEqual(relations[1].to_object, "user(username-%s)" % "n2")
         self.assertEqual(relations[1].type_name, 'publication-user-authorship')
 
+    def test_ark_uri_from_pid(self):
+        # TODO: use override_settings once we get to django 1.6+
+        # for now, manually add settings for testing
+        _pidman_host = getattr(settings, 'PIDMAN_HOST', None)
+        _pid_naan = getattr(settings, 'PID_NAAN', None)
+        _dev_env = getattr(settings, 'DEV_ENV', None)
+
+        settings.PIDMAN_HOST = 'http://pid.co'
+        settings.PID_NAAN = '12345'
+
+        # existing configs, should generate ark as expected
+        ark_uri = self.article.ark_uri_from_pid()
+        print ark_uri
+        self.assertEqual('%sark:/%s/%s' % (settings.PIDMAN_HOST, settings.PID_NAAN,
+                                           self.article.noid),
+                         ark_uri)
+
+        # pidman unconfigured - ok in dev env, otherwise not
+        settings.DEV_ENV = True
+        delattr(settings, 'PIDMAN_HOST')
+        uri = self.article.ark_uri_from_pid()
+        # uses absolute url as fallback
+        self.assert_(self.article.get_absolute_url() in uri)
+
+        # if not in dev env, raises an error
+        settings.DEV_ENV = False
+        self.assertRaises(AttributeError, self.article.ark_uri_from_pid)
+
+        # restore real configs
+        settings.PIDMAN_HOST = _pidman_host
+        settings.PID_NAAN = _pid_naan
+        settings.DEV_ENV = _dev_env
+
+    def test_ark_identifier_from_pid(self):
+        with patch.object(self.article, 'ark_uri_from_pid') as mock_uri:
+            ark = 'ark:/13245/foo'
+            mock_uri.return_value = 'http://pid.co/%s' % ark
+            self.assertEqual(ark, self.article.ark_identifier_from_pid())
+
+            # non ark returns no identifier
+            mock_uri.return_value = 'http://localhost/publication/article:123'
+            self.assertEqual(None, self.article.ark_identifier_from_pid())
+
+    def ark_uri_from_pid(self):
+        # generate ark uri based on the object pid
+        # NOTE: ideally, we shouldn't have to reconstruct the ARK yuri like this
+        # but presumably the stub objects we get from symplectic don't
+        # store the full ARK anywhere in the metadata that we can access
+        try:
+            return '%sark:/%s/%s' % (settings.PIDMAN_HOST, settings.PID_NAAN,
+                                     self.noid)
+        except AttributeError:
+            # if DEV_ENV is configured and pidman is not, use absolute local
+            # url as a stand-in for the ARK
+            if getattr(settings, 'DEV_ENV', False):
+                return absolutize_url(self.get_absolute_url())
+            # otherwise, re-raise the errro
+            raise
 
     def test_from_symp(self):
         sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
@@ -894,7 +952,7 @@ class ArticleTest(TestCase):
         self.assertTrue(self.article.has_model(Publication.ARTICLE_CONTENT_MODEL))
         self.article.from_symp()
         self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
-        
+
         self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
         self.assertEqual(mods.resource_type, 'text')
         self.assertEqual(mods.genre, 'Article')
@@ -1220,7 +1278,7 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
 
         # create a record to test ingesting
-        
+
         record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
         record.save()
         # add test user as record author
@@ -1360,7 +1418,7 @@ class PublicationViewsTest(TestCase):
         # only check custom logic implemented here
         # (not testing eulfedora.views.raw_datastream logic)
         content_disposition = response['Content-Disposition']
-        
+
         self.assert_(content_disposition.startswith('attachment;'),
                      'content disposition should be set to attachment, to prompt download')
         # PRELIMINARY download filename.....
@@ -1754,7 +1812,7 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
         response = self.client.post(edit_url, data)
-        
+
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
@@ -1763,7 +1821,7 @@ class PublicationViewsTest(TestCase):
                                  kwargs={'pid': self.article.pid}),
                          response['Location'],
              'should redirect to article detail view page after publish')
-             
+
         # get newly updated version of the object to check state
         self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual('A', self.article.state,
@@ -1773,14 +1831,14 @@ class PublicationViewsTest(TestCase):
 
         # make another request to check session message
         response = self.client.get(edit_url)
-        
+
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
-        
+
         # RELS-EXT should not be set yet
         self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
-        
-        
+
+
         # post full metadata
         data = MODS_FORM_DATA.copy()
         with open(pdf_filename_2) as author_agreement:
@@ -1820,7 +1878,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Should display successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
-                         
+
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual(data['title_info-subtitle'],
@@ -1936,10 +1994,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
-        
+
         # RELS-EXT should be set after submit
         self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should be present after submitting review.")
-        
+
         data['featured'] = True
         response = self.client.post(edit_url, data)
         self.assertTrue(FeaturedArticle.objects.filter(pid=self.article.pid),
@@ -2469,38 +2527,38 @@ class PublicationViewsTest(TestCase):
                      in active_filters_dict[facet_opts['year']])
         self.assert_(urlencode({'year': '2010'})
                      not in active_filters_dict[facet_opts['year']])
-    
+
     def test_rels_ext(self):
         #Add harvest and review events to article
         mockuser = Mock()
         mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
         mockuser.username = 'juser'
-        
+
         self.article.provenance.content.init_object(self.article.pid, 'pid')
         self.article.provenance.content.harvested(mockuser, 'pmc123')
         self.article.provenance.content.reviewed(mockuser)
 
         self.article.save()
-        
+
         self.assertTrue("RELS-EXT" in self.article.ds_list.keys(), "Articles should have a valid RELS-EXT association.")
-        
+
         rels_ext = self.article.rels_ext.content.serialize(pretty=True)
-        
+
         if "xmlns:symp" in rels_ext:
           self.assertTrue(bool("hasPublicUrl" in rels_ext) != bool("dcterms:replaces rdf:" in rels_ext), \
           "Articles imported from symplectic should either have a Public URL or a replaces rdf tag.")
-    
+
     def test_view_article(self):
         #Add harvest and review events to article
         mockuser = Mock()
         mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
         mockuser.username = 'juser'
-        
+
         self.article.provenance.content.init_object(self.article.pid, 'pid')
         self.article.provenance.content.harvested(mockuser, 'pmc123')
         self.article.provenance.content.reviewed(mockuser)
         self.article.save()
-        
+
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
         baseline_views = self.article.statistics().num_views
@@ -3836,15 +3894,15 @@ class TestPdfObject(DigitalObject):
         PublicationMods, defaults={
             'versionable': True,
         })
- 
- 
+
+
 class PdfToTextTest(TestCase):
     fixture_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures')
     pdf_filepath = os.path.join(fixture_dir, 'test.pdf')
     pdf_filepath2 = os.path.join(fixture_dir, 'emory_crnb7.pdf')
     pdf_text = ' \n\n \n \n \n \nThis is a test PDF document. \nIf you can read this, you have Adobe Acrobat Reader installed on your computer. \n\n \n\n'
     pdf_text2 = 'Inordertodemonstratetheconsequencesofsuchameasure'
-    
+
     def setUp(self):
         self.repo = Repository(settings.FEDORA_ROOT, settings.FEDORA_TEST_USER,
                                settings.FEDORA_TEST_PASSWORD)
@@ -3853,15 +3911,15 @@ class PdfToTextTest(TestCase):
             self.pdfobj.label = 'openemory test pdf object'
             self.pdfobj.pdf.content = pdf
             self.pdfobj.save()
-            
+
     def tearDown(self):
         self.repo.purge_object(pid=self.pdfobj.pid)
-        
+
     def test_file(self):
         # extract text from a pdf from a file on the local filesystem
         text = pdf_to_text(open(self.pdf_filepath, 'rb'))
         self.assertEqual(self.pdf_text, text)
-  
+
     def test_whitespace(self):
         # extract text from a pdf from a file on the local filesystem
         text = pdf_to_text(open(self.pdf_filepath2, 'rb'))
@@ -3872,7 +3930,7 @@ class PdfToTextTest(TestCase):
         pdfobj = self.repo.get_object(self.pdfobj.pid, type=TestPdfObject)
         text = pdf_to_text(pdfobj.pdf.content)
         self.assertEqual(self.pdf_text, text)
-    
+
     def test_unicode(self):
         pdfobj = self.repo.get_object(self.pdfobj.pid, type=TestPdfObject)
         text = pdf_to_text(pdfobj.pdf.content)
@@ -3910,7 +3968,7 @@ class TestSympDS(TestCase):
     def setUp(self):
         sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
         self.sympAtom = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
-        
+
     def test_basic_fields(self):
         self.assertEqual(self.sympAtom.pubs_id, '873965')
         self.assertEqual(self.sympAtom.crossref.source_name, 'crossref')
