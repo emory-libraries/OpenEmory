@@ -35,6 +35,8 @@ from eulfedora.models import FileDatastream, \
      XmlDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
+from openemory.publication.symp_import import OESympImportPublication, \
+    SympDate, SympPerson, SympRelation, SympWarning
 from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
 import zipfile
@@ -1787,6 +1789,13 @@ class Publication(DigitalObject):
         if not isinstance(self.pid, basestring):
             return None
         return ArticleStatistics.objects.filter(pid=self.pid)
+
+         # stats = ArticleStatistics.objects.values('pid').distinct() \
+        #        .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
+        #        .filter(all_views__gt=0) \
+        #        .order_by('-all_views') \
+        #        .values('pid', 'all_views', 'all_downloads')[:10]
+
 
     def aggregate_statistics(self):
         '''Get statistics for this article, aggregated across all available

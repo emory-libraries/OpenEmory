@@ -38,11 +38,12 @@ class Command(BaseCommand):
 
 
         #connection to repository
-        self.repo = Repository(settings.FEDORA_ROOT, username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        self.repo = Repository(settings.FEDORA_ROOT, username=settings.FEDORA_USER, password=settings.FEDORA_PASSWORD)
         pid_set = self.repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, type=Publication)
         writer = csv.writer(open("publications_csv.csv", 'wb'))
         writer.writerow([
             smart_str(u"PID"),
+            smart_str(u"Title"),
             smart_str(u"Withdrawn"),
             smart_str(u"Authors"),
             smart_str(u"Journal Title"),
@@ -56,6 +57,10 @@ class Command(BaseCommand):
             smart_str(u"Copyright Statement"),
             smart_str(u"Admin Note"),
             smart_str(u"Date Reviewed"),
+            smart_str(u"Rights Research Date"),
+            smart_str(u"PMC"),
+            smart_str(u"PUBSID"),
+            smart_str(u"File Deposited"),
 
         ])
 
@@ -81,6 +86,7 @@ class Command(BaseCommand):
                         continue
                     else:
                         mods = article.descMetadata.content
+                        symp = article.sympAtom.content
                         authors = []
                         subjects = []
                         funders = []
@@ -93,6 +99,7 @@ class Command(BaseCommand):
 
                         writer.writerow([
                             smart_str(article.pid if article.pid else ''),
+                            smart_str(article.label if article.label else ''),
                             smart_str(article.is_withdrawn),
                             smart_str(",".join(authors)),
                             smart_str(mods.journal.title if mods.journal else ''),
@@ -106,6 +113,11 @@ class Command(BaseCommand):
                             smart_str(mods.copyright.text if mods.copyright else ''),
                             smart_str(mods.admin_note.text if mods.admin_note else ''),
                             smart_str(article.provenance.content.date_reviewed if article.provenance else ''),
+                            smart_str(mods.rights_research_date if mods.rights_research_date else ''),
+                            smart_str(article.pmcid if article.pmcid else ''),
+                            smart_str(symp.pubs_id if symp else ''),
+                            smart_str("Yes" if article.pdf.exists else 'No'),
+
 
                         ])
         

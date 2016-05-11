@@ -130,12 +130,15 @@
   
     <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
     <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
-    {% if article.download.exists %} {# only display download stats if there is a file to download #}
-      <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
-      <meta itemprop="interactionCount" content="UserDownloads:{{ stats.num_downloads|default:0}}"/>
-    {% endif %}
-  {% endwith %}
 
+    
+     
+  {% endwith %}
+<p class="count">
+    {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %}
+    {% if article.views and article.downloads %} | {% endif %}
+    {% if article.downloads %}<span class="numDownloads">{{ article.downloads|intcomma }} Download{{ article.downloads|pluralize }}</span>{% endif %}
+  </p>
   {% with article.descMetadata.content as mods %}
       {% if mods.author_notes %}
       <h2 class="shadowLight">Author Notes:</h2>

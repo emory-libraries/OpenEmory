@@ -27,7 +27,8 @@ from django.core.paginator import Paginator
 from eulfedora.server import Repository
 from eulxml.xmlmap import load_xmlobject_from_string
 
-from openemory.publication.models import Publication, OESympImportArticle, \
+from openemory.publication.models import Publication
+from openemory.publication.symp_import import OESympImportPublication, \
     SympDate, SympPerson, SympRelation, SympWarning
 from openemory.util import percent_match
 import requests
@@ -111,69 +112,69 @@ class Command(BaseCommand):
                 continue
             for article in objs:
                 try:
-                    if not article.exists:
-                        self.output(1, "Skipping %s because pid does not exist" % article.pid)
-                        self.counts['skipped'] +=1
-                        continue
-                    title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
-                    if title is None or title == '':
-                        self.output(1, "Skipping %s because OE Title does not exist" % (article.pid))
-                        self.counts['skipped'] +=1
-                        continue
+                    # if not article.exists:
+                    #     self.output(1, "Skipping %s because pid does not exist" % article.pid)
+                    #     self.counts['skipped'] +=1
+                    #     continue
+                    # title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
+                    # if title is None or title == '':
+                    #     self.output(1, "Skipping %s because OE Title does not exist" % (article.pid))
+                    #     self.counts['skipped'] +=1
+                    #     continue
 
-                    if not article.is_published:
-                        self.output(1, "Skipping %s because pid is not published" % article.pid)
-                        self.counts['skipped'] +=1
-                        continue
+                    # if not article.is_published:
+                    #     self.output(1, "Skipping %s because pid is not published" % article.pid)
+                    #     self.counts['skipped'] +=1
+                    #     continue
 
-                    # try to detect article by PMC
-                    if article.pmcid and not options['force']:
-                        response = self.session.get(self.pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid, 'detail': 'full'})
-                        entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
-                        self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
-                        if response.status_code == 200:
-                            if len(entries) >= 1:
-                                self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
-                                self.counts['skipped'] +=1
+                    # # try to detect article by PMC
+                    # if article.pmcid and not options['force']:
+                    #     response = self.session.get(self.pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid, 'detail': 'full'})
+                    #     entries = load_xmlobject_from_string(response.raw.read(), OESympImportPublication).entries
+                    #     self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
+                    #     if response.status_code == 200:
+                    #         if len(entries) >= 1:
+                    #             self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
+                    #             self.counts['skipped'] +=1
 
-                                if options['rel']:
-                                    symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
-                                    self.process_relations(entries[0].source_id, relations, options)
-                                    sleep(1)
-                                continue
-                        else:
-                            self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
-                            self.counts['skipped'] +=1
-                            continue
+                    #             if options['rel']:
+                    #                 symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
+                    #                 self.process_relations(entries[0].source_id, relations, options)
+                    #                 sleep(1)
+                    #             continue
+                    #     else:
+                    #         self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
+                    #         self.counts['skipped'] +=1
+                    #         continue
 
-                    # try to detect article by Title if it does not have PMC
-                    if not options['force']:
-                        response = self.session.get(self.pub_query_url, params = {'query' : 'title~"%s"' % title, 'detail': 'full'})
-                        entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
-                        # Accouont for mutiple results
-                        titles = [e.title for e in entries]
-                        self.output(2, "Query for Title Match: GET %s %s" % (response.url, response.status_code))
-                        if response.status_code == 200:
-                            found = False
-                            for t in titles:
-                                success, percent = percent_match(title, t, 90)
-                                self.output(1, "Percent Title Match '%s' '%s' %s " % (title, t, percent))
-                                if success:
-                                    found = True
-                            if found:
-                                self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
-                                self.counts['skipped'] +=1
+                    # # try to detect article by Title if it does not have PMC
+                    # if not options['force']:
+                    #     response = self.session.get(self.pub_query_url, params = {'query' : 'title~"%s"' % title, 'detail': 'full'})
+                    #     entries = load_xmlobject_from_string(response.raw.read(), OESympImportPublication).entries
+                    #     # Accouont for mutiple results
+                    #     titles = [e.title for e in entries]
+                    #     self.output(2, "Query for Title Match: GET %s %s" % (response.url, response.status_code))
+                    #     if response.status_code == 200:
+                    #         found = False
+                    #         for t in titles:
+                    #             success, percent = percent_match(title, t, 90)
+                    #             self.output(1, "Percent Title Match '%s' '%s' %s " % (title, t, percent))
+                    #             if success:
+                    #                 found = True
+                    #         if found:
+                    #             self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
+                    #             self.counts['skipped'] +=1
 
-                                # update relations if rel is set
-                                if options['rel']:
-                                    symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
-                                    self.process_relations(entries[0].source_id, relations, options)
-                                    sleep(1)
-                                continue
-                        else:
-                            self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
-                            self.counts['skipped'] +=1
-                            continue
+                    #             # update relations if rel is set
+                    #             if options['rel']:
+                    #                 symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
+                    #                 self.process_relations(entries[0].source_id, relations, options)
+                    #                 sleep(1)
+                    #             continue
+                    #     else:
+                    #         self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
+                    #         self.counts['skipped'] +=1
+                    #         continue
 
                     # Process article and relations
                     symp_pub, relations = article.as_symp()
@@ -232,7 +233,7 @@ class Command(BaseCommand):
             return
         elif not options['noact']:
             # checkd for warnings
-            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+            for w in load_xmlobject_from_string(response.raw.read(), OESympImportPublication).warnings:
                 self.output(0, 'Warning: %s %s' % (pid, w.message))
                 self.counts['warnings']+=1
         self.counts['articles_processed']+=1
@@ -275,7 +276,7 @@ class Command(BaseCommand):
         elif not options['noact']:
             # checkd for warnings
             try:
-                for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                for w in load_xmlobject_from_string(response.raw.read(), OESympImportPublication).warnings:
                     self.output(0, 'Warning: %s %s' % (pid, w.message))
                     self.counts['warnings']+=1
             except:

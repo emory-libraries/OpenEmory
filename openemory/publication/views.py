@@ -669,6 +669,7 @@ def download_pdf(request, pid):
             if request.method == 'GET':
                 stats = obj.statistics()
                 stats.num_downloads += 1
+                print "hitting it"
                 stats.save()
         # try:
 
@@ -1357,6 +1358,7 @@ def review_queue(request):
     '''
     solr = solr_interface()
     q = solr.query().exclude(review_date__any=True).filter(state='A') # restrict to active (published) articles only
+    # q = solr.query().exclude(review_date__any=False)
     q = q.sort_by('created')
     results, show_pages = paginate(request, q)
     # for article in results.object_list:
