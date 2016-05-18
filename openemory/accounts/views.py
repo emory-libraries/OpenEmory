@@ -37,7 +37,7 @@ from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
 from eulfedora.server import Repository
 from eulfedora.views import login_and_store_credentials_in_session
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml.xmlmap.dc import DublinCore
 from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, Literal, BNode

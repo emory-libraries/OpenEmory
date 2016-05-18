@@ -22,7 +22,7 @@ from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
 from django.utils.datastructures import SortedDict
 from django.utils.safestring import mark_safe
-from django.contrib.localflavor.us.forms import USPhoneNumberField
+from localflavor.us.forms import USPhoneNumberField
 # collections.OrderedDict not available until Python 2.7
 import magic
 
@@ -33,7 +33,7 @@ from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField,
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 
 from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \

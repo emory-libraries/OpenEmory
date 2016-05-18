@@ -124,14 +124,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'django.contrib.markup',
     'django.contrib.humanize',
     'django.contrib.flatpages',
-    'django.contrib.localflavor',
+    'localflavor',
     'eulfedora',
     'eulcommon.searchutil',
-    'eullocal.django.emory_ldap',
-    'south',
     'taggit',
     'tracking',
     'openemory.mx',
@@ -147,6 +144,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'openemory.accounts.backends.FacultyOrLocalAdminBackend',
+    'django_auth_ldap.backend.LDAPBackend',
 ]
 
 PID_ALIASES = {
@@ -157,6 +155,7 @@ FILE_UPLOAD_HANDLERS = (
     # removing default MemoryFileUploadHandler so all uploaded files can be treated the same
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 )
+
 
 # session configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

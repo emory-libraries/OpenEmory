@@ -34,7 +34,7 @@ from django.utils.unittest import skip
 
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eullocal.django.forms.tests import MockCaptcha
 
 from mock import Mock, patch, MagicMock

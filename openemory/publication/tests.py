@@ -44,7 +44,7 @@ from eulfedora.util import RequestFailed
 from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
 from PyPDF2 import PdfFileReader
 from PyPDF2.utils import PdfReadError

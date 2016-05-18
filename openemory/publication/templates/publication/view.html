@@ -162,12 +162,6 @@
       {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
       {% endif %}
 
-      {% if mods.journal.publisher %}
-      <h2 class="shadowLight">Publisher:</h2>
-      <div class="clear"></div>
-      <p itemprop="publisher">{{ mods.journal.publisher }}</p>
-      {% endif %}
-
       {% if mods.keywords %}
       <h2 class="shadowLight">Keywords:</h2>
       <ul class="keywords">

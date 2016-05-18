@@ -41,7 +41,7 @@ from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
 import zipfile
 from eulfedora.rdfns import model as relsextns
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree

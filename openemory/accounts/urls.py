@@ -14,7 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 from openemory.accounts import views
 
 urlpatterns = patterns('openemory.accounts.views',
