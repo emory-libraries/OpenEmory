@@ -1,5 +1,5 @@
 # file openemory/publication/management/commands/import_from_symplectic.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,10 +24,12 @@ from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
-from openemory.publication.models import Publication, LastRun, PublicationPremis
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
+
+from openemory.common.fedora import ManagementRepository
+from openemory.publication.models import Publication, LastRun
 
 logger = logging.getLogger(__name__)
 LEVELS = {'debug': logging.DEBUG,
@@ -60,14 +62,14 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
-        ) 
-    
+        )
+
 
     def handle(self, *args, **options):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
-        
+
         #counters
         self.counts = defaultdict(int)
 
@@ -81,9 +83,9 @@ class Command(BaseCommand):
         # set the name of the report of duplications
         self.reportsdirectory = settings.REPORTS_DIR
         self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
-        
-        #connection to repository
-        self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+
+        # connection to repository
+        self.repo = ManagementRepository()
 
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
@@ -107,7 +109,7 @@ class Command(BaseCommand):
         date = time_zone.localize(date)
         date = date.astimezone(pytz.utc)
         date_str = date.strftime("%Y-%m-%dT%H:%M:%S")
-        
+
         logging.info('%s UTC' % date_str)
         try:
             #if pids specified, use that list
@@ -163,14 +165,14 @@ class Command(BaseCommand):
                     logging.info("Skipping %s Invalid Content Type" % pid)
                     continue
 
-                
+
                 obj.from_symp()
-                
+
                  # get a list of predicates
                 properties = []
                 for p in list(obj.rels_ext.content.predicates()):
                   properties.append(str(p))
-                # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
+                # skip if the rels-ext has the "replaces tag, which indicates duplicates"
                 replaces_tag = "http://purl.org/dc/terms/replaces"
                 if replaces_tag in properties:
                     self.counts['duplicates']+=1
@@ -178,32 +180,32 @@ class Command(BaseCommand):
                     replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
                     # add to duplicate dict
                     self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
-                    
-                    
+
+
                     if not obj.is_withdrawn:
 
                         try:
                             user = User.objects.get(username=u'oebot')
-                        
+
                         except ObjectDoesNotExist:
-                            
+
                             user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
                             user.first_name = "Import"
                             user.last_name = "Process"
                             user.save()
-                        
+
                         reason = "Duplicate."
                         self.counts['withdrawn']+=1
                         obj.provenance.content.init_object(obj.pid, 'pid')
                         obj.provenance.content.withdrawn(user,reason)
                         obj.state = 'I'
                         logging.info("Withdrew duplicate pid: %s" % obj.pid)
-        
+
 
 
                 else:
                     self.counts['pdf']+=1
-                    
+
 
                 # convert attached PDF fle to be used with OE
                 # filter datastreams for only application/pdf
@@ -256,14 +258,14 @@ class Command(BaseCommand):
                         self.counts[mime_type]+=1
                         self.counts['Publication']+=1
 
-                    
-                        
-            
+
+
+
             except (KeyboardInterrupt, SystemExit):
                 if self.counts['duplicates'] > 0:
                   self.write_dup_report(self.duplicates, error="interrupt")
                 raise
-            
+
             except Exception as e:
                 logging.error("Error processing %s: %s" % (pid, e.message))
                 logging.error(obj.rels_ext.content.serialize(pretty=True))
@@ -279,7 +281,7 @@ class Command(BaseCommand):
         self.stdout.write("PDFs converted: %s\n" % self.counts['pdf'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Publications converted: %s\n" % self.counts['Publication'])
-        
+
         if self.counts['duplicates'] > 0 or self.counts['errors'] > 0:
           self.write_dup_report(self.duplicates, self.errors)
 

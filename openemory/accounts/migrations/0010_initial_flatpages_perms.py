@@ -1,5 +1,5 @@
 # file openemory/accounts/migrations/0010_initial_flatpages_perms.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,9 @@ from south.db import db
 from south.v2 import DataMigration
 from django.db import models
 from django.contrib.auth.models import Permission, Group
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Migration(DataMigration):
 
