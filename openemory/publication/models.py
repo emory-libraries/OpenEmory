@@ -1792,15 +1792,12 @@ class Publication(DigitalObject):
         article's :class:`ArticleStatistics`. Returns None if this article
         does not yet have a PID.
         '''
+
         if not isinstance(self.pid, basestring):
             return None
         return ArticleStatistics.objects.filter(pid=self.pid)
 
-         # stats = ArticleStatistics.objects.values('pid').distinct() \
-        #        .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
-        #        .filter(all_views__gt=0) \
-        #        .order_by('-all_views') \
-        #        .values('pid', 'all_views', 'all_downloads')[:10]
+         
 
 
     def aggregate_statistics(self):

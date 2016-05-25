@@ -402,7 +402,14 @@ def view_article(request, pid):
                 kwargs={'pid': realpid}))
 
     obj = _get_article_for_request(request, pid)
-
+    stats = ArticleStatistics.objects.values('pid').distinct() \
+               .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
+               .filter(pid=pid) \
+               .order_by('-all_views') \
+               .values('pid', 'all_views', 'all_downloads')[:10]
+    pidstats = stats[0]
+    myviews = pidstats['all_views']
+    mydownloads = pidstats['all_downloads']
 
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
@@ -411,7 +418,7 @@ def view_article(request, pid):
             stats.num_views += 1
             stats.save()
 
-    return render(request, 'publication/view.html', {'article': obj})
+    return render(request, 'publication/view.html', {'article': obj, 'mydownloads': mydownloads, 'myviews': myviews})
 
 
 @login_required
