@@ -127,7 +127,7 @@ INSTALLED_APPS = [
     'django.contrib.markup',
     'django.contrib.humanize',
     'django.contrib.flatpages',
-    'django.contrib.localflavor',
+    'localflavor',
     'eulfedora',
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
