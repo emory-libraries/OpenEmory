@@ -153,6 +153,8 @@ PID_ALIASES = {
     'oe-collection' : 'info:fedora/emory-control:OpenEmory-collection'
 }
 
+GOOGLE_ANALYTICS_ENABLED = True
+
 # name authority number for pids managed by the configured pidmanager
 PID_NAAN = 25593
 
