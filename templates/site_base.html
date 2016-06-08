@@ -39,10 +39,9 @@
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 
-   {% if GOOGLE_ANALYTICS_ENABLED %}
      <!-- google analytics -->
      <script type="text/javascript" src="{{ STATIC_URL }}js/google-analytics.js"></script>
-   {% endif %}
+
    {% if GOOGLE_SITE_VERIFICATION %}
      <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION}}" />
    {% endif %}
