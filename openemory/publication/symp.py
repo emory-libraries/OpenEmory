@@ -37,6 +37,17 @@ class SympUser(xmlmap.XmlObject):
     email = xmlmap.StringField('pubs:email-address')
     '''email address of user'''
 
+class SympPeople(xmlmap.XmlObject):
+    '''
+    Information about a user in Elements
+    '''
+
+    initials = xmlmap.StringField('pubs:initials')
+    '''initials of user'''
+    last_name = xmlmap.StringField('pubs:last-name')
+    affiliation = xmlmap.StringField('pubs:addresses/pubs:address/pubs:line')
+    '''last name of user'''
+
 
 # stays intact
 class SympDate(xmlmap.XmlObject):
@@ -102,6 +113,8 @@ class SympSource(xmlmap.XmlObject):
     '''Abstract of scholarship item'''
     volume = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='volume']/pubs:text")
     '''Volume item of scholarship apeared in'''
+    authors = xmlmap.NodeListField("pubs:bibliographic-data/pubs:native/pubs:field[@name='authors']/pubs:people/pubs:person", SympPeople)
+    '''list of associated :class: `SympUser` objects'''
     pubdate = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-date']/pubs:date", SympDate)
     '''Date item of scholarship was published'''
     pages = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='pagination']/pubs:pagination", SympPages)
@@ -203,7 +216,6 @@ class SympAtom(xmlmap.XmlObject):
     '''Contains lables including what type of object this is'''
     users = xmlmap.NodeListField('pubs:users/pubs:user', SympUser)
     people = xmlmap.NodeListField('pubs:people/pubs:person', SympUser)
-    '''list of associated :class: `SympUser` objects'''
     embargo = xmlmap.StringField("pubs:fields/pubs:field[@name='requested-embargo-period']/pubs:text")
     '''Requested Embargo duration'''
 
@@ -989,6 +1001,32 @@ class SympAtom(xmlmap.XmlObject):
             return self.manual.pubdate
         elif self.gb and self.gb.pubdate:
             return self.gb.pubdate
+        else: return False
+
+    @property
+    def authors(self):
+        '''
+        wrapper arond field that chooses that prefered source
+         :returns: :class: `SympDate`
+        '''
+        if self.wos and self.wos.authors:
+            return self.wos.authors
+        elif self.scopus and self.scopus.authors:
+            return self.scopus.authors
+        elif self.pubmed and self.pubmed.authors:
+            return self.pubmed.authors
+        elif self.crossref and self.crossref.authors:
+            return self.crossref.authors
+        elif self.arxiv and self.arxiv.authors:
+            return self.arxiv.authors
+        elif self.repec and self.repec.authors:
+            return self.repec.authors
+        elif self.dblp and self.dblp.authors:
+            return self.dblp.authors
+        elif self.manual and self.manual.authors:
+            return self.manual.authors
+        elif self.gb and self.gb.authors:
+            return self.gb.authors
         else: return False
 
     @property

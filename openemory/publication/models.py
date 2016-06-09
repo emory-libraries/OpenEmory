@@ -2351,6 +2351,10 @@ class Publication(DigitalObject):
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
+        for p in symp.authors:
+            a = AuthorName(affiliation=p.affiliation, given_name=p.initials, family_name=p.last_name)
+            mods.authors.append(a)
+
 
         #adding all people involved in the article regardless Emory affiliation. Waiting for input from symplectic
 
