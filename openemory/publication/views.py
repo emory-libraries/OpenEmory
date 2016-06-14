@@ -672,7 +672,6 @@ def download_pdf(request, pid):
                 print "hitting it"
                 stats.save()
         # try:
-
         if obj.what_mime_type() == 'pdf':
             # try:
             content = obj.pdf_with_cover()

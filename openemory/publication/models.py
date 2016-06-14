@@ -1885,7 +1885,9 @@ class Publication(DigitalObject):
         mime_ds_list = None
         mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
 
-        print mime_ds_list
+        # print self.ds_list
+        for i in self.ds_list:
+            print self.ds_list[i].mimeType
 
         if mime_ds_list:
             # sort by DS timestamp does not work yet asks for global name obj because of lambda function
@@ -1922,7 +1924,8 @@ class Publication(DigitalObject):
                 else:
                     mymime = 'pdf'
 
-
+                print mymime
+                print "###############################"
 
                 return mymime
 
@@ -2352,9 +2355,13 @@ class Publication(DigitalObject):
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
         for p in symp.authors:
-            a = AuthorName(affiliation=p.affiliation, given_name=p.initials, family_name=p.last_name)
+            counter = 0
+            for u in symp.users:
+                if u.last_name == p.last_name:
+                    counter = counter + 1
+            if counter == 0:
+                a = AuthorName(affiliation=p.affiliation, given_name=p.initials, family_name=p.last_name)
             mods.authors.append(a)
-
 
         #adding all people involved in the article regardless Emory affiliation. Waiting for input from symplectic
 
