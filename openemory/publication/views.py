@@ -650,7 +650,8 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
-
+        print obj.is_embargoed
+        print "****************"
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed

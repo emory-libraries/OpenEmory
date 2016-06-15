@@ -1708,14 +1708,13 @@ class Publication(DigitalObject):
         instance.'''
 
         if self.descMetadata.content.embargo_end:
-
             if self.descMetadata.content.embargo =='':
               return self.descMetadata.content._embargo
 
             if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
                 try:
                   y, m, d = self.descMetadata.content.publication_date.split('-')
-                  return date(int(y), int(m), int(d))+relativedelta(months=+48)
+                  return date(int(y), int(m), int(d))+relativedelta(months=+480)
                 except:
                   return NO_LIMIT["display"]
 
@@ -1736,7 +1735,8 @@ class Publication(DigitalObject):
         '''boolean indicator that this publication is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
-
+        print self.embargo_end_date
+        
         if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
            slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
             return True
