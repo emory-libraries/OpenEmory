@@ -650,8 +650,7 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
-        print obj.is_embargoed
-        print "****************"
+        
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed
@@ -904,7 +903,6 @@ def site_index(request):
     solr = solr_interface()
     # FIXME: this is very similar logic to summary view
     # (should be consolidated)
-
     # common query options for both searches
     q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
