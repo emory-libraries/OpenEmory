@@ -1,5 +1,4 @@
 {% extends "site_base.html" %}
-{% load tracking_tags %}
 {% load humanize %}
 {% block style %} {{ block.super }}
   {% if user.is_authenticated %} {# jquery-ui for tag editing #}
@@ -36,10 +35,7 @@
     <p class="numbers">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</p>
     <p>faculty profiles</p>
 
-    {% visitors_on_site as visitors %}
-    <p class="numbers">{{ visitors|intcomma }}</p>
-    <p>user{{ visitors|pluralize }} currently online </p>
-{% endblock %}
+    
 
 {% block content %}
 <div class="right">
