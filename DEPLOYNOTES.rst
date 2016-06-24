@@ -241,6 +241,18 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
+Release 2.1.2 - Merging Old Preconnector
+----------------------------------------
+* fixing embargo duration
+* pdf file download bug
+* pubsid report
+* download pmc subset
+
+Release 2.1.1 - Author Enhancements
+-----------------------------------
+* fixing styles for publication page
+* adjusting mods to save non emory faculty authors
+
 Release 2.1.0 - Content Type Harmonization
 ------------------------------------------
 * mime type debugging
