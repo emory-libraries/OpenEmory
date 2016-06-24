@@ -1,5 +1,5 @@
 # file openemory/publication/models.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,6 +35,8 @@ from eulfedora.models import FileDatastream, \
      XmlDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
+from openemory.publication.symp_import import OESympImportPublication, \
+    SympDate, SympPerson, SympRelation, SympWarning
 from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
 import zipfile
@@ -44,9 +46,9 @@ from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from rdflib.graph import Graph as RdfGraph, Namespace
 from rdflib import URIRef, RDF, RDFS, Literal
-from rdflib.namespace import ClosedNamespace
+from rdflib.graph import Graph as RdfGraph
+from rdflib.namespace import ClosedNamespace, Namespace
 import subprocess
 from cStringIO import StringIO
 import subprocess
@@ -58,7 +60,8 @@ from pprint import pprint
 import re
 import openemory
 from django.utils.crypto import get_random_string
-from openemory.common.fedora import DigitalObject
+from openemory.common.fedora import DigitalObject, ManagementRepository, \
+    absolutize_url
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
@@ -68,7 +71,7 @@ from openemory.common import romeo
 
 logger = logging.getLogger(__name__)
 
-# Define Special options for embargo duration 
+# Define Special options for embargo duration
 NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
 UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
@@ -198,15 +201,15 @@ class PresentationMods(TypedRelatedItem):
 
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
-    
-    def __init__(self, *args, **kwargs):        
+
+    def __init__(self, *args, **kwargs):
         super(FundingGroup, self).__init__(*args, **kwargs)
         # make sure the role and type are set correctly when creating
         # a new instance
         if not len(self.roles):
             self.roles.append(mods.Role(type='text', text='funder'))
         self.type = 'corporate'
-        
+
     def is_empty(self):
         '''Returns False unless a namePart value is set; type and role
         are ignored.'''
@@ -217,14 +220,14 @@ class FundingGroup(mods.Name):
 class AuthorName(mods.Name):
     family_name = xmlmap.StringField('mods:namePart[@type="family"]')
     given_name = xmlmap.StringField('mods:namePart[@type="given"]')
-    def __init__(self, *args, **kwargs):        
+    def __init__(self, *args, **kwargs):
         super(AuthorName, self).__init__(*args, **kwargs)
         # make sure the role and type are set correctly when creating
         # a new instance
         if not len(self.roles):
             self.roles.append(mods.Role(type='text', text='author'))
         self.type = 'personal'
-        
+
     def is_empty(self):
         '''Returns False unless a namePart value is set; type and role
         are ignored.'''
@@ -336,7 +339,7 @@ class MODSAdminNote(xmlmap.XmlObject):
 
 
 class PublicationMods(mods.MODSv34):
-    
+
     ################# generic mods ########################
 
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
@@ -355,7 +358,7 @@ class PublicationMods(mods.MODSv34):
     funders = xmlmap.NodeListField('mods:name[@type="corporate"][mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
     'external funding group or granting agency supporting research for the publication'
-    
+
     'information about the journal where the publication was published'
     author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
                                         AuthorNote)
@@ -433,8 +436,8 @@ class PublicationMods(mods.MODSv34):
             else:
                 self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
-        del self._embargo 
-        
+        del self._embargo
+
     embargo = property(_get_embargo, _set_embargo, _del_embargo,
         '''Embargo duration.  Stored internally as "Embargoed for xx"
         in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
@@ -457,21 +460,21 @@ class PublicationMods(mods.MODSv34):
             del self.embargo_end
             return
 
-        
+
         if slugify(self.embargo) == slugify(NO_LIMIT["value"]):
             self.embargo_end = NO_LIMIT["value"]
             return
-            
+
         if slugify(self.embargo) == slugify(UNKNOWN_LIMIT["value"]):
             self.embargo_end = UNKNOWN_LIMIT["value"]
             return
-        
+
         # parse publication date and convert to a datetime.date
         if not self.publication_date:
             return
 
         date_parts = self.publication_date.split('-')
-        
+
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
         adjustment = {}  # possible adjustment for partial dates
@@ -491,9 +494,9 @@ class PublicationMods(mods.MODSv34):
         else:
             adjustment['years'] = 1
             month = day = 1
-                
+
         relative_to = date(year, month, day) + relativedelta(**adjustment)
-        
+
         try:
           # generate a relativedelta based on embargo duration
 
@@ -536,7 +539,7 @@ class NlmAuthor(xmlmap.XmlObject):
             for aid in self.aff_ids:
                 # find the affiliation id by the xref and return the
                 # contents
-                # TODO: remove label from text ? 
+                # TODO: remove label from text ?
                 aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' % aid)
                 #print aff
             return aff
@@ -547,7 +550,7 @@ class NlmFootnote(xmlmap.XmlObject):
     id = xmlmap.StringField('@id')
     label = xmlmap.StringField('label')
     p = xmlmap.StringListField('p', normalize=True)
-                               
+
 
 class NlmAuthorNotes(xmlmap.XmlObject):
     corresp = xmlmap.StringField('corresp', normalize=True)
@@ -585,7 +588,7 @@ class NlmPubDate(xmlmap.XmlObject):
 class NlmSection(xmlmap.XmlObject):
     '''A group of material with a heading; a section of an article'''
     ROOT_NAME = 'sec'
-    title = xmlmap.StringField('title') 
+    title = xmlmap.StringField('title')
     paragraphs = xmlmap.StringListField('p', normalize=True) # zero or more
     # minimal sections mapping for abstracts; can have other fields,
     # but we don't expect them in an abstract
@@ -674,18 +677,18 @@ class NlmLicense(xmlmap.XmlObject):
                 if isinstance(el.tag, basestring):
                     if el.text:
                         txt.append(el.text)
-                        
+
                     if el.tag in ['ext-link', 'uri'] and not el.text:
                         # NOTE: of link has text other than the uri,
                         # uri will not be displayed anywhere in plain-text version
                         txt.append(el.attrib['{%s}href' % self.xlink_ns])
-                        
+
                 # any element (including a comment) could have tail content
                 if el.tail:
                     txt.append(el.tail)
-                        
+
             self._text =  ''.join(txt)
-                
+
         return self._text
 
     _html = None
@@ -705,23 +708,23 @@ class NlmLicense(xmlmap.XmlObject):
                         link = el.attrib['{%s}href' % self.xlink_ns]
                         link_text = el.text or link
                         html.append('<a href="%s">%s</a>' % (link, link_text))
-                        
+
                     elif el.text:
                         html.append(el.text)
 
                 # any element (including a comment) could have tail content
                 if el.tail:
                     html.append(el.tail)
-                        
+
             self._html =  mark_safe(''.join(html))
-                
+
         return self._html
 
 
     def __unicode__(self):
         return self.text
 
-    
+
     @property
     def is_creative_commons(self):
         '''
@@ -764,7 +767,7 @@ class NlmArticle(xmlmap.XmlObject):
     article_subtitle = xmlmap.StringField('front/article-meta/title-group/' +
             'subtitle')
     '''subtitle of the article'''
-    authors = xmlmap.NodeListField('front/article-meta/contrib-group/' + 
+    authors = xmlmap.NodeListField('front/article-meta/contrib-group/' +
         'contrib[@contrib-type="author"]', NlmAuthor)
     '''list of authors contributing to the article (list of
     :class:`NlmAuthor`)'''
@@ -820,7 +823,7 @@ class NlmArticle(xmlmap.XmlObject):
             for pd in self.pubdates:
                 if pd.type == type:
                     self._publication_date = pd
-                    
+
         return self._publication_date
 
     @property
@@ -838,10 +841,10 @@ class NlmArticle(xmlmap.XmlObject):
         it will try to derive based on netid and name.
 
         .. Note::
-        
+
           The current implementation is preliminary and has the
           following **known limitations**:
-          
+
             * Ignores authors that are associated with Emory
               but do not have an Emory email address included in the
               article metadata
@@ -850,7 +853,7 @@ class NlmArticle(xmlmap.XmlObject):
 
         By default, caches the identified authors on the first
         look-up, in order to avoid unecessarily repeating LDAP
-        queries.  
+        queries.
         '''
 
         if self._identified_authors is None or refresh:
@@ -860,7 +863,7 @@ class NlmArticle(xmlmap.XmlObject):
             emails.update(self.corresponding_author_emails)
 
             # filter to just include the emory email addresses
-            # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
+            # TODO: other acceptable variant emory emails ? emoryhealthcare.org ?
             emory_emails = [e for e in emails if 'emory.edu' in e ]
 
             # generate a list of User objects based on the list of emory email addresses
@@ -872,7 +875,7 @@ class NlmArticle(xmlmap.XmlObject):
                 if db_user.count() == 1:
                     self._identified_authors.append(db_user.get())
 
-                # otherwise, try to look them up in ldap 
+                # otherwise, try to look them up in ldap
                 else:
                     ldap = EmoryLDAPBackend()
                     # log ldap requests; using repr so it is evident when ldap is a Mock
@@ -883,7 +886,7 @@ class NlmArticle(xmlmap.XmlObject):
                         self._identified_authors.append(user)
 
         return self._identified_authors
-     
+
     _identified_authors = None
     def identifiable_authors(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
@@ -893,10 +896,10 @@ class NlmArticle(xmlmap.XmlObject):
         it will try to derive based on netid and name.
 
         .. Note::
-        
+
           The current implementation is preliminary and has the
           following **known limitations**:
-          
+
             * Ignores authors that are associated with Emory
               but do not have an Emory email address included in the
               article metadata
@@ -905,7 +908,7 @@ class NlmArticle(xmlmap.XmlObject):
 
         By default, caches the identified authors on the first
         look-up, in order to avoid unecessarily repeating LDAP
-        queries.  
+        queries.
         '''
 
         if self._identified_authors is None or refresh:
@@ -966,14 +969,14 @@ class NlmArticle(xmlmap.XmlObject):
                 # in some cases, corresponding email is not linked to
                 # author name - do a best-guess match
                 for idauth in id_auths:
-                   
+
                     # if last name matches and first name is in given name
                     # (may have an extra initial, etc.), consider it a match
                     if auth.surname == idauth.last_name and idauth.first_name in auth.given_names:
                         modsauth.id = idauth.username
                         print modsauth.id
                         break
-                
+
             amods.authors.append(modsauth)
 
         # journal info
@@ -990,7 +993,7 @@ class NlmArticle(xmlmap.XmlObject):
             suggestions = [publisher_suggestion_data(pub) for pub in publishers]
             self.publisher = suggestions[0]['value']
         except:
-            suggestions = []   
+            suggestions = []
         amods.journal.publisher = self.publisher
 
         if self.volume:
@@ -1005,7 +1008,7 @@ class NlmArticle(xmlmap.XmlObject):
             amods.journal.pages.end = self.last_page
         if self.publication_date:
             amods.publication_date = unicode(self.publication_date)
-        
+
         if self.abstract:
             amods.create_abstract()
             # nlm abstract may can contain formatting; convert to
@@ -1198,7 +1201,7 @@ class PublicationPremis(premis.Premis):
             detail = 'Uploaded by %s without confirmed assent to deposit' % \
                     (user.get_profile().get_full_name(),)
         detail += ' under OpenEmory v%s' % (openemory.__version__,)
-            
+
         self.premis_event(user, 'upload', detail)
 
     def withdrawn(self, user, reason):
@@ -1251,11 +1254,13 @@ def year_quarter(month):
 
 
 
+SYMPLECTIC_MODEL_NS = Namespace('info:symplectic/symplectic-elements:def/model#')
+
 
 class Publication(DigitalObject):
     '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
     represent Scholarly Publications.
-    
+
     Following `Hydra content model`_ conventions where appropriate;
     similar to the generic simple Hydra content model
     `genericContent`_.
@@ -1273,8 +1278,13 @@ class Publication(DigitalObject):
     PRESENTATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPresentation-1.0'
 
     CONTENT_MODELS = []
+    #: collection this object belongs to
     collection = Relation(relsext.isMemberOfCollection)
+    #: OAI identifier
     oai_itemID = Relation(oai.itemID)
+    #: symplectic elements public url
+    public_url = Relation(SYMPLECTIC_MODEL_NS.hasPublicUrl)
+
     allowed_mime_types = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','tiff':'image/tiff','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','tiff':'image/tiff','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','jpeg' : 'image/jpeg','png' : 'image/png','tiff':'image/tiff','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
@@ -1282,7 +1292,7 @@ class Publication(DigitalObject):
     allowed_mime_poster = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','tiff':'image/tiff','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
     allowed_mime_presentation = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','tiff':'image/tiff','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
-    
+
     pdf = FileDatastream('content', 'PDF content', defaults={
         'versionable': True
         })
@@ -1315,7 +1325,7 @@ class Publication(DigitalObject):
 
     provenance = XmlDatastream('provenanceMetadata',
                                        'Provenance metadata', PublicationPremis, defaults={
-        'versionable': False 
+        'versionable': False
         })
     '''Optional ``provenanceMetadata`` datastream for PREMIS Event
     metadata; datastream XML content will be an instance of
@@ -1339,8 +1349,6 @@ class Publication(DigitalObject):
             'versionable': True,
         })
     '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
-
-
 
     def get_absolute_url(self):
         ark_uri = self.descMetadata.content.ark_uri
@@ -1467,7 +1475,7 @@ class Publication(DigitalObject):
     def as_rdf(self, node=None):
         '''Information about this Publication in RDF format.  Currently,
         makes use of `Bibliographic Ontology`_ and FRBR.
-        
+
         .. _Bibliographic Ontology: http://bibliontology.com/
 
         :returns: instance of :class:`rdflib.graph.Graph`
@@ -1484,7 +1492,7 @@ class Publication(DigitalObject):
         rdf.add((node, RDF.type, FRBR.ScholarlyWork))
         if self.number_of_pages:
             rdf.add((node, BIBO.numPages, Literal(self.number_of_pages)))
-        
+
         pmc_url = None
         pmcid = self.pmcid
         if pmcid:
@@ -1507,7 +1515,7 @@ class Publication(DigitalObject):
         print data
         data['id'] = 'pid: %s' % self.pid
         data['withdrawn'] = self.is_withdrawn
-        # TODO: 
+        # TODO:
         if self.descMetadata.content.genre == 'Article':
             data['record_type'] = 'publication_article'
         elif self.descMetadata.content.genre == 'Book':
@@ -1574,7 +1582,7 @@ class Publication(DigitalObject):
                                                  for rf in mods.subjects]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
-            
+
             if mods.publication_date is not None:
                 # index year separately, since all dates should have at least year
                 data['pubyear'] = mods.publication_date[:4]
@@ -1685,14 +1693,14 @@ class Publication(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
-    
+
     @property
     def embargo_end(self):
         '''Return :attr:`PublicationMods.embargo_end` '''
         if self.descMetadata.content.embargo_end:
           return self.descMetadata.content.embargo_end
         return None
-    
+
     @property
     def embargo_end_date(self):
         '''Access :attr:`PublicationMods.embargo_end` on the local
@@ -1700,27 +1708,26 @@ class Publication(DigitalObject):
         instance.'''
 
         if self.descMetadata.content.embargo_end:
-            
             if self.descMetadata.content.embargo =='':
               return self.descMetadata.content._embargo
-            
+
             if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
                 try:
                   y, m, d = self.descMetadata.content.publication_date.split('-')
-                  return date(int(y), int(m), int(d))+relativedelta(months=+48)
+                  return date(int(y), int(m), int(d))+relativedelta(months=+480)
                 except:
                   return NO_LIMIT["display"]
-                
+
             if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT["value"]):
                 try:
                   y, m, d = self.descMetadata.content.publication_date.split('-')
                   return date(int(y), int(m), int(d))+relativedelta(months=+6)
                 except:
                   return UNKNOWN_LIMIT["display"]
-                
+
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
-            
+
         return None
 
     @property
@@ -1728,11 +1735,12 @@ class Publication(DigitalObject):
         '''boolean indicator that this publication is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
+        print self.embargo_end_date
         
         if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
            slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
             return True
-            
+
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
@@ -1784,9 +1792,13 @@ class Publication(DigitalObject):
         article's :class:`ArticleStatistics`. Returns None if this article
         does not yet have a PID.
         '''
+
         if not isinstance(self.pid, basestring):
             return None
         return ArticleStatistics.objects.filter(pid=self.pid)
+
+         
+
 
     def aggregate_statistics(self):
         '''Get statistics for this article, aggregated across all available
@@ -1802,7 +1814,7 @@ class Publication(DigitalObject):
 
     ### PDF generation methods for Article cover page ###
 
-                
+
     def pdf_cover(self):
         '''Generate a PDF cover page based on the MODS descriptive
         metadata associated with this article (:attr:`descMetadata`),
@@ -1814,10 +1826,10 @@ class Publication(DigitalObject):
         start = time.time()
         tpl = get_template('publication/coverpage.html')
         # full URLs are required for external links in pisa PDF documents
-        base_url = Site.objects.get_current().domain  
+        base_url = Site.objects.get_current().domain
         if not base_url.startswith('http'):
             base_url = 'http://' + base_url
-            
+
         ctx = Context({
             'article': self,
             'BASE_URL': base_url,
@@ -1847,10 +1859,10 @@ class Publication(DigitalObject):
         img_str = base64.b64encode(my_image)
         img_str = 'data:image/png;base64,' + img_str
         # full URLs are required for external links in pisa PDF documents
-        base_url = Site.objects.get_current().domain  
+        base_url = Site.objects.get_current().domain
         if not base_url.startswith('http'):
             base_url = 'http://' + base_url
-            
+
         ctx = Context({
             'article': self,
             'BASE_URL': base_url,'img_str': img_str,
@@ -1873,7 +1885,9 @@ class Publication(DigitalObject):
         mime_ds_list = None
         mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
 
-        print mime_ds_list
+        # print self.ds_list
+        for i in self.ds_list:
+            print self.ds_list[i].mimeType
 
         if mime_ds_list:
             # sort by DS timestamp does not work yet asks for global name obj because of lambda function
@@ -1910,16 +1924,17 @@ class Publication(DigitalObject):
                 else:
                     mymime = 'pdf'
 
+                print mymime
+                print "###############################"
 
-        
                 return mymime
 
-                
+
     def image_with_cover(self):
         '''Return the PDF associated with this image (the contents
         of the :attr:`png,jpeg` datastream) with a custom cover page
         (generated by :meth:`pdf_cover`). '''
-        coverdoc = self.pdf_cover() 
+        coverdoc = self.pdf_cover()
         imagedoc = self.image_cover()
         start = time.time()
         pdfstream = StringIO()  # io buffer for pdf datastream content
@@ -1943,14 +1958,14 @@ class Publication(DigitalObject):
         finally:
             coverdoc.close()  # delete xsl-fo
             pdfstream.close() # close iostream for pdf content
-        
+
 
     def zip_with_cover(self):
         '''Return the zip associated with this publication (the contents
         of the zip is `excel,powerpoint,word` datastream) with a custom cover page
         (generated by :meth:`pdf_cover`). '''
-        
-        coverdoc = self.pdf_cover() 
+
+        coverdoc = self.pdf_cover()
         start = time.time()
         datastream = StringIO()
         zip_subdir = self.label
@@ -2005,7 +2020,7 @@ class Publication(DigitalObject):
           :class:`eulfedora.util.RequestFailed` (e.g., if the \
           datastream does not exist or cannot be accessed, or the \
           datastream exists but the PDF is unreadable with \
-          :mod:`pyPdf`). 
+          :mod:`pyPdf`).
 
         :returns: :class:`cStringIO.StringIO` instance with the \
         merged pdf content
@@ -2015,8 +2030,8 @@ class Publication(DigitalObject):
         # Cover page PDF is being generated with embedded metadata.
         # When/if it becomes possible, use coverdoc info to set the
         # docinfo for the merged pdf.
-        
-        coverdoc = self.pdf_cover() 
+
+        coverdoc = self.pdf_cover()
         start = time.time()
         pdfstream = StringIO()  # io buffer for pdf datastream content
         try:
@@ -2058,7 +2073,7 @@ class Publication(DigitalObject):
         if 'xsi' in self.dc.content.node.nsmap:
             # Remove SchemaLocation Attribute
             del self.dc.content.node.attrib['{%s}%s' % (self.dc.content.node.nsmap['xsi'], 'schemaLocation')]
-   
+
             # Remove namespace declaration
             nsmap = self.dc.content.node.nsmap
             del nsmap['xsi']
@@ -2131,38 +2146,60 @@ class Publication(DigitalObject):
 
         return (symp_pub, relations)
 
+    def ark_uri_from_pid(self):
+        # generate ark uri based on the object pid
+        # NOTE: ideally, we shouldn't have to reconstruct the ARK yuri like this
+        # but presumably the stub objects we get from symplectic don't
+        # store the full ARK anywhere in the metadata that we can access
+        try:
+            return '%sark:/%s/%s' % (settings.PIDMAN_HOST, settings.PID_NAAN,
+                                     self.noid)
+        except AttributeError:
+            # if DEV_ENV is configured and pidman is not, use absolute local
+            # url as a stand-in for the ARK
+            if getattr(settings, 'DEV_ENV', False):
+                return absolutize_url(self.get_absolute_url())
+            # otherwise, re-raise the errro
+            raise
+
+    def ark_identifier_from_pid(self):
+        # short-form ark identifier, starting with just ark:/
+        ark_uri = self.ark_uri_from_pid()
+        if 'ark:' in ark_uri:
+            return ark_uri[ark_uri.index('ark:'):]
 
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Publication`
         '''
-        repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        repo = ManagementRepository()
         # Collection to which all articles will belong for use with OAI
-        coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+        coll = repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
         print coll
         symp = self.sympAtom.content
         mods = self.descMetadata.content
-        mods.resource_type= 'text'
+        mods.resource_type = 'text'
         # object attributes
         self.label = symp.title
         self.collection = coll
-        print self.collection
-        print self.rels_ext.content.serialize()
-        self.descMetadata.label='descMetadata(MODS)'
+        self.descMetadata.label = 'descMetadata(MODS)'
 
-        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        # determine ark uri based on the pid
+        ark_uri = self.ark_uri_from_pid()
+        self.dc.content.identifier_list.extend(ark_uri)
+        # full ark
+        mods.ark_uri = ark_uri
+        mods.ark = self.ark_identifier_from_pid()
+
         mods.publisher = symp.publisher
-        self.dc.content.identifier_list.extend([ark_uri])
-        
-        
         mods.publication_place = symp.pub_place
 
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
             # changed because we can't use this in tandem with adding adding a collection to relsext
-            
+
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PUBLICATION_CONTENT_MODEL)))
-            
+
             # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -2176,7 +2213,7 @@ class Publication(DigitalObject):
             mods.final_version.doi = 'doi:%s' % symp.doi
             # self.dc.content.identifier_list.extend([self.access_url,
             #                                    'PMC%d' % self.pmcid])
-            
+
             if symp.pages:
                 mods.journal.create_pages()
                 mods.journal.pages.start = symp.pages.begin_page
@@ -2279,24 +2316,23 @@ class Publication(DigitalObject):
 
         # DS mapping for all content types
         mods.create_abstract()
-        mods.resource_type= 'text'
+        mods.resource_type = 'text'
         mods.create_final_version()
-        mods.ark_uri = ark_uri
-        mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
+        # mods ARK set above when ARK is added to dc:identifier
         mods.title = symp.title
         if symp.doi:
             mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
-        
+
 
         if symp.pubdate:
             mods.publication_date = symp.pubdate.date_str
 
-            
+
         mods.embargo = symp.embargo
-        
+
         mods.calculate_embargo_end()
 
         mods.keywords = []
@@ -2314,13 +2350,21 @@ class Publication(DigitalObject):
                         break
                     except ValueError:
                         line += next(f)
-        
+
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
-        
+        for p in symp.authors:
+            counter = 0
+            for u in symp.users:
+                if u.last_name == p.last_name:
+                    counter = counter + 1
+            if counter == 0:
+                a = AuthorName(affiliation=p.affiliation, given_name=p.initials, family_name=p.last_name)
+            mods.authors.append(a)
+
         #adding all people involved in the article regardless Emory affiliation. Waiting for input from symplectic
-        
+
         # for person in symp.people:
         #     for result in data1:
         #         if re.match(result['domain'], person.email):
@@ -2332,7 +2376,7 @@ class Publication(DigitalObject):
         #         else:
         #             b = AuthorName(id=person.username.lower(), affiliation=affiliation, given_name=u.first_name, family_name=u.last_name)
         #     mods.authors.append(b)
-            
+
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
@@ -2380,7 +2424,7 @@ class ArticleStatistics(models.Model):
     # the things we store for this pid/year/quarter
     num_views = models.IntegerField(default=0,
             help_text='metadata view page loads')
-    num_downloads = models.IntegerField(default=0, 
+    num_downloads = models.IntegerField(default=0,
             help_text='article PDF downloads')
 
     class Meta:
@@ -2465,9 +2509,9 @@ SKOS = ClosedNamespace('http://www.w3.org/2004/02/skos/core#',
 
 class ResearchFields(object):
     '''Wrapper-class for access to UMI/ProQuest research fields (also
-    known as Subject Categories). 
+    known as Subject Categories).
     '''
-    
+
     # for now, use local copy; may move to http://pid.emory.edu/ns/ or similar
     source = os.path.join(settings.BASE_DIR, 'publication',
                                         'fixtures', 'umi-researchfields.xml')
@@ -2475,7 +2519,7 @@ class ResearchFields(object):
     def __init__(self):
         with open(self.source) as rff:
             self.graph = parse_rdf(rff.read(), self.source)
-            
+
         # loop through all collections to get hierarchy information
         # and find the top-level collection
         self.toplevel = None
@@ -2519,7 +2563,7 @@ class ResearchFields(object):
         :returns: a list with at most two-levels of nesting, for use
              as choices value for a :class:`django.forms.ChoiceField`.
         '''
-        
+
         flat_choices = []
 
         for choice in sorted(choices):
@@ -2533,9 +2577,9 @@ class ResearchFields(object):
                         flat_choices.extend(flattened)
 
                 elif all(isinstance(val, basestring) for label,val, in choice[1]):
-                    # this group only has values, no list - add as-is 
+                    # this group only has values, no list - add as-is
                     flat_choices.append(['%s%s' % (prefix, choice[0]), choice[1]])
-                    
+
                 else:
                     # group has a mixture of subchoices and sublists
                     # gather all the values and add them
@@ -2565,14 +2609,14 @@ class ResearchFields(object):
            if none is specified, the top-level collection id will be
            used.
         '''
-        
+
         if id is None:
             return [self._get_choices(m) for m in self.hierarchy[self.toplevel]]
         # check if item has members
         if self.hierarchy[id]:
             # find all the members that don't themselves have children
             member_list = [self._get_choices(m) for m in self.hierarchy[id]]
-            
+
             return [str(self.graph.label(id)), member_list]
         else:
             return [str(id), str(self.graph.label(id))]
@@ -2600,7 +2644,7 @@ class ResearchFields(object):
             for m in self.hierarchy[self.toplevel]:
                 category_list.extend(self._get_category_data(m))
             return category_list
-        
+
         # item with members
         if self.hierarchy[id]:
             # add current heading to subcategory

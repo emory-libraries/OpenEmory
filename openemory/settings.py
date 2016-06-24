@@ -127,7 +127,7 @@ INSTALLED_APPS = [
     'django.contrib.markup',
     'django.contrib.humanize',
     'django.contrib.flatpages',
-    'django.contrib.localflavor',
+    'localflavor',
     'eulfedora',
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
@@ -152,6 +152,11 @@ AUTHENTICATION_BACKENDS = [
 PID_ALIASES = {
     'oe-collection' : 'info:fedora/emory-control:OpenEmory-collection'
 }
+
+GOOGLE_ANALYTICS_ENABLED = True
+
+# name authority number for pids managed by the configured pidmanager
+PID_NAAN = 25593
 
 FILE_UPLOAD_HANDLERS = (
     # removing default MemoryFileUploadHandler so all uploaded files can be treated the same
@@ -207,7 +212,7 @@ if django_nose is not None:
         # ...
     ]
     NOSE_ARGS = ['--with-eulfedorasetup']
-    TEST_OUTPUT_DIR='test-results'
+    TEST_OUTPUT_DIR = 'test-results'
 
 
 
@@ -217,10 +222,13 @@ SKIP_SOUTH_TESTS = True
 SOUTH_TESTS_MIGRATE = False
 
 SOUTH_DATABASE_ADAPTERS = {
-    'default':'south.db.mysql'
+    'default': 'south.db.mysql'
 }
 
 if 'DJANGO_TEST_MODE' in os.environ:
+    # TODO: convert this into a nose plugin
     print "MODIFYING CONTEXT PROCESSORS FOR TEST"
     TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.accounts.context_processors.statistics')
     TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
+    # remove real pidman settings so that tests don't create test pids
+    PIDMAN_HOST = None
