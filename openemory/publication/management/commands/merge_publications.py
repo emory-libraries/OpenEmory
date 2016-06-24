@@ -127,7 +127,7 @@ class Command(BaseCommand):
                 # 4. Add line in summary section
 
                 # choose content type
-                content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report', 'Presentation': 'presentation'}
+                content_types = {'Article': 'journal article'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
                 if obj_types[1] in content_types.values():
                     logging.info("Processing %s as Publication" % pid)
