@@ -128,17 +128,13 @@
 {% block sidebar-content %}
   {% with article.aggregate_statistics as stats %}
   
-    <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
-    <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
+    <p class="itemStats"><span class="views">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</span><span> | {{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</span></p>
+    <meta itemprop="interactionCount" content="UserFileDownloads:{{ stats.num_downloads|default:0}}"/>
 
     
      
   {% endwith %}
-<p class="count">
-    {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %}
-    {% if article.views and article.downloads %} | {% endif %}
-    {% if article.downloads %}<span class="numDownloads">{{ article.downloads|intcomma }} Download{{ article.downloads|pluralize }}</span>{% endif %}
-  </p>
+
   {% with article.descMetadata.content as mods %}
       {% if mods.author_notes %}
       <h2 class="shadowLight">Author Notes:</h2>

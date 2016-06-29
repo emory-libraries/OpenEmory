@@ -1,5 +1,5 @@
 # file openemory/common/tests.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,10 +48,18 @@ class DigitalObjectTests(TestCase):
         self.assertEquals(result, expected)
         result = absolutize_url('%s%s' % (base, uri))
         self.assertEquals(result, expected)
-        
+
 
     @patch('openemory.common.fedora.pidman')
     def test_get_default_pid(self, mockpidman):
+        # TODO: use override_settings once we get to django 1.6+
+        # for now, manually add settings for testing
+        _pidman_host = getattr(settings, 'PIDMAN_HOST', None)
+        _pidman_domain = getattr(settings, 'PIDMAN_DOMAIN', None)
+
+        settings.PIDMAN_HOST = 'http://pid.co'
+        settings.PIDMAN_DOMAIN = 'http://pid.co/domains/123'
+
         mockpidman.create_ark.return_value = self.testark
 
         obj = Publication(Mock())
@@ -67,6 +75,9 @@ class DigitalObjectTests(TestCase):
 
         # ark should be stored in descMetadata.ark
         self.assert_("ark:/%s/%s" % (self.naan, self.noid) in obj.descMetadata.content.ark)
+
+        settings.PIDMAN_HOST = _pidman_host
+        settings.PIDMAN_DOMAIN = _pidman_domain
 
     def test_noid(self):
         A = Publication(Mock())
@@ -87,9 +98,9 @@ class RomeoTests(TestCase):
     def test_search_publisher_name_example(self, mock_urlopen):
         mock_urlopen.return_value.read.return_value = \
                 self.fixture_text('example-02.xml')
-        
+
         publishers = romeo.search_publisher_name('institute of physics')
-        
+
         # query
         mock_urlopen.assert_called_once()
         args, kwargs = mock_urlopen.call_args
@@ -127,9 +138,9 @@ class RomeoTests(TestCase):
     def test_search_publisher_id_example(self, mock_urlopen):
         mock_urlopen.return_value.read.return_value = \
                 self.fixture_text('example-03.xml')
-        
+
         publisher = romeo.search_publisher_id('3')
-        
+
         # query
         mock_urlopen.assert_called_once()
         args, kwargs = mock_urlopen.call_args
@@ -148,7 +159,7 @@ class RomeoTests(TestCase):
     def test_search_journal_title_multiple_example(self, mock_urlopen):
         mock_urlopen.return_value.read.return_value = \
                 self.fixture_text('example-04.xml')
-        
+
         journals = romeo.search_journal_title('dna')
 
         # query

@@ -1,5 +1,5 @@
 # file fabfile.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,6 +44,7 @@ def all_deps():
     local('pip install -r pip-install-req.txt -r pip-dev-req.txt')
     if os.path.exists('pip-local-req.txt'):
         local('pip install -r pip-local-req.txt')
+    local("export DJANGO_SETTINGS_MODULE=%(project)s.settings && pip install -r pip-install-after-config.txt" % env)
 
 @task
 def test():
@@ -53,7 +54,7 @@ def test():
     app_list = ['accounts', 'common', 'publication', 'harvest']
     apps2test = ' '.join(map(lambda app: env.project + '.' + app +'.tests', app_list))
 
-    testing_cmd = 'python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env 
+    testing_cmd = 'python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env
     testing_cmd += apps2test
     local(testing_cmd)
 
@@ -334,9 +335,9 @@ def rm_old_builds(path=None, user=None, noinput=False):
             # get current and previous links so we don't remove either of them
             current = sudo('readlink current', user=env.remote_acct) if files.exists('current') else None
             previous = sudo('readlink previous', user=env.remote_acct) if files.exists('previous') else None
-            
+
         # split dir listing on newlines and strip whitespace
-        dir_items = [n.strip() for n in dir_listing.split('\n')] 
+        dir_items = [n.strip() for n in dir_listing.split('\n')]
         # regex based on how we generate the build directory:
         #   project name, numeric version, optional pre/dev suffix, optional revision #
         build_dir_regex = r'^%(project)s-[0-9.]+(-[A-Za-z0-9_-]+)?(-r[0-9]+)?$' % env
@@ -355,7 +356,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
                     sudo('rm -rf %s' % dir, user=env.remote_acct)
         else:
             puts('No old build directories to remove')
- 
+
 @task
 def compare_localsettings(path=None, user=None):
     'Compare current/previous (if any) localsettings on the remote server.'

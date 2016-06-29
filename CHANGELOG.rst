@@ -1,3 +1,10 @@
+Release 2.1.1 Author Enhancement
+--------------------------------
+* Added and modified Google Analytics Tracking IDs
+* Added Copyright information to the PDF download cover page
+* Fixed About This Item statistics display issues
+* Added non Emory authors to the MODS
+
 Release 2.1.0 Harmonization of Content Types
 --------------------------------------------
 * Fixed mime type issues with old pyPdf library
@@ -5,7 +12,7 @@ Release 2.1.0 Harmonization of Content Types
 * Fixed tests for publications
 * Adding new fields for Poster, Presentation
 * Revised design of of publications view
-* Added descriptive titles to mods in publica view for publications 
+* Added descriptive titles to mods in publica view for publications
 
 Release 2.0.0 Presentation Content Type
 ---------------------------------------

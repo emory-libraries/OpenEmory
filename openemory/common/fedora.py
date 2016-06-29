@@ -1,5 +1,5 @@
 # file openemory/common/fedora.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ from django.contrib.sites.models import Site
 from django.utils.encoding import iri_to_uri
 
 
-from eulfedora import models
+from eulfedora import models, server
 from pidservices.clients import parse_ark
 from pidservices.djangowrapper.shortcuts import DjangoPidmanRestClient
 
@@ -64,6 +64,19 @@ except:
         pidman = None
     else:
         raise
+
+
+class ManagementRepository(server.Repository):
+    """Extend the default Fedora Repository object to automatically
+    initialize with configured management user and password
+    from Django settings.
+    """
+
+    def __init__(self, username=None, password=None, request=None):
+        super(ManagementRepository, self).__init__(
+            username=settings.FEDORA_MANAGEMENT_USER,
+            password=settings.FEDORA_MANAGEMENT_PASSWORD)
+
 
 class DigitalObject(models.DigitalObject):
     """Extend the default fedora DigitalObject class."""
@@ -112,7 +125,7 @@ class DigitalObject(models.DigitalObject):
             parsed_ark = parse_ark(ark_uri)
             naan = parsed_ark['naan']  # name authority number
             noid = parsed_ark['noid']  # nice opaque identifier
-            ark =  "ark:/%s/%s" % (naan, noid)
+            ark = "ark:/%s/%s" % (naan, noid)
 
             # Add full uri ARK to dc:identifier and  descMetadata
             self.dc.content.identifier_list.append(ark_uri)

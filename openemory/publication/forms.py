@@ -398,7 +398,7 @@ class PresentationModsEditForm(BaseXmlObjectForm):
     class Meta:
         model = PresentationMods
         fields = ['presentation_place']
-        
+
 
 
 class FundingGroupEditForm(BaseXmlObjectForm):
@@ -752,7 +752,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
          is_admin = kwargs.pop('is_admin', False)
          is_nlm = kwargs.pop('is_nlm', False)
          self.pid = kwargs.pop('pid')
-         
+
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional \
          Currently, only used in the case where the "Save" (vs Publish) button is used. \
 
@@ -771,7 +771,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
          #        if field_name in self.fields:
          #            del self.fields[field_name]
             # self.subforms['journal'].fields.pop('number')
-            
+
 
          # set default language to english
          lang_code = 'language_code'

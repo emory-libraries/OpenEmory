@@ -1,5 +1,5 @@
 #Add to collection file openemory/publication/management/commands/import_to_symplectic.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,20 +20,21 @@ from collections import defaultdict
 from getpass import getpass
 import logging
 from optparse import make_option
+import requests
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.paginator import Paginator
-
-from eulfedora.server import Repository
 from eulxml.xmlmap import load_xmlobject_from_string
-
 from openemory.publication.models import Publication
 from openemory.publication.symp_import import OESympImportPublication, \
+from openemory.common.fedora import ManagementRepository
+
     SympDate, SympPerson, SympRelation, SympWarning
 from openemory.util import percent_match
-import requests
+
 
 logger = logging.getLogger(__name__)
+
 
 class Command(BaseCommand):
     '''Fetch article data for `~openemory.publication.models.Article` objects and do the following:
@@ -63,13 +64,13 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
-        #counters
+        # counters
         self.counts = defaultdict(int)
 
-        #connection to repository
-        repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+        # connection to repository
+        repo = ManagementRepository()
 
-        #Symplectic-Elements setup
+        # Symplectic-Elements setup
         self.session = requests.Session()
         self.session.auth = (settings.SYMPLECTIC_USER, settings.SYMPLECTIC_PASSWORD)
         self.session.verify=False
@@ -80,8 +81,7 @@ class Command(BaseCommand):
         self.pub_create_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publication/records/manual")
         self.relation_create_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "relationships")
 
-
-        #if pids specified, use that list
+        # if pids specified, use that list
         try:
             if len(args) != 0:
                 pids = list(args)

@@ -650,7 +650,7 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
-
+        
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed
@@ -672,7 +672,6 @@ def download_pdf(request, pid):
                 print "hitting it"
                 stats.save()
         # try:
-
         if obj.what_mime_type() == 'pdf':
             # try:
             content = obj.pdf_with_cover()
@@ -738,7 +737,7 @@ def view_datastream(request, pid, dsid):
     '''Access object datastreams on
     :class:`openemory.publication.model.Article` objects'''
     # initialize local repo with logged-in user credentials & call generic view
-    return raw_datastream(request, pid, dsid, type=Publication, repo=Repository(request=request))
+    return raw_datastream(request, pid, dsid, repo=Repository(request=request))
 
 def view_private_datastream(request, pid, dsid):
     '''Access raw object datastreams accessible only to object owners and
@@ -759,7 +758,7 @@ def view_private_datastream(request, pid, dsid):
         if (request.user.is_authenticated()) and \
            (request.user.username in obj.owner
                or request.user.is_superuser):
-            return raw_datastream(request, pid, dsid, type=Publication,
+            return raw_datastream(request, pid, dsid,
                                   repo=repo, headers=extra_headers)
         elif request.user.is_authenticated():
             tpl = get_template('403.html')
@@ -904,7 +903,6 @@ def site_index(request):
     solr = solr_interface()
     # FIXME: this is very similar logic to summary view
     # (should be consolidated)
-
     # common query options for both searches
     q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \

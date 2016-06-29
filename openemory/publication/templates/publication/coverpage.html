@@ -19,7 +19,7 @@
       h1, h2 { color: black; font-family: Georgia, Helvetica, Serif; }
       #access-info { font-size: 85%; font-style: italic; position: absolute; bottom: 1in;}
       {# using a div as a pseudo-hr to work around CSS hr style issues in pisa #}
-      div.hr { border-bottom: solid #002878 2px; margin-bottom: 8px; margin-top: 2px;} 
+      div.hr { border-bottom: solid #002878 2px; margin-bottom: 8px; margin-top: 2px;}
     </style>
   </head>
   <body>
@@ -28,15 +28,15 @@
   <div id="article">
     {% include "publication/snippets/article_title.html" %}
     {% include "publication/snippets/article_authors.html" %}
-    <div class="hr">&nbsp;</div> 
+    <div class="hr">&nbsp;</div>
     {% if article.descMetadata.content.genre == "Article" %}
     {% include "publication/snippets/article_journal_pdf.html" %}
     {% elif  article.descMetadata.content.genre == "Book" or  article.descMetadata.content.genre == "Chapter" or  article.descMetadata.content.genre == "Conference" or article.descMetadata.content.genre == "Report" or article.descMetadata.content.genre == "Poster" or article.descMetadata.content.genre == "Presentation" %}
     {% include "publication/snippets/book_pdf.html" %}
     {% endif %}
-    <div class="hr">&nbsp;</div> 
+    <div class="hr">&nbsp;</div>
 
-  
+
 
     {% if article.descMetadata.content.final_version.url %}
       {% with article.descMetadata.content.final_version.url as final_url %}
@@ -49,13 +49,14 @@
        {% if mods.copyright or mods.license %}
        <div id="permissions" class="section">
          <h2>Copyright information:</h2>
+         <p>{{ mods.copyright.text}}<p>
          <div class="clear"></div>  {# ?!? #}
          {% if mods.license %}<div class="license">
           {{ mods.license.text|urlize }}
              {# if license link is not included in text OR is a creative commons, link to it #}
              {% if mods.license.link and mods.license.link not in mods.license.text or mods.license.is_creative_commons %}
              {% if mods.license.is_creative_commons %} {# use CC image if possible #}
-             <p><a class="license-link" href="{{ mods.license.link}}">   
+             <p><a class="license-link" href="{{ mods.license.link}}">
                    <img src="{{ STATIC_URL }}images/cc/{{ mods.license.cc_type }}.png"
                         alt="Creative Commons License"/>
                  {% else %}{% endif %}
@@ -71,4 +72,3 @@
 
   </body>
 </html>
-
