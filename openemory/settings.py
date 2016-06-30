@@ -73,11 +73,11 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = [
     # defaults:
     "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
+    "django.template.context_processors.debug",
+    "django.template.context_processors.i18n",
+    "django.template.context_processors.media",
+    "django.template.context_processors.static",
+    "django.template.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
     # application-specific:
@@ -101,7 +101,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'tracking.middleware.VisitorTrackingMiddleware',
     # flatpages middleware should always be last (fallback for 404)
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
@@ -130,7 +129,6 @@ INSTALLED_APPS = [
     'eulfedora',
     'eulcommon.searchutil',
     'taggit',
-    'tracking',
     'openemory.mx',
     'downtime',
     'openemory.accounts',

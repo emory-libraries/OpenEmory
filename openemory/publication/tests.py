@@ -2222,7 +2222,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.filter.assert_any_call(state="A")
         mocksolr.filter.assert_any_call('quality', 'discount')
 
-        mocksolr.execute.assert_called_once()
+        self.assertEqual(mocksolr.call_count, 1)
 
         self.assert_(isinstance(response.context['results'], paginator.Page),
                      'paginated solr result should be set in response context')
@@ -3035,7 +3035,7 @@ class PublicationViewsTest(TestCase):
                          (expected, got, browse_subject_url))
         mocksolr.facet_by.assert_called_with('researchfield_sorting', mincount=1,
                                              limit=-1, prefix='', sort='index')
-        mocksolr.execute.assert_called_once()
+        self.assertEqual(mocksolr.call_count, 1)
         self.assertEqual(test_subject_facets, response.context['facets'])
         for val, count in test_subject_facets:
             self.assertContains(response, '>%s</a> (%d)' % (val, count),
@@ -3081,6 +3081,7 @@ class PublicationViewsTest(TestCase):
         with self._use_statistics_context():
             index_url = reverse('site-index')
             response = self.client.get(index_url)
+            print response.context
             self.assertTrue('ARTICLE_STATISTICS' in response.context)
             self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
             self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
