@@ -218,9 +218,6 @@ if django_nose is not None:
 SKIP_SOUTH_TESTS = True
 SOUTH_TESTS_MIGRATE = False
 
-SOUTH_DATABASE_ADAPTERS = {
-    'default': 'south.db.mysql'
-}
 
 if 'DJANGO_TEST_MODE' in os.environ:
     # TODO: convert this into a nose plugin
