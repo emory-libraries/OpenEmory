@@ -54,7 +54,7 @@ def test():
     app_list = ['accounts', 'common', 'publication', 'harvest']
     apps2test = ' '.join(map(lambda app: env.project + '.' + app +'.tests', app_list))
 
-    testing_cmd = 'python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env
+    testing_cmd = 'python manage.py test --keepdb --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env
     testing_cmd += apps2test
     local(testing_cmd)
 
