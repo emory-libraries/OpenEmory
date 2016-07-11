@@ -55,6 +55,6 @@ def record(request, id):
         # set the specified record to ignored
         record.mark_ignored()
         # return a 200 Ok response on success
-        return HttpResponse('Record ignored', mimetype='text/plain')
+        return HttpResponse('Record ignored', content_type='text/plain')
 
         

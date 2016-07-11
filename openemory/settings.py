@@ -141,8 +141,8 @@ INSTALLED_APPS = [
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'openemory.accounts.backends.FacultyOrLocalAdminBackend',
     'django_auth_ldap.backend.LDAPBackend',
+    'openemory.accounts.backends.FacultyOrLocalAdminBackend',
 ]
 
 PID_ALIASES = {
@@ -162,6 +162,7 @@ FILE_UPLOAD_HANDLERS = (
 
 # session configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

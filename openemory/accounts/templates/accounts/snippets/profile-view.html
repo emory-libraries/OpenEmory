@@ -1,4 +1,4 @@
-{% load markup %}
+{% load markdown_me %}
 <script type="text/javascript">
   $(document).ready(function() {
     /*$(".view .readonly a").click(function(eventObject) {
@@ -368,7 +368,7 @@
               <h2>Biography/Description of Research:</h2>
               <div class="clearfix"></div>
               {% if author.get_profile.biography %}
-              {{ author.get_profile.biography|markdown }}
+              {{ author.get_profile.biography|markdownify|safe }}
               {% else %}
                 <div class="emptyField">
                   No biography information has been saved.

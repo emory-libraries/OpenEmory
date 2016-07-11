@@ -82,7 +82,7 @@ def login(request):
                 next_url = reverse('harvest:queue')
 
             # if the user has a profile page, redirect t
-            elif request.user.get_profile().has_profile_page():
+            elif request.user.userprofile.has_profile_page():
                 next_url = reverse('accounts:profile',
                                    kwargs={'username': request.user.username})
 
@@ -149,7 +149,7 @@ def _get_profile_user(username):
         user_dn, user = backend.find_user(username)
         if not user:
             raise Http404
-        profile = user.get_profile()
+        profile = user.userprofile
 
     return user, profile
 
@@ -478,22 +478,22 @@ def profile_tags(request, username):
             else:
                 # user is authenticated but not allowed
                 code, message = 403, 'Permission Denied'
-            return HttpResponse(message, mimetype='text/plain',
+            return HttpResponse(message, content_type='text/plain',
                                 status=code)
         # user is authenticated and request user is the user being tagged
         tags = parse_tags(request.read())
         if request.method == 'PUT':	# replace tags with new set
-            user.get_profile().research_interests.set(*tags)
+            user.userprofile.research_interests.set(*tags)
         elif request.method == 'POST':	# add new tag to existing tags
-            user.get_profile().research_interests.add(*tags)
+            user.userprofile.research_interests.add(*tags)
 
         # fall through to GET handling and display the newly-updated tags
 
     # GET or successful PUT/POST
     tags = dict([(tag.name, reverse('accounts:by-interest', kwargs={'tag': tag.slug}))
-                  for tag in user.get_profile().research_interests.all()])
+                  for tag in user.userprofile.research_interests.all()])
     return  HttpResponse(json_serializer.encode(tags),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 def researchers_by_interest(request, tag):
     '''Find users by research interest.
@@ -540,7 +540,7 @@ def degree_autocomplete(request, mode):
                    for i in results[:10]
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 
 def position_autocomplete(request):
@@ -563,7 +563,7 @@ def position_autocomplete(request):
                    for i in results[:10]]
 
     return  HttpResponse(json_serializer.encode(suggestions),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 
 
@@ -575,7 +575,7 @@ def grant_autocomplete(request):
                     .order_by('-count')
     suggestions = [i['grantor'] for i in results[:10]]
     return HttpResponse(json_serializer.encode(suggestions),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 @login_required
 def faculty_autocomplete(request):
@@ -618,7 +618,7 @@ def faculty_autocomplete(request):
          for u in r
         ]
     return  HttpResponse(json_serializer.encode(suggestions),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 
 @login_required
@@ -685,7 +685,7 @@ def tag_autocompletion(request, tag_qs, count_field):
             for tag in annotated_qs[:10]	# limit to the first 10 tags
            ]
     return  HttpResponse(json_serializer.encode(tags),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 
 @login_required
@@ -738,7 +738,7 @@ def object_tags(request, pid):
     # GET or successful PUT
     tags = [tag.name for tag in bookmark.tags.all()]
     return  HttpResponse(json_serializer.encode(tags), status=status_code,
-                         mimetype='application/json')
+                         content_type='application/json')
 
 @login_required
 def tagged_items(request, tag):
@@ -865,7 +865,7 @@ def feedback(request):
             destination = reverse('site-index')
             try:
                 if user.is_authenticated():
-                    profile = user.get_profile()
+                    profile = user.userprofile
                     if profile.has_profile_page():
                         destination = reverse('accounts:profile',
                                 kwargs={'username': user.username})
@@ -879,7 +879,7 @@ def feedback(request):
         form_data = {}
         if user.is_authenticated():
             try:
-                profile = user.get_profile()
+                profile = user.userprofile
                 esd = profile.esd_data()
                 form_data['name'] = esd.directory_name
                 form_data['email'] = esd.email

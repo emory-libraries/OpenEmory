@@ -1139,7 +1139,7 @@ class PublicationPremis(premis.Premis):
             who reviewed the article
         '''
 
-        detail = 'Reviewed by %s' % reviewer.get_profile().get_full_name()
+        detail = 'Reviewed by %s' % reviewer.userprofile.get_full_name()
         self.premis_event(reviewer, 'review',detail)
 
     def harvested(self, user, pmcid):
@@ -1155,7 +1155,7 @@ class PublicationPremis(premis.Premis):
         #TODO pmcid will have to change to something more general when more external systems are added
 
         detail = 'Harvested %s from PubMed Central by %s' % \
-                              (pmcid, user.get_profile().get_full_name())
+                              (pmcid, user.userprofile.get_full_name())
         self.premis_event(user, 'harvest', detail)
 
     def symp_ingest(self, user, id):
@@ -1168,7 +1168,7 @@ class PublicationPremis(premis.Premis):
 
         # no log'd in user available so use OE Bot
         detail = 'Ingested %s from Symplectic-Elements by %s' % \
-                              (id, user.get_profile().get_full_name())
+                              (id, user.userprofile.get_full_name())
         self.premis_event(user, 'symp_ingest', detail)
 
     def uploaded(self, user, legal_statement=None):
@@ -1193,13 +1193,13 @@ class PublicationPremis(premis.Premis):
         # storage.
         if legal_statement == 'AUTHOR':
             detail = 'Uploaded by %s upon assent to deposit' % \
-                    (user.get_profile().get_full_name(),)
+                    (user.userprofile.get_full_name(),)
         elif legal_statement == 'MEDIATED':
             detail = 'Mediated Deposit with Assist Authorization or CC or PD by %s' % \
-                    (user.get_profile().get_full_name(),)
+                    (user.userprofile.get_full_name(),)
         else:
             detail = 'Uploaded by %s without confirmed assent to deposit' % \
-                    (user.get_profile().get_full_name(),)
+                    (user.userprofile.get_full_name(),)
         detail += ' under OpenEmory v%s' % (openemory.__version__,)
 
         self.premis_event(user, 'upload', detail)
@@ -1214,7 +1214,7 @@ class PublicationPremis(premis.Premis):
             withdrawal, to be included in the event detail
         '''
         detail = 'Withdrawn by %s: %s' % \
-                (user.get_profile().get_full_name(), reason)
+                (user.userprofile.get_full_name(), reason)
         self.premis_event(user, 'withdraw', detail)
 
     def reinstated(self, user, reason=None):
@@ -1230,7 +1230,7 @@ class PublicationPremis(premis.Premis):
         if reason is None:
             reason = 'No reason given.'
         detail = 'Reinstated (from withdrawal) by %s: %s' % \
-                (user.get_profile().get_full_name(), reason)
+                (user.userprofile.get_full_name(), reason)
         self.premis_event(user, 'reinstate', detail)
 
 
@@ -1313,6 +1313,8 @@ class Publication(DigitalObject):
         PublicationMods, defaults={
             'versionable': True,
         })
+
+    dc = XmlDatastream('DC', 'Dublin Core Record for this object', default={'versionable': True})
     '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
 
     contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
@@ -1651,7 +1653,7 @@ class Publication(DigitalObject):
         for netid in self.author_netids:
             try:
                 user = User.objects.get(username=netid)
-                profile = user.get_profile()
+                profile = user.userprofile
                 esd = profile.esd_data()
                 result.append(esd)
             except ObjectDoesNotExist:

@@ -83,6 +83,7 @@ class HarvestViewsTest(TestCase):
             for author in record.authors.all():
                 self.assertContains(response, author.get_full_name(),
                     msg_prefix='record author full name should be included in queue')
+                print author.username
                 self.assertContains(response, reverse('accounts:profile',
                                                       kwargs={'username': author.username}),
                     msg_prefix='record author profile link should be included in queue')
