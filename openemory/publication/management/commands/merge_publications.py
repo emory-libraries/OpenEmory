@@ -25,16 +25,17 @@ from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
+from eulfedora.rdfns import model as relsextns
 
 from rdflib import Namespace, URIRef, Literal
 
 from openemory.common.fedora import ManagementRepository
-from openemory.publication.models import Publication, LastRun
+from openemory.publication.models import Publication, LastRun, ArticleStatistics
 
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Provides replace/ignore options for duplicate objects created by Elements connector for manual duplicate management.
+    '''Provides merge/ignore options for duplicate objects created by Elements connector for manual duplicate management.
         This alters the pubs_object that the original and duplicate share.
     '''
     args = "[pid pid ...]"
@@ -49,16 +50,20 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Changes the pub object to disregard the duplicate pids.'),
-        make_option('--replace', '-r',
+        make_option('--merge', '-m',
                     action='store_true',
                     default=False,
                     help='Keeps the changes from the duplicate pids by copying ATOM-FEED to original.'),
         )
 
     def handle(self, *args, **options):
+        
+
+
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
+        
 
         # counters
         self.counts = defaultdict(int)
@@ -68,7 +73,7 @@ class Command(BaseCommand):
 
         # set the name of the report of duplications
         self.reportsdirectory = settings.REPORTS_DIR
-        self.reportname = "replaces-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
+        self.reportname = "merge-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
 
         # connection to repository
         self.repo = ManagementRepository()
@@ -76,7 +81,7 @@ class Command(BaseCommand):
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
 
-        last_run = LastRun.objects.get(name='Convert Symp to OE')
+        last_run = LastRun.objects.get(name='Merge Symp with OE')
         date = last_run.start_time
 
         self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S"))
@@ -85,86 +90,89 @@ class Command(BaseCommand):
         date_str = date.strftime("%Y-%m-%dT%H:%M:%S")
         self.output(1, '%s UTC' % date_str)
 
+
         try:
             # Raise error if replace or ignore is not specified
-            if self.options['replace'] is self.options['ignore']:
-                raise Exception("no actions set. Specify --replace or --ignore")
+            if self.options['merge'] is self.options['ignore']:
+                raise Exception("no actions set. Specify --merge or --ignore")
 
             #if pids specified, use that list
-            if len(args) != 0:
+            if len(args) == 2:
                 pids = list(args)
             else:
-                raise Exception("no pids specified")
+                raise Exception("specify two pid")
         except Exception as e:
             raise Exception("Error getting pids: %s" % e.message)
 
         self.counts['total'] = len(pids)
 
-        for pid in pids:
+        for idx,pid in pids:
             try:
-                self.output(1, "\nProcessing %s" % pid)
-                # Load first as Article becauce that is the most likely type
-                obj = self.repo.get_object(pid=pid)
-                if not obj.exists:
-                    self.output(1, "Skipping because %s does not exist" % pid)
-                    continue
-                ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
-
-                if not ds:
-                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
-                    continue
-                ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
-                #
-                # for property, value in vars(ds).iteritems():
-                #     msg = "%s: %s" %(property, value)
-                #     self.output(1, msg)
-
-
-                # WHEN OVERWRITING ORINGIALS WITH A DUPLICATE
-                # 1. Make sure object content model has from_symp() function
-                # 2. Add to  content_types dict
-                # 3. Add elif block (see few lines below)
-                # 4. Add line in summary section
-
-                # choose content type
-                content_types = {'Article': 'journal article'}
-                obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-                if obj_types[1] in content_types.values():
-                    logging.info("Processing %s as Publication" % pid)
-                    obj = self.repo.get_object(pid=pid, type=Publication)
-                else:
-                    logging.info("Skipping %s Invalid Content Type" % pid)
-                    continue
-
-
-                obj.from_symp()
-
-                # get a list of predicates
-                properties = []
-                for p in list(obj.rels_ext.content.predicates()):
-                  properties.append(str(p))
-
-                # process only if the rels-ext has the "replaces" tag, which indicates duplicates
-                replaces_tag = "http://purl.org/dc/terms/replaces"
-                if replaces_tag in properties:
-
-                    # Get the pubs object
-                    # pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
-                    pubs_id = obj.sympAtom.content.pubs_id
-                    pubs_id = "pubs:%s" % (pubs_id)
-                    self.output(1, "Pub ID: %s" % pubs_id)
-                    pubs_obj = self.repo.get_object(pid=pubs_id)
-
-                    self.counts['Publication']+=1
-
-                    original_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-                    original_obj = self.repo.get_object(pid=original_pid, type=Publication)
-                    original_obj.from_symp()
-
-                    if not original_obj.exists:
-                        self.output(1, "Skipping because %s does not exist" % original_obj)
-                        self.counts['skipped']+=1
+                if idx == 0:
+                    self.output(1, "\nProcessing  Elements PID %s" % pid)
+                     # Load first as Article becauce that is the most likely type
+                    element_obj = self.repo.get_object(pid=pid, type=Publication)
+                    new_stats = ArticleStatistics.objects.get_or_create(pid=pid)
+                    if not element_obj.exists:
+                        self.output(1, "Skipping because %s does not exist" % pid)
                         continue
+
+                elif idx == 1:
+                    self.output(1, "\nProcessing  Old PID %s" % pid)
+                    original_obj = self.repo.get_object(pid=pid, type=Publication)
+                    original_stats = ArticleStatistics.objects.get_or_create(pid=pid)
+                    if not original_obj.exists:
+                        self.output(1, "Skipping because %s does not exist" % pid)
+                        continue
+               
+                
+                
+
+
+            except (KeyboardInterrupt, SystemExit):
+                if self.counts['saved'] > 0:
+                  self.write_report(self.duplicates, error="interrupt")
+                raise
+
+            except Exception as e:
+                self.output(1, "Error processing %s: %s" % (pid, e.message))
+                self.output(1, element_obj.rels_ext.content.serialize(pretty=True))
+                self.counts['errors']+=1
+
+        element_obj.descMetadata = original_obj.descMetadata
+        element_obj.provenance = original_obj.provenance
+        element_obj.dc = original_obj.dc
+        element_obj.pdf = original_obj.pdf
+
+        new_stats.year = original_stats.year
+        new_stats.quarter = original_stats.quarter
+        new_stats.num_views = original_stats.num_views
+        new_stats.num_downloads = original_stats.num_downloads
+        new_stats.save()
+        
+        coll = self.repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+        element_obj.collection = coll
+        element_obj.rels_ext.content.add((element_obj.uriref, relsextns.hasModel, URIRef(Publication.ARTICLE_CONTENT_MODEL)))
+        element_obj.rels_ext.content.add((element_obj.uriref, relsextns.hasModel, URIRef(Publication.PUBLICATION_CONTENT_MODEL)))
+
+        
+        # SAVE OBJECTS UNLESS NOACT OPTION
+        if not options['noact']:
+            element_obj.save()
+            self.counts['saved']+=1
+
+        # summarize what was done
+        self.stdout.write("\n\n")
+        self.stdout.write("Total number selected: %s\n" % self.counts['total'])
+        self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
+        self.stdout.write("Errors: %s\n" % self.counts['errors'])
+        self.stdout.write("Converted: %s\n" % self.counts['saved'])
+
+
+    def output(self, v, msg):
+        '''simple function to handle logging output based on verbosity'''
+        if self.verbosity >= v:
+            self.stdout.write("%s\n" % msg)
 
                     if not pid in original_obj.rels_ext.content.serialize():
                         self.output(1, "Skipping because %s does not contain %s" % (original_obj, pid) )
