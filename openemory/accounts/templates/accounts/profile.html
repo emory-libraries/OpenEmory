@@ -45,8 +45,8 @@
   TODO: grants are not currently fully integrated into the profile, dashboard,
     and editing.
             <div id="grants">
-            {% if author.get_profile.grant_set.count %}
-                           {% for grant in author.get_profile.grant_set.all %}
+            {% if author.userprofile.grant_set.count %}
+                           {% for grant in author.userprofile.grant_set.all %}
                               {% include "accounts/snippets/profile-grant.html" %}
                           {% endfor %}
                       {% else %}

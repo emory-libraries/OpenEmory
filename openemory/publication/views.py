@@ -590,7 +590,7 @@ def edit_metadata(request, pid):
 
             try:
                 obj.save('updated metadata')
-                print "obj is saved"
+                
                 messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
                             {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                 # if submitted via 'publish' or 'save', redirect to article detail view
@@ -608,10 +608,14 @@ def edit_metadata(request, pid):
                 # otherwise, redisplay the edit form
 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
+
+                print "obj is not saved"
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
+                    print "permisssions"
                     msg = 'You don\'t have permission to modify this object in the repository.'
                 else:
+                    print "repo error"
                     msg = 'There was an error communicating with the repository.'
                 messages.error(request,
                                msg + ' Please contact a site administrator.')

@@ -470,9 +470,9 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertEqual('accounts/profile.html', response.templates[0].name,
             'anonymous access to profile should use accounts/profile.html for primary template')
-
+        print response
         # ESD data should be displayed (not suppressed)
-        self.assertContains(response, self.faculty_esd.directory_name,
+        self.assertContains(response, self.faculty_esd.last_name,
             msg_prefix="profile page should display user's directory name")
         self.assertContains(response, self.faculty_esd.title,
             msg_prefix='title from ESD should be displayed')
@@ -1816,56 +1816,55 @@ class AccountViewsTest(TestCase):
             self.mocksolr.query.paginate.assert_called_with(rows=0)
 
     
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_view_department(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            faculty_esd = self.faculty_user.userprofile.esd_data()
+        faculty_esd = self.faculty_user.userprofile.esd_data()
 
-            mockresult = [
-                {'username': self.faculty_username,
-                 'division_name': faculty_esd.division_name,
-                 'department_name': [faculty_esd.department_name],
-                 'first_name': faculty_esd.first_name,
-                 'last_name': faculty_esd.last_name,
-                 'directory_name': faculty_esd.directory_name }
-                ]
-            mocksolr.query.execute.return_value = mockresult
-    #        people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
-     #                .execute()
+        mockresult = [
+            {'username': self.faculty_username,
+             'division_name': faculty_esd.division_name,
+             'department_name': [faculty_esd.department_name],
+             'first_name': faculty_esd.first_name,
+             'last_name': faculty_esd.last_name,
+             'directory_name': faculty_esd.directory_name }
+            ]
+        self.mocksolr.query.execute.return_value = mockresult
+#        people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
+ #                .execute()
 
-            dept_url = reverse('accounts:department',
-                               kwargs={'id': faculty_esd.department_id})
-            response = self.client.get(dept_url)
-            self.assertContains(response, faculty_esd.division_name,
-                msg_prefix='department page should include division name')
-            self.assertContains(response, faculty_esd.department_shortname,
-                msg_prefix='department page should include department name (short version)')
-            self.assertNotContains(response, faculty_esd.department_name,
-                msg_prefix='department page should not include department name with division prefix')
-            self.assertContains(response, faculty_esd.directory_name,
-                msg_prefix='department page should list faculty member full name')
-            self.assertContains(response, reverse('accounts:profile',
-                                                  kwargs={'username': self.faculty_user.username}),
-                msg_prefix='department page should link to faculty member profile')
+        dept_url = reverse('accounts:department',
+                           kwargs={'id': faculty_esd.department_id})
+        response = self.client.get(dept_url)
+        self.assertContains(response, faculty_esd.division_name,
+            msg_prefix='department page should include division name')
+        self.assertContains(response, faculty_esd.department_shortname,
+            msg_prefix='department page should include department name (short version)')
+        self.assertNotContains(response, faculty_esd.department_name,
+            msg_prefix='department page should not include department name with division prefix')
+        self.assertContains(response, faculty_esd.directory_name,
+            msg_prefix='department page should list faculty member full name')
+        self.assertContains(response, reverse('accounts:profile',
+                                              kwargs={'username': self.faculty_user.username}),
+            msg_prefix='department page should link to faculty member profile')
 
-            # division / department with same name (University Libraries)
-            EUL = 'University Libraries'
-            mockresult[0].update({'division_name': EUL, 'department_name': EUL})
+        # division / department with same name (University Libraries)
+        EUL = 'University Libraries'
+        mockresult[0].update({'division_name': EUL, 'department_name': EUL})
 
-            ul_dept_id = '921060'
-            dept_url = reverse('accounts:department', kwargs={'id': ul_dept_id})
-            response = self.client.get(dept_url)
-            self.assertContains(response, EUL, count=2,
-                msg_prefix='when department name matches division name, it should not be repeated')
+        ul_dept_id = '921060'
+        dept_url = reverse('accounts:department', kwargs={'id': ul_dept_id})
+        response = self.client.get(dept_url)
+        self.assertContains(response, EUL, count=2,
+            msg_prefix='when department name matches division name, it should not be repeated')
 
-            # non-existent department id should 404
-            mocksolr.query.execute.return_value = []
-            non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
-            response = self.client.get(non_dept_url)
-            expected, got = 404, response.status_code
-            self.assertEqual(expected, got,
-                             'Expected %s but got %s for %s (invalid department id)' % \
-                             (expected, got, non_dept_url))
+        # non-existent department id should 404
+        self.mocksolr.query.execute.return_value = []
+        non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
+        response = self.client.get(non_dept_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (invalid department id)' % \
+                         (expected, got, non_dept_url))
 
     def test_grant_autocomplete(self):
         # FIXME: use fixtures for these
@@ -1889,11 +1888,11 @@ class AccountViewsTest(TestCase):
         data = json.loads(response.content)
         self.assertEqual(0, len(data))
 
+    @patch('openemory.accounts.context_processors.solr_interface', mocksolr)
+    @patch('openemory.publication.views.solr_interface', mocksolr)  # for home page content
     def test_statistics_processor(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            mocksolr.query.execute.return_value = MagicMock()  # needs to be iterable
-            mocksolr.query.execute.return_value.result.numFound = 42
+        self.mocksolr.query.execute.return_value = MagicMock()  # needs to be iterable
+        self.mocksolr.query.execute.return_value.result.numFound = 42
 
         with self._use_statistics_context():
             index_url = reverse('site-index')
@@ -2085,37 +2084,34 @@ class UserProfileTest(TestCase):
         self.jmercy = User.objects.get(username='jmercy')
 
     
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            # check important solr query args
-            solrq = self.user.userprofile._find_articles()
-            mocksolr.query.assert_called_with(owner=self.user.username)
-            qfilt = self.mocksolr.query.filter
-            qfilt.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL)
+        # check important solr query args
+        solrq = self.user.userprofile._find_articles()
+        self.mocksolr.query.assert_called_with(owner=self.user.username)
+        qfilt = self.mocksolr.query.filter
+        qfilt.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL)
 
     
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_recent_articles(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            # check important solr query args
-            testlimit = 4
-            testresult = [{'pid': 'test:1234'},]
-            self.mocksolr.query.execute.return_value = testresult
-            recent = self.user.userprofile.recent_articles(limit=testlimit)
-            self.assertEqual(recent, testresult)
-            mocksolr.query.filter.assert_called_with(state='A')
-            mocksolr.query.paginate.assert_called_with(rows=testlimit)
-            mocksolr.query.execute.assert_called_once()
+        # check important solr query args
+        testlimit = 4
+        testresult = [{'pid': 'test:1234'},]
+        self.mocksolr.query.execute.return_value = testresult
+        recent = self.user.userprofile.recent_articles(limit=testlimit)
+        self.assertEqual(recent, testresult)
+        self.mocksolr.query.filter.assert_called_with(state='A')
+        self.mocksolr.query.paginate.assert_called_with(rows=testlimit)
+        self.mocksolr.query.execute.assert_called_once()
 
     
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_unpublished_articles(self):
         # check important solr query args
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            unpub = self.user.userprofile.unpublished_articles()
-            mocksolr.query.filter.assert_called_with(state='I')
-            mocksolr.query.execute.assert_called_once()
+        unpub = self.user.userprofile.unpublished_articles()
+        self.mocksolr.query.filter.assert_called_with(state='I')
+        
 
     def test_esd_data(self):
         self.assertEqual(self.mmouse.userprofile.esd_data().ppid, 'P9418306')

@@ -142,6 +142,7 @@ class Command(BaseCommand):
         element_obj.descMetadata = original_obj.descMetadata
         element_obj.provenance = original_obj.provenance
         element_obj.dc = original_obj.dc
+        element_obj.pdf = original_obj.pdf
 
         new_stats.year = original_stats.year
         new_stats.quarter = original_stats.quarter

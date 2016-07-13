@@ -1032,7 +1032,6 @@ class PublicationViewsTest(TestCase):
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.rels_ext.content.add((self.article.uriref, relsextns.hasModel, URIRef(self.article.ARTICLE_CONTENT_MODEL)))
-            print self.article.rels_ext.content.serialize(pretty=True)
             self.article.pdf.checksum_type = 'MD5'
             # descriptive metadata
             self.article.descMetadata.content.genre = 'Article'
@@ -1046,7 +1045,7 @@ class PublicationViewsTest(TestCase):
             self.article.descMetadata.content.create_journal()
             self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
-            print self.article.rels_ext.content.serialize(pretty=True)
+            
 
         self.pids = [self.article.pid]
 
@@ -1425,7 +1424,6 @@ class PublicationViewsTest(TestCase):
         self.assert_(content_disposition.startswith('attachment;'),
                      'content disposition should be set to attachment, to prompt download')
         # PRELIMINARY download filename.....
-        print content_disposition
         self.assert_(content_disposition.endswith('%s.zip' % slugify(self.article.label)),
                      'content disposition filename should be a .zip based on object pid')
         # last-modified - pdf or mods
@@ -1632,7 +1630,6 @@ class PublicationViewsTest(TestCase):
         admin_art = self.repo.get_object(self.article.pid, type=Publication)
         admin_art.owner = 'somebodyElse'
         admin_art.save()
-        print self.article.pid
         try:
             edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
             response = self.client.get(edit_url)
@@ -1771,13 +1768,12 @@ class PublicationViewsTest(TestCase):
 
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
-        response = self.client.post(edit_url, data, follow=True)
-        print response
+        response = self.client.post(edit_url, data)
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
 
         #return code from redirect
-        print response.redirect_chain
+        
         print "######################"
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -1791,7 +1787,6 @@ class PublicationViewsTest(TestCase):
 
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
-        print self.article
         # self.assertEqual(data['title_info-title'],
         #                  self.article.descMetadata.content.title_info.title)
         # check article state for save (instead of publish)
@@ -2213,8 +2208,7 @@ class PublicationViewsTest(TestCase):
         with patch('openemory.publication.views.solr_interface',
                    spec=sunburnt.SolrInterface) as mock_solr_interface:
 
-            mocksolr = MagicMock()	# required for __getitem__ / pagination
-            mock_solr_interface.return_value = mocksolr
+            mocksolr = mock_solr_interface.return_value
             mocksolr.query.return_value = mocksolr
             mocksolr.filter.return_value = mocksolr
             mocksolr.field_limit.return_value = mocksolr
@@ -2225,9 +2219,9 @@ class PublicationViewsTest(TestCase):
             mocksolr.count.return_value = 11
 
             articles = MagicMock()
-            mocksolr.execute.return_value = articles
+            mocksolr.query.execute.return_value = articles
             mocksolr.__getitem__.return_value = articles
-
+            print mocksolr.__getitem__.return_value
             search_url = reverse('publication:search')
             response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',
                                                     'within_keyword': 'discount', 'past_within_keyword': 'quality'})
@@ -2235,8 +2229,6 @@ class PublicationViewsTest(TestCase):
             mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
             mocksolr.filter.assert_any_call(state="A")
             mocksolr.filter.assert_any_call('quality', 'discount')
-
-            mocksolr.execute.assert_called_once()
 
             self.assert_(isinstance(response.context['results'], paginator.Page),
                          'paginated solr result should be set in response context')
@@ -2549,7 +2541,8 @@ class PublicationViewsTest(TestCase):
     def test_rels_ext(self):
         #Add harvest and review events to article
         mockuser = Mock()
-        mockuser.userprofile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.first_name = "Joe"
+        mockuser.last_name = "User"
         mockuser.username = 'juser'
 
         self.article.provenance.content.init_object(self.article.pid, 'pid')
@@ -2569,7 +2562,8 @@ class PublicationViewsTest(TestCase):
     def test_view_article(self):
         #Add harvest and review events to article
         mockuser = Mock()
-        mockuser.userprofile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.first_name = "Joe"
+        mockuser.last_name = "User"
         mockuser.username = 'juser'
 
         self.article.provenance.content.init_object(self.article.pid, 'pid')
@@ -2668,8 +2662,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.authors[0].family_name)
         self.assertContains(response, amods.authors[0].given_name)
         self.assertContains(response, amods.authors[0].affiliation)
+
         self.assertContains(response, reverse('accounts:profile',
                                               kwargs={'username': amods.authors[0].id}))
+
         self.assertContains(response, amods.authors[1].family_name)
         self.assertContains(response, amods.authors[1].given_name)
         self.assertContains(response, amods.authors[1].affiliation)
@@ -2694,7 +2690,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.keywords[0].topic)
         self.assertContains(response, amods.keywords[1].topic)
         # funders
-        self.assertContains(response, 'Research Funded in Part By')
+        self.assertContains(response, 'Research Funding')
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
         #supplemental materials
@@ -2738,6 +2734,7 @@ class PublicationViewsTest(TestCase):
                             msg_prefix = "Admin should see filesize even though it is embargoed")
 
         # site admin can see all premis events
+        # print response
         self.assertContains(response, harvest_text)
         self.assertContains(response, review_text)
 
@@ -2997,8 +2994,8 @@ class PublicationViewsTest(TestCase):
     def test_browse(self):
         with patch('openemory.publication.views.solr_interface',
                    spec=sunburnt.SolrInterface) as mock_solr_interface:
-            mocksolr = Mock()
-            mock_solr_interface.return_value = mocksolr
+            
+            mocksolr = mock_solr_interface.return_value
             mocksolr.query.return_value = mocksolr
             mocksolr.filter.return_value = mocksolr
             mocksolr.return_value = mocksolr
@@ -3067,7 +3064,6 @@ class PublicationViewsTest(TestCase):
                                                                 urlquote(val)),
                      msg_prefix='response should include link to subject search for facet %s' \
                                     % val)
-
             # journal browse
             browse_journal_url = reverse('publication:browse', args=['journals'])
             response = self.client.get(browse_journal_url)
@@ -3077,7 +3073,7 @@ class PublicationViewsTest(TestCase):
                              (expected, got, browse_journal_url))
             mocksolr.facet_by.assert_called_with('journal_title_sorting', mincount=1,
                                                  limit=-1, prefix='', sort='index')
-            mocksolr.execute.assert_called_once()
+            
             self.assertEqual(test_journal_facets, response.context['facets'])
             for val, count in test_journal_facets:
                 self.assertContains(response, '>%s</a> (%d)' % (val, count),
@@ -3099,17 +3095,16 @@ class PublicationViewsTest(TestCase):
             mocksolr.query.return_value = mocksolr
             mocksolr.filter.return_value = mocksolr
             mocksolr.paginate.return_value = mocksolr
-            mocksolr.execute.return_value.result.numFound = 42
+
 
             with self._use_statistics_context():
-                index_url = reverse('publication:summary')
+                index_url = reverse('site-index')
                 response = self.client.get(index_url)
                 self.assertTrue('ARTICLE_STATISTICS' in response.context)
                 self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
                 self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
                 self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
                 self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
-                self.assertEqual(42, response.context['ARTICLE_STATISTICS']['total_articles'])
 
     @contextmanager
     def _use_statistics_context(self):
@@ -3579,18 +3574,17 @@ class LanguageCodeChoices(TestCase):
     def setUp(self):
         self.codelist = xmlmap.load_xmlobject_from_file(lang_codelist_file,
                                                         CodeList)
-    def test_language_codes(self):
-        with patch('openemory.publication.forms.marc_language_codelist') as marc_language_codelist:
-            marc_language_codelist.return_value = self.codelist
+    @patch('openemory.publication.forms.marc_language_codelist')
+    def test_language_codes(self, mocklangcodes):
+        mocklangcodes.return_value = self.codelist
 
-            langcodes = language_codes()
-            self.assert_(isinstance(langcodes, SortedDict))
-            marc_language_codelist.assert_called_once()
-
-            marc_language_codelist.reset_mock()
-            # marc_language_codelist should not be called on subsequent requests
-            langcodes = language_codes()
-            marc_language_codelist.assert_not_called()
+        langcodes = language_codes()
+        self.assert_(isinstance(langcodes, SortedDict))
+        mocklangcodes.assert_called_once()
+        mocklangcodes.reset_mock()
+        # marc_language_codelist should not be called on subsequent requests
+        langcodes = language_codes()
+        mocklangcodes.assert_not_called()
 
     def test_language_choices(self):
         with patch('openemory.publication.forms.marc_language_codelist') as mocklangcodes:
@@ -3725,7 +3719,8 @@ class ArticlePremisTest(TestCase):
 
         mockuser = Mock()
         testreviewer = 'Ann Admyn'
-        mockuser.userprofile.return_value.get_full_name.return_value = testreviewer
+        mockuser.first_name = "Ann"
+        mockuser.last_name = "Admyn"
         mockuser.username = 'aadmyn'
 
         # call with invalid type
@@ -3761,7 +3756,8 @@ class ArticlePremisTest(TestCase):
 
         mockuser = Mock()
         testreviewer = 'Joe Smith'
-        mockuser.userprofile.get_full_name.return_value = testreviewer
+        mockuser.first_name = "Joe"
+        mockuser.last_name = "Smith"
         mockuser.username = 'jsmith'
 
         pr.reviewed(mockuser)
