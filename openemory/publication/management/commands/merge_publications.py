@@ -92,9 +92,6 @@ class Command(BaseCommand):
 
 
         try:
-            # Raise error if replace or ignore is not specified
-            if self.options['merge'] is self.options['ignore']:
-                raise Exception("no actions set. Specify --merge or --ignore")
 
             #if pids specified, use that list
             if len(args) == 2:
