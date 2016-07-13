@@ -133,7 +133,6 @@ INSTALLED_APPS = [
     'eullocal.django.emory_ldap',
     'south',
     'taggit',
-    'tracking',
     'openemory.mx',
     'downtime',
     'openemory.accounts',
