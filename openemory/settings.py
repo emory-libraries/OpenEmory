@@ -97,11 +97,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'openemory.mx.middleware.DownpageMiddleware',
+    'openemory.mx.middleware.DownpageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'tracking.middleware.VisitorTrackingMiddleware',
     # flatpages middleware should always be last (fallback for 404)
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
@@ -134,7 +133,7 @@ INSTALLED_APPS = [
     'south',
     'taggit',
     'openemory.mx',
-    # 'downtime',
+    'downtime',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',

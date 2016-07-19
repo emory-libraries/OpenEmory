@@ -100,11 +100,6 @@ class Command(BaseCommand):
                     if not element_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % pid)
                         continue
-                    new_stats = ArticleStatistics.objects.filter(pid=pid)
-                    if not new_stats:
-                        new_stats = ArticleStatistics.objects.create(pid=pid, year=year, quarter=quarter)
-                    else:
-                        new_stats = new_stats[0]
 
 
                     
@@ -118,8 +113,6 @@ class Command(BaseCommand):
                     original_stats = ArticleStatistics.objects.filter(pid=pid)
                     if not original_stats:
                         original_stats = ArticleStatistics.objects.create(pid=pid, year=year, quarter=quarter)
-                    else:
-                        original_stats = original_stats[0]
                     
                
                 
@@ -141,11 +134,8 @@ class Command(BaseCommand):
         element_obj.dc = original_obj.dc
         element_obj.pdf.content = original_obj.pdf.content
 
-        new_stats.year = original_stats.year
-        new_stats.quarter = original_stats.quarter
-        new_stats.num_views = original_stats.num_views
-        new_stats.num_downloads = original_stats.num_downloads
-        new_stats.save()
+        for stat in original_stats:
+            ArticleStatistics.objects.create(pid=element_obj.pid, year=stat.year, quarter=stat.quarter, num_downloads=stat.num_downloads, num_views=stat.num_views)
         
         coll = self.repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
         element_obj.collection = coll
