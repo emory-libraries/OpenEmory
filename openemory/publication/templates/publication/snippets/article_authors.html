@@ -11,9 +11,13 @@
           spaceless won't kill the space before the author.affiliation
           comma, so cram this all on one line :/
         {% endcomment %}
-        <p class="author">{% if user.get_profile.has_profile_page %}<a href="{{ BASE_URL|default:'' }}{% url 'accounts:profile' author.id %}" rel="author" itemprop="name">{{ display_name }}</a>{% else %}<span itemprop="name">{{ display_name }}</span>{% endif %}{% if author.affiliation %}, <span class="affiliation" itemprop="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
+        <p class="author my-authors">{% if user.get_profile.has_profile_page %}<a href="{{ BASE_URL|default:'' }}{% url 'accounts:profile' author.id %}" rel="author" itemprop="name">{{ display_name }}</a>{% else %}<span itemprop="name">{{ display_name }}</span>{% endif %}{% if author.affiliation %}, <span class="affiliation" itemprop="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
         <div class="clear"></div>{# 352media (?!?) #}
     {% endwith %}
   </span>
   {% endfor %}
+  {% if article.descMetadata.content.authors|length > 10 %}
+  <a href="#" class="more" style="margin-top: 20px; float: right;">Show all authors</a>
+  <a href="#" class="less" style="margin-top: 20px; float: right;">Show less authors</a>
+  {% endif %}
 </div>

@@ -130,9 +130,13 @@ class Command(BaseCommand):
                 self.counts['errors']+=1
 
         element_obj.descMetadata.content = original_obj.descMetadata.content
-        element_obj.provenance = original_obj.provenance
-        element_obj.dc = original_obj.dc
+        element_obj.provenance.content = original_obj.provenance.content
+        element_obj.dc.content = original_obj.dc.content
         element_obj.pdf.content = original_obj.pdf.content
+        original_obj.state = 'I'
+        element_obj.provenance.content.init_object(element_obj.pid, 'pid')
+        element_obj.provenance.content.merged(original_obj.pid, element_obj.pid)
+        
 
         for stat in original_stats:
             ArticleStatistics.objects.create(pid=element_obj.pid, year=stat.year, quarter=stat.quarter, num_downloads=stat.num_downloads, num_views=stat.num_views)
@@ -146,6 +150,7 @@ class Command(BaseCommand):
         # SAVE OBJECTS UNLESS NOACT OPTION
         if not options['noact']:
             element_obj.save()
+            original_obj.save()
             self.counts['saved']+=1
 
         # summarize what was done

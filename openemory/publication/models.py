@@ -1067,6 +1067,10 @@ class PublicationPremis(premis.Premis):
     review_event = xmlmap.NodeField('p:event[p:eventType="review"]', premis.Event)
     date_reviewed = xmlmap.StringField('p:event[p:eventType="review"]/p:eventDateTime')
 
+    #merge event fields
+    merge_event = xmlmap.NodeField('p:event[p:eventType="merge"]', premis.Event)
+    date_merged = xmlmap.StringField('p:event[p:eventType="merge"]/p:eventDateTime')
+
     #harvest event fields
     harvest_event = xmlmap.NodeField('p:event[p:eventType="harvest"]', premis.Event)
     date_harvested = xmlmap.StringField('p:event[p:eventType="harvest"]/p:eventDateTime')
@@ -1108,13 +1112,14 @@ class PublicationPremis(premis.Premis):
             * upload
             * withdraw
             * reinstate
+            * merge
 
         :param detail: detail message for event`
         '''
 
         #TODO add to this list as types grow
         allowed_types = ['review', 'harvest', 'upload', 'withdraw',
-                         'reinstate', 'symp_ingest']
+                         'reinstate', 'symp_ingest', 'merge']
 
         if type not in allowed_types:
             raise KeyError("%s is not an allowed type. The allowed types are %s" % (type, ", ".join(allowed_types)))
@@ -1139,6 +1144,23 @@ class PublicationPremis(premis.Premis):
 
         detail = 'Reviewed by %s' % reviewer.get_profile().get_full_name()
         self.premis_event(reviewer, 'review',detail)
+    
+    def merged(self, original_pid, element_pid):
+        '''Add an event to indicate that this article has been
+        reviewed. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
+
+        :param reviewer: the :class:`~django.contrib.auth.models.User`
+            who reviewed the article
+        '''
+
+        detail = '%s merged with %s by Admininstrator' % (element_pid, original_pid)
+        event = premis.Event()
+        event.id_type = 'local'
+        event.id = '%s.ev%03d' % (self.object.id, len(self.events)+1)
+        event.type = type
+        event.date = datetime.now().isoformat()
+        event.detail = detail
+        self.events.append(event)   
 
     def harvested(self, user, pmcid):
         '''Add an event to indicate that this article has been
