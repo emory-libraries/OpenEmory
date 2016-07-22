@@ -2662,7 +2662,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.authors[0].family_name)
         self.assertContains(response, amods.authors[0].given_name)
         self.assertContains(response, amods.authors[0].affiliation)
-
+        print amods.authors[0].id
+        print response
         self.assertContains(response, reverse('accounts:profile',
                                               kwargs={'username': amods.authors[0].id}))
 

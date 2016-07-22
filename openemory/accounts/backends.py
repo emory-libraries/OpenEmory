@@ -32,7 +32,7 @@ class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
         # Only authenticate users who are flagged as faculty in ESD
         # or local accounts with superuser permission, 'Site Admin' role
         # or nonfaculty_flag set
-        if self.USER_MODEL.objects.filter(username=username)\
+        if self.AUTH_USER_MODEL.objects.filter(username=username)\
                .filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | \
                        Q(userprofile__nonfaculty_profile=True))\
                .exists() or \

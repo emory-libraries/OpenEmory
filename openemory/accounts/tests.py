@@ -310,41 +310,39 @@ class AccountViewsTest(TestCase):
     solr = solr_interface()
     mocksolr.Q.return_value = solr.Q()
 
-    
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     @patch('openemory.accounts.views.paginate')
     @patch('openemory.accounts.views.ArticleStatistics')
     def test_dashboard_stats(self, mockstats, mockpaginator):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            # test just the author statistics on the profile dashboard tab
-            stat1 = Mock()
-            stat1.num_views = 2
-            stat1.num_downloads = 1
-            stat2 = Mock()
-            stat2.num_views = 1
-            stat2.num_downloads = 1
-            mockstats.objects.filter.return_value = [stat1, stat2]
+        # test just the author statistics on the profile dashboard tab
+        stat1 = Mock()
+        stat1.num_views = 2
+        stat1.num_downloads = 1
+        stat2 = Mock()
+        stat2.num_views = 1
+        stat2.num_downloads = 1
+        mockstats.objects.filter.return_value = [stat1, stat2]
 
-            result =  [
-                {'title': 'article one', 'created': 'today',
-                 'last_modified': 'today', 'pid': self.article.pid},
-                {'title': 'article two', 'created': 'today',
-                 'last_modified': 'today', 'pid': 'test:pid'},
-            ]
-            mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
+        result =  [
+            {'title': 'article one', 'created': 'today',
+             'last_modified': 'today', 'pid': self.article.pid},
+            {'title': 'article two', 'created': 'today',
+             'last_modified': 'today', 'pid': 'test:pid'},
+        ]
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
 
-            dashboard_url = reverse('accounts:dashboard',
-                                    kwargs={'username': self.faculty_username})
+        dashboard_url = reverse('accounts:dashboard',
+                                kwargs={'username': self.faculty_username})
 
-            # logged in, looking at own dashboard
-            self.client.login(**USER_CREDENTIALS[self.faculty_username])
-            response = self.client.get(dashboard_url)
-            #print response
+        # logged in, looking at own dashboard
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(dashboard_url)
+        #print response
 
-            # user stats - check for expected numbers
-            self.assertContains(response, "<strong>2</strong> total items")
-            self.assertContains(response, "<strong>6</strong> views on your items")
-            self.assertContains(response, "<strong>4</strong> items downloaded")
+        # user stats - check for expected numbers
+        self.assertContains(response, "<strong>2</strong> total items")
+        self.assertContains(response, "<strong>6</strong> views on your items")
+        self.assertContains(response, "<strong>4</strong> items downloaded")
 
     def test_dashboard_announcements(self):
 
@@ -572,73 +570,71 @@ class AccountViewsTest(TestCase):
                 msg_prefix='profile page should display research interest tags')
 
 
-
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     @patch('openemory.accounts.views.paginate')
     @patch('openemory.accounts.views._get_profile_user')
     def test_public_profile_docs(self, mockgetuser, mockpaginator):
         # test display of published documents on public profile
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            profile_url = reverse('accounts:profile',
-                                  kwargs={'username': self.faculty_username})
-            mocksolr.query.count.return_value = 0
+        profile_url = reverse('accounts:profile',
+                              kwargs={'username': self.faculty_username})
+        self.mocksolr.query.count.return_value = 0
 
-            # mock result object
-            result =  [
-                {'title': 'article one', 'created': 'today', 'state': 'A',
-                 'last_modified': 'today', 'pid': 'a:1',
-                 'owner': self.faculty_username, 'dsids': ['content'],
-                 'parsed_author': ['nonuser:A. Non User', ':N. External User']},
-                {'title': 'article two', 'created': 'yesterday', 'state': 'A',
-                 'last_modified': 'today','pid': 'a:2',
-                 'owner': self.faculty_username, 'dsids': ['contentMetadata'],
-                 'pmcid': '123456', 'parsed_author':
-                   ['nonuser:A. Non User', 'mmouse:Minnie Mouse']},
-            ]
-            # use mockprofile to supply mocks for recent & unpublished articles
-            mockprofile = Mock()
-            mockprofile.recent_articles.return_value = result
-            mockgetuser.return_value = self.faculty_user, mockprofile
-            mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
-            # anonymous access - unpub should not be called
-            response = self.client.get(profile_url)
-            mockprofile.recent_articles.assert_called_once()
-            mockprofile.unpublished_articles.assert_not_called()
+        # mock result object
+        result =  [
+            {'title': 'article one', 'created': 'today', 'state': 'A',
+             'last_modified': 'today', 'pid': 'a:1',
+             'owner': self.faculty_username, 'dsids': ['content'],
+             'parsed_author': ['nonuser:A. Non User', ':N. External User']},
+            {'title': 'article two', 'created': 'yesterday', 'state': 'A',
+             'last_modified': 'today','pid': 'a:2',
+             'owner': self.faculty_username, 'dsids': ['contentMetadata'],
+             'pmcid': '123456', 'parsed_author':
+               ['nonuser:A. Non User', 'mmouse:Minnie Mouse']},
+        ]
+        # use mockprofile to supply mocks for recent & unpublished articles
+        mockprofile = Mock()
+        mockprofile.recent_articles.return_value = result
+        mockgetuser.return_value = self.faculty_user, mockprofile
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
+        # anonymous access - unpub should not be called
+        response = self.client.get(profile_url)
+        mockprofile.recent_articles.assert_called_once()
+        mockprofile.unpublished_articles.assert_not_called()
 
-            self.assertContains(response, result[0]['title'],
-                msg_prefix='profile page should display article title')
-            self.assertContains(response, result[1]['title'])
-           # first result has content datastream, should have pdf link
-            self.assertContains(response,
-                                reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
-                                msg_prefix='profile should link to pdf for article')
-           # first result coauthored with a non-emory author
-            coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
-            self.assertContains(response, coauthor_name,
-                                msg_prefix='profile should include non-emory coauthor')
-            # second result does not have content datastream, should NOT have pdf link
-            self.assertNotContains(response,
-                                reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                                msg_prefix='profile should link to pdf for article')
+        self.assertContains(response, result[0]['title'],
+            msg_prefix='profile page should display article title')
+        self.assertContains(response, result[1]['title'])
+       # first result has content datastream, should have pdf link
+        self.assertContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
+       # first result coauthored with a non-emory author
+        coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
+        self.assertContains(response, coauthor_name,
+                            msg_prefix='profile should include non-emory coauthor')
+        # second result does not have content datastream, should NOT have pdf link
+        self.assertNotContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
 
-            # second result DOES have pmcid, should have pubmed central link
-            self.assertNotContains(response,
-                                reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                                msg_prefix='profile should link to pdf for article')
-            # second result coauthored with an emory author
-            coauthor = result[1]['parsed_author'][1]
-            coauthor_netid, colon, coauthor_name = coauthor.partition(':')
-            self.assertContains(response, coauthor_name,
-                                msg_prefix='profile should include emory coauthor name')
-            self.assertContains(response,
-                                reverse('accounts:profile', kwargs={'username': coauthor_netid}),
-                                msg_prefix='profile should link to emory coauthor')
+        # second result DOES have pmcid, should have pubmed central link
+        self.assertNotContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
+        # second result coauthored with an emory author
+        coauthor = result[1]['parsed_author'][1]
+        coauthor_netid, colon, coauthor_name = coauthor.partition(':')
+        self.assertContains(response, coauthor_name,
+                            msg_prefix='profile should include emory coauthor name')
+        self.assertContains(response,
+                            reverse('accounts:profile', kwargs={'username': coauthor_netid}),
+                            msg_prefix='profile should link to emory coauthor')
 
-            # no edit link
-            edit_url = reverse('accounts:edit-profile',
-                               kwargs={'username': self.faculty_username})
-            self.assertNotContains(response, edit_url,
-                msg_prefix='profile page edit link should not display to anonymous user')
+        # no edit link
+        edit_url = reverse('accounts:edit-profile',
+                           kwargs={'username': self.faculty_username})
+        self.assertNotContains(response, edit_url,
+            msg_prefix='profile page edit link should not display to anonymous user')
 
 
     @skip('unmigrated remainder from of massive profile test')
@@ -817,9 +813,9 @@ class AccountViewsTest(TestCase):
         '_EXTERNAL_LINKS-INITIAL_FORMS': 0,
         '_EXTERNAL_LINKS-TOTAL_FORMS': 2,
         '_EXTERNAL_LINKS-0-title': 'Google',
-        '_EXTERNAL_LINKS-0-url': 'http://www.google.com',
+        '_EXTERNAL_LINKS-0-url': 'http://www.google.com/',
         '_EXTERNAL_LINKS-1-title': 'Yahoo!',
-        '_EXTERNAL_LINKS-1-url': 'http://www.yahoo.com',
+        '_EXTERNAL_LINKS-1-url': 'http://www.yahoo.com/',
         # grants: TODO: not currently included in templates
 #        '_GRANTS-MAX_NUM_FORMS': '',
 #        '_GRANTS-INITIAL_FORMS': 0,
@@ -1057,71 +1053,70 @@ class AccountViewsTest(TestCase):
     # Removed photo tests. Refer to previous revisions if needed
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
+    @patch('openemory.publication.views.solr_interface', mocksolr)  # for home page content
     def test_login(self, mockauth):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            self.mocksolr.query.execute.return_value = MagicMock()  # needs to be iterable
-            mockauth.return_value = None
+        self.mocksolr.query.execute.return_value = MagicMock()  # needs to be iterable
+        mockauth.return_value = None
 
-            login_url = reverse('accounts:login')
-            # without next - wrong password should redirect to site index
-            response = self.client.post(login_url,
-                    {'username': self.faculty_username, 'password': 'wrong'})
-            expected, got = 303, response.status_code
-            self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
-                             (expected, got, login_url))
-            self.assertEqual('http://testserver' + reverse('site-index'),
-                             response['Location'],
-                             'failed login with no next url should redirect to site index')
-            # with next - wrong password should redirect to next
-            response = self.client.post(login_url,
-                    {'username': self.faculty_username, 'password': 'wrong',
-                     'next': reverse('publication:ingest')})
-            expected, got = 303, response.status_code
-            self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
-                             (expected, got, login_url))
-            self.assertEqual('http://testserver' + reverse('publication:ingest'),
-                             response['Location'],
-                             'failed login should redirect to next url when it is specified')
+        login_url = reverse('accounts:login')
+        # without next - wrong password should redirect to site index
+        response = self.client.post(login_url,
+                {'username': self.faculty_username, 'password': 'wrong'})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('site-index'),
+                         response['Location'],
+                         'failed login with no next url should redirect to site index')
+        # with next - wrong password should redirect to next
+        response = self.client.post(login_url,
+                {'username': self.faculty_username, 'password': 'wrong',
+                 'next': reverse('publication:ingest')})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('publication:ingest'),
+                         response['Location'],
+                         'failed login should redirect to next url when it is specified')
 
-            # login with valid credentials but no next
-            response = self.client.post(login_url, USER_CREDENTIALS[self.faculty_username])
-            expected, got = 303, response.status_code
-            self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
-                             (expected, got, login_url))
-            self.assertEqual('http://testserver' +
-                             reverse('accounts:profile',
-                                     kwargs={'username': self.faculty_username}),
-                             response['Location'],
-                             'successful login with no next url should redirect to user profile')
+        # login with valid credentials but no next
+        response = self.client.post(login_url, USER_CREDENTIALS[self.faculty_username])
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' +
+                         reverse('accounts:profile',
+                                 kwargs={'username': self.faculty_username}),
+                         response['Location'],
+                         'successful login with no next url should redirect to user profile')
 
 
-            # login with valid credentials and no next, user in Site Admin group
-            response = self.client.post(login_url, USER_CREDENTIALS['admin'])
-            expected, got = 303, response.status_code
-            self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
-                             (expected, got, login_url))
-            self.assertEqual('http://testserver' + reverse('harvest:queue'),
-                             response['Location'],
-                             'successful admin login with no next url should redirect to harvest queue')
+        # login with valid credentials and no next, user in Site Admin group
+        response = self.client.post(login_url, USER_CREDENTIALS['admin'])
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('harvest:queue'),
+                         response['Location'],
+                         'successful admin login with no next url should redirect to harvest queue')
 
-            # login with valid credentials and a next url specified
-            opts = {'next': reverse('site-index')}
-            opts.update(USER_CREDENTIALS[self.faculty_username])
-            response = self.client.post(login_url, opts)
-            expected, got = 302, response.status_code
-            self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
-                             (expected, got, login_url))
-            self.assertEqual('http://testserver' + opts['next'],
-                             response['Location'],
-                             'successful login should redirect to next url when specified')
+        # login with valid credentials and a next url specified
+        opts = {'next': reverse('site-index')}
+        opts.update(USER_CREDENTIALS[self.faculty_username])
+        response = self.client.post(login_url, opts)
+        expected, got = 302, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + opts['next'],
+                         response['Location'],
+                         'successful login should redirect to next url when specified')
 
 
-            # site-index login form should not specify 'next'
-            self.client.logout()
-            response = self.client.get(reverse('site-index'))
-            self.assertNotContains(response, '<input type=hidden name=next',
-                msg_prefix='login-form on site index page should not specify a next url')
+        # site-index login form should not specify 'next'
+        self.client.logout()
+        response = self.client.get(reverse('site-index'))
+        self.assertNotContains(response, '<input type=hidden name=next',
+            msg_prefix='login-form on site index page should not specify a next url')
 
     def test_tag_profile_GET(self):
         # add some tags to a user profile to fetch
@@ -1256,57 +1251,56 @@ class AccountViewsTest(TestCase):
         for tag in new_tags:
             self.assertTrue(user.userprofile.research_interests.filter(name=tag).exists())
 
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_profiles_by_interest(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            mock_article = {'pid': 'article:1', 'title': 'mock article'}
-            mocksolr.query.execute.return_value = [mock_article]
+        mock_article = {'pid': 'article:1', 'title': 'mock article'}
+        self.mocksolr.query.execute.return_value = [mock_article]
 
-            # add tags
-            oa = 'open-access'
-            oa_scholar, created = User.objects.get_or_create(username='oascholar')
-            self.faculty_user.userprofile.research_interests.add('open access', 'faculty habits')
-            oa_scholar.userprofile.research_interests.add('open access', 'OA movement')
+        # add tags
+        oa = 'open-access'
+        oa_scholar, created = User.objects.get_or_create(username='oascholar')
+        self.faculty_user.userprofile.research_interests.add('open access', 'faculty habits')
+        oa_scholar.userprofile.research_interests.add('open access', 'OA movement')
 
-            prof_by_tag_url = reverse('accounts:by-interest', kwargs={'tag': oa})
-            response = self.client.get(prof_by_tag_url)
-            expected, got = 200, response.status_code
-            self.assertEqual(expected, got,
-                             'Expected %s but got %s for %s' % \
-                             (expected, got, prof_by_tag_url))
-            # check response
-            oa_tag = Tag.objects.get(slug=oa)
-            self.assertEqual(oa_tag, response.context['interest'],
-                'research interest tag should be passed to template context for display')
-            self.assertContains(response, self.faculty_user.userprofile.get_full_name(),
-                msg_prefix='response should display full name for users with specified interest')
-            self.assertContains(response, oa_scholar.userprofile.get_full_name(),
-                msg_prefix='response should display full name for users with specified interest')
-            for tag in self.faculty_user.userprofile.research_interests.all():
-                self.assertContains(response, tag.name,
-                     msg_prefix='response should display other tags for users with specified interest')
-                self.assertContains(response,
-                     reverse('accounts:by-interest', kwargs={'tag': tag.slug}),
-                     msg_prefix='response should link to other tags for users with specified interest')
-            self.assertContains(response, mock_article['title'],
-                 msg_prefix='response should include recent article titles for matching users')
+        prof_by_tag_url = reverse('accounts:by-interest', kwargs={'tag': oa})
+        response = self.client.get(prof_by_tag_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, prof_by_tag_url))
+        # check response
+        oa_tag = Tag.objects.get(slug=oa)
+        self.assertEqual(oa_tag, response.context['interest'],
+            'research interest tag should be passed to template context for display')
+        self.assertContains(response, self.faculty_user.userprofile.get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        self.assertContains(response, oa_scholar.userprofile.get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        for tag in self.faculty_user.userprofile.research_interests.all():
+            self.assertContains(response, tag.name,
+                 msg_prefix='response should display other tags for users with specified interest')
+            self.assertContains(response,
+                 reverse('accounts:by-interest', kwargs={'tag': tag.slug}),
+                 msg_prefix='response should link to other tags for users with specified interest')
+        self.assertContains(response, mock_article['title'],
+             msg_prefix='response should include recent article titles for matching users')
 
-            # not logged in - no me too / you have this interest
-            self.assertNotContains(response, 'one of your research interests',
-                msg_prefix='anonymous user should not see indication they have this research interest')
-            self.assertNotContains(response, 'add to my profile',
-                msg_prefix='anonymous user should not see option to add this research interest to profile')
+        # not logged in - no me too / you have this interest
+        self.assertNotContains(response, 'one of your research interests',
+            msg_prefix='anonymous user should not see indication they have this research interest')
+        self.assertNotContains(response, 'add to my profile',
+            msg_prefix='anonymous user should not see option to add this research interest to profile')
 
-            # logged in, with this interest: should see indication
-            self.client.login(**USER_CREDENTIALS[self.faculty_username])
-            response = self.client.get(prof_by_tag_url)
-            self.assertContains(response, 'one of your research interests',
-                msg_prefix='logged in user with this interest should see indication')
+        # logged in, with this interest: should see indication
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'one of your research interests',
+            msg_prefix='logged in user with this interest should see indication')
 
-            self.faculty_user.userprofile.research_interests.clear()
-            response = self.client.get(prof_by_tag_url)
-            self.assertContains(response, 'add to my profile',
-                msg_prefix='logged in user without this interest should have option to add to profile')
+        self.faculty_user.userprofile.research_interests.clear()
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'add to my profile',
+            msg_prefix='logged in user without this interest should have option to add to profile')
 
     def test_interests_autocomplete(self):
         # create some users with tags to search on
@@ -1446,83 +1440,81 @@ class AccountViewsTest(TestCase):
 
 
 
-
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_faculty_autocomplete(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            mock_result = [
-                {'ad_name': 'Kohler, James J',
-                 'username': 'jjkohle',
-                 'first_name': 'James J',
-                 'last_name': 'Kohler',
-                 'department_name': 'SOM: Peds: VA Lab Biochem'
-                 }
-            ]
-            _old_result = self.mocksolr.query.execute.return_value
-            self.mocksolr.query.execute.return_value = mock_result
+        mock_result = [
+            {'ad_name': 'Kohler, James J',
+             'username': 'jjkohle',
+             'first_name': 'James J',
+             'last_name': 'Kohler',
+             'department_name': 'SOM: Peds: VA Lab Biochem'
+             }
+        ]
+        _old_result = self.mocksolr.query.execute.return_value
+        self.mocksolr.query.execute.return_value = mock_result
 
-            faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
-            # anonymous access restricted (faculty data)
-            response = self.client.get(faculty_autocomplete_url,
-                                       {'term': 'mouse'})
-            expected, got = 401, response.status_code
-            self.assertEqual(expected, got,
-                             'Expected %s but got %s for %s as Anonymous User' % \
-                             (expected, got, faculty_autocomplete_url))
+        faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
+        # anonymous access restricted (faculty data)
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'mouse'})
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as Anonymous User' % \
+                         (expected, got, faculty_autocomplete_url))
 
-            # login as faculty user for remaining tests
-            self.client.login(**USER_CREDENTIALS[self.faculty_username])
-            response = self.client.get(faculty_autocomplete_url,
-                                       {'term': 'kohl'})
-            self.assertEqual('application/json', response['Content-Type'],
-                 'should return json on success')
-            data = json.loads(response.content)
-            self.assert_(data, "Response content successfully read as JSON")
-            # fields returned - needed for form-side javascript
-            for field in ['username', 'first_name', 'last_name', 'description', 'label']:
-                self.assert_(field in data[0],
-                             'field %s should be included in the json return')
+        # login as faculty user for remaining tests
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'kohl'})
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        # fields returned - needed for form-side javascript
+        for field in ['username', 'first_name', 'last_name', 'description', 'label']:
+            self.assert_(field in data[0],
+                         'field %s should be included in the json return')
 
-            # inspect solr query args
-            args, kwargs = self.mocksolr.query.filter.call_args
-            self.assertEqual(EsdPerson.record_type, kwargs['record_type'],
-                             'solr query should filter on record type for EsdPerson')
-            kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
-            self.assert_({'ad_name': 'kohl'} in kwargs_list,
-                         'Solr query should look for ad_name exact match')
-            self.assert_({'ad_name': 'kohl*'} in kwargs_list,
-                         'Solr query should look for ad_name wildcard match')
-            sort_by = [args[0] for args, kwargs in self.mocksolr.query.sort_by.call_args_list]
-            self.assertEqual('-score', sort_by[0],
-                             'solr query should be sorted first by relevance')
-            self.assertEqual('ad_name_sort', sort_by[1],
-                             'solr query should be sorted second by lastname, first')
+        # inspect solr query args
+        args, kwargs = self.mocksolr.query.filter.call_args
+        self.assertEqual(EsdPerson.record_type, kwargs['record_type'],
+                         'solr query should filter on record type for EsdPerson')
+        kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
+        self.assert_({'ad_name': 'kohl'} in kwargs_list,
+                     'Solr query should look for ad_name exact match')
+        self.assert_({'ad_name': 'kohl*'} in kwargs_list,
+                     'Solr query should look for ad_name wildcard match')
+        sort_by = [args[0] for args, kwargs in self.mocksolr.query.sort_by.call_args_list]
+        self.assertEqual('-score', sort_by[0],
+                         'solr query should be sorted first by relevance')
+        self.assertEqual('ad_name_sort', sort_by[1],
+                         'solr query should be sorted second by lastname, first')
 
-            # multi-term match with comma
-            response = self.client.get(faculty_autocomplete_url,
-                                       {'term': 'nodine, la'})
-            kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
-            self.assert_({'ad_name': 'nodine'} in kwargs_list,
-                        'query should include first term exact match')
-            self.assert_({'ad_name': 'nodine*'} in kwargs_list,
-                        'query should include first term wildcard match')
-            self.assert_({'ad_name': 'la'} in kwargs_list,
-                        'query should include second term exact match')
-            self.assert_({'ad_name': 'la*'} in kwargs_list,
-                        'query should include second term wildcard match')
+        # multi-term match with comma
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'nodine, la'})
+        kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
+        self.assert_({'ad_name': 'nodine'} in kwargs_list,
+                    'query should include first term exact match')
+        self.assert_({'ad_name': 'nodine*'} in kwargs_list,
+                    'query should include first term wildcard match')
+        self.assert_({'ad_name': 'la'} in kwargs_list,
+                    'query should include second term exact match')
+        self.assert_({'ad_name': 'la*'} in kwargs_list,
+                    'query should include second term wildcard match')
 
-            # should not generate a 500 error if first name is not set
-            del mock_result[0]['first_name']
-            self.mocksolr.query.execute.return_value = mock_result
-            response = self.client.get(faculty_autocomplete_url,
-                                       {'term': 'nodine, la'})
-            expected, got = 200, response.status_code
-            self.assertEqual(expected, got,
-                'Expected %s but got %s faculty autocomplete when a match has no first_name' % \
-                             (expected, got))
+        # should not generate a 500 error if first name is not set
+        del mock_result[0]['first_name']
+        self.mocksolr.query.execute.return_value = mock_result
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'nodine, la'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but got %s faculty autocomplete when a match has no first_name' % \
+                         (expected, got))
 
-            # FIXME: test_profile fails without this restored (?!?)
-            self.mocksolr.query.execute.return_value = _old_result
+        # FIXME: test_profile fails without this restored (?!?)
+        self.mocksolr.query.execute.return_value = _old_result
 
 
     def test_tag_object_GET(self):
@@ -1777,43 +1769,42 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for %s (nonexistent tag)' % \
                          (expected, got, tagged_item_url))
 
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_list_departments(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            mockfacets = {
-                'division_dept_id': [
-                    ('School Of Law|UBX|School of Law|881420', 1),
-                    ('School Of Medicine|UCX|Neurosurgery|734000', 2),
-                    ('School Of Medicine|UCX|Physiology|736526', 1),
-                    ('University Libraries|U9X|University Libraries|921060', 2)
-                    ]}
-            self.mocksolr.query.execute.return_value.facet_fields  = mockfacets
+        mockfacets = {
+            'division_dept_id': [
+                ('School Of Law|UBX|School of Law|881420', 1),
+                ('School Of Medicine|UCX|Neurosurgery|734000', 2),
+                ('School Of Medicine|UCX|Physiology|736526', 1),
+                ('University Libraries|U9X|University Libraries|921060', 2)
+                ]}
+        self.mocksolr.query.execute.return_value.facet_fields  = mockfacets
 
-            list_dept_url = reverse('accounts:list-departments')
-            response = self.client.get(list_dept_url)
-            # check listings based on esdpeople fixture
-            self.assertContains(response, 'School Of Law', count=1,
-                msg_prefix='division name with same department name should only appear once')
-            self.assertContains(response, 'School Of Medicine', count=1,
-                msg_prefix='division name should only appear once')
-            self.assertNotContains(response, 'SOM:',
-                msg_prefix='division prefix on department name should not be listed')
-            self.assertContains(response, 'Neurosurgery',
-                msg_prefix='department name should be listed')
-            self.assertContains(response, 'Physiology',
-                msg_prefix='department name should be listed')
-            # link to department pages
-            self.assertContains(response, reverse('accounts:department',
-                                                  kwargs={'id': '736526'}))
-            self.assertContains(response, reverse('accounts:department',
-                                                  kwargs={'id': '921060'}))
+        list_dept_url = reverse('accounts:list-departments')
+        response = self.client.get(list_dept_url)
+        # check listings based on esdpeople fixture
+        self.assertContains(response, 'School Of Law', count=1,
+            msg_prefix='division name with same department name should only appear once')
+        self.assertContains(response, 'School Of Medicine', count=1,
+            msg_prefix='division name should only appear once')
+        self.assertNotContains(response, 'SOM:',
+            msg_prefix='division prefix on department name should not be listed')
+        self.assertContains(response, 'Neurosurgery',
+            msg_prefix='department name should be listed')
+        self.assertContains(response, 'Physiology',
+            msg_prefix='department name should be listed')
+        # link to department pages
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '736526'}))
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '921060'}))
 
-            # inspect solr query args
-            self.mocksolr.query.assert_called_with(record_type=EsdPerson.record_type)
-            self.mocksolr.query.facet_by.assert_called_with('division_dept_id',
-                                                            limit=-1,
-                                                            sort='index')
-            self.mocksolr.query.paginate.assert_called_with(rows=0)
+        # inspect solr query args
+        self.mocksolr.query.assert_called_with(record_type=EsdPerson.record_type)
+        self.mocksolr.query.facet_by.assert_called_with('division_dept_id',
+                                                        limit=-1,
+                                                        sort='index')
+        self.mocksolr.query.paginate.assert_called_with(rows=0)
 
     
     @patch('openemory.accounts.views.solr_interface', mocksolr)
@@ -2244,24 +2235,22 @@ class ArticlesByTagTest(TestCase):
         for pid in self.testpids:
             self.assert_(pid in tagpids)
 
-    
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_articles_by_tag(self):
-        with patch('openemory.accounts.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mocksolr:
-            articles = articles_by_tag(self.user, self.tag)
+        articles = articles_by_tag(self.user, self.tag)
 
-            # inspect solr query options
-            # Q should be called once for each pid
-            q_call_args = mocksolr.Q.call_args_list  # list of arg, kwarg tuples
-            for i in range(2):
-                args, kwargs = q_call_args[i]
-                self.assertEqual({'pid': self.testpids[i]}, kwargs)
-            self.mocksolr.query.field_limit.assert_called_with(PUBLICATION_VIEW_FIELDS)
-            self.mocksolr.query.sort_by.assert_called_with('-last_modified')
+        # inspect solr query options
+        # Q should be called once for each pid
+        q_call_args = self.mocksolr.Q.call_args_list  # list of arg, kwarg tuples
+        for i in range(2):
+            args, kwargs = q_call_args[i]
+            self.assertEqual({'pid': self.testpids[i]}, kwargs)
+        self.mocksolr.query.field_limit.assert_called_with(PUBLICATION_VIEW_FIELDS)
+        self.mocksolr.query.sort_by.assert_called_with('-last_modified')
 
-            # no match should return empty list, not all articles
-            t = Tag(name='not tagged')
-            self.assertEqual([], articles_by_tag(self.user, t))
+        # no match should return empty list, not all articles
+        t = Tag(name='not tagged')
+        self.assertEqual([], articles_by_tag(self.user, t))
 
 
 class FacultyOrLocalAdminBackendTest(TestCase):

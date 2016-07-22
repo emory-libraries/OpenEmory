@@ -20,7 +20,7 @@
         <a href="{{ record.access_url }}"><em class="title">{{ record.title }}</em></a>
         <p class="author">
           {% for author in record.authors.all %}
-            {% if author.get_profile.has_profile_page %}
+            {% if author.userprofile.has_profile_page %}
               <a href="{% url 'accounts:profile' author.username %}">{{ author.get_full_name }}</a>{% if not forloop.last %}; {% endif %}
             {% else %}
               {{ author.get_full_name }}{% if not forloop.last %}; {% endif %}
