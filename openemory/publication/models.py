@@ -920,7 +920,6 @@ class NlmArticle(xmlmap.XmlObject):
 
             # generate a list of User objects based on the list of emory email addresses
             self._identified_authors = []
-            print emory_aff
 
             for af in emory_aff:
                 db_user = User.objects.filter(username="affiliation")
@@ -932,7 +931,7 @@ class NlmArticle(xmlmap.XmlObject):
                     user.save()
                     self._identified_authors.append(user)
                     break
-                print self._identified_authors
+                
 
         return self._identified_authors
 
@@ -974,7 +973,6 @@ class NlmArticle(xmlmap.XmlObject):
                     # (may have an extra initial, etc.), consider it a match
                     if auth.surname == idauth.last_name and idauth.first_name in auth.given_names:
                         modsauth.id = idauth.username
-                        print modsauth.id
                         break
 
             amods.authors.append(modsauth)
@@ -1069,6 +1067,10 @@ class PublicationPremis(premis.Premis):
     review_event = xmlmap.NodeField('p:event[p:eventType="review"]', premis.Event)
     date_reviewed = xmlmap.StringField('p:event[p:eventType="review"]/p:eventDateTime')
 
+    #merge event fields
+    merge_event = xmlmap.NodeField('p:event[p:eventType="merge"]', premis.Event)
+    date_merged = xmlmap.StringField('p:event[p:eventType="merge"]/p:eventDateTime')
+
     #harvest event fields
     harvest_event = xmlmap.NodeField('p:event[p:eventType="harvest"]', premis.Event)
     date_harvested = xmlmap.StringField('p:event[p:eventType="harvest"]/p:eventDateTime')
@@ -1110,13 +1112,14 @@ class PublicationPremis(premis.Premis):
             * upload
             * withdraw
             * reinstate
+            * merge
 
         :param detail: detail message for event`
         '''
 
         #TODO add to this list as types grow
         allowed_types = ['review', 'harvest', 'upload', 'withdraw',
-                         'reinstate', 'symp_ingest']
+                         'reinstate', 'symp_ingest', 'merge']
 
         if type not in allowed_types:
             raise KeyError("%s is not an allowed type. The allowed types are %s" % (type, ", ".join(allowed_types)))
@@ -1140,6 +1143,23 @@ class PublicationPremis(premis.Premis):
         '''
         detail = 'Reviewed by %s %s' % (reviewer.first_name, reviewer.last_name)
         self.premis_event(reviewer, 'review',detail)
+    
+    def merged(self, original_pid, element_pid):
+        '''Add an event to indicate that this article has been
+        reviewed. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
+
+        :param reviewer: the :class:`~django.contrib.auth.models.User`
+            who reviewed the article
+        '''
+
+        detail = '%s merged with %s by Admininstrator' % (element_pid, original_pid)
+        event = premis.Event()
+        event.id_type = 'local'
+        event.id = '%s.ev%03d' % (self.object.id, len(self.events)+1)
+        event.type = type
+        event.date = datetime.now().isoformat()
+        event.detail = detail
+        self.events.append(event)   
 
     def harvested(self, user, pmcid):
         '''Add an event to indicate that this article has been
@@ -1511,9 +1531,8 @@ class Publication(DigitalObject):
         :meth:`openemory.common.fedora.DigitalObject.index_data` method to
         include fields needed for search and display of Publication
         objects.'''
-        print self.pid
+        
         data = super(Publication, self).index_data()
-        print data
         data['id'] = 'pid: %s' % self.pid
         data['withdrawn'] = self.is_withdrawn
         # TODO:
@@ -1736,7 +1755,6 @@ class Publication(DigitalObject):
         '''boolean indicator that this publication is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
-        print self.embargo_end_date
         
         if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
            slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
@@ -1839,6 +1857,7 @@ class Publication(DigitalObject):
         result = StringIO()
         # NOTE: to include images & css, pisa requires a filename path.
         # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
+        
         pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
                                 path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
         logger.debug('Generated cover page for %s in %f sec ' % \
@@ -1886,9 +1905,6 @@ class Publication(DigitalObject):
         mime_ds_list = None
         mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
 
-        # print self.ds_list
-        for i in self.ds_list:
-            print self.ds_list[i].mimeType
 
         if mime_ds_list:
             # sort by DS timestamp does not work yet asks for global name obj because of lambda function
@@ -1925,8 +1941,7 @@ class Publication(DigitalObject):
                 else:
                     mymime = 'pdf'
 
-                print mymime
-                print "###############################"
+
 
                 return mymime
 
@@ -2175,7 +2190,7 @@ class Publication(DigitalObject):
         repo = ManagementRepository()
         # Collection to which all articles will belong for use with OAI
         coll = repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
-        print coll
+
         symp = self.sympAtom.content
         mods = self.descMetadata.content
         mods.resource_type = 'text'
@@ -2226,7 +2241,6 @@ class Publication(DigitalObject):
                 journals = romeo.search_journal_title(symp.journal, type='starts') if symp.journal else []
                 suggestions = [journal_suggestion_data(journal) for journal in journals]
                 mods.journal.title = suggestions[0]['value']
-                print mods.journal.title
             except:
                 suggestions = []
 
@@ -2248,7 +2262,7 @@ class Publication(DigitalObject):
             # until we figure out where to put series mods
             mods.book.series = symp.series
             mods.book.edition = symp.edition
-            print "book got here"
+
 
         elif symp.categories[1] == "chapter":
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
@@ -2381,7 +2395,7 @@ class Publication(DigitalObject):
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
-        print "book got here 2"
+
 
 # expand
 class Book(Publication):

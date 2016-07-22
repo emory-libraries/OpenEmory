@@ -20,7 +20,7 @@ import pytz
 from django.conf import settings
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, date
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 from time import gmtime, strftime
@@ -28,9 +28,9 @@ from django.contrib.auth.models import User
 from eulfedora.rdfns import model as relsextns
 
 from rdflib import Namespace, URIRef, Literal
-
 from openemory.common.fedora import ManagementRepository
-from openemory.publication.models import Publication, LastRun, ArticleStatistics
+from openemory.publication.models import Publication, LastRun, ArticleStatistics, year_quarter
+
 
 logger = logging.getLogger(__name__)
 
@@ -64,12 +64,11 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
         
+        year = date.today().year
+        quarter = year_quarter(date.today().month) #get the quarter 1, 2, 3, 4
 
         # counters
         self.counts = defaultdict(int)
-
-        # duplicates list
-        self.duplicates = {}
 
         # set the name of the report of duplications
         self.reportsdirectory = settings.REPORTS_DIR
@@ -78,24 +77,8 @@ class Command(BaseCommand):
         # connection to repository
         self.repo = ManagementRepository()
 
-        # get last run time and set new one
-        time_zone = pytz.timezone('US/Eastern')
-
-        last_run = LastRun.objects.get(name='Merge Symp with OE')
-        date = last_run.start_time
-
-        self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S"))
-        date = time_zone.localize(date)
-        date = date.astimezone(pytz.utc)
-        date_str = date.strftime("%Y-%m-%dT%H:%M:%S")
-        self.output(1, '%s UTC' % date_str)
-
 
         try:
-            # Raise error if replace or ignore is not specified
-            if self.options['merge'] is self.options['ignore']:
-                raise Exception("no actions set. Specify --merge or --ignore")
-
             #if pids specified, use that list
             if len(args) == 2:
                 pids = list(args)
@@ -106,24 +89,24 @@ class Command(BaseCommand):
 
         self.counts['total'] = len(pids)
 
-        for idx,pid in pids:
+        for idx,pid in enumerate(pids):
             try:
                 if idx == 0:
                     self.output(1, "\nProcessing  Elements PID %s" % pid)
                      # Load first as Article becauce that is the most likely type
                     element_obj = self.repo.get_object(pid=pid, type=Publication)
-                    new_stats = ArticleStatistics.objects.get_or_create(pid=pid)
                     if not element_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % pid)
                         continue
-
                 elif idx == 1:
                     self.output(1, "\nProcessing  Old PID %s" % pid)
                     original_obj = self.repo.get_object(pid=pid, type=Publication)
-                    original_stats = ArticleStatistics.objects.get_or_create(pid=pid)
                     if not original_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % pid)
                         continue
+                    original_stats = ArticleStatistics.objects.filter(pid=pid)
+                    if not original_stats:
+                        original_stats = ArticleStatistics.objects.create(pid=pid, year=year, quarter=quarter)
                
                 
                 
@@ -139,16 +122,17 @@ class Command(BaseCommand):
                 self.output(1, element_obj.rels_ext.content.serialize(pretty=True))
                 self.counts['errors']+=1
 
-        element_obj.descMetadata = original_obj.descMetadata
-        element_obj.provenance = original_obj.provenance
-        element_obj.dc = original_obj.dc
-        element_obj.pdf = original_obj.pdf
+        element_obj.descMetadata.content = original_obj.descMetadata.content
+        element_obj.provenance.content = original_obj.provenance.content
+        element_obj.dc.content = original_obj.dc.content
+        element_obj.pdf.content = original_obj.pdf.content
+        original_obj.state = 'I'
+        element_obj.provenance.content.init_object(element_obj.pid, 'pid')
+        element_obj.provenance.content.merged(original_obj.pid, element_obj.pid)
+        
 
-        new_stats.year = original_stats.year
-        new_stats.quarter = original_stats.quarter
-        new_stats.num_views = original_stats.num_views
-        new_stats.num_downloads = original_stats.num_downloads
-        new_stats.save()
+        for stat in original_stats:
+            ArticleStatistics.objects.create(pid=element_obj.pid, year=stat.year, quarter=stat.quarter, num_downloads=stat.num_downloads, num_views=stat.num_views)
         
         coll = self.repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
         element_obj.collection = coll
@@ -159,6 +143,7 @@ class Command(BaseCommand):
         # SAVE OBJECTS UNLESS NOACT OPTION
         if not options['noact']:
             element_obj.save()
+            original_obj.save()
             self.counts['saved']+=1
 
         # summarize what was done

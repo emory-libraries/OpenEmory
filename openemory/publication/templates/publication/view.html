@@ -94,7 +94,29 @@
              $( "#sup-content" ).toggle( "fast", function() {
                });
           });
+
+          $('.more').on('click',function(e){
+            $('.my-authors').show()
+            $('.less').show();
+            $('.more').hide();
+            e.preventDefault();
+          })
+
+          $('.less').on('click',function(e){
+            var displayAmt = 10;
+            $('.my-authors').slice(displayAmt).hide();
+            $('.less').hide();
+            $('.more').show();
+            e.preventDefault();
+          })
+
+          var displayAmt = 10;
+          $('.my-authors').slice(displayAmt).hide();
+          $('.less').hide();
     });
+
+    
+
   </script>
 
     <!-- Javascript for AddThis -  http://www.addthis.com/http://www.addthis.com/ -->
