@@ -1,5 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-{% load tracking_tags %}
 {% load humanize %}
 <!--[if IE 7 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie7"> <![endif]-->
 <!--[if IE 8 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie8"> <![endif]-->
@@ -500,12 +499,10 @@ www.352media.com
         <div class="rightCol">{# TODO: re-usable template snippet ? #}
           <h5>Site Statistics:</h5>
           <ul>
-            {% visitors_on_site as visitors %}
             <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total work</li>
             <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
             <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
             <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
-            <li>{{ visitors|intcomma }} user{{ visitors|pluralize }} currently online </li>
           </ul>
         </div>
 

@@ -101,7 +101,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'tracking.middleware.VisitorTrackingMiddleware',
     # flatpages middleware should always be last (fallback for 404)
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
@@ -133,7 +132,6 @@ INSTALLED_APPS = [
     'eullocal.django.emory_ldap',
     'south',
     'taggit',
-    'tracking',
     'openemory.mx',
     'downtime',
     'openemory.accounts',

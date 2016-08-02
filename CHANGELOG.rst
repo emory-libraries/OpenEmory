@@ -1,3 +1,10 @@
+Release 2.1.4 Author Enhancement
+--------------------------------
+* Added manage merge command for publications
+* Added author limit to cover page
+* Made collapsible view of more than ten authors
+* Extracted image logo for Emory First
+
 Release 2.1.1 Author Enhancement
 --------------------------------
 * Added and modified Google Analytics Tracking IDs
