@@ -29,7 +29,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
 import logging
 from PIL import Image
-from south.modelsinspector import add_introspection_rules
+# from south.modelsinspector import add_introspection_rules
 
 from openemory.util import solr_interface
 from openemory.accounts.fields import YesNoBooleanField
@@ -38,7 +38,7 @@ from openemory.publication.views import PUBLICATION_VIEW_FIELDS
 
 logger = logging.getLogger(__name__)
 
-add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
+# add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)

@@ -21,7 +21,7 @@ import logging
 from time import sleep
 from urllib import urlencode
 
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml import xmlmap
 from django.contrib.auth.models import User
 

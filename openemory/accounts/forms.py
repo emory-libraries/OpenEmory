@@ -48,6 +48,7 @@ class DegreeForm(ModelForm):
                                   
     class Meta:
         model = Degree
+        fields = '__all__'
         widgets = {
             'year': forms.TextInput(attrs={'class': 'text', 'size': 4,
                                            'help_text': help_text['year'],
@@ -63,6 +64,7 @@ class ExternalLinkForm(ModelForm):
     
     class Meta:
       model = ExternalLink
+      fields = '__all__'
 
 class PositionForm(ModelForm):
     error_css_class = 'error'
@@ -70,17 +72,18 @@ class PositionForm(ModelForm):
 
     class Meta:
         model = Position
+        fields = '__all__'
 
 
 class InterestForm(forms.Form):
     interest = forms.CharField()
 
 
-DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
-PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1, form=PositionForm)
-GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
-ExternalLinkFormSet = inlineformset_factory(UserProfile, ExternalLink, extra=1, form=ExternalLinkForm)
-InterestFormSet = formset_factory(InterestForm, extra=1, can_delete=True)
+DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm, fields = ('__all__'))
+PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1, form=PositionForm, fields = ('__all__'))
+GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1, fields = ('__all__'))
+ExternalLinkFormSet = inlineformset_factory(UserProfile, ExternalLink, extra=1, form=ExternalLinkForm, fields = ('__all__'))
+InterestFormSet = formset_factory(InterestForm, extra=1, can_delete=True )
 
 class ProfileForm(ModelForm):
     error_css_class = 'error'

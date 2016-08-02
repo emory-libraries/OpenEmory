@@ -70,7 +70,7 @@ def user_passes_test_401_or_403(test_func):
 
             # send a plain-text response to ajax requests
             if request.is_ajax():
-                return HttpResponse(text, mimetype='text/plain',
+                return HttpResponse(text, content_type='text/plain',
                                     status=code)
                 
             tpl = get_template('%s.html' % code)

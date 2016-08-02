@@ -114,7 +114,7 @@ def ingest(request):
             # check that user has required permissions
             if not request.user.has_perm('harvest.ingest_harvestrecord'):
                 return HttpResponseForbidden('Permission Denied',
-                                             mimetype='text/plain')
+                                             content_type='text/plain')
 
             # TODO: when more external systems are added in addition
             # to Pub Meb, we will have to figure out how to identify
@@ -125,7 +125,7 @@ def ingest(request):
             # ingest, rather than requiring a secondary save?
             if 'pmcid' not in request.POST or not request.POST['pmcid']:
                 return HttpResponseBadRequest('No record specified for ingest',
-                                              mimetype='text/plain')
+                                              content_type='text/plain')
             record = get_object_or_404(HarvestRecord, pmcid=request.POST['pmcid'])
             # NOTE: possible race condition. see:
             #   http://www.no-ack.org/2010/07/mysql-transactions-and-django.html
@@ -137,7 +137,7 @@ def ingest(request):
             # syntax is available.
             if not record.ingestable:
                 return HttpResponseBadRequest('Record cannot be ingested',
-                                              mimetype='text/plain')
+                                              content_type='text/plain')
             record.mark_in_process()
 
             try:
@@ -168,7 +168,7 @@ def ingest(request):
 
                     # return a 201 Created with new location
                     response = HttpResponse('Ingested as %s' % obj.pid,
-                                            mimetype='text/plain',
+                                            content_type='text/plain',
                                             status=201)
                     # return a location for the newly created object
                     response['Location'] = reverse('publication:view',
@@ -178,7 +178,7 @@ def ingest(request):
                 record.status = record.DEFAULT_STATUS
                 record.save()
                 return HttpResponse('Error: %s' % rf,
-                                    mimetype='text/plain', status=500)
+                                    content_type='text/plain', status=500)
 
         # otherwise, assume form data was POSTed and handle as upload form
         else:
@@ -590,7 +590,7 @@ def edit_metadata(request, pid):
 
             try:
                 obj.save('updated metadata')
-                print "obj is saved"
+                
                 messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
                             {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                 # if submitted via 'publish' or 'save', redirect to article detail view
@@ -608,10 +608,14 @@ def edit_metadata(request, pid):
                 # otherwise, redisplay the edit form
 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
+
+                print "obj is not saved"
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
+                    print "permisssions"
                     msg = 'You don\'t have permission to modify this object in the repository.'
                 else:
+                    print "repo error"
                     msg = 'There was an error communicating with the repository.'
                 messages.error(request,
                                msg + ' Please contact a site administrator.')
@@ -682,7 +686,7 @@ def download_pdf(request, pid):
                 "Content-Disposition": "attachment;filename=%s" % filename,
                 #'Last-Modified': obj.pdf.created,
             }
-            response = HttpResponse(content, mimetype='application/pdf')
+            response = HttpResponse(content, content_type='application/pdf')
             # except:
             #     content = obj.zip_with_cover()
             #     filename = "%s.zip" % slugify(obj.label)
@@ -693,7 +697,7 @@ def download_pdf(request, pid):
             #         "Content-Disposition": "attachment;filename=%s" % filename,
             #         #'Last-Modified': obj.pdf.created,
             #     }
-            #     response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+            #     response = HttpResponse(content.getvalue(), content_type='application/octet-stream')
 
             
         else:
@@ -706,7 +710,7 @@ def download_pdf(request, pid):
                 "Content-Disposition": "attachment;filename=%s" % filename,
                 #'Last-Modified': obj.pdf.created,
             }
-            response = HttpResponse(content.getvalue(), mimetype='application/octet-stream')
+            response = HttpResponse(content.getvalue(), content_type='application/octet-stream')
             # pdf+cover depends on metadata; if descMetadata changed more recently
             # than pdf, use the metadata last-modified date.
             #if obj.descMetadata.created > obj.pdf.created:
@@ -878,7 +882,7 @@ def _article_as_ris(obj, request):
     reference_data = u''.join(line + u'\r\n' for line in reference_lines)
     response_data = u'%s\r\n%s' % (header_data, reference_data)
 
-    return HttpResponse(response_data.encode('utf-8'), mimetype='application/x-research-info-systems')
+    return HttpResponse(response_data.encode('utf-8'), content_type='application/x-research-info-systems')
 
 
 def _mods_kw_as_ris_value(kw):
@@ -908,7 +912,7 @@ def site_index(request):
                             state='A') \
                             .field_limit(PUBLICATION_VIEW_FIELDS)
 
-    # find most viewed content
+    # find def viewed content
     # - get distinct list of pids (no matter what year), and aggregate views
     # - make sure article has at least 1 download to be listed
     stats = ArticleStatistics.objects.values('pid').distinct() \
@@ -1271,7 +1275,7 @@ def suggest_from_solr(request, field):
                    for facet, count in facets[facet_field]
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
-                         mimetype='application/json')
+                         content_type='application/json')
 
 def journal_suggestion_data(journal):
     return {
@@ -1292,7 +1296,7 @@ def suggest_journal_title(request, field):
         suggestions = []
 
     return HttpResponse(json_serializer.encode(suggestions),
-                        mimetype='application/json')
+                        content_type='application/json')
 SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
 
 def publisher_suggestion_data(publisher):
@@ -1328,7 +1332,7 @@ def suggest_journal_publisher(request, field):
         suggestions = []
 
     return HttpResponse(json_serializer.encode(suggestions),
-                        mimetype='application/json')
+                        content_type='application/json')
 SUGGEST_FUNCTIONS['journal_publisher'] = suggest_journal_publisher
 
 def publisher_details(request):
@@ -1347,7 +1351,7 @@ def publisher_details(request):
 
     data = publisher_suggestion_data(publisher)
     return HttpResponse(json_serializer.encode(data),
-                        mimetype='application/json')
+                        content_type='application/json')
 
 @permission_required('publication.review_article')
 def review_queue(request):

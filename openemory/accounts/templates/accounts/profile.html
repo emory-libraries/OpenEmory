@@ -1,7 +1,7 @@
 {% extends "site_base.html" %}
 
 {# include person's name first *before* site title for clarity in search engine results, etc #}
-{% block page-title %}{% firstof esd.directory_name author.get_profile.get_full_name author.username %} - {{ block.super }} | Profile{% endblock %}
+{% block page-title %}{% firstof esd.directory_name author.userprofile.get_full_name author.username %} - {{ block.super }} | Profile{% endblock %}
 
 {% block style %}{{ block.super }}
 
@@ -27,7 +27,7 @@
 
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
-    {% with author.get_profile.esd_data as esd %}
+    {% with author.userprofile.esd_data as esd %}
         <div id="profile" class="profile">
           {% include "accounts/snippets/profile-view.html" %}
           <div class="clear"></div>
@@ -45,8 +45,8 @@
   TODO: grants are not currently fully integrated into the profile, dashboard,
     and editing.
             <div id="grants">
-            {% if author.get_profile.grant_set.count %}
-                           {% for grant in author.get_profile.grant_set.all %}
+            {% if author.userprofile.grant_set.count %}
+                           {% for grant in author.userprofile.grant_set.all %}
                               {% include "accounts/snippets/profile-grant.html" %}
                           {% endfor %}
                       {% else %}

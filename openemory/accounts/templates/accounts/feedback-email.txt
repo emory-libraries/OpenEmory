@@ -5,7 +5,7 @@ administrator.
 
 {% if user.is_authenticated %}
 The user was logged in as {{ user.username }} when they submitted this feedback.
-{% if user.get_profile.has_profile_page %}
+{% if user.userprofile.has_profile_page %}
 You can see their profile at <http://{{ site }}{% url 'accounts:profile' user.username %}>.
 {% else %}
 They don't have a profile, which means they're probably a site admin or something.
