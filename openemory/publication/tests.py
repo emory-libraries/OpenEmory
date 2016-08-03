@@ -3089,26 +3089,25 @@ class PublicationViewsTest(TestCase):
 
 
 
+    @patch('openemory.publication.context_processors.solr_interface')
+    def test_statistics_processor(self, mock_solr_interface):
+        
+        mocksolr = MagicMock()
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
 
-    def test_statistics_processor(self):
-        with patch('openemory.publication.views.solr_interface',
-                   spec=sunburnt.SolrInterface) as mock_solr_interface:
-            mocksolr = MagicMock()
-            mock_solr_interface.return_value = mocksolr
-            mocksolr.query.return_value = mocksolr
-            mocksolr.filter.return_value = mocksolr
-            mocksolr.paginate.return_value = mocksolr
 
-
-            with self._use_statistics_context():
-                index_url = reverse('site-index')
-                response = self.client.get(index_url)
-                print response.context
-                self.assertTrue('ARTICLE_STATISTICS' in response.context)
-                self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
-                self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
-                self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
-                self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
+        with self._use_statistics_context():
+            index_url = reverse('site-index')
+            response = self.client.get(index_url)
+            print response.context
+            self.assertTrue('ARTICLE_STATISTICS' in response.context)
+            self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
 
     @contextmanager
     def _use_statistics_context(self):

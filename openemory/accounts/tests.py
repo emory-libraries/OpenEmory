@@ -1778,7 +1778,7 @@ class AccountViewsTest(TestCase):
                 ('School Of Medicine|UCX|Physiology|736526', 1),
                 ('University Libraries|U9X|University Libraries|921060', 2)
                 ]}
-        self.mocksolr.query.execute.return_value.facet_fields = MagicMock() # needs to be iterable
+        self.mocksolr.query.execute.return_value = MagicMock() # needs to be iterable
         self.mocksolr.query.execute.return_value.facet_fields  = mockfacets
 
         list_dept_url = reverse('accounts:list-departments')
@@ -2297,6 +2297,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
         self.assertEqual(0, mockauth.call_count)
 
         # non-faculty with nonfaculty_profile
+        self.non_faculty_username = 'smcduck'
         non_faculty_user = User.objects.get(username=self.non_faculty_username)
         non_faculty_user.userprofile.nonfaculty_profile=True
         non_faculty_user.userprofile.save()
