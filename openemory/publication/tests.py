@@ -1778,6 +1778,12 @@ class PublicationViewsTest(TestCase):
             'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
 
+        #final return code
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Should redisplay edit form on successful save; expected %s but returned %s for %s' \
+                         % (expected, got, edit_url))
+
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         # self.assertEqual(data['title_info-title'],
@@ -3095,8 +3101,8 @@ class PublicationViewsTest(TestCase):
             response = self.client.get(index_url)
             self.assertTrue('ARTICLE_STATISTICS' in response.context)
             print response.context['ARTICLE_STATISTICS'][0]
-            self.assertTrue('all_views' in response.context['ARTICLE_STATISTICS'])
-            self.assertTrue('all_downloads' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('all_views' in response.context['ARTICLE_STATISTICS'][0])
+            self.assertTrue('all_downloads' in response.context['ARTICLE_STATISTICS'][0])
             
 
     @contextmanager
