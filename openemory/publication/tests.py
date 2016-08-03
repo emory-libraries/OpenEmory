@@ -1769,16 +1769,17 @@ class PublicationViewsTest(TestCase):
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
         response = self.client.post(edit_url, data)
-        if response.status_code != 303: # no context data if redirect
+        if response.status_code != 302: # no context data if redirect
             self.assert_('invalid_form' not in response.context,
                          'posted form data should not result in an invalid form')
 
         #return code from redirect
         
-        expected, got = 303, response.status_code
+        expected, got = 302, response.status_code
         self.assertEqual(expected, got,
             'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
+        
         #final return code
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
@@ -3100,12 +3101,10 @@ class PublicationViewsTest(TestCase):
         with self._use_statistics_context():
             index_url = reverse('site-index')
             response = self.client.get(index_url)
-            print response.context
             self.assertTrue('ARTICLE_STATISTICS' in response.context)
-            self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
-            self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
-            self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
-            self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('all_views' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('all_downloads' in response.context['ARTICLE_STATISTICS'])
+            
 
     @contextmanager
     def _use_statistics_context(self):

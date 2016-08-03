@@ -1779,7 +1779,7 @@ class AccountViewsTest(TestCase):
                 ('University Libraries|U9X|University Libraries|921060', 2)
                 ]}
         self.mocksolr.query.execute.return_value = MagicMock() # needs to be iterable
-        self.mocksolr.query.execute.return_value  = mockfacets
+        self.mocksolr.query.execute.return_value.facet_counts  = mockfacets
 
         list_dept_url = reverse('accounts:list-departments')
         response = self.client.get(list_dept_url)

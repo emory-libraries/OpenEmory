@@ -32,7 +32,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.core.mail import mail_managers, send_mail
 from django.db.models import Sum
 from django.http import Http404, HttpResponse, HttpResponseForbidden, \
-    HttpResponseBadRequest, HttpResponsePermanentRedirect
+    HttpResponseBadRequest, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.template.loader import get_template, render_to_string
@@ -596,12 +596,12 @@ def edit_metadata(request, pid):
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:
                     # redirect to article detail view
-                    return HttpResponseSeeOtherRedirect(reverse('publication:view',
+                    return HttpResponseRedirect(reverse('publication:view',
                                                kwargs={'pid': obj.pid}))
                 # if submitted via 'review', redirect to review list
                 if 'review-record' in request.POST :
                     # redirect to article detail view
-                    return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
+                    return HttpResponseRedirect(reverse('publication:review-list'))
 
                 # distinguish between save/publish in success message
                 
