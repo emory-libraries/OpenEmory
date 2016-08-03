@@ -1768,14 +1768,13 @@ class PublicationViewsTest(TestCase):
 
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
-        response = self.client.post(edit_url, data)
-        if response.status_code != 302: # no context data if redirect
-            self.assert_('invalid_form' not in response.context,
-                         'posted form data should not result in an invalid form')
+        response = self.client.post(edit_url, data, follow=True)
+        self.assert_('invalid_form' not in response.context,
+                     'posted form data should not result in an invalid form')
 
         #return code from redirect
         
-        expected, got = 302, response.status_code
+        expected, got = 302, response['Location']
         self.assertEqual(expected, got,
             'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
@@ -1804,9 +1803,9 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "publish"
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
-        response = self.client.post(edit_url, data)
+        response = self.client.post(edit_url, data, follow=True)
 
-        expected, got = 303, response.status_code
+        expected, got = 302, response['Location']
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))
@@ -3096,7 +3095,7 @@ class PublicationViewsTest(TestCase):
             index_url = reverse('site-index')
             response = self.client.get(index_url)
             self.assertTrue('ARTICLE_STATISTICS' in response.context)
-            print response.context['ARTICLE_STATISTICS']
+            print response.context['ARTICLE_STATISTICS'][0]
             self.assertTrue('all_views' in response.context['ARTICLE_STATISTICS'])
             self.assertTrue('all_downloads' in response.context['ARTICLE_STATISTICS'])
             
