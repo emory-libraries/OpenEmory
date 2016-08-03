@@ -1769,11 +1769,9 @@ class PublicationViewsTest(TestCase):
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
         response = self.client.post(edit_url, data)
-        print response.context
-        print response.status_code
-        print "##############"
-        self.assert_('invalid_form' not in response.context,
-                     'posted form data should not result in an invalid form')
+        if response.status_code != '303': # no context data if redirect
+            self.assert_('invalid_form' not in response.context,
+                         'posted form data should not result in an invalid form')
 
         #return code from redirect
         
@@ -3100,7 +3098,7 @@ class PublicationViewsTest(TestCase):
 
 
         with self._use_statistics_context():
-            index_url = reverse('site-index')
+            index_url = reverse('summary')
             response = self.client.get(index_url)
             print response.context
             self.assertTrue('ARTICLE_STATISTICS' in response.context)
