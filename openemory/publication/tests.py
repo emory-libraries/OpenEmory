@@ -3103,6 +3103,7 @@ class PublicationViewsTest(TestCase):
             with self._use_statistics_context():
                 index_url = reverse('site-index')
                 response = self.client.get(index_url)
+                print response.context
                 self.assertTrue('ARTICLE_STATISTICS' in response.context)
                 self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
                 self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])

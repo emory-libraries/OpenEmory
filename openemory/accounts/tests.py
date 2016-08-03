@@ -1778,7 +1778,7 @@ class AccountViewsTest(TestCase):
                 ('School Of Medicine|UCX|Physiology|736526', 1),
                 ('University Libraries|U9X|University Libraries|921060', 2)
                 ]}
-        self.mocksolr.query.execute.return_value = MagicMock() # needs to be iterable
+        self.mocksolr.query.execute.return_value.facet_fields = MagicMock() # needs to be iterable
         self.mocksolr.query.execute.return_value.facet_fields  = mockfacets
 
         list_dept_url = reverse('accounts:list-departments')
@@ -2260,7 +2260,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
     def setUp(self):
         self.backend = FacultyOrLocalAdminBackend()
         self.faculty_username = 'jolson'
-        self.non_faculty_username = 'smcduck'
+        self.non_faculty_username = 'azotov'
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_authenticate_local(self, mockauth):
