@@ -73,11 +73,11 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = [
     # defaults:
     "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
+    "django.template.context_processors.debug",
+    "django.template.context_processors.i18n",
+    "django.template.context_processors.media",
+    "django.template.context_processors.static",
+    "django.template.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
     # application-specific:
@@ -107,6 +107,8 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'openemory.urls'
 
+
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -123,14 +125,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'django.contrib.markup',
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'localflavor',
     'eulfedora',
     'eulcommon.searchutil',
-    'eullocal.django.emory_ldap',
-    'south',
     'taggit',
     'openemory.mx',
     'downtime',
@@ -144,6 +143,7 @@ INSTALLED_APPS = [
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'django_auth_ldap.backend.LDAPBackend',
     'openemory.accounts.backends.FacultyOrLocalAdminBackend',
 ]
 
@@ -161,8 +161,10 @@ FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 )
 
+
 # session configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -216,12 +218,9 @@ if django_nose is not None:
 
 # disable south tests and migrations when running tests
 # - without these settings, test fail on loading initial fixtured data
-SKIP_SOUTH_TESTS = True
-SOUTH_TESTS_MIGRATE = False
+# SKIP_SOUTH_TESTS = True
+# SOUTH_TESTS_MIGRATE = False
 
-SOUTH_DATABASE_ADAPTERS = {
-    'default': 'south.db.mysql'
-}
 
 if 'DJANGO_TEST_MODE' in os.environ:
     # TODO: convert this into a nose plugin

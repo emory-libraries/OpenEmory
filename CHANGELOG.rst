@@ -1,3 +1,11 @@
+Release 2.2.1 Author Enhancement
+--------------------------------
+* jenkins test fixes for Django 1.8
+
+Release 2.2.0 Author Enhancement
+--------------------------------
+* Django Upgrade 1.8
+
 Release 2.1.4 Author Enhancement
 --------------------------------
 * Added manage merge command for publications

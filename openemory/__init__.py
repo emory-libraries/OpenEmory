@@ -15,7 +15,7 @@
 #   limitations under the License.
 
 
-__version_info__ = (2, 1, 4, None)
+__version_info__ = (2, 2, 1, None)
 
 # Dot-connect all but the last. Last is dash-connected if not None.
 __version__ = '.'.join([str(i) for i in __version_info__[:-1]])

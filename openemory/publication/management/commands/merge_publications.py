@@ -28,9 +28,9 @@ from django.contrib.auth.models import User
 from eulfedora.rdfns import model as relsextns
 
 from rdflib import Namespace, URIRef, Literal
-
 from openemory.common.fedora import ManagementRepository
 from openemory.publication.models import Publication, LastRun, ArticleStatistics, year_quarter
+
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +64,6 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
         
-
         year = date.today().year
         quarter = year_quarter(date.today().month) #get the quarter 1, 2, 3, 4
 
@@ -96,14 +95,9 @@ class Command(BaseCommand):
                     self.output(1, "\nProcessing  Elements PID %s" % pid)
                      # Load first as Article becauce that is the most likely type
                     element_obj = self.repo.get_object(pid=pid, type=Publication)
-                    print "got here"
                     if not element_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % pid)
                         continue
-
-
-                    
-
                 elif idx == 1:
                     self.output(1, "\nProcessing  Old PID %s" % pid)
                     original_obj = self.repo.get_object(pid=pid, type=Publication)
@@ -113,7 +107,6 @@ class Command(BaseCommand):
                     original_stats = ArticleStatistics.objects.filter(pid=pid)
                     if not original_stats:
                         original_stats = ArticleStatistics.objects.create(pid=pid, year=year, quarter=quarter)
-                    
                
                 
                 

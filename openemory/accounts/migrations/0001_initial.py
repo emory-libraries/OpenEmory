@@ -1,186 +1,149 @@
-# file openemory/accounts/migrations/0001_initial.py
-#
-#   Copyright 2010 Emory University General Library
-#
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-# encoding: utf-8
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
-
-class Migration(SchemaMigration):
-
-    def forwards(self, orm):
-
-        # Adding model 'UserProfile'
-        db.create_table('accounts_userprofile', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('phone', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
-            ('dept_num', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
-            ('full_name', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('employee_num', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
-            ('subdept_code', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
-            ('hr_id', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-        ))
-        db.send_create_signal('accounts', ['UserProfile'])
-
-        # Adding model 'Bookmark'
-        db.create_table('accounts_bookmark', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('pid', self.gf('django.db.models.fields.CharField')(max_length=255)),
-        ))
-        db.send_create_signal('accounts', ['Bookmark'])
-
-        db.create_table('"esdv"."v_oem_fclt"', (
-            ('_id', self.gf('django.db.models.fields.AutoField')(primary_key=True, db_column='prsn_i')),
-            ('ppid', self.gf('django.db.models.fields.CharField')(max_length=8, db_column='prsn_i_pblc')),
-            ('directory_name', self.gf('django.db.models.fields.CharField')(max_length=75, db_column='prsn_n_full_dtry')),
-            ('ad_name', self.gf('django.db.models.fields.CharField')(max_length=75, db_column='prsn_n_dspl_acdr')),
-            ('firstmid_name', self.gf('django.db.models.fields.CharField')(max_length=20, db_column='prsn_n_fm_dtry')),
-            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=25, db_column='prsn_n_last_dtry')),
-            ('name_suffix', self.gf('django.db.models.fields.CharField')(max_length=15, db_column='prsn_n_sufx_dtry')),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=70, db_column='prsn_e_titl_dtry')),
-            ('phone', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='prad_a_tlph_empe_fmtt')),
-            ('fax', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='prad_a_fax_empe_fmtt')),
-            ('department_id', self.gf('django.db.models.fields.CharField')(max_length=10, db_column='dprt_c')),
-            ('department_name', self.gf('django.db.models.fields.CharField')(max_length=40, db_column='dprt8dtry_n')),
-            ('division_code', self.gf('django.db.models.fields.CharField')(max_length=10, db_column='dvsn_i')),
-            ('division_name', self.gf('django.db.models.fields.CharField')(max_length=40, db_column='dvsn8dtry_n')),
-            ('mailstop_code', self.gf('django.db.models.fields.CharField')(max_length=12, db_column='mlst_i')),
-            ('mailstop_name', self.gf('django.db.models.fields.CharField')(max_length=30, db_column='mlst_n')),
-            ('netid', self.gf('django.db.models.fields.CharField')(max_length=8, db_column='logn8ntwr_i')),
-            ('internet_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_intt')),
-            ('directory_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_dtry')),
-            ('information_suppressed', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, db_column='prsn_f_sprs_infr')),
-            ('faculty_flag', self.gf('openemory.accounts.fields.YesNoBooleanField')(default=False, max_length=1, db_column='empe_f_fclt')),
-            ('email', self.gf('django.db.models.fields.CharField')(max_length=100, db_column='emad_n')),
-            ('email_forward', self.gf('django.db.models.fields.CharField')(max_length=100, db_column='emad8frwd_n')),
-            ('employee_status', self.gf('django.db.models.fields.CharField')(max_length=1, db_column='emjo_c_stts_empe')),
-            ('person_type', self.gf('django.db.models.fields.CharField')(max_length=1, db_column='prsn_c_type')),
-        ))
-        db.send_create_signal(u'accounts', ['EsdPerson'])
+from django.db import migrations, models
+import taggit.managers
+import openemory.accounts.fields
+from django.conf import settings
+import django.core.validators
 
 
-    def backwards(self, orm):
+class Migration(migrations.Migration):
 
-        # Deleting model 'UserProfile'
-        db.delete_table('accounts_userprofile')
+    dependencies = [
+        ('taggit', '0002_auto_20150616_2121'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
 
-        # Deleting model 'Bookmark'
-        db.delete_table('accounts_bookmark')
-
-
-    models = {
-        'accounts.bookmark': {
-            'Meta': {'object_name': 'Bookmark'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'pid': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
-        },
-        'accounts.esdperson': {
-            'Meta': {'object_name': 'EsdPerson', 'db_table': '\'"esdv"."v_oem_fclt"\'', 'managed': 'False', 'db_tablespace': "'esdv'"},
-            'ad_name': ('django.db.models.fields.CharField', [], {'max_length': '75', 'db_column': "'prsn_n_dspl_acdr'"}),
-            'department_id': ('django.db.models.fields.CharField', [], {'max_length': '10', 'db_column': "'dprt_c'"}),
-            'department_name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'db_column': "'dprt8dtry_n'"}),
-            'directory_name': ('django.db.models.fields.CharField', [], {'max_length': '75', 'db_column': "'prsn_n_full_dtry'"}),
-            'directory_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_dtry'"}),
-            'division_code': ('django.db.models.fields.CharField', [], {'max_length': '10', 'db_column': "'dvsn_i'"}),
-            'division_name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'db_column': "'dvsn8dtry_n'"}),
-            'email': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_column': "'emad_n'"}),
-            'email_forward': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_column': "'emad8frwd_n'"}),
-            'employee_status': ('django.db.models.fields.CharField', [], {'max_length': '1', 'db_column': "'emjo_c_stts_empe'"}),
-            'faculty_flag': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'max_length': '1', 'db_column': "'empe_f_fclt'"}),
-            'fax': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'prad_a_fax_empe_fmtt'"}),
-            'firstmid_name': ('django.db.models.fields.CharField', [], {'max_length': '20', 'db_column': "'prsn_n_fm_dtry'"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True', 'db_column': "'prsn_i'"}),
-            'information_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_infr'"}),
-            'internet_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_intt'"}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '25', 'db_column': "'prsn_n_last_dtry'"}),
-            'mailstop_code': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'mlst_i'"}),
-            'mailstop_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'db_column': "'mlst_n'"}),
-            'name_suffix': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_column': "'prsn_n_sufx_dtry'"}),
-            'netid': ('django.db.models.fields.CharField', [], {'max_length': '8', 'db_column': "'logn8ntwr_i'"}),
-            'person_type': ('django.db.models.fields.CharField', [], {'max_length': '1', 'db_column': "'prsn_c_type'"}),
-            'phone': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'prad_a_tlph_empe_fmtt'"}),
-            'ppid': ('django.db.models.fields.CharField', [], {'max_length': '8', 'db_column': "'prsn_i_pblc'"}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '70', 'db_column': "'prsn_e_titl_dtry'"})
-        },
-        'accounts.userprofile': {
-            'Meta': {'object_name': 'UserProfile'},
-            'dept_num': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'employee_num': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'full_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'hr_id': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'subdept_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
-        },
-        'auth.group': {
-            'Meta': {'object_name': 'Group'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
-        },
-        'auth.permission': {
-            'Meta': {'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
-            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-        },
-        'auth.user': {
-            'Meta': {'object_name': 'User'},
-            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-        },
-        'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
-            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        },
-        'taggit.tag': {
-            'Meta': {'object_name': 'Tag'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100', 'db_index': 'True'})
-        },
-        'taggit.taggeditem': {
-            'Meta': {'object_name': 'TaggedItem'},
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'taggit_taggeditem_tagged_items'", 'to': "orm['contenttypes.ContentType']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'object_id': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
-            'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'taggit_taggeditem_items'", 'to': "orm['taggit.Tag']"})
-        }
-    }
-
-    complete_apps = ['accounts']
+    operations = [
+        migrations.CreateModel(
+            name='EsdPerson',
+            fields=[
+                ('_id', models.AutoField(serialize=False, editable=False, primary_key=True, db_column=b'prsn_i')),
+                ('ppid', models.CharField(help_text=b'public person id/directory key', max_length=8, db_column=b'prsn_i_pblc')),
+                ('directory_name', models.CharField(help_text=b'full name in the online directory', max_length=75, db_column=b'prsn_n_full_dtry')),
+                ('ad_name', models.CharField(help_text=b'name in Active Directory', max_length=75, db_column=b'prsn_n_dspl_acdr')),
+                ('firstmid_name', models.CharField(help_text=b'first and middle name in the online directory', max_length=20, db_column=b'prsn_n_fm_dtry')),
+                ('last_name', models.CharField(help_text=b'last name in the online directory', max_length=25, db_column=b'prsn_n_last_dtry')),
+                ('name_suffix', models.CharField(help_text=b'honorary or other name suffix in the online directory', max_length=15, db_column=b'prsn_n_sufx_dtry')),
+                ('title', models.CharField(help_text=b'position title in the online directory', max_length=70, db_column=b'prsn_e_titl_dtry')),
+                ('phone', models.CharField(help_text=b'phone number in the online directory', max_length=12, db_column=b'prad_a_tlph_empe_fmtt')),
+                ('fax', models.CharField(help_text=b'fax number in the online directory', max_length=12, db_column=b'prad_a_fax_empe_fmtt')),
+                ('department_id', models.CharField(help_text=b'identifying code of the department the user works in', max_length=10, db_column=b'dprt_c')),
+                ('department_name', models.CharField(help_text=b'human-readable name of the department the user works in', max_length=40, db_column=b'dprt8dtry_n')),
+                ('division_code', models.CharField(help_text=b'identifying code of the division the user works in', max_length=10, db_column=b'dvsn_i')),
+                ('division_name', models.CharField(help_text=b'human-readable name of the division the user works in', max_length=40, db_column=b'dvsn8dtry_n')),
+                ('mailstop_code', models.CharField(help_text=b"identifying code of the user's mailstop", max_length=12, db_column=b'mlst_i')),
+                ('mailstop_name', models.CharField(help_text=b"human-readable name of the user's mailstop", max_length=30, db_column=b'mlst_n')),
+                ('netid', models.CharField(help_text=b'network login', max_length=8, db_column=b'logn8ntwr_i')),
+                ('internet_suppressed', openemory.accounts.fields.YesNoBooleanField(help_text=b"suppress user's directory information to off-campus clients", db_column=b'prsn_f_sprs_intt')),
+                ('directory_suppressed', openemory.accounts.fields.YesNoBooleanField(help_text=b"suppress user's directory information to all clients", db_column=b'prsn_f_sprs_dtry')),
+                ('information_suppressed', openemory.accounts.fields.YesNoBooleanField(help_text=b'no reference allowed to user', db_column=b'prsn_f_sprs_infr')),
+                ('faculty_flag', openemory.accounts.fields.YesNoBooleanField(help_text=b'user is a faculty member', max_length=1, db_column=b'empe_f_fclt')),
+                ('email', models.CharField(help_text=b"user's primary email address", max_length=100, db_column=b'emad_n')),
+                ('email_forward', models.CharField(help_text=b'internal or external forwarding address for email', max_length=100, db_column=b'emad8frwd_n')),
+                ('employee_status', models.CharField(max_length=1, db_column=b'emjo_c_stts_empe', choices=[(b'A', b'active'), (b'D', b'deceased'), (b'L', b'on leave'), (b'O', b'on-boarding'), (b'P', b'sponsored'), (b'T', b'terminated')])),
+                ('person_type', models.CharField(max_length=1, db_column=b'prsn_c_type')),
+            ],
+            options={
+                'db_table': '"esdv"."v_oem_fclt"',
+                'managed': False,
+                'db_tablespace': 'esdv',
+            },
+        ),
+        migrations.CreateModel(
+            name='Announcement',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('active', models.BooleanField(default=True)),
+                ('message', models.TextField(max_length=500, validators=[django.core.validators.MaxLengthValidator(500)])),
+                ('start', models.DateTimeField(null=True, blank=True)),
+                ('end', models.DateTimeField(null=True, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Bookmark',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('pid', models.CharField(max_length=255)),
+                ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', help_text='A comma-separated list of tags.', verbose_name='Tags')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Degree',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=30, verbose_name=b'Degree Name')),
+                ('institution', models.CharField(help_text=b'Institution that granted the degree', max_length=255)),
+                ('year', models.IntegerField(default=None, null=True, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='ExternalLink',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255)),
+                ('url', models.URLField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Grant',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=250, blank=True)),
+                ('grantor', models.CharField(max_length=250, blank=True)),
+                ('project_title', models.CharField(max_length=250, blank=True)),
+                ('year', models.IntegerField(default=None, null=True, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Position',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=200, verbose_name=b'Position Name')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='UserProfile',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('phone', models.CharField(max_length=50, blank=True)),
+                ('dept_num', models.CharField(max_length=50, blank=True)),
+                ('full_name', models.CharField(max_length=100, blank=True)),
+                ('title', models.CharField(max_length=100, blank=True)),
+                ('employee_num', models.CharField(max_length=50, blank=True)),
+                ('subdept_code', models.CharField(max_length=50, blank=True)),
+                ('hr_id', models.CharField(max_length=50, blank=True)),
+                ('show_suppressed', models.BooleanField(default=False, help_text=b'Show information even if directory or internet suppressed')),
+                ('nonfaculty_profile', models.BooleanField(default=False, help_text=b'User is allowed to have a profile even if they are non-faculty')),
+                ('photo', models.ImageField(default=b'', upload_to=b'profile-photos/%Y/%m/', blank=True)),
+                ('biography', models.TextField(default=b'', help_text=b'Biographical paragraph for public profile', blank=True)),
+                ('research_interests', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text=b'Comma-separated list of public research interests', verbose_name=b'Research Interests')),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['user__username'],
+            },
+        ),
+        migrations.AddField(
+            model_name='position',
+            name='holder',
+            field=models.ForeignKey(verbose_name=b'Position holder', to='accounts.UserProfile'),
+        ),
+        migrations.AddField(
+            model_name='grant',
+            name='grantee',
+            field=models.ForeignKey(to='accounts.UserProfile'),
+        ),
+        migrations.AddField(
+            model_name='externallink',
+            name='holder',
+            field=models.ForeignKey(to='accounts.UserProfile'),
+        ),
+        migrations.AddField(
+            model_name='degree',
+            name='holder',
+            field=models.ForeignKey(verbose_name=b'Degree holder', to='accounts.UserProfile'),
+        ),
+    ]

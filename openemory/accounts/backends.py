@@ -16,7 +16,8 @@
 
 from django.contrib.auth.models import User
 from django.db.models import Q
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django.contrib.auth import get_user_model
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 
 from openemory.accounts.models import EsdPerson, UserProfile
 
@@ -32,7 +33,11 @@ class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
         # Only authenticate users who are flagged as faculty in ESD
         # or local accounts with superuser permission, 'Site Admin' role
         # or nonfaculty_flag set
-        if self.USER_MODEL.objects.filter(username=username)\
+        print User.objects.filter(username=username).filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | Q(userprofile__nonfaculty_profile=True)).exists()
+        print EsdPerson.faculty.filter(netid=username.upper()).exists()
+        print username
+        print "###########"
+        if User.objects.filter(username=username)\
                .filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | \
                        Q(userprofile__nonfaculty_profile=True))\
                .exists() or \

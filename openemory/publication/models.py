@@ -41,7 +41,7 @@ from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
 import zipfile
 from eulfedora.rdfns import model as relsextns
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
@@ -1141,8 +1141,7 @@ class PublicationPremis(premis.Premis):
         :param reviewer: the :class:`~django.contrib.auth.models.User`
             who reviewed the article
         '''
-
-        detail = 'Reviewed by %s' % reviewer.get_profile().get_full_name()
+        detail = 'Reviewed by %s %s' % (reviewer.first_name, reviewer.last_name)
         self.premis_event(reviewer, 'review',detail)
     
     def merged(self, original_pid, element_pid):
@@ -1174,8 +1173,8 @@ class PublicationPremis(premis.Premis):
 
         #TODO pmcid will have to change to something more general when more external systems are added
 
-        detail = 'Harvested %s from PubMed Central by %s' % \
-                              (pmcid, user.get_profile().get_full_name())
+        detail = 'Harvested %s from PubMed Central by %s %s' % \
+                              (pmcid, user.first_name, user.last_name)
         self.premis_event(user, 'harvest', detail)
 
     def symp_ingest(self, user, id):
@@ -1187,8 +1186,8 @@ class PublicationPremis(premis.Premis):
 
 
         # no log'd in user available so use OE Bot
-        detail = 'Ingested %s from Symplectic-Elements by %s' % \
-                              (id, user.get_profile().get_full_name())
+        detail = 'Ingested %s from Symplectic-Elements by %s %s' % \
+                              (id, user.first_name, user.last_name)
         self.premis_event(user, 'symp_ingest', detail)
 
     def uploaded(self, user, legal_statement=None):
@@ -1212,14 +1211,14 @@ class PublicationPremis(premis.Premis):
         # certain legal statements and will be recorded in long-term
         # storage.
         if legal_statement == 'AUTHOR':
-            detail = 'Uploaded by %s upon assent to deposit' % \
-                    (user.get_profile().get_full_name(),)
+            detail = 'Uploaded by %s %s upon assent to deposit' % \
+                    (user.first_name,user.last_name)
         elif legal_statement == 'MEDIATED':
-            detail = 'Mediated Deposit with Assist Authorization or CC or PD by %s' % \
-                    (user.get_profile().get_full_name(),)
+            detail = 'Mediated Deposit with Assist Authorization or CC or PD by %s %s' % \
+                    (user.first_name,user.last_name)
         else:
-            detail = 'Uploaded by %s without confirmed assent to deposit' % \
-                    (user.get_profile().get_full_name(),)
+            detail = 'Uploaded by %s %s without confirmed assent to deposit' % \
+                    (user.first_name,user.last_name)
         detail += ' under OpenEmory v%s' % (openemory.__version__,)
 
         self.premis_event(user, 'upload', detail)
@@ -1233,8 +1232,8 @@ class PublicationPremis(premis.Premis):
         :param reason: user-entered string explaining the reason for
             withdrawal, to be included in the event detail
         '''
-        detail = 'Withdrawn by %s: %s' % \
-                (user.get_profile().get_full_name(), reason)
+        detail = 'Withdrawn by %s %s: %s' % \
+                (user.first_name, user.last_name, reason)
         self.premis_event(user, 'withdraw', detail)
 
     def reinstated(self, user, reason=None):
@@ -1249,8 +1248,8 @@ class PublicationPremis(premis.Premis):
         '''
         if reason is None:
             reason = 'No reason given.'
-        detail = 'Reinstated (from withdrawal) by %s: %s' % \
-                (user.get_profile().get_full_name(), reason)
+        detail = 'Reinstated (from withdrawal) by %s %s: %s' % \
+                (user.first_name, user.last_name, reason)
         self.premis_event(user, 'reinstate', detail)
 
 
@@ -1333,6 +1332,8 @@ class Publication(DigitalObject):
         PublicationMods, defaults={
             'versionable': True,
         })
+
+    # dc = XmlDatastream('DC', 'Dublin Core Record for this object')
     '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
 
     contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
@@ -1670,7 +1671,7 @@ class Publication(DigitalObject):
         for netid in self.author_netids:
             try:
                 user = User.objects.get(username=netid)
-                profile = user.get_profile()
+                profile = user.userprofile
                 esd = profile.esd_data()
                 result.append(esd)
             except ObjectDoesNotExist:

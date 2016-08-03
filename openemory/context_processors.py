@@ -16,7 +16,7 @@
 
 from django.conf import settings
 from django.contrib.flatpages.models import FlatPage
-from django.core import context_processors
+from django.template import context_processors
 
 def debug(request):
     '''Return context variables that may be helpful for debugging.
@@ -36,7 +36,7 @@ def debug(request):
         esd_queries = connections['esd'].queries
         for q in esd_queries:
             q['db'] = 'esd'
-        context_extras['sql_queries'].extend(esd_queries)
+        context_extras['sql_queries']().extend(esd_queries)
     return context_extras
 
 
