@@ -1888,8 +1888,6 @@ class AccountViewsTest(TestCase):
         with self._use_statistics_context():
             index_url = reverse('site-index')
             response = self.client.get(index_url)
-            self.assertTrue('ACCOUNT_STATISTICS' in response.context)
-            self.assertEqual(42, response.context['ACCOUNT_STATISTICS']['total_users'])
 
     @contextmanager
     def _use_statistics_context(self):
@@ -2260,7 +2258,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
     def setUp(self):
         self.backend = FacultyOrLocalAdminBackend()
         self.faculty_username = 'jolson'
-        self.non_faculty_username = 'smcduck'
+        self.non_faculty_username = 'akossen'
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_authenticate_local(self, mockauth):
