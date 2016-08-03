@@ -1770,6 +1770,7 @@ class PublicationViewsTest(TestCase):
         data['save-record'] = True
         response = self.client.post(edit_url, data)
         print response.context
+        print response.status_code
         print "##############"
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
