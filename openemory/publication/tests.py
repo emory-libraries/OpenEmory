@@ -1773,8 +1773,7 @@ class PublicationViewsTest(TestCase):
                      'posted form data should not result in an invalid form')
 
         #return code from redirect
-        
-        expected, got = 302, response['Location']
+        expected, got = 303, response.redirect_chain[0][1]
         self.assertEqual(expected, got,
             'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
@@ -1803,9 +1802,9 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "publish"
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
-        response = self.client.post(edit_url, data, follow=True)
-
-        expected, got = 302, response['Location']
+        response = self.client.post(edit_url, data)
+       
+        expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))

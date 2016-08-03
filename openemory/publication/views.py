@@ -596,12 +596,12 @@ def edit_metadata(request, pid):
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:
                     # redirect to article detail view
-                    return HttpResponseRedirect(reverse('publication:view',
+                    return HttpResponseSeeOtherRedirect(reverse('publication:view',
                                                kwargs={'pid': obj.pid}))
                 # if submitted via 'review', redirect to review list
                 if 'review-record' in request.POST :
                     # redirect to article detail view
-                    return HttpResponseRedirect(reverse('publication:review-list'))
+                    return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
 
                 # distinguish between save/publish in success message
                 
