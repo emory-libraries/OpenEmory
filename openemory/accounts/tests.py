@@ -1819,6 +1819,7 @@ class AccountViewsTest(TestCase):
              'last_name': faculty_esd.last_name,
              'directory_name': faculty_esd.directory_name }
             ]
+        self.mocksolr.query.execute.return_value = MagicMock() # needs to be iterable
         self.mocksolr.query.execute.return_value = mockresult
 #        people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
  #                .execute()
@@ -2258,7 +2259,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
     def setUp(self):
         self.backend = FacultyOrLocalAdminBackend()
         self.faculty_username = 'jolson'
-        self.non_faculty_username = 'akossen'
+        self.non_faculty_username = 'smcduck'
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_authenticate_local(self, mockauth):

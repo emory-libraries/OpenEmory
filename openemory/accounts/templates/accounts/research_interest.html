@@ -63,7 +63,7 @@
   {% for author in users %}
     {% if author.userprofile.has_profile_page %}
       <div>
-        <h2><a href="{% url 'accounts:profile' author.username %}">{% firstof author.get_full_name() author.username %}</a></h2>
+        <h2><a href="{% url 'accounts:profile' author.username %}">{% firstof author.get_full_name author.username %}</a></h2>
         {% with interests=author.userprofile.research_interests %}
           <h3>Research interests:</h3>
           {% for tag in interests.all %}

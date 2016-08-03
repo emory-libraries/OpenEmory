@@ -1769,12 +1769,13 @@ class PublicationViewsTest(TestCase):
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
         response = self.client.post(edit_url, data)
+        print response.context
+        print "##############"
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
 
         #return code from redirect
         
-        print "######################"
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
