@@ -95,6 +95,9 @@ class Command(BaseCommand):
                     self.output(1, "\nProcessing  Elements PID %s" % pid)
                      # Load first as Article becauce that is the most likely type
                     element_obj = self.repo.get_object(pid=pid, type=Publication)
+                    element_stats = ArticleStatistics.objects.filter(pid=pid)
+                    if element_stats:
+                        element_stats.delete()
                     if not element_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % pid)
                         continue
