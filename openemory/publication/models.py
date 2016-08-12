@@ -2398,15 +2398,15 @@ class Publication(DigitalObject):
 
 
 # expand
-class Book(Publication):
-     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
-     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
-     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
+# class Book(Publication):
+#      BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+#      CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+#      # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
 
-class Chapter(Publication):
-     CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
-     CONTENT_MODELS = [ CHAPTER_CONTENT_MODEL ]
-     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, CHAPTER_CONTENT_MODEL ]
+# class Chapter(Publication):
+#      CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
+#      CONTENT_MODELS = [ CHAPTER_CONTENT_MODEL ]
+#      # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, CHAPTER_CONTENT_MODEL ]
 
 class Article(Publication):
      ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
