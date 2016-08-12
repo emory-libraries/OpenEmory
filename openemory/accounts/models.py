@@ -24,7 +24,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from eullocal.django.emory_ldap.models import EmoryLDAPUser
+from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
 import logging
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 # add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
-class UserProfile(EmoryLDAPUser):
+class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
     research_interests = TaggableManager(verbose_name='Research Interests',
         help_text='Comma-separated list of public research interests',

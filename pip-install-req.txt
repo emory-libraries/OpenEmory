@@ -5,7 +5,7 @@ ply>=3.8
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 eulxml==1.1.3
 # require eulfedora 1.5 or greater for updated raw_datastream view
--e git+ssh://git@github.com/emory-libraries/eullocal.git@master#egg=eullocal
+-e git+ssh://git@github.com/emory-libraries/eullocal.git@0.19#egg=eullocal
 eulfedora>=1.5
 #-e git://github.com/emory-libraries/eulfedora.git@develop#egg=eulfedora
 eulcommon
@@ -16,7 +16,7 @@ pyPdf
 django-taggit # check to see later version is compatible after upgrade to django 1.5
 Pillow # python imaging library (for profile images)
 markdown
-http://wilson.library.emory.edu:8080/jenkins/job/pidman-rest-client/lastSuccessfulBuild/artifact/pidmanclient/dist/pidservices-1.3.0-dev.tar.gz
+-e git+https://github.com/emory-libraries/pidman-client.git@release-1.1.2#egg=pidservices
 python-dateutil
 # The current version of xhtml2pdf (0.1b2 as of 08/12/2016) will give us a problem
 # that the PDF cover page of artcile downloads will be blank. The rest of the PDF
