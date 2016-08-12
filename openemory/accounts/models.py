@@ -1,5 +1,5 @@
 # file openemory/accounts/models.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
+from eullocal.django.emory_ldap.models import EmoryLDAPUser
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
 import logging
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 # add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
-class UserProfile(AbstractEmoryLDAPUserProfile):
+class UserProfile(EmoryLDAPUser):
     user = models.OneToOneField(User)
     research_interests = TaggableManager(verbose_name='Research Interests',
         help_text='Comma-separated list of public research interests',
