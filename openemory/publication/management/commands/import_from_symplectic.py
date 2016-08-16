@@ -89,9 +89,9 @@ class Command(BaseCommand):
 
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
-
         if not options['date']:
             last_run = LastRun.objects.get(name='Convert Symp to OE')
+            print "#############"
             date = last_run.start_time
         else:
            try:

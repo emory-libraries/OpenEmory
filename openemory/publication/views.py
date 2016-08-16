@@ -1101,6 +1101,7 @@ def search(request):
     # filter/facet  (display name => solr field)
     field_names = [
         {'queryarg': 'year', 'display': 'Year', 'solr': 'pubyear'},
+        {'queryarg': 'keyword', 'display': 'Keyword', 'solr': 'keyword'},
         {'queryarg': 'author', 'display': 'Author', 'solr': 'creator_facet'},
         {'queryarg': 'subject', 'display': 'Subject', 'solr': 'researchfield_facet'},
         {'queryarg': 'journal', 'display': 'Journal', 'solr': 'journal_title_facet'},
