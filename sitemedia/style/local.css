@@ -27,10 +27,10 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
   width:1px; height:1px; overflow:hidden;
 }
 
-#header { 
+#header {
   /* relative/0/0 here gives header sub-divs something to hang on to */
   position:relative; top:0px; left:0px;
-  background-color:#002878; color:#fff; 
+  background-color:#002878; color:#fff;
   padding:0.25em 3em 0.75em;
 }
 
@@ -110,7 +110,7 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
  * post-content stuff
  */
 
-#footer { 
+#footer {
   float:right; text-align:right;
   padding:0.5em 1em;
   width:100%; font-size:60%;
@@ -165,6 +165,10 @@ p.premis-event {
 .author {
  margin: 5px 0px;
 }
+.author-message {
+  padding-top: 15px;
+  font-style: italic;
+}
 
 .tag-edit input[type=text] {
   width: 35em;
@@ -177,11 +181,11 @@ p.premis-event {
 li { margin:0.5em; list-style:disc; list-style-position:outside; }
 
 
-.ui-autocomplete-input { 
+.ui-autocomplete-input {
     padding-right: 18px; /* for loading animation img */
 }
-.ui-autocomplete-loading { 
-    background: white url('jquery-ui/redmond/images/ui-anim_basic_16x16.gif') right center no-repeat; 
+.ui-autocomplete-loading {
+    background: white url('jquery-ui/redmond/images/ui-anim_basic_16x16.gif') right center no-repeat;
 }
 .ui-autocomplete li {
   list-style-type: none;
@@ -221,7 +225,7 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
   border: 2px  solid gray;
   border-right: 0px;
   border-left: 0px;
-  clear: right; 
+  clear: right;
 }
 
 #journal .journal-title {
@@ -236,7 +240,7 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
 
 #author-notes p {
  margin-bottom: 8px !important;
- white-space: pre-line; 
+ white-space: pre-line;
 }
 
 #citation .title {
