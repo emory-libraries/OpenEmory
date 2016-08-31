@@ -2213,8 +2213,9 @@ class Publication(DigitalObject):
         if symp.categories[1] == "journal article":
             # changed because we can't use this in tandem with adding adding a collection to relsext
 
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PUBLICATION_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
 
             # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,

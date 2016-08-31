@@ -977,7 +977,7 @@ def site_index(request):
         featured_article = None
 
     return render(request, 'publication/site_index.html',
-                  {'recent_uploads': recent, 'most_viewed': most_viewed, 'featured': featured_article, 'ARTICLE_STATISTICS': stats})
+                  {'recent_uploads': recent, 'most_viewed': most_viewed, 'featured': featured_article})
 
 def summary(request):
     '''Publication summary page with a list of most downloaded and

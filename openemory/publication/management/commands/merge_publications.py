@@ -125,7 +125,8 @@ class Command(BaseCommand):
         element_obj.descMetadata.content = original_obj.descMetadata.content
         element_obj.provenance.content = original_obj.provenance.content
         element_obj.dc.content = original_obj.dc.content
-        element_obj.pdf.content = original_obj.pdf.content
+        if original_obj.pdf.content:
+            element_obj.pdf.content = original_obj.pdf.content
         original_obj.state = 'I'
         element_obj.provenance.content.init_object(element_obj.pid, 'pid')
         element_obj.provenance.content.merged(original_obj.pid, element_obj.pid)
