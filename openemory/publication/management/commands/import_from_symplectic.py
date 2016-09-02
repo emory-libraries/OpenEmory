@@ -156,7 +156,6 @@ class Command(BaseCommand):
                     self.counts['skipped']+=1
                     payload = {"text": "No Assent Publication.\n pid: %s" % pid}
                     r = requests.post(settings.SLACK_TOKEN, data=json.dumps(payload))
-                    continue
 
 
                 # WHEN ADDING NEW CONTENT TYPES:
