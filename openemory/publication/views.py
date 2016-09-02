@@ -80,7 +80,7 @@ def mail_listserv(subject, message, fail_silently=False, connection=None,
 PUBLICATION_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end', 'abstract', 'researchfield',
-    'journal_title', 'pubyear', 'withdrawn','record_type','publisher','pubdate','journal_publisher']
+    'journal_title', 'pubyear', 'withdrawn','record_type','publisher','pubdate','journal_publisher', 'keyword']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -1048,7 +1048,6 @@ def departments(request):
 def search(request):
     search = BasicSearchForm(request.GET)
     search_within = SearchWithinForm(request.GET)
-
     solr = solr_interface()
 
     # restrict to active (published) articles only
@@ -1061,6 +1060,7 @@ def search(request):
             keyword = search.cleaned_data['keyword']
             item_terms.extend(search_terms(keyword))
             people_terms.extend(search_terms(keyword))
+
 
     #add additional filtering keyword terms from within search
     within_filter = None
@@ -1101,10 +1101,10 @@ def search(request):
     # filter/facet  (display name => solr field)
     field_names = [
         {'queryarg': 'year', 'display': 'Year', 'solr': 'pubyear'},
-        {'queryarg': 'keyword', 'display': 'Keyword', 'solr': 'keyword'},
         {'queryarg': 'author', 'display': 'Author', 'solr': 'creator_facet'},
         {'queryarg': 'subject', 'display': 'Subject', 'solr': 'researchfield_facet'},
         {'queryarg': 'journal', 'display': 'Journal', 'solr': 'journal_title_facet'},
+        {'queryarg': 'keywords', 'display': 'Keyword', 'solr': 'keyword'},
         {'queryarg': 'affiliation', 'display': 'Author affiliation', 'solr': 'affiliations_facet'},
         {'queryarg': 'department', 'display': 'Author department', 'solr': 'department_shortname_facet'},
     ]
@@ -1142,7 +1142,7 @@ def search(request):
     facet_fields = facet_result.facet_counts.facet_fields
 
     # add highlighting & relevance ranking
-    highlight_fields = [ 'abstract', 'fulltext', ]
+    highlight_fields = [ 'title', 'abstract', 'fulltext', 'keyword', ]
     q = q.highlight(highlight_fields).sort_by('-score')
     # for the paginated version, limit to display fields + score
     results, show_pages = paginate(request,
