@@ -18,6 +18,7 @@ import logging
 import sys
 import os
 import pytz
+import json
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from collections import defaultdict
@@ -27,9 +28,11 @@ from eulfedora.server import Repository
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
+import requests
 
 from openemory.common.fedora import ManagementRepository
 from openemory.publication.models import Publication, LastRun
+
 
 logger = logging.getLogger(__name__)
 LEVELS = {'debug': logging.DEBUG,
@@ -89,7 +92,6 @@ class Command(BaseCommand):
 
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
-
         if not options['date']:
             last_run = LastRun.objects.get(name='Convert Symp to OE')
             date = last_run.start_time
@@ -148,6 +150,13 @@ class Command(BaseCommand):
                     logging.warning("Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
                     self.counts['skipped']+=1
                     continue
+                license = obj.getDatastreamObject('SYMPLECTIC-LICENCE')
+                if not license.content:
+                    logging.warning("Skipping %s because SYMPLECTIC-LICENCE ds not modified since last run %s " % (pid, ds_mod))
+                    self.counts['skipped']+=1
+                    payload = {"text": "No Assent Publication.\n pid: %s" % pid}
+                    r = requests.post(settings.SLACK_TOKEN, data=json.dumps(payload))
+
 
                 # WHEN ADDING NEW CONTENT TYPES:
                 # 1. Make sure object content modle has from_symp() function

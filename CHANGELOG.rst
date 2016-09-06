@@ -1,3 +1,11 @@
+Release 2.2.4 Merging old pre connector records
+-----------------------------------------------
+* fixing solr filter to search buy keywords
+* search by title bug fix
+* incomplete pid notifications via slack
+* fixed indexing issue for newly converted records
+* manage command to merge records
+
 Release 2.2.1 Author Enhancement
 --------------------------------
 * jenkins test fixes for Django 1.8

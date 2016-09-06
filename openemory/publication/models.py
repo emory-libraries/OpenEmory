@@ -2213,8 +2213,9 @@ class Publication(DigitalObject):
         if symp.categories[1] == "journal article":
             # changed because we can't use this in tandem with adding adding a collection to relsext
 
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PUBLICATION_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
 
             # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
@@ -2252,8 +2253,9 @@ class Publication(DigitalObject):
                 suggestions = []
 
         elif symp.categories[1] == "book":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.BOOK_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             # for cmodel in getattr(Book, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -2265,8 +2267,9 @@ class Publication(DigitalObject):
 
 
         elif symp.categories[1] == "chapter":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CHAPTER_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             # for cmodel in getattr(Chapter, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -2283,8 +2286,9 @@ class Publication(DigitalObject):
                 mods.chapter.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         elif symp.categories[1] == "conference":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             mods.genre = 'Conference'
             mods.create_conference()
             mods.conference.conference_name = symp.conference_name
@@ -2306,15 +2310,17 @@ class Publication(DigitalObject):
 
 
         elif symp.categories[1] == "poster":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.POSTER_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             mods.genre = 'Poster'
             mods.create_poster()
             mods.poster.conference_name = symp.conference_name
 
         elif symp.categories[1] == "report":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.REPORT_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             mods.genre = 'Report'
             mods.create_report()
             mods.report.sponsor = symp.sponsor
@@ -2322,8 +2328,9 @@ class Publication(DigitalObject):
             mods.report.report_number = symp.report_number
 
         elif symp.categories[1] == "presentation":
-            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PRESENTATION_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            
             mods.genre = 'Presentation'
             mods.create_presentation()
             mods.presentation.presentation_place = symp.presentation_place
@@ -2398,15 +2405,15 @@ class Publication(DigitalObject):
 
 
 # expand
-class Book(Publication):
-     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
-     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
-     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
+# class Book(Publication):
+#      BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+#      CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+#      # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
 
-class Chapter(Publication):
-     CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
-     CONTENT_MODELS = [ CHAPTER_CONTENT_MODEL ]
-     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, CHAPTER_CONTENT_MODEL ]
+# class Chapter(Publication):
+#      CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
+#      CONTENT_MODELS = [ CHAPTER_CONTENT_MODEL ]
+#      # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, CHAPTER_CONTENT_MODEL ]
 
 class Article(Publication):
      ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'

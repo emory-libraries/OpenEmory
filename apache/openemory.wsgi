@@ -7,5 +7,8 @@ os.environ['VIRTUAL_ENV'] = '/home/httpd/openemory/env/'
 # you pass the python-path option to WSGIDaemonProcess as described in the
 # sample config.
 
-from django.core.handlers.wsgi import WSGIHandler
-application = WSGIHandler()
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "openemory.settings")
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
