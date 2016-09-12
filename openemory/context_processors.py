@@ -54,7 +54,7 @@ def sitepages(request):
     # nickname to be used in the site -> flatpage url
     # alphabetical by url
     nick_urls = {
-        'about': '/about/',
+        'about': '/about',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
