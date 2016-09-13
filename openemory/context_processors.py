@@ -54,7 +54,7 @@ def sitepages(request):
     # nickname to be used in the site -> flatpage url
     # alphabetical by url
     nick_urls = {
-        'about': '/about',
+        'about': '/about/staff',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
@@ -77,7 +77,6 @@ def sitepages(request):
     for nick, url in nick_urls.iteritems():
         if url in pages_by_url:
             nick_pages[nick] = pages_by_url[url]
-
     return {'sitepages': nick_pages}
 
 

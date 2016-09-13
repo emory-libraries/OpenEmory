@@ -65,13 +65,18 @@ FlatPage.view_on_site = view_on_site
 
 # customizing flatpages admin here because we don't have a separate app for it
 class FlatPageAdmin(FlatPageAdminDefault):
-    list_display = ('title', 'view_on_site')
-    list_display_links = ('title', )
-    search_fields = ('url', 'title', 'content')
-    view_on_site.allow_tags = True
-    class Media:
-        js = ('js/tiny_mce/tiny_mce.js',
-              'js/tiny_mce/textareas.js',)
+    fieldsets = (
+        (None, {'fields': ('url', 'title', 'content', 'sites')}),
+        (('Advanced options'), {
+            'classes': ('collapse', ),
+            'fields': (
+                'enable_comments',
+                'registration_required',
+                'template_name',
+            ),
+        }),
+    )
+
 
 # unregister default flatpages admin and re-register customized version
 admin.site.unregister(FlatPage)
