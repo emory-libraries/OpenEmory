@@ -364,17 +364,11 @@ www.352media.com
             </form>
           </div>
           <div class="socialMedia">
-            <div class="connect">
-              <span>
-                Connect with us:</span>
-              <a href="https://twitter.com/share" class="twitter-share-button twitter social" data-lang="en" target="_blank"></a>
-            </div>
             <div class="feedback">
-              <span>
-                Tell us what you think:</span>
               <a href="{% url 'feedback' %}" class="button">
-                <span>
-                  Give Feedback</span></a></div>
+                <span>Give Feedback</span>
+              </a>
+            </div>
             <div class="clear"></div>
           </div>
         </div>
@@ -521,18 +515,12 @@ www.352media.com
 
         </div>
         <div class="rightCol">
-          <p>Tell us what you
-          think: <a href="{% url 'feedback' %}"
-          class="button">
-            <span>
-              Give
-              Feedback</span></a></p>
-          <p>View Top 10 Items and
-          more: <a href="{% url 'publication:summary' %}"
-          class="button">
-            <span>
-              OpenEmory At a
-              Glance</span></a></p>
+          <a href="{% url 'feedback' %}" class="button">
+            <span>Give Feedback</span>
+          </a>
+          <a href="{% url 'publication:summary' %}" class="button">
+            <span>OpenEmory At a Glance</span>
+          </a>
         </div>
 
       </div>
