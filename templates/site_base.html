@@ -456,57 +456,52 @@ www.352media.com
 
     <div class="footer">
       {% block footer-head %}
-      <div class="wrapper first">
-        <div class="leftCol">
-          <div class="formThird">
-            <ul>
-              <li class="firstLi">Browse By:</li>
-              <li><a href="{% url 'publication:browse' 'authors' %}">Author</a></li>
-              <li><a href="{% url 'publication:browse' 'journals' %}">Journal</a></li>
-              <li><a href="{% url 'publication:browse' 'subjects' %}">Subject</a></li>
-            </ul>
-          </div>
-          <div class="formThird">
-            <ul>
-              <li><a href="{{ sitepages.about.url }}">About Us</a></li>
-              <li><a href="{{ sitepages.getting_started.url }}">Publication Information</a></li>
-              <li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
-              <li><a href="{% url 'feedback' %}">Contact Us</a></li>
-          </div>
-          {% if user.is_authenticated %}
-          <div class="formThird">
-            <ul>
-              <li class="firstLi"><a href="#">My Account:</a></li>
-              {% if user.get_profile.has_profile_page %}
-              <li><a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a></li>
-              {% if perms.publication.add_articlerecord %}
-                <li><a href="{% url 'publication:ingest' %}">Upload Work</a></li>
-                {% endif %}
-              <li><a href="#">Unpublished Queue</a></li> {# TODO #}
-              {% endif %}
 
+      <div class="wrapper first">
+        {% if user.is_authenticated %}
+          <div id="acct-area-label">My Account</div>
+          <ul id="acct-area">
+            {% if user.get_profile.has_profile_page %}
+            <li>
+              <a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a>
+              {% if perms.publication.add_articlerecord %}
+                <a href="{% url 'publication:ingest' %}">Upload Work</a>
+              {% endif %}
+              <a href="#">Unpublished Queue</a>{# TODO #}
+            </li>
+            {% endif %}
+
+            <li>
               {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-              <li><a href="{% url 'accounts:admin-dashboard' %}#harvest">Harvest Queue</a></li>
+              <a href="{% url 'accounts:admin-dashboard' %}#harvest">Harvest Queue</a>
               {% endif %}
 
               {% if perms.publication.review_article %}
-              <li><a href="{% url 'accounts:admin-dashboard' %}#review">Review Queue</a></li>
+              <a href="{% url 'accounts:admin-dashboard' %}#review">Review Queue</a>
               {% endif %}
-            </ul>
-          </div>
-          {% endif %}
-        </div>
-        <div class="rightCol">{# TODO: re-usable template snippet ? #}
-          <h5>Site Statistics:</h5>
-          <ul>
-            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total work</li>
-            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
-            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
-            <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
+            </li>
           </ul>
-        </div>
+        {% endif %}
 
+          <div id="site-stat-label">Site Statistics</div>
+          <ul class="site-stat">
+            <li class="stat-val">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</li>
+            <li class="stat-label">Total Work{{ ARTICLE_STATISTICS.total_articles|pluralize}}</li>
+          </ul>
+          <ul class="site-stat">
+            <li class="stat-val">{{ ARTICLE_STATISTICS.total_downloads|intcomma }}</li>
+            <li class="stat-label">Download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
+          </ul>
+          <ul class="site-stat">
+            <li class="stat-val">{{ ARTICLE_STATISTICS.year_downloads|intcomma }}</li>
+            <li class="stat-label">Download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} This Year</li>
+          </ul>
+          <ul class="site-stat">
+            <li class="stat-val">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</li>
+            <li class="stat-label">Faculty Profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
+          </ul>
       </div>
+
       {% endblock %}
       <div class="wrapper second">
         <div class="leftCol">
