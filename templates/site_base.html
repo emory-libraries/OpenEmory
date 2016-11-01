@@ -320,9 +320,9 @@ www.352media.com
                     </ul>
                   </li>
                   <li class="lastLi">
-                    <a href="{{ sitepages.staff.url }}">About OpenEmory</a>
+                    <a href="/about">About OpenEmory</a>
                     <ul>
-                      <li><a href="{{ sitepages.about.url }}">{{ sitepages.about.title|default:"About OpenEmory" }}</a></li>
+                      <li><a href="/about">About OpenEmory</a></li>
                       <li><a href="{{ sitepages.about_profiles.url }}">{{ sitepages.about_profiles.title|default:"About Faculty Profiles" }}</a></li>
                       <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
                       <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393" target="_blank">Emory Open Access Policy</a></li>
@@ -477,7 +477,7 @@ www.352media.com
           <div class="formThird">
             <ul>
               <li class="firstLi"><a href="#">My Account:</a></li>
-              {% if user.get_profile.has_profile_page %}
+              {% if user.userprofile.has_profile_page %}
               <li><a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a></li>
               {% if perms.publication.add_articlerecord %}
                 <li><a href="{% url 'publication:ingest' %}">Upload Work</a></li>
