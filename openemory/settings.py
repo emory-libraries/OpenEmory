@@ -143,7 +143,7 @@ INSTALLED_APPS = [
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'django_auth_ldap.backend.LDAPBackend',
+    # 'django_auth_ldap.backend.LDAPBackend',
     'openemory.accounts.backends.FacultyOrLocalAdminBackend',
 ]
 
@@ -223,7 +223,6 @@ if django_nose is not None:
 
 if 'DJANGO_TEST_MODE' in os.environ:
     # TODO: convert this into a nose plugin
-    print "MODIFYING CONTEXT PROCESSORS FOR TEST"
     TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.accounts.context_processors.statistics')
     TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
     # remove real pidman settings so that tests don't create test pids
