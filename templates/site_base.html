@@ -452,48 +452,23 @@ www.352media.com
       {% block footer-head %}
 
       <div class="wrapper first">
-        {% if user.is_authenticated %}
-          <div id="acct-area-label">My Account</div>
-          <ul id="acct-area">
-            {% if user.get_profile.has_profile_page %}
-            <li>
-              <a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a>
-              {% if perms.publication.add_articlerecord %}
-                <a href="{% url 'publication:ingest' %}">Upload Work</a>
-              {% endif %}
-              <a href="#">Unpublished Queue</a>{# TODO #}
-            </li>
-            {% endif %}
-
-            <li>
-              {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-              <a href="{% url 'accounts:admin-dashboard' %}#harvest">Harvest Queue</a>
-              {% endif %}
-
-              {% if perms.publication.review_article %}
-              <a href="{% url 'accounts:admin-dashboard' %}#review">Review Queue</a>
-              {% endif %}
-            </li>
-          </ul>
-        {% endif %}
-
-          <div id="site-stat-label">Site Statistics</div>
-          <ul class="site-stat">
-            <li class="stat-val">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</li>
-            <li class="stat-label">Total Work{{ ARTICLE_STATISTICS.total_articles|pluralize}}</li>
-          </ul>
-          <ul class="site-stat">
-            <li class="stat-val">{{ ARTICLE_STATISTICS.total_downloads|intcomma }}</li>
-            <li class="stat-label">Download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
-          </ul>
-          <ul class="site-stat">
-            <li class="stat-val">{{ ARTICLE_STATISTICS.year_downloads|intcomma }}</li>
-            <li class="stat-label">Download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} This Year</li>
-          </ul>
-          <ul class="site-stat">
-            <li class="stat-val">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</li>
-            <li class="stat-label">Faculty Profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
-          </ul>
+        <div id="site-stat-label">Site Statistics</div>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</li>
+          <li class="stat-label">Total Work{{ ARTICLE_STATISTICS.total_articles|pluralize}}</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.total_downloads|intcomma }}</li>
+          <li class="stat-label">Download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.year_downloads|intcomma }}</li>
+          <li class="stat-label">Download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} This Year</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</li>
+          <li class="stat-label">Faculty Profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
+        </ul>
       </div>
 
       {% endblock %}
