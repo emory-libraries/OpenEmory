@@ -58,20 +58,37 @@ admin.site.unregister(UserProfile)
 admin.site.register(UserProfile, UserProfileAdmin)
 
 # patch a method onto the FlatPage model to link to view from list display
-def view_on_site(fp):
-    return '<a href="%(url)s" target="_top">%(url)s</a>' % \
-                     {'url': fp.get_absolute_url()}
-FlatPage.view_on_site = view_on_site
+
+
+# FlatPage.view_on_site = view_on_site
 
 # customizing flatpages admin here because we don't have a separate app for it
 class FlatPageAdmin(FlatPageAdminDefault):
+    
+    def view_on_site(self,fp):
+        return '<a href="%(url)s" target="_top">%(url)s</a>' % \
+                         {'url': fp.get_absolute_url()}
+    
     list_display = ('title', 'view_on_site')
-    list_display_links = ('title', )
-    search_fields = ('url', 'title', 'content')
     view_on_site.allow_tags = True
+    list_display_links = ('title', )
+    # list_display = ('title',)
+    search_fields = ('url', 'title', 'content')
+    fieldsets = (
+        (None, {'fields': ('url', 'title', 'content', 'sites')}),
+        (('Advanced options'), {
+            'classes': ('collapse', ),
+            'fields': (
+                'enable_comments',
+                'registration_required',
+                'template_name',
+            ),
+        }),
+    )
     class Media:
         js = ('js/tiny_mce/tiny_mce.js',
               'js/tiny_mce/textareas.js',)
+
 
 # unregister default flatpages admin and re-register customized version
 admin.site.unregister(FlatPage)
