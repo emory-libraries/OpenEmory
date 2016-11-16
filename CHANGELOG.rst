@@ -1,3 +1,23 @@
+Release 2.2.5 - UI/UX Improvements
+----------------------------------
+* As an OpenEmory user accessing the “Left navigation Blue box” I want to
+  see the “How to Guides’ deleted on every page with Related Content (see
+  description for multiple page links) so that the left navigation is
+  consistent with the top navigation
+* As an OpenEmory user accessing the “For Authors” tab, I want to see the
+  words “Deposit Advice” directly underneath the changed *How to Submit*
+  so that the added words “Deposit Advice” will link directly to this
+  page: https://open.library.emory.edu/about/depositadvice/
+* As an OpenEmory user accessing the “About OpenEmory” tab, I want to see
+  the order of Menu items re-arranged in this way: 1) About OpenEmory,
+  2) About Us, 3) Contact Us, 4) Privacy Policy, 5) Terms of Use, so that
+  the new order is consistent with the changes made to the OpenEmory page
+  content. (see attached screenshot)
+* As an OpenEmory User, I want to see the Emory Open Access Policy link
+  moved FROM the "About OpenEmory" dropdown  and TO the 'For Authors"
+  dropdown, so that the information is more useful to individual authors
+* PMC Harvest queue not Populating since 11.3.2016 - INC02592840
+
 Release 2.2.4 Merging old pre connector records
 -----------------------------------------------
 * fixing solr filter to search buy keywords

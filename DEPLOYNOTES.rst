@@ -241,6 +241,16 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
+Release 2.2.5 - UI/UX Improvements
+----------------------------------
+* Please use the Django Admin to edit the flatpage contents in the database
+  so that the site navigation can be updated. There needs to be
+  "/about/depositadvice/" added, "/how-to/submit/" updated, and "/about/staff/"
+  title updated.
+* Please check the "django_flatpage_sites" table in the database and make sure
+  that the "site_id" is all marked as "1" or the "site_id" that we are using
+  for this app.
+
 Release 2.1.2 - Merging Old Preconnector
 ----------------------------------------
 * fixing embargo duration
