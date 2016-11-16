@@ -1,7 +1,7 @@
 ﻿{% extends "site_base.html" %}
 {% block page-subtitle %}{{ block.super }} | Feedback{% endblock %}
 
-{% block contentdivclass %}form{% endblock %}
+{% block contentdivclass %}{% endblock %}
 {% block sidebar-title %}Feedback:{% endblock %}
 {% block sidebar-content %}
 <p>Questions or comments about using the site?  Use this form to
@@ -12,11 +12,16 @@ so that we may contact you regarding your feedback.<br />
 {% endblock %}
 
 {% block content %}
-    <div style="text-align: center">
-    You can also find information about OpenEmory on our list of
-        <a href="{{ sitepages.faq.url }}">Frequently Asked Questions</a>
-    </div>
 
+  <div class="right">
+    <div class="top">
+      <h1 class="shadow">Contact OpenEmory Staff</h1>
+      <p>
+      You can also find information about OpenEmory on our list of
+          <a href="{{ sitepages.faq.url }}">Frequently Asked Questions</a>
+      </p>
+    </div>
+  </div>
 
   <form method="post" action=""> {% csrf_token %}
     {{ form.non_field_erros }}
@@ -80,4 +85,5 @@ so that we may contact you regarding your feedback.<br />
       </div>
     </div>
   </form>
+
 {% endblock %}
