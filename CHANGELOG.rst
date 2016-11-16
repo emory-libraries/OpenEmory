@@ -12,10 +12,20 @@ Release 2.2.5 - UI/UX Improvements
   the order of Menu items re-arranged in this way: 1) About OpenEmory,
   2) About Us, 3) Contact Us, 4) Privacy Policy, 5) Terms of Use, so that
   the new order is consistent with the changes made to the OpenEmory page
-  content. (see attached screenshot)
+  content.
 * As an OpenEmory User, I want to see the Emory Open Access Policy link
   moved FROM the "About OpenEmory" dropdown  and TO the 'For Authors"
   dropdown, so that the information is more useful to individual authors
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  words: “Contact OpenEmory staff" in Bold and larger text above the words:
+  “You can also find information about OpenEmory on our list of Frequently
+  Asked Questions” so that the contact link to OpenEmory staff is clear.
+* As an OpenEmory user, accessing the bottom Blue Box I want to see “Tell
+  us what you think:” and “View Top 10 Items and more:” deleted so that the
+  language is removed from the interface.
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  word: “Feedback" in the Blue Box replaced with "Contact Us" in Bold Text,
+  so that the purpose of the form is clear.
 * PMC Harvest queue not Populating since 11.3.2016 - INC02592840
 
 Release 2.2.4 Merging old pre connector records
