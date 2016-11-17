@@ -26,6 +26,12 @@ Release 2.2.5 - UI/UX Improvements
 * As an OpenEmory user accessing the “Feedback Form,” I want to see the
   word: “Feedback" in the Blue Box replaced with "Contact Us" in Bold Text,
   so that the purpose of the form is clear.
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  words: “To contact a faculty author, please use the “Emory Online
+  Directory" with a link to the directory:
+  http://directory.service.emory.edu/index.cfm added to the Blue Box
+  underneath the words: “To View a list of OpenEmory staff, please click
+  here, so that the purpose of the form is clear.
 * PMC Harvest queue not Populating since 11.3.2016 - INC02592840
 
 Release 2.2.4 Merging old pre connector records
