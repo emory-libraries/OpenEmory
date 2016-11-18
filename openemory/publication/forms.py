@@ -33,8 +33,8 @@ from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField,
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
-# from eullocal.django.ldap.backends import LDAPBackend as EmoryLDAPBackend
-from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
+from eullocal.django.ldap.backends import LDAPBackend as EmoryLDAPBackend
+# from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 
 from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
