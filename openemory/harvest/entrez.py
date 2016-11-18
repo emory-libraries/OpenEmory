@@ -40,7 +40,7 @@ class EntrezClient(object):
     <http://www.ncbi.nlm.nih.gov/books/NBK25497/>`_.
     '''
 
-    QUERY_ROOT = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+    QUERY_ROOT = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
     'URL root of all eutils queries'
     ESEARCH = QUERY_ROOT + 'esearch.fcgi?'
     'URL path of esearch queries'

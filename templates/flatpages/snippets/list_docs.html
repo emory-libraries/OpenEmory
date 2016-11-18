@@ -2,29 +2,22 @@
 
 {# about pages #}
 {% if sitepages.staff %}
-<h2 class="shadowLight">
-<a href="/about">About OpenEmory</a>
-  {% include "flatpages/snippets/page_link.html" with page=sitepages.about %}
-</h2> 
-
- <ul>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.getting_started %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.about_profiles %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.authors_rights %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.faq %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.terms %}</li>
- </ul>
-{% endif %}
-
-{# how-to pages #}
-{% if sitepages.howto %}
-<h2 class="shadowLight">
-  {% include "flatpages/snippets/page_link.html" with page=sitepages.howto %}</h2> 
+<h3 class="shadowLight">About OpenEmory</h3>
 <ul>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_edit_profile %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_know_rights %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_submit %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_share %}</li>
-   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_invite %}</li>
+ <li><a href="/about">About OpenEmory</a></li>
+ <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"About Us" }}</a></li>
+ <li><a href="{% url 'feedback' %}">Contact Us</a></li>
+ <li><a href="http://web.library.emory.edu/about/privacy-policy/index.html" alt="Privacy Policy" target="_blank">Privacy Policy</a></li>
+ <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
 </ul>
+
+ <h3 class="shadowLight">For Authors</h3>
+ <ul>
+  <li><a href="{{ sitepages.howto_submit.url }}">{{ sitepages.howto_submit.title|default:"How to Submit" }}</a></li>
+  <li><a href="{{ sitepages.depositadvice.url }}">{{ sitepages.depositadvice.title|default:"Deposit Advice" }}</a></li>
+  <li><a href="{{ sitepages.data_archiving.url }}">{{ sitepages.data_archiving.title|default:"Data Archiving" }}</a></li>
+  <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
+  <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393" target="_blank">Emory Open Access Policy</a></li>
+  <li class="lastLi"><a href="/authors/oa-fund/">Open Access Fund</a></li>
+ </ul>
 {% endif %}
