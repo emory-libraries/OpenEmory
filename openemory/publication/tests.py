@@ -991,7 +991,7 @@ class ValidateNetidTest(TestCase):
         mockldap.return_value.find_user.assert_called
         # mock ldap - not found
         mockldap.return_value.find_user.return_value = (None, None)
-        self.assertRaises(ValidationError, validate_netid, 'noldapuser')
+        self.assertRaises(ValidationError, validate_netid('noldapuser'))
 
 class AuthorNameFormTest(TestCase):
     def setUp(self):
