@@ -33,8 +33,8 @@ from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField,
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
-from eullocal.django.ldap.backends import LDAPBackend as EmoryLDAPBackend
-# from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
+# from eullocal.django.ldap.backends import LDAPBackend as EmoryLDAPBackend
+from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 
 from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
@@ -473,8 +473,10 @@ def validate_netid(value):
         # log ldap requests; using repr so it is evident when ldap is a Mock
         logger.debug('Looking up user in LDAP by netid \'%s\' (using %r)' \
                      % (value, ldap))
-        user = ldap.populate_user(value)
-        if not user:
+        user = ldap.populate_user('zzzzzzzz')
+        print user
+        print "############"
+        if user is None:
             raise ValidationError(u'%s is not a recognized Emory user' % value)
 
 
