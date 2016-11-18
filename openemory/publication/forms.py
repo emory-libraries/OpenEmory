@@ -474,8 +474,6 @@ def validate_netid(value):
         logger.debug('Looking up user in LDAP by netid \'%s\' (using %r)' \
                      % (value, ldap))
         user = ldap.populate_user(value)
-        print user
-        print "############"
         if user is None or not user:
             raise ValidationError(u'%s is not a recognized Emory user' % value)
 
