@@ -131,7 +131,7 @@ class Command(BaseCommand):
         element_obj.provenance.content.init_object(element_obj.pid, 'pid')
         element_obj.provenance.content.merged(original_obj.pid, element_obj.pid)
         
-
+        ArticleStatistics.objects.filter(pid=element_obj.pid).delete()
         for stat in original_stats:
             ArticleStatistics.objects.create(pid=element_obj.pid, year=stat.year, quarter=stat.quarter, num_downloads=stat.num_downloads, num_views=stat.num_views)
         
