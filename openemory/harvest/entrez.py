@@ -1,5 +1,5 @@
 # file openemory/harvest/entrez.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ from datetime import datetime, timedelta
 import logging
 from time import sleep
 from urllib import urlencode
+import urllib2
 
 from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml import xmlmap
@@ -95,7 +96,8 @@ class EntrezClient(object):
         # policies.
         qurl = base_url + urlencode(qargs)
         logger.debug('EntrezClient querying: ' + qurl)
-        return xmlmap.load_xmlobject_from_file(qurl,
+        target_file = urllib2.urlopen(qurl)
+        return xmlmap.load_xmlobject_from_file(target_file,
                 xmlclass=response_xmlclass)
 
     def _enforce_query_timing(self):
