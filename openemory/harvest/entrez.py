@@ -20,7 +20,9 @@ from datetime import datetime, timedelta
 import logging
 from time import sleep
 from urllib import urlencode
-import urllib2
+from urllib import urlopen
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 
 from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
 from eulxml import xmlmap
@@ -96,9 +98,17 @@ class EntrezClient(object):
         # policies.
         qurl = base_url + urlencode(qargs)
         logger.debug('EntrezClient querying: ' + qurl)
-        target_file = urllib2.urlopen(qurl)
-        return xmlmap.load_xmlobject_from_file(target_file,
-                xmlclass=response_xmlclass)
+
+        # use a url validator to examine if the qurl is a file location or a url
+        # open the remote file with urllib.urlopen if it is a url
+        # or open it as a file
+        url_validator = URLValidator()
+        try:
+            url_validator(qurl)
+            target_file = urlopen(qurl)
+            return xmlmap.load_xmlobject_from_file(target_file, xmlclass=response_xmlclass)
+        except ValidationError, e:
+            return xmlmap.load_xmlobject_from_file(qurl, xmlclass=response_xmlclass)
 
     def _enforce_query_timing(self):
         '''Enforce EUtils query speed policy by sleeping to keep queries
