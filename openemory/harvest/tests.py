@@ -292,6 +292,7 @@ class ArticleQuerySetTest(TestCase):
         self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 1)
         # the query included the initial queryset args
         args, kwargs = mock_xmlmap.load_xmlobject_from_file.call_args
+        print args
         query_url = args[0]
         self.assertTrue('db=pmc' in query_url)
         self.assertTrue('usehistory=y' in query_url)
