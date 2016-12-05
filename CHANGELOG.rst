@@ -1,3 +1,55 @@
+Release 2.2.5 - OpenEmory Relaunch Interface Changes
+----------------------------------------------------
+* As an OpenEmory user accessing the “Left navigation Blue box” I want to
+  see the “How to Guides’ deleted on every page with Related Content (see
+  description for multiple page links) so that the left navigation is
+  consistent with the top navigation
+* As an OpenEmory user accessing the “For Authors” tab, I want to see the
+  words “Deposit Advice” directly underneath the changed *How to Submit*
+  so that the added words “Deposit Advice” will link directly to this
+  page: https://open.library.emory.edu/about/depositadvice/
+* As an OpenEmory user accessing the “About OpenEmory” tab, I want to see
+  the order of Menu items re-arranged in this way: 1) About OpenEmory,
+  2) About Us, 3) Contact Us, 4) Privacy Policy, 5) Terms of Use, so that
+  the new order is consistent with the changes made to the OpenEmory page
+  content.
+* As an OpenEmory User, I want to see the Emory Open Access Policy link
+  moved FROM the "About OpenEmory" dropdown  and TO the 'For Authors"
+  dropdown, so that the information is more useful to individual authors
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  words: “Contact OpenEmory staff" in Bold and larger text above the words:
+  “You can also find information about OpenEmory on our list of Frequently
+  Asked Questions” so that the contact link to OpenEmory staff is clear.
+* As an OpenEmory user, accessing the bottom Blue Box I want to see “Tell
+  us what you think:” and “View Top 10 Items and more:” deleted so that the
+  language is removed from the interface.
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  word: “Feedback" in the Blue Box replaced with "Contact Us" in Bold Text,
+  so that the purpose of the form is clear.
+* As an OpenEmory user accessing the “Feedback Form,” I want to see the
+  words: “To contact a faculty author, please use the “Emory Online
+  Directory" with a link to the directory:
+  http://directory.service.emory.edu/index.cfm added to the Blue Box
+  underneath the words: “To View a list of OpenEmory staff, please click
+  here, so that the purpose of the form is clear.
+* As an OpenEmory user accessing the “For Authors” tab, I want to see the
+  order of Menu items arranged in this way: 1) How To Submit, 2) Deposit
+  advice, 3) Data Archiving, 4) FAQ, 5) Emory Open Access Policy,
+  6) Open Access Fund, so that the new order is consistent with the
+  changes made to the OpenEmory page content.
+* As an OpenEmory user accessing the “Left navigation Blue box” I want
+  to see the left navigation categories consistent with top navigation
+  (For Authors and About OpenEmory) so that the left navigation is
+  consistent with the top navigation.
+* PMC Harvest queue not Populating since 11.3.2016 - INC02592840
+* As an OpenEmory user, accessing the bottom Blue Box I want to see the
+  words: “Give Feedback” changed to “Contact Us” and the words:
+  “OpenEmory At a Glance” changed to “Recent and popular items” so that
+  the language is consistent with the changes made to the OpenEmory page
+  content.
+* As an OpenEmory user accessing the bottom blue box, I want to see the
+  Copyright date changed from 2012 to 2016, so that the date is current.
+
 Release 2.2.4 Merging old pre connector records
 -----------------------------------------------
 * fixing solr filter to search buy keywords

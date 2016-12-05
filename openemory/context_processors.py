@@ -1,5 +1,5 @@
 # file openemory/context_processors.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,11 +54,12 @@ def sitepages(request):
     # nickname to be used in the site -> flatpage url
     # alphabetical by url
     nick_urls = {
-        'about': '/about/',
+        'about': '/about/staff',
         'authors_rights': '/about/authors-rights/',
+        'depositadvice': '/about/depositadvice/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
-        'getting_started': '/about/getting-started/',
+        'howto_submit': '/how-to/submit/',
         'staff': '/about/staff/',
         'terms': '/about/terms-of-use/',
 
@@ -67,7 +68,6 @@ def sitepages(request):
         'howto_invite': '/how-to/invite-others/',
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
-        'howto_submit': '/how-to/submit/',
         'data_archiving': '/data-archiving/',
 
         }
@@ -77,7 +77,6 @@ def sitepages(request):
     for nick, url in nick_urls.iteritems():
         if url in pages_by_url:
             nick_pages[nick] = pages_by_url[url]
-
     return {'sitepages': nick_pages}
 
 

@@ -310,25 +310,22 @@ www.352media.com
                   <li>
                     <a href="{{ sitepages.getting_started.url }}">For Authors</a>
                     <ul>
-                      <li><a href="{{ sitepages.getting_started.url }}">{{ sitepages.getting_started.title|default:"Getting Started" }}</a></li>
+                      <li><a href="{{ sitepages.howto_submit.url }}">{{ sitepages.howto_submit.title|default:"How to Submit" }}</a></li>
+                      <li><a href="{{ sitepages.depositadvice.url }}">{{ sitepages.depositadvice.title|default:"Deposit Advice" }}</a></li>
+                      <li><a href="{{ sitepages.data_archiving.url }}">{{ sitepages.data_archiving.title|default:"Data Archiving" }}</a></li>
                       <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
-                      <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
-                      <li><a href="{{ sitepages.howto_submit.url }}">Submit Work</a></li>
-                      <li><a href="/authors/oa-fund/">Open Access Fund</a></li>
-                      <li><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>
-                      <li class="lastLi"><a href="{{ sitepages.data_archiving.url }}">Data Archiving</a></li>
+                      <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393" target="_blank">Emory Open Access Policy</a></li>
+                      <li class="lastLi"><a href="/authors/oa-fund/">Open Access Fund</a></li>
                     </ul>
                   </li>
                   <li class="lastLi">
-                    <a href="{{ sitepages.about.url }}">About OpenEmory</a>
+                    <a href="/about">About OpenEmory</a>
                     <ul>
-                      <li><a href="{{ sitepages.about.url }}">{{ sitepages.about.title|default:"About OpenEmory" }}</a></li>
-                      <li><a href="{{ sitepages.about_profiles.url }}">{{ sitepages.about_profiles.title|default:"About Faculty Profiles" }}</a></li>
-                      <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
-                      <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393" target="_blank">Emory Open Access Policy</a></li>
-                      <li><a href="http://web.library.emory.edu/about/privacy-policy/index.html " target="_blank">Privacy Policy</a></li>
-                      <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"Staff" }}</a></li>
+                      <li><a href="/about">About OpenEmory</a></li>
+                      <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"About Us" }}</a></li>
                       <li><a href="{% url 'feedback' %}">Contact Us</a></li>
+                      <li><a href="http://web.library.emory.edu/about/privacy-policy/index.html " target="_blank">Privacy Policy</a></li>
+                      <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -364,17 +361,11 @@ www.352media.com
             </form>
           </div>
           <div class="socialMedia">
-            <div class="connect">
-              <span>
-                Connect with us:</span>
-              <a href="https://twitter.com/share" class="twitter-share-button twitter social" data-lang="en" target="_blank"></a>
-            </div>
             <div class="feedback">
-              <span>
-                Tell us what you think:</span>
               <a href="{% url 'feedback' %}" class="button">
-                <span>
-                  Give Feedback</span></a></div>
+                <span>Contact Us</span>
+              </a>
+            </div>
             <div class="clear"></div>
           </div>
         </div>
@@ -434,6 +425,9 @@ www.352media.com
               {% endblock %}
         {% endcomment %}
             </div>
+            <div class="bottom" style="margin-top:1px; padding:0px;">
+                {% block sidebar-content-2 %}{% endblock sidebar-content-2 %}
+            </div>
           </div>
         {% endblock %}
 
@@ -456,61 +450,31 @@ www.352media.com
 
     <div class="footer">
       {% block footer-head %}
+
       <div class="wrapper first">
-        <div class="leftCol">
-          <div class="formThird">
-            <ul>
-              <li class="firstLi">Browse By:</li>
-              <li><a href="{% url 'publication:browse' 'authors' %}">Author</a></li>
-              <li><a href="{% url 'publication:browse' 'journals' %}">Journal</a></li>
-              <li><a href="{% url 'publication:browse' 'subjects' %}">Subject</a></li>
-            </ul>
-          </div>
-          <div class="formThird">
-            <ul>
-              <li><a href="{{ sitepages.about.url }}">About Us</a></li>
-              <li><a href="{{ sitepages.getting_started.url }}">Publication Information</a></li>
-              <li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
-              <li><a href="{% url 'feedback' %}">Contact Us</a></li>
-          </div>
-          {% if user.is_authenticated %}
-          <div class="formThird">
-            <ul>
-              <li class="firstLi"><a href="#">My Account:</a></li>
-              {% if user.get_profile.has_profile_page %}
-              <li><a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a></li>
-              {% if perms.publication.add_articlerecord %}
-                <li><a href="{% url 'publication:ingest' %}">Upload Work</a></li>
-                {% endif %}
-              <li><a href="#">Unpublished Queue</a></li> {# TODO #}
-              {% endif %}
-
-              {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-              <li><a href="{% url 'accounts:admin-dashboard' %}#harvest">Harvest Queue</a></li>
-              {% endif %}
-
-              {% if perms.publication.review_article %}
-              <li><a href="{% url 'accounts:admin-dashboard' %}#review">Review Queue</a></li>
-              {% endif %}
-            </ul>
-          </div>
-          {% endif %}
-        </div>
-        <div class="rightCol">{# TODO: re-usable template snippet ? #}
-          <h5>Site Statistics:</h5>
-          <ul>
-            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total work</li>
-            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
-            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
-            <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
-          </ul>
-        </div>
-
+        <div id="site-stat-label">Site Statistics</div>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</li>
+          <li class="stat-label">Total Work{{ ARTICLE_STATISTICS.total_articles|pluralize}}</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.total_downloads|intcomma }}</li>
+          <li class="stat-label">Download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ARTICLE_STATISTICS.year_downloads|intcomma }}</li>
+          <li class="stat-label">Download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} This Year</li>
+        </ul>
+        <ul class="site-stat">
+          <li class="stat-val">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</li>
+          <li class="stat-label">Faculty Profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
+        </ul>
       </div>
+
       {% endblock %}
       <div class="wrapper second">
         <div class="leftCol">
-          <p>Copyright © 2012 Emory
+          <p>Copyright © 2016 Emory
             University - All
             Rights Reserved<br />
             540 Asbury Circle,
@@ -526,18 +490,12 @@ www.352media.com
 
         </div>
         <div class="rightCol">
-          <p>Tell us what you
-          think: <a href="{% url 'feedback' %}"
-          class="button">
-            <span>
-              Give
-              Feedback</span></a></p>
-          <p>View Top 10 Items and
-          more: <a href="{% url 'publication:summary' %}"
-          class="button">
-            <span>
-              OpenEmory At a
-              Glance</span></a></p>
+          <a href="{% url 'feedback' %}" class="button">
+            <span>Contact Us</span>
+          </a>
+          <a href="{% url 'publication:summary' %}" class="button">
+            <span>Recent and Popular Items</span>
+          </a>
         </div>
 
       </div>

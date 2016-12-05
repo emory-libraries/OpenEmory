@@ -34,7 +34,7 @@ from django.utils.safestring import mark_safe
 from eulfedora.models import FileDatastream, \
      XmlDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
-#from eulfedora.indexdata.util import pdf_to_text
+from eulfedora.indexdata.util import pdf_to_text
 from openemory.publication.symp_import import OESympImportPublication, \
     SympDate, SympPerson, SympRelation, SympWarning
 from openemory.util import pdf_to_text
@@ -1567,7 +1567,7 @@ class Publication(DigitalObject):
             except Exception as e:
                 # errors if datastream cannot be read as a pdf
                 # (should be less of an issue after we add format validation)
-                logger.error('Failed to read %s pdf datstream content for indexing: %s' \
+                logger.error('Failed to read %s pdf datastream content for indexing: %s' \
                              %  (self.pid, e))
 
 

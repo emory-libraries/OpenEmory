@@ -1,22 +1,30 @@
 ﻿{% extends "site_base.html" %}
-{% block page-subtitle %}{{ block.super }} | Feedback{% endblock %}
+{% block page-subtitle %}{{ block.super }} | Contact Us{% endblock %}
 
-{% block contentdivclass %}form{% endblock %}
-{% block sidebar-title %}Feedback:{% endblock %}
+{% block contentdivclass %}{% endblock %}
+{% block sidebar-title %}Contact Us:{% endblock %}
 {% block sidebar-content %}
 <p>Questions or comments about using the site?  Use this form to
 contact site administrators.  Please provide us with your information
 so that we may contact you regarding your feedback.<br />
-<a href="{{ sitepages.staff.url }}">To view a list of OpenEmory staff, please click here.</a>
+To view a list of OpenEmory staff, please <a href="{{ sitepages.staff.url }}">click here.</a>
 </p>
-{% endblock %}
+{% endblock sidebar-content %}
+{% block sidebar-content-2 %}
+<p style="padding:12px 10px 1px;">To contact a faculty author, please use the <a target="_blank" href="http://directory.service.emory.edu/index.cfm">Emory Online Directory</a></p>
+{% endblock sidebar-content-2 %}
 
 {% block content %}
-    <div style="text-align: center">
-    You can also find information about OpenEmory on our list of
-        <a href="{{ sitepages.faq.url }}">Frequently Asked Questions</a>
-    </div>
 
+  <div class="right">
+    <div class="top">
+      <h1 class="shadow">Contact OpenEmory Staff</h1>
+      <p>
+      You can also find information about OpenEmory on our list of
+          <a href="{{ sitepages.faq.url }}">Frequently Asked Questions</a>
+      </p>
+    </div>
+  </div>
 
   <form method="post" action=""> {% csrf_token %}
     {{ form.non_field_erros }}
@@ -80,4 +88,5 @@ so that we may contact you regarding your feedback.<br />
       </div>
     </div>
   </form>
+
 {% endblock %}
