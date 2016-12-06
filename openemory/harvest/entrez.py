@@ -106,7 +106,7 @@ class EntrezClient(object):
         try:
             url_validator(qurl)
             target_file = urlopen(qurl)
-            return xmlmap.load_xmlobject_from_file(target_file.read(), xmlclass=response_xmlclass)
+            return xmlmap.load_xmlobject_from_file(target_file, xmlclass=response_xmlclass)
         except ValidationError, e:
             return xmlmap.load_xmlobject_from_file(qurl, xmlclass=response_xmlclass)
 
