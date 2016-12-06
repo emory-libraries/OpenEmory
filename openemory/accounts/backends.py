@@ -33,10 +33,6 @@ class FacultyOrLocalAdminBackend(LDAPBackend):
         # Only authenticate users who are flagged as faculty in ESD
         # or local accounts with superuser permission, 'Site Admin' role
         # or nonfaculty_flag set
-        print User.objects.filter(username=username)\
-               .filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | \
-                       Q(userprofile__nonfaculty_profile=True))
-        print EsdPerson.faculty.filter(netid=username.upper()).exists()
         if User.objects.filter(username=username)\
                .filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | \
                        Q(userprofile__nonfaculty_profile=True))\
