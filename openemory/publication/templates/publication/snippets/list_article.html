@@ -87,9 +87,11 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   </div>
   <div class="formQuarter last">
     <ul>
-   {# link to download PDF, if available and has correct perm or owner #}
-   {% if 'content' in article.dsids  %}
+    {# link to download PDF, if available and has correct perm or owner #}
+    {% if 'content' in article.dsids  %}
+      {% if perms.publication.view_embargoed or article.embargo_end == None or now > article.embargo_end %}
       <li><a href="{% url 'publication:pdf' article.pid %}" class="Download">File Download</a></li>
+      {% endif %}
    {% endif %}
 
    {% if article.pmcid %} {# TODO: alternate versions ? #}
