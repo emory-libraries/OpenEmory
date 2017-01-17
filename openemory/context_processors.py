@@ -68,7 +68,7 @@ def sitepages(request):
         'howto_invite': '/how-to/invite-others/',
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
-        'data_archiving': '/data-archiving/',
+        'publishing_your_data': '/publishing-your-data/',
 
         }
 
