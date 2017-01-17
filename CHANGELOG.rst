@@ -19,7 +19,11 @@ Release 2.2.6 - OpenEmory Relaunch Interface Changes
   dropdown, I want to see the words "Citing OpenEmory Content" with a
   link: https://open.library.emory.edu/about/citing/, so that I can easily
   access the page.
-
+* As an OpenEmory user accessing the “Left navigation Blue box” I want to
+  see the words “Citing OpenEmory Content" added underneath the "About
+  OpenEmory" heading with a link:
+  https://open.library.emory.edu/about/citing/, so that the left navigation
+  is consistent with the top navigation.
 
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
