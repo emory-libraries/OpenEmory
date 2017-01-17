@@ -1,3 +1,10 @@
+Release 2.2.6 - OpenEmory Relaunch Interface Changes
+----------------------------------------------------
+* As an OpenEmory user accessing the “For Authors” tab, I want to Add the
+  words “Author Rights” to the menu dropdown, with this link:
+  https://open.library.emory.edu/about/authors-rights/ so that I can
+  easily access the page. (see screenshot)
+
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
 * As an OpenEmory user accessing the “Left navigation Blue box” I want to

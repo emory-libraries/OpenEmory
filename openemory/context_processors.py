@@ -55,7 +55,7 @@ def sitepages(request):
     # alphabetical by url
     nick_urls = {
         'about': '/about/staff',
-        'authors_rights': '/about/authors-rights/',
+        'author_rights': '/about/author-rights/',
         'depositadvice': '/about/depositadvice/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
