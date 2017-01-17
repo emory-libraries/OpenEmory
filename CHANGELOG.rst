@@ -11,6 +11,10 @@ Release 2.2.6 - OpenEmory Relaunch Interface Changes
   see the “Author Rights" words and link added underneath the "For Authors"
   heading", so that the left navigation is consistent with the top
   navigation.
+* As an OpenEmory user accessing the “For Authors” left navigation blue
+  box, I want to see the words "Data Archiving" changed to "Publishing
+  Your Data" so that the left navigation is consistent with the top
+  navigation.
 
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
