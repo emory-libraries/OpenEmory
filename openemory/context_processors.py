@@ -69,6 +69,7 @@ def sitepages(request):
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
         'publishing_your_data': '/publishing-your-data/',
+        'citing_openemory_content': '/about/citing/',
 
         }
 

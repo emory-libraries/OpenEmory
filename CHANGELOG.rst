@@ -15,6 +15,11 @@ Release 2.2.6 - OpenEmory Relaunch Interface Changes
   box, I want to see the words "Data Archiving" changed to "Publishing
   Your Data" so that the left navigation is consistent with the top
   navigation.
+* As an OpenEmory user accessing the “About OpenEmory” top navigation
+  dropdown, I want to see the words "Citing OpenEmory Content" with a
+  link: https://open.library.emory.edu/about/citing/, so that I can easily
+  access the page.
+
 
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
