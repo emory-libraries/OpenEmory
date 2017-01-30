@@ -205,9 +205,9 @@ def setup_virtualenv(python=None):
              user=env.remote_acct)
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
-            local('pip install lxml --upgrade --force-reinstall --no-binary :all:')
             with bootstrap_unix_env():
                 pip_cmd = 'pip install -r pip-install-req.txt'
+                local('pip install lxml --upgrade --force-reinstall --no-binary :all:')
                 if env.remote_proxy:
                     pip_cmd += ' --proxy=%(remote_proxy)s' % env
                 sudo(pip_cmd, user=env.remote_acct)
