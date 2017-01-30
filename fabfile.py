@@ -207,10 +207,10 @@ def setup_virtualenv(python=None):
         with prefix('source env/bin/activate'):
             with bootstrap_unix_env():
                 pip_cmd = 'pip install -r pip-install-req.txt'
-                local('pip install lxml --upgrade --force-reinstall --no-binary :all:')
                 if env.remote_proxy:
                     pip_cmd += ' --proxy=%(remote_proxy)s' % env
                 sudo(pip_cmd, user=env.remote_acct)
+                sudo('pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
                     pip_cmd = 'pip install -r ../pip-local-req.txt'
                     if env.remote_proxy:
