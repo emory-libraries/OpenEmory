@@ -1,5 +1,10 @@
-Release 2.2.6 - OpenEmory Relaunch Interface Changes
+Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
+* Cannot Ingest PMC articles from Harvest Q in OpenEmory TEST
+* Update eullocal so it doesn't crash deploy process
+* Add lxml rebuild to the fab deploy process so that it rebuilds every
+  time after being deployed; update the version of eullocal to avoid
+  SiteProfileNotAvailable error after deploy
 * As an OpenEmory user accessing the “For Authors” tab, I want to Add the
   words “Author Rights” to the menu dropdown, with this link:
   https://open.library.emory.edu/about/authors-rights/ so that I can
@@ -24,9 +29,6 @@ Release 2.2.6 - OpenEmory Relaunch Interface Changes
   OpenEmory" heading with a link:
   https://open.library.emory.edu/about/citing/, so that the left navigation
   is consistent with the top navigation.
-
-Release 2.2.5 - OpenEmory Relaunch Interface Changes
-----------------------------------------------------
 * As an OpenEmory user accessing the “Left navigation Blue box” I want to
   see the “How to Guides’ deleted on every page with Related Content (see
   description for multiple page links) so that the left navigation is
