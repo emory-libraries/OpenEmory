@@ -44,6 +44,7 @@ def all_deps():
     local('pip install -r pip-install-req.txt -r pip-dev-req.txt')
     if os.path.exists('pip-local-req.txt'):
         local('pip install -r pip-local-req.txt')
+    local('pip install lxml --upgrade --force-reinstall --no-binary :all:')
     local("export DJANGO_SETTINGS_MODULE=%(project)s.settings && pip install -r pip-install-after-config.txt" % env)
 
 @task
@@ -209,6 +210,7 @@ def setup_virtualenv(python=None):
                 if env.remote_proxy:
                     pip_cmd += ' --proxy=%(remote_proxy)s' % env
                 sudo(pip_cmd, user=env.remote_acct)
+                sudo('pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
                     pip_cmd = 'pip install -r ../pip-local-req.txt'
                     if env.remote_proxy:

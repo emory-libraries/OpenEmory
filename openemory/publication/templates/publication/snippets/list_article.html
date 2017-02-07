@@ -12,26 +12,25 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
     {# <div class="commentCol"><a href="#" title="click to view comments">27</a></div> #} {# no comments yet #}
     <div class="details">
     {% if article.record_type == "publication_article"%}
-<h3>Article</h3>
-{% elif article.record_type == "publication_book"%}
-<h3>Book</h3>
-{% elif article.record_type == "publication_chapter"%}
-<h3>Chapter</h3>
+      <h3>Article</h3>
+      {% elif article.record_type == "publication_book"%}
+      <h3>Book</h3>
+      {% elif article.record_type == "publication_chapter"%}
+      <h3>Chapter</h3>
 
-{% elif article.record_type == "publication_conference"%}
-<h3>Conference</h3>
+      {% elif article.record_type == "publication_conference"%}
+      <h3>Conference</h3>
 
-{% elif article.record_type == "publication_report"%}
-<h3>Report</h3>
+      {% elif article.record_type == "publication_report"%}
+      <h3>Report</h3>
 
-{% elif article.record_type == "publication_poster"%}
-<h3>Poster</h3>
+      {% elif article.record_type == "publication_poster"%}
+      <h3>Poster</h3>
 
-{% elif article.record_type == "publication_presentation"%}
-<h3>Presentation</h3>
+      {% elif article.record_type == "publication_presentation"%}
+      <h3>Presentation</h3>
+    {% endif %}
 
-{% endif %}
-    
       <a href="{% url 'publication:view' article.pid %}" class="title">{{ article.title }}</a>
       {# TODO: only display first 3? authors #}
       <p class="authors">by
@@ -54,7 +53,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% else %}
 <p class="Reference">{{ article.pubdate }}</p>
 {% endif %}
-  
+
 
   {% if article.solr_highlights %} {# highlighting snippets for search results #}
     {% if article.solr_highlights.fulltext %}
@@ -94,15 +93,15 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
       <li><a href="{% url 'publication:pdf' article.pid %}" class="Download">File Download</a></li>
       {% endif %}
    {% endif %}
-   
+
    {% if article.pmcid %} {# TODO: alternate versions ? #}
      <li><a href="{{ article.pmcid|pmc_url }}" title="view on PubMed Central" class="Published" target="_blank">View on PubMed Central</a></li>
    {% endif %}
-   
+
    {% if article.abstract %}
      <li><a href="#" class="viewAbstract">View Abstract</a></li>
    {% endif %}
-   
+
    {% if user.is_authenticated %}
      {# display an edit link when appropriate -  author+unpublished or reviewer #}
      {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
@@ -111,7 +110,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
    {% endif %} {# end logged in #}
 
     </ul>
-   
+
    {% if article.abstract %}
          <div class="viewAbstractPopup" style="display:none">
            <h1 class="shadow">Abstract:<a class="closeBlue shadow">Close</a></h1>

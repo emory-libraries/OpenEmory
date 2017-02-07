@@ -1,5 +1,34 @@
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
+* Cannot Ingest PMC articles from Harvest Q in OpenEmory TEST
+* Update eullocal so it doesn't crash deploy process
+* Add lxml rebuild to the fab deploy process so that it rebuilds every
+  time after being deployed; update the version of eullocal to avoid
+  SiteProfileNotAvailable error after deploy
+* As an OpenEmory user accessing the “For Authors” tab, I want to Add the
+  words “Author Rights” to the menu dropdown, with this link:
+  https://open.library.emory.edu/about/authors-rights/ so that I can
+  easily access the page.
+* As an OpenEmory user accessing the “For Authors” dropdown, I want to see
+  the words "Data Archiving" changed to "Publishing Your Data" so that the
+  language is consistent with the changes made to the page content.
+* As an OpenEmory user accessing the “Left navigation Blue box” I want to
+  see the “Author Rights" words and link added underneath the "For Authors"
+  heading", so that the left navigation is consistent with the top
+  navigation.
+* As an OpenEmory user accessing the “For Authors” left navigation blue
+  box, I want to see the words "Data Archiving" changed to "Publishing
+  Your Data" so that the left navigation is consistent with the top
+  navigation.
+* As an OpenEmory user accessing the “About OpenEmory” top navigation
+  dropdown, I want to see the words "Citing OpenEmory Content" with a
+  link: https://open.library.emory.edu/about/citing/, so that I can easily
+  access the page.
+* As an OpenEmory user accessing the “Left navigation Blue box” I want to
+  see the words “Citing OpenEmory Content" added underneath the "About
+  OpenEmory" heading with a link:
+  https://open.library.emory.edu/about/citing/, so that the left navigation
+  is consistent with the top navigation.
 * As an OpenEmory user accessing the “Left navigation Blue box” I want to
   see the “How to Guides’ deleted on every page with Related Content (see
   description for multiple page links) so that the left navigation is

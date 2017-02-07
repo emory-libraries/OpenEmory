@@ -241,6 +241,17 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
+Release 2.2.6 - OpenEmory Relaunch Interface Changes
+----------------------------------------------------
+* Please use the Django Admin to edit the flatpage contents in the database
+  so that the site navigation can be updated. The "/about/authors-rights/" needs
+  to be updated to "/about/author-rights/", title "Authors' Rights" needs to
+  be updated to "Author Rights".
+* Please use the Django Admin to edit the flatpage contents in the database
+  so that the site navigation can be updated. The "/data-archiving/" needs
+  to be updated to "/publishing-your-data/", title "Data Archiving" needs to
+  be updated to "Publishing Your Data".
+
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
 * Please use the Django Admin to edit the flatpage contents in the database
@@ -250,6 +261,9 @@ Release 2.2.5 - OpenEmory Relaunch Interface Changes
 * Please check the "django_flatpage_sites" table in the database and make sure
   that the "site_id" is all marked as "1" or the "site_id" that we are using
   for this app.
+* Currently the Admin page may not be viewable due to a problem in eullocal;
+  until it is fixed permanently, we just need to delete: `SiteProfileNotAvailable`
+  from `/home/httpd/openemory/env/lib/python2.7/site-packages/eullocal/django/ldap/backends.py`.
 
 Release 2.1.2 - Merging Old Preconnector
 ----------------------------------------
