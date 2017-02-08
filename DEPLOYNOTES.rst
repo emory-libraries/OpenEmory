@@ -241,7 +241,7 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
-Release 2.2.6 - OpenEmory Relaunch Interface Changes
+Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
 * Please use the Django Admin to edit the flatpage contents in the database
   so that the site navigation can be updated. The "/about/authors-rights/" needs
@@ -251,9 +251,6 @@ Release 2.2.6 - OpenEmory Relaunch Interface Changes
   so that the site navigation can be updated. The "/data-archiving/" needs
   to be updated to "/publishing-your-data/", title "Data Archiving" needs to
   be updated to "Publishing Your Data".
-
-Release 2.2.5 - OpenEmory Relaunch Interface Changes
-----------------------------------------------------
 * Please use the Django Admin to edit the flatpage contents in the database
   so that the site navigation can be updated. There needs to be
   "/about/depositadvice/" added, "/how-to/submit/" updated, and "/about/staff/"
