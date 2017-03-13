@@ -55,7 +55,7 @@ def sitepages(request):
     # alphabetical by url
     nick_urls = {
         'about': '/about/staff',
-        'authors_rights': '/about/authors-rights/',
+        'author_rights': '/about/author-rights/',
         'depositadvice': '/about/depositadvice/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
@@ -68,7 +68,8 @@ def sitepages(request):
         'howto_invite': '/how-to/invite-others/',
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
-        'data_archiving': '/data-archiving/',
+        'publishing_your_data': '/publishing-your-data/',
+        'citing_openemory_content': '/about/citing/',
 
         }
 
