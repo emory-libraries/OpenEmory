@@ -42,6 +42,7 @@ env.omit_coverage = ','.join([
 def all_deps():
     '''Locally install all dependencies.'''
     local('pip install -r pip-install-req.txt -r pip-dev-req.txt')
+    local('pip install lxml --upgrade --force-reinstall --no-binary :all:')
     if os.path.exists('pip-local-req.txt'):
         local('pip install -r pip-local-req.txt')
     local("export DJANGO_SETTINGS_MODULE=%(project)s.settings && pip install -r pip-install-after-config.txt" % env)
