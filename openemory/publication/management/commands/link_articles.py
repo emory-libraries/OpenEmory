@@ -86,10 +86,6 @@ class Command(BaseCommand):
         self.output(1, '%s UTC' % date_str)
 
         try:
-            # Raise error if replace or ignore is not specified
-            if self.options['replace'] is self.options['ignore']:
-                raise Exception("no actions set. Specify --replace or --ignore")
-
             #if pids specified, use that list
             if len(args) != 0:
                 pids = list(args)
@@ -106,7 +102,8 @@ class Command(BaseCommand):
             obj = self.repo.get_object(pid=pids[0])
             if not obj.exists:
                 self.output(1, "Skipping because %s does not exist" % pids[0])
-                continue
+                raise Exception("Error getting pids: %s" % e.message)
+                # continue
 
             # choose content type
             content_types = {'Article': 'journal article'}
@@ -117,36 +114,53 @@ class Command(BaseCommand):
                 obj = self.repo.get_object(pid=pids[0], type=Publication)
             else:
                 logging.info("Skipping %s Invalid Content Type" % pids[0])
-                continue
+                raise Exception("Error getting pids: %s" % e.message)
+                # continue
 
             # Get the pubs object
             # pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
             pubs_id = "pubs:%s" % (pids[1])
             self.output(1, "Pub ID: %s" % pubs_id)
             #ingesting new pubs_id object
-            pubs_obj = self.repo.ingest(pid=pubs_id)
-
-            pubs_dc = '<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"><dc:identifier>'+ pubs_id +'</dc:identifier></oai_dc:dc>'
-            pubs_obj.dc.content = pubs_dc
+            foxml = '<?xml version="1.0" encoding="UTF-8"?>'
+                    '<foxml:digitalObject VERSION="1.1" PID="'+ pubs_id +'"'
+                    'xmlns:foxml="info:fedora/fedora-system:def/foxml#"'
+                    'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+                    'xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">'
+                    '<foxml:objectProperties>'
+                    '<foxml:property NAME="info:fedora/fedora-system:def/model#state" VALUE="Active"/>'
+                    '</foxml:objectProperties>'
+                    '</foxml:digitalObject>'
+            pubs_obj = self.repo.ingest(text=foxml)
+            obj = repo.get_object(pid=pubs_id)
+            obj.dc.content.identifier_list.extend(pubs_id)
+            original_pid = repo.get_object(pid=pids[0], type=Publication)
+            # pubs_dc = '<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"><dc:identifier>'+ pubs_id +'</dc:identifier></oai_dc:dc>'
+            # pubs_obj.dc.content = pubs_dc
 
 
             # Update pubs object to point hasCurrent and hasVisible attibutes to the original_pid
             sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
             pubs_obj.rels_ext.content.bind('symp', sympns)
-            has_current = (URIRef("info:fedora/"+pubs_obj.pid),\
+            has_current = (URIRef("info:fedora/"+obj.pid),\
                             URIRef('info:symplectic/symplectic-elements:def/model#hasCurrent'), \
                             URIRef(original_pid))
             has_visible = (URIRef("info:fedora/"+pubs_id),\
                             URIRef('info:symplectic/symplectic-elements:def/model#hasVisible'), \
                             URIRef(original_pid))
             # hasCurrent
-            pubs_obj.rels_ext.content.set(has_current)
+            obj.rels_ext.content.set(has_current)
 
             # hasVisible
-            pubs_obj.rels_ext.content.set(has_visible)
+            obj.rels_ext.content.set(has_visible)
 
             # Close pubs rels_ext object
-            pubs_obj.rels_ext.content.close()
+            obj.rels_ext.content.close()
+
+            
+            symp_pub, relations = original_pid.as_symp()
+            self.process_article(original_pid.pid, symp_pub, options)
+            self.process_relations(original_pid.pid, relations, options)
 
             # SAVE OBJECTS UNLESS NOACT OPTION
             if not options['noact']:
@@ -162,7 +176,7 @@ class Command(BaseCommand):
             raise
 
         except Exception as e:
-            self.output(1, "Error processing %s: %s" % (pid, e.message))
+            self.output(1, "Error processing %s: %s" % (pids[0], e.message))
             self.output(1, obj.rels_ext.content.serialize(pretty=True))
             self.counts['errors']+=1
 
@@ -186,8 +200,8 @@ class Command(BaseCommand):
         with open(os.path.join(self.reportsdirectory, self.reportname), 'a') as f:
           for pid in duplicates:
             try:
-              f.write("Duplicate pid: %s\n" % pid)
-              f.write("Original pid for duplicate: %s\n\n" % duplicates[pid])
+              f.write("Duplicate pid: %s\n" % pids[0])
+              f.write("Original pid for duplicate: %s\n\n" % duplicates[pids[0]])
             except:
               self.stdout.write("Something went wrong when writing the report.\n")
           if kwarg and "interrupt" in kwarg['error']:
@@ -198,4 +212,77 @@ class Command(BaseCommand):
     def output(self, v, msg):
         '''simple function to handle logging output based on verbosity'''
         if self.verbosity >= v:
-            self.stdout.write("%s\n" % msg)
+
+    def process_article(self, pid, symp_pub, options):
+        self.output(1,"Processing Article %s" % pid)
+
+        # put article xml
+        url = '%s/%s' % (self.pub_create_url, pid)
+        status = None
+        if symp_pub.is_empty():
+            self.output(1,"Skipping becase XML is empty")
+            self.counts['skipped']+=1
+            return
+        valid = symp_pub.is_valid()
+        self.output(2,"XML valid: %s" % valid)
+        if not valid:
+            self.output(0, "Error publication xml is not valid for pid %s %s" % (pid, symp_pub.validation_errors()))
+            self.counts['errors']+=1
+            return
+        if not options['noact']:
+            response = self.session.put(url, data=symp_pub.serialize())
+            status = response.status_code
+        self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
+        self.output(2, "=====================================================================")
+        self.output(2, symp_pub.serialize(pretty=True).decode('utf-8', 'replace'))
+        self.output(2,"---------------------------------------------------------------------")
+        if status and status not in [200, 201]:
+            self.output(0,"Error publication PUT returned code %s for %s" % (status, pid))
+            self.counts['errors']+=1
+            return
+        elif not options['noact']:
+            # checkd for warnings
+            for w in load_xmlobject_from_string(response.raw.read(), OESympImportPublication).warnings:
+                self.output(0, 'Warning: %s %s' % (pid, w.message))
+                self.counts['warnings']+=1
+        self.counts['articles_processed']+=1
+
+
+    def process_relations(self, pid, relations, options):
+
+        self.output(1,"Processing Relationss for %s" % pid)
+
+        # put relationship xml
+        url = self.relation_create_url
+        status= None
+        for r in relations:
+            self.output(0, "%s %s" % (r.from_object, r.to_object))
+            status = None
+            valid = r.is_valid()
+            self.output(2,"XML valid: %s" % valid)
+            if not valid:
+                self.output(0, "Error because a relation xml is not valid for pid %s %s" % (pid, r.validation_errors()))
+                self.counts['errors']+=1
+                continue
+            if not options['noact']:
+                response = self.session.post(self.relation_create_url, data=r.serialize())
+                status = response.status_code
+
+            self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+            self.output(2,r.serialize(pretty=True))
+            self.output(2,"---------------------------------------------------------------------")
+        self.output(2,"=====================================================================")
+        if status and status not in [200, 201]:
+            self.output(0,"Error relation POST returned code %s for %s" % (status, pid))
+            self.counts['errors']+=1
+            return
+        elif not options['noact']:
+            # checkd for warnings
+            try:
+                for w in load_xmlobject_from_string(response.raw.read(), OESympImportPublication).warnings:
+                    self.output(0, 'Warning: %s %s' % (pid, w.message))
+                    self.counts['warnings']+=1
+            except:
+                self.output(0,"Trouble reding warnings for relation record in %s" % pid)
+
+        self.counts['relations_processed']+=1

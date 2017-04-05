@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block object-tools %}
+  {{ block.super }}
+  {% if has_add_permission %}
+    <div class='addlink-form'>
+      <form action='add-username/' method='post'>
+        <input type='submit' value='Add username' />
+        <input name='netid' id='netid' />
+        {% csrf_token %}
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}

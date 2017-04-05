@@ -68,7 +68,7 @@ def sitepages(request):
         'howto_invite': '/how-to/invite-others/',
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
-        'publishing_your_data': '/publishing-your-data/',
+        'publishing_your_data': 'http://sco.library.emory.edu/research-data-management/publishing/',
         'citing_openemory_content': '/about/citing/',
 
         }
