@@ -17,7 +17,7 @@ pyPdf
 django-taggit # check to see later version is compatible after upgrade to django 1.5
 Pillow # python imaging library (for profile images)
 markdown
--e git+https://github.com/emory-libraries/pidman-client.git@release-1.1.2#egg=pidservices
+git+https://github.com/emory-libraries/pidman-client.git#egg=pidservices
 python-dateutil
 # The current version of xhtml2pdf (0.1b2 as of 08/12/2016) will give us a problem
 # that the PDF cover page of artcile downloads will be blank. The rest of the PDF

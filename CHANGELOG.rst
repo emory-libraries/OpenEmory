@@ -1,3 +1,7 @@
+Release 2.2.7 - OpenEmory Relaunch Interface Changes
+----------------------------------------------------
+
+
 Release 2.2.5 - OpenEmory Relaunch Interface Changes
 ----------------------------------------------------
 * Cannot Ingest PMC articles from Harvest Q in OpenEmory TEST
