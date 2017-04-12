@@ -34,8 +34,8 @@ from django.utils.unittest import skip
 
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
+from recaptcha.client import captcha
 from django_auth_ldap.backend import LDAPBackend as EmoryLDAPBackend
-from eullocal.django.forms.tests import MockCaptcha
 
 from mock import Mock, patch, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
@@ -76,6 +76,22 @@ USER_CREDENTIALS = {
 def simple_view(request):
     "a simple view for testing custom auth decorators"
     return HttpResponse("Hello, World")
+
+class MockCaptcha:
+    'Mock captcha client to allow testing without querying captcha servers'
+    response = captcha.RecaptchaResponse(True)
+    submit_args = {}
+    display_arg = None
+
+    def displayhtml(self, pubkey, use_ssl):
+        self.display_arg = pubkey
+        self.use_ssl = use_ssl
+        return ''
+
+    def submit(self, challenge, response, private_key, remote_ip):
+        self.submit_args = {'challenge': challenge, 'response': response,
+            'private_key': private_key, 'remote_ip': remote_ip}
+        return self.response
 
 class BasePermissionTestCase(TestCase):
     '''Common setup/teardown functionality for permission_required and

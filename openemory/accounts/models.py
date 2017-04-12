@@ -24,7 +24,6 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
 import logging
@@ -40,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 # add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
-class UserProfile(AbstractEmoryLDAPUserProfile):
+class UserProfile(models.Model):
     user = models.OneToOneField(User)
     research_interests = TaggableManager(verbose_name='Research Interests',
         help_text='Comma-separated list of public research interests',
@@ -55,8 +54,33 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     biography = models.TextField(help_text='Biographical paragraph for public profile',
         blank=True, default='')
 
+    phone = models.CharField(max_length=50, blank=True)
+    
+    dept_num = models.CharField(max_length=50, blank=True)
+    
+    full_name = models.CharField(max_length=100, blank=True)
+    
+    title = models.CharField(max_length=100, blank=True)
+    
+    employee_num = models.CharField(max_length=50, blank=True)
+    
+    subdept_code = models.CharField(max_length=50, blank=True)
+    
+    hr_id = models.CharField(max_length=50, blank=True)
+   
+
+
     class Meta:
         ordering = ['user__username']
+        
+    def __unicode__(self):
+        return unicode(self.user)
+
+    def get_full_name(self):
+        '''Get full name from LDAP if available; returns
+        :meth:`django.contrib.auth.models.User.get_full_name` when
+        full_name is not set in profile.'''
+        return self.full_name or self.user.get_full_name()
 
 
     def _find_articles(self):

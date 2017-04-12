@@ -1,5 +1,10 @@
-Release 2.2.7 - OpenEmory Relaunch Interface Changes
-----------------------------------------------------
+Release 2.2.7 - OpenEmory Tech Debt
+-----------------------------------
+* add the following redirects to the OpenEmory Test and Production sites
+* When clicking on the User Profile section in Admin there is an error.
+* no longer auto populates with the Sherpa RoMEO feed bug fix
+* access OA Pub Fund form the link goes to error page bug fix
+* Remove Eullocal dep from OE
 
 
 Release 2.2.5 - OpenEmory Relaunch Interface Changes

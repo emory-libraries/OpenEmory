@@ -19,10 +19,10 @@ from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminDefault
 from django.db.models.fields import TextField
 from django.forms.widgets import Textarea
-from eullocal.django.emory_ldap.admin import EmoryLDAPUserProfileAdmin
 from openemory.accounts.models import Bookmark, Degree, Position, \
         UserProfile, Announcement
-
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 class BookmarkAdmin(admin.ModelAdmin):
     list_display = ('user', 'pid', 'display_tags')
@@ -42,20 +42,23 @@ class PositionAdmin(admin.ModelAdmin):
 admin.site.register(Position, PositionAdmin)
 
 
-class UserProfileAdmin(EmoryLDAPUserProfileAdmin):
-    '''Extend
-    :class:`eullocal.django.emory_ldap.admin.EmoryLDAPUserProfileAdmin`
-    to customize for locally added profile fields and functionality.
-    '''
-    list_display = ('__unicode__', 'full_name', 'edit_user',
-                    'show_suppressed', 'nonfaculty_profile')
-    list_filter = ('show_suppressed', 'nonfaculty_profile')
-    list_editable = ('nonfaculty_profile', )
-    search_fields = ('user__username', 'full_name', 'user__last_name', 'user__first_name')
+class ProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'UserProfile'
+    fk_name = 'user'
 
-# unregister eullocal user profile admin
-admin.site.unregister(UserProfile)
-admin.site.register(UserProfile, UserProfileAdmin)
+class CustomUserAdmin(UserAdmin):
+    inlines = (ProfileInline, )
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
+
+    def get_inline_instances(self, request, obj=None):
+        if not obj:
+            return list()
+        return super(CustomUserAdmin, self).get_inline_instances(request, obj)
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
 
 # patch a method onto the FlatPage model to link to view from list display
 

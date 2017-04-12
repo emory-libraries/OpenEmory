@@ -21,7 +21,7 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
 
-from eullocal.django.forms import captchafield
+from openemory.accounts import captchafield
 
 from openemory.accounts.models import UserProfile, Degree, Position, Grant, ExternalLink
 from openemory.inlinemodelformsets import ModelForm
