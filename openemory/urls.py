@@ -19,6 +19,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.contrib.sitemaps import FlatPageSitemap
+from django.views.generic.base import RedirectView
 
 from openemory.accounts.sitemaps import ProfileSitemap
 from openemory.publication.sitemaps import ArticleSitemap
@@ -39,6 +40,8 @@ urlpatterns = patterns('',
     # accounts app includes several top-level urls
     url(r'^', include('openemory.accounts.urls', namespace='accounts')),
     url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt',content_type='text/plain')),
+    url(r'^oa-fund/authors/$', RedirectView.as_view(url='http://sco.library.emory.edu/open-access-publishing/oa-funding-support/index.html', permanent=False), name='fund-authors'),
+    url(r'^publishing-your-data/$', RedirectView.as_view(url='http://sco.library.emory.edu/research-data-management/publishing/', permanent=False), name='publishing_your_data'),
 )
 
 # xml sitemaps for search-engine discovere

@@ -1380,62 +1380,6 @@ def open_access_fund(request):
     '''
     A form for submitting an OA Fund Proposal
     '''
-    template_name = 'publication/open_access_fund.html'
-
-    form = None
-    if request.POST:
-        form = OpenAccessProposalForm(request.POST)
-        # if seeking_funds is Yes then data repo is required
-        if 'seeking_funds' in form.data and form.data['seeking_funds'] == "Yes":
-            form.fields['data_repository'].required = True
-            form.fields['archiving_fees'].required = True
-
-    else:
-        form = OpenAccessProposalForm()
-
-    if request.POST and form.is_valid():
-        content = render_to_string('publication/email/oa_fund_proposal.txt', {
-            'form': form
-        })
-        # mail_listserv('Open Access Fund Proposal from OpenEmory', content)
-        list_serve_email = "openemory@listserv.cc.emory.edu"
-        # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
-        
-        
-        sender = "OpenEmory Administrator <%s>" % (list_serve_email)
-        subject = 'Open Access Fund Proposal from OpenEmory'
-        
-        # msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
-        #         content, settings.SERVER_EMAIL, [list_serve_email],
-        #         connection=connection)
-        # msg2.send()
-        # add list serve email to context
-        #create plain text content
-        t = get_template("publication/email/oa_fund_proposal.txt")
-        context = Context({'form': form})
-        text = t.render(context)
-        print "===================="
-        print text
-
-        #create html content
-        t = get_template("publication/email/openfund_request.html")
-        context = Context({'form': form})
-        html = t.render(context)
-        print "--------------------"
-        print html
-        print "===================="
-
-        msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, sender, [form.data['email']], cc=[sender])
-        # msg.attach_alternative(html, "text/html")
-        
-        msg.send()
-        
-        print "Mail Sent"
     
-        messages.success(request, "Thanks for your request! We've sent it to our Fund administrators.")
-        return redirect('site-index')
 
-    return render(request, template_name, {
-        'form': form
-    })
+    return redirect('http://sco.library.emory.edu/open-access-publishing/oa-funding-support/oa-form.html')
