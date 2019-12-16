@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Notes for developers &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="index.html" />
+    <link rel="prev" title="DEPLOYNOTES" href="deploynotes.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploynotes.html" title="DEPLOYNOTES"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="notes-for-developers">
+<h1>Notes for developers<a class="headerlink" href="#notes-for-developers" title="Permalink to this headline">¶</a></h1>
+<p>The following instructions can be ignored when deploying to a staging
+or production environment, but may be helpful to a developer working
+on the project or running automated tests.</p>
+<div class="section" id="session-configuration">
+<h2>Session configuration<a class="headerlink" href="#session-configuration" title="Permalink to this headline">¶</a></h2>
+<p>By default, this project is configured to mark session cookies as secure. To
+enable login over HTTP (e.g., when developing with Django&#8217;s runserver), you
+will need to override this in your <code class="docutils literal"><span class="pre">localsettings.py</span></code>.  See the example
+and comments in <code class="docutils literal"><span class="pre">localsettings.py.dist</span></code>.</p>
+</div>
+<div class="section" id="test-setup">
+<h2>Test setup<a class="headerlink" href="#test-setup" title="Permalink to this headline">¶</a></h2>
+<p>Certain unit tests pass test user credentials to Fedora, in order to test and
+simulate accessing Fedora as the logged in user.  For tests to work properly,
+the unit test user should be defined (with appropriate permissions)
+as a fedora account.  See <code class="xref py py-mod docutils literal"><span class="pre">openemory.publication.tests</span></code> for
+account details.</p>
+</div>
+<div class="section" id="database-support">
+<h2>Database support<a class="headerlink" href="#database-support" title="Permalink to this headline">¶</a></h2>
+<p>The use of oracle tablespaces in the table name of
+<a class="reference internal" href="apidocs.html#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> prevents the application from
+working with a sqlite3 database. MySQL handles the unusual value as a table
+name. If you must use sqlite3, simple change that class&#8217;s <code class="docutils literal"><span class="pre">db_table</span></code> or
+use the default value.</p>
+</div>
+<div class="section" id="esd-database">
+<h2>ESD database<a class="headerlink" href="#esd-database" title="Permalink to this headline">¶</a></h2>
+<p>The test, staging, and development versions of the application access the
+read-only Emory Shared Data oracle database. Due to security restrictions on
+the database, it is only available from select machines. If your development
+environment is not one of those machines (and it probably isn&#8217;t), then set
+up a MySQL database, and load a fixture with a small but carefully-selected
+sample of real or realistic data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ./manage.py loaddata --database=esd esdpeople
+</pre></div>
+</div>
+<p>Because this is a static database, multiple developers may work a
+single copy of this fixture.  In this case, it is highly recommended
+to configure a unique <strong>TEST_NAME</strong> for your esd database to avoid
+database collisions when running unit tests.</p>
+</div>
+<div class="section" id="pidman-server">
+<h2>PIDMan server<a class="headerlink" href="#pidman-server" title="Permalink to this headline">¶</a></h2>
+<p>When developing locally, <code class="docutils literal"><span class="pre">DEV_ENV</span></code> should be set to True in
+<code class="docutils literal"><span class="pre">localsettings.py</span></code>. This will cause PIDs to be generated using the
+default method instead of using the PIDMan server if the PIDMAN
+variables are not configured in <code class="docutils literal"><span class="pre">localsettings.py</span></code>.</p>
+</div>
+<div class="section" id="tests-south-fixtures">
+<h2>Tests, South, &amp; fixtures<a class="headerlink" href="#tests-south-fixtures" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="apidocs.html#module-openemory" title="openemory"><code class="xref py py-mod docutils literal"><span class="pre">openemory</span></code></a> uses <code class="xref py py-mod docutils literal"><span class="pre">south</span></code> to manage and db models, but due to
+the multi-db setup with ESD, South migrations and tests must be
+disabled when running unit tests (see settings for
+<code class="docutils literal"><span class="pre">SKIP_SOUTH_TESTS</span></code> and <code class="docutils literal"><span class="pre">SOUTH_TESTS_MIGRATE</span></code> in <code class="docutils literal"><span class="pre">settings.py</span></code>).</p>
+<p>In particular, this means that any initial data or data fixtures
+normally managed by <code class="xref py py-mod docutils literal"><span class="pre">south</span></code> will <strong>not</strong> be automatically loaded
+when running unit tests; such fixtures should be explicitly included
+as test fixtures where they are required.</p>
+</div>
+<div class="section" id="sending-email">
+<h2>Sending Email<a class="headerlink" href="#sending-email" title="Permalink to this headline">¶</a></h2>
+<p>Django email configurations should not be needed in staging or production,
+but to test sending emails on a development machine, you may need to add
+settings for <strong>EMAIL_HOST</strong> and <strong>SERVER_EMAIL</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As of 05/16/2013 due to a change on the SMTP server,
+it may not longer be possible to send emails from developer machines.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="notes-on-included-items">
+<h3>Notes on included items<a class="headerlink" href="#notes-on-included-items" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">jQuery &#8220;dirty form&#8221; plugin (GPL/MIT)
+<a class="reference external" href="http://plugins.jquery.com/project/dirtyform">http://plugins.jquery.com/project/dirtyform</a>
+<a class="reference external" href="https://github.com/acvwilson/dirty_form">https://github.com/acvwilson/dirty_form</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://djangosnippets.org/snippets/2248/">Inline formset handling for ModelForm from django snippets</a> added as
+<cite>openemory.inlinemodelformsets</cite>.  BSD license.</p>
+</li>
+<li><p class="first">Creative Commons license icons downloaded from
+<a class="reference external" href="http://creativecommons.org/about/downloads">http://creativecommons.org/about/downloads</a>.  Per Creative Commons
+policies, these icons may only be used to point to the appropriate
+license; see <a class="reference external" href="http://creativecommons.org/policies">http://creativecommons.org/policies</a> for more information.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://code.google.com/p/django-dynamic-formset/">django-dynamic-formset jQuery plugin</a>
+New BSD license.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/brandonaaron/livequery">livequery</a> (needed for dynamic dirtyform),
+MIT license</p>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://www.iconarchive.com/show/adobe-cs4-icons-by-deleket/File-Adobe-Dreamweaver-XML-01-icon.html">XML icon</a> (for xml admin links),</dt>
+<dd><p class="first last">CC attribution/non-commercial/no-derivative</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Notes for developers</a><ul>
+<li><a class="reference internal" href="#session-configuration">Session configuration</a></li>
+<li><a class="reference internal" href="#test-setup">Test setup</a></li>
+<li><a class="reference internal" href="#database-support">Database support</a></li>
+<li><a class="reference internal" href="#esd-database">ESD database</a></li>
+<li><a class="reference internal" href="#pidman-server">PIDMan server</a></li>
+<li><a class="reference internal" href="#tests-south-fixtures">Tests, South, &amp; fixtures</a></li>
+<li><a class="reference internal" href="#sending-email">Sending Email</a><ul>
+<li><a class="reference internal" href="#notes-on-included-items">Notes on included items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="deploynotes.html"
+                        title="previous chapter">DEPLOYNOTES</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/devnotes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploynotes.html" title="DEPLOYNOTES"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

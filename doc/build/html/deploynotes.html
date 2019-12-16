@@ -1,0 +1,893 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DEPLOYNOTES &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="index.html" />
+    <link rel="next" title="Notes for developers" href="devnotes.html" />
+    <link rel="prev" title="CHANGELOG" href="changelog.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="devnotes.html" title="Notes for developers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="CHANGELOG"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="deploynotes">
+<h1>DEPLOYNOTES<a class="headerlink" href="#deploynotes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="software-dependencies">
+<h3>Software dependencies<a class="headerlink" href="#software-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>We recommend the use of <a class="reference external" href="http://pip.openplans.org/">pip</a> and <a class="reference external" href="http://virtualenv.openplans.org/">virtualenv</a> for environment and dependency management
+in this and other Python projects. If you don&#8217;t have them installed we
+recommend <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">pip</span></code> and then <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv</span></code>.</p>
+<div class="section" id="bootstrapping-a-development-environment">
+<h4>Bootstrapping a development environment<a class="headerlink" href="#bootstrapping-a-development-environment" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Copy <code class="docutils literal"><span class="pre">openemory/localsettings.py.dist</span></code> to <code class="docutils literal"><span class="pre">openemory/localsettings.py</span></code>
+and configure any local settings: <strong>DATABASES</strong>,  <strong>SECRET_KEY</strong>,
+<strong>SOLR_</strong>, <strong>FEDORA_</strong>,  customize <strong>LOGGING</strong>, etc.</li>
+<li>Create a new virtualenv and activate it.</li>
+<li>Install fabric: <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fabric</span></code></li>
+<li>Use fabric to run a local build, which will install python dependencies in
+your virtualenv, run unit tests, and build sphinx documentation: <code class="docutils literal"><span class="pre">fab</span> <span class="pre">build</span></code></li>
+</ul>
+<p>Deploy to QA and Production should be done using <code class="docutils literal"><span class="pre">fab</span> <span class="pre">deploy</span></code>.</p>
+<p>After configuring your database, run syncdb:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">syncdb</span>
+</pre></div>
+</div>
+<p>Use eulindexer to index repository content into your configured Solr instance.</p>
+</div>
+<div class="section" id="configure-the-environment">
+<h4>Configure the environment<a class="headerlink" href="#configure-the-environment" title="Permalink to this headline">¶</a></h4>
+<p>When first installing this project, you&#8217;ll need to create a virtual environment
+for it. The environment is just a directory. You can store it anywhere you
+like; in this documentation it&#8217;ll live right next to the source. For instance,
+if the source is in <code class="docutils literal"><span class="pre">/home/httpd/openemory/src</span></code>, consider creating an
+environment in <code class="docutils literal"><span class="pre">/home/httpd/openemory/env</span></code>. To create such an environment, su
+into apache&#8217;s user and:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ virtualenv --no-site-packages /home/httpd/openemory/env
+</pre></div>
+</div>
+<p>This creates a new virtual environment in that directory. Source the activation
+file to invoke the virtual environment (requires that you use the bash shell):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ . /home/httpd/openemory/env/bin/activate
+</pre></div>
+</div>
+<p>Once the environment has been activated inside a shell, Python programs
+spawned from that shell will read their environment only from this
+directory, not from the system-wide site packages. Installations will
+correspondingly be installed into this environment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Installation instructions and upgrade notes below assume that
+you are already in an activated shell.</p>
+</div>
+</div>
+<div class="section" id="install-system-dependencies">
+<h4>Install System Dependencies<a class="headerlink" href="#install-system-dependencies" title="Permalink to this headline">¶</a></h4>
+<p>Beginning with <a class="reference internal" href="#release-0-5-faculty-profiles">Release 0.5 - Faculty Profiles</a>, OpenEmory uses the
+Python Imaging Library Pillow to support faculty profile photo uploads.
+-Pillow can be installed via pip, but support for JPEG and PNG formats
+depends on the certain system libraries.  For JPEG, libjpeg is
+required; for PNG, libz is required.  On recent versions of Ubuntu,
+libjpeg8-dev and zlib1g-dev packages should be installed
+(libjpeg62-dev probably works with the path adjustment noted below).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>By default on Ubuntu, <strong>libz.so</strong> is not installed directly in
+<code class="docutils literal"><span class="pre">/usr/lib</span></code>, but in an architecture-specific like
+<code class="docutils literal"><span class="pre">/usr/lib/i386-linux-gnu/</span></code> or <code class="docutils literal"><span class="pre">/usr/lib/x86_64-linux-gnu</span></code>.  As a
+work-around, add a symlink either to <code class="docutils literal"><span class="pre">/usr/lib</span></code> or to the
+virtualenv <code class="docutils literal"><span class="pre">lib</span></code> directory, e.g.:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ sudo ln -s /usr/lib/i386-linux-gnu/libz.so /usr/lib
+</pre></div>
+</div>
+</div>
+<p>To test that the required libraries are installed correctly, <code class="docutils literal"><span class="pre">pip</span>
+<span class="pre">install</span> <span class="pre">PIL</span></code> (or <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">PIL</span></code> if already installed).
+At the end of the installation, PIL setup provides a summary of the
+configuration.  Check to see that JPEG and PNG are listed as
+available:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---</span> <span class="n">JPEG</span> <span class="n">support</span> <span class="n">available</span>
+<span class="o">---</span> <span class="n">ZLIB</span> <span class="p">(</span><span class="n">PNG</span><span class="o">/</span><span class="n">ZIP</span><span class="p">)</span> <span class="n">support</span> <span class="n">available</span>
+</pre></div>
+</div>
+<p><cite>python-ldap</cite> requires the following packages:  python-dev libldap2-dev libsasl2-dev libssl-dev</p>
+</div>
+<div class="section" id="install-python-dependencies">
+<h4>Install python dependencies<a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h4>
+<p>OpenEmory depends on several python libraries. The installation is mostly
+automated, and will print status messages as packages are installed. If there
+are any errors, pip should announce them very loudly.</p>
+<p>To install python dependencies, cd into the repository checkout and:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install -r pip-install-req.txt
+</pre></div>
+</div>
+<p><em>Note</em>: installation of some dependencies (i.e. django-tracking) requires
+that django settings are available. To install these manually, use this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ env DJANGO_SETTINGS_MODULE=openemory.settings pip install -r pip-install-after-config.txt
+</pre></div>
+</div>
+<p>If you are a developer or are installing to a continuous integration server
+where you plan to run unit tests, code coverage reports, or build sphinx
+documentation, you probably will also want to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install -r pip-dev-req.txt
+</pre></div>
+</div>
+<p>After this step, your virtual environment should contain all of the
+needed dependencies.</p>
+</div>
+<div class="section" id="solr-eulindexer">
+<h4>Solr/EULindexer<a class="headerlink" href="#solr-eulindexer" title="Permalink to this headline">¶</a></h4>
+<p>OpenEmory uses <a class="reference external" href="http://lucene.apache.org/solr/">Solr</a> and
+<code class="xref py py-mod docutils literal"><span class="pre">eulindexer</span></code> for searching and indexing Fedora content. The Solr schema
+included with the source code at <code class="docutils literal"><span class="pre">solr/schema.xml</span></code> should be used as the
+Solr schema configuration. For convenience, this directory also contains a
+sample <code class="docutils literal"><span class="pre">solrconfig.xml</span></code> and minimal versions of all other solr
+configuration files used by the index.</p>
+<p>The url for accessing the configured Solr instance should be set in
+<code class="docutils literal"><span class="pre">localsettings.py</span></code> as <strong>SOLR_SERVER_URL</strong>.</p>
+<p>Repository content accessible via OpenEmory should be indexed using
+<strong>EULindexer</strong>.  To add OpenEmory to an installed and configured
+instance of EULindexer, add the deployed indexdata url to the
+eulindexer <code class="docutils literal"><span class="pre">localsettings.py</span></code>, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INDEXER_SITE_URLS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;openemory&#39;</span><span class="p">:</span> <span class="s1">&#39;http://openemory.library.emory.edu/indexdata/&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To populate the index initially, or to reindex all content, run the
+<code class="docutils literal"><span class="pre">reindex</span></code> script that is available in EULindexer:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py reindex -s openemory
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-the-application">
+<h3>Install the application<a class="headerlink" href="#install-the-application" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="apache">
+<h4>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h4>
+<p>After installing dependencies, copy and edit the wsgi and apache
+configuration files in src/apache inside the source code checkout. Both may
+require some tweaking for paths and other system details.</p>
+</div>
+<div class="section" id="configuration">
+<h4>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
+<p>Configure application settings by copying <code class="docutils literal"><span class="pre">localsettings.py.dist</span></code> to
+<code class="docutils literal"><span class="pre">localsettings.py</span></code> and editing for local settings (database, Fedora
+repository, Pid Manager, etc.).</p>
+<p>After configuring all settings, initialize the db with all needed
+tables and initial data using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+$ python manage.py migrate
+</pre></div>
+</div>
+<p>Load Fedora fixtures and control objects to the configured repository
+using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncrepo
+</pre></div>
+</div>
+<p>This application makes use of the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/sites/#module-django.contrib.sites" title="(in Django v3.1)"><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.sites</span></code></a> module
+to generate ARKs.  After running <code class="docutils literal"><span class="pre">syncdb</span></code> and starting the
+web app, use the Django DB Admin site to configure the default site by
+replacing the <code class="docutils literal"><span class="pre">example.com</span></code> domain with the domain for the deployed
+web application.</p>
+</div>
+<div class="section" id="cron-jobs">
+<h4>Cron jobs<a class="headerlink" href="#cron-jobs" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="session-cleanup">
+<h5>Session cleanup<a class="headerlink" href="#session-cleanup" title="Permalink to this headline">¶</a></h5>
+<p>The application uses database-backed sessions. Django recommends
+periodically <a class="reference external" href="https://docs.djangoproject.com/en/1.3/topics/http/sessions/#clearing-the-session-table">clearing the session table</a>
+in this configuration. To do this, set up a cron job to run the following
+command periodically from within the application&#8217;s virtual environment:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ manage.py cleanup
+</pre></div>
+</div>
+<p>This script removes any expired sessions from the database. We recommend
+doing this about every week, though exact timing depends on usage patterns
+and administrative discretion.</p>
+</div>
+<div class="section" id="index-faculty">
+<h5>Index faculty<a class="headerlink" href="#index-faculty" title="Permalink to this headline">¶</a></h5>
+<p>The application relies on current directory information about faculty. This
+information is provided by Emory Shared Data, but we also index it in solr
+for improved searching capabilities. Set up a nightly cron job to re-scan
+the ESD data and update the index:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ manage.py index_faculty
+</pre></div>
+</div>
+</div>
+<div class="section" id="statistics-email">
+<h5>Statistics email<a class="headerlink" href="#statistics-email" title="Permalink to this headline">¶</a></h5>
+<p>The application collects usage statistics and sends quarterly reports to
+article authors. Set up a cron job to create and send these reports by
+running the following command from within the application&#8217;s virtual
+environment. The script should run at the beginning of January, April, July,
+and October:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ manage.py quarterly_stats_by_author
+</pre></div>
+</div>
+</div>
+<div class="section" id="harvest-pmc-data">
+<h5>Harvest PMC Data<a class="headerlink" href="#harvest-pmc-data" title="Permalink to this headline">¶</a></h5>
+<p>The application harvests article metadata from PubMed Central nigtly and
+stores it in the OpenEmory SQL database to be later ingested.
+The followng command should be run to keep the harvest queue up to date.
+In this mode article metadata is harvested from the last harvest date to the present:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ manage.py fetch_pmc_metadata --auto-date
+</pre></div>
+</div>
+<p>Additionally, there is a second job which runs once a month that does a full harvest to catch
+any records that may have been missed for any reason:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ manage.py fetch_pmc_metadata
+</pre></div>
+</div>
+</div>
+<div class="section" id="email-reports-of-duplicates">
+<h5>Email Reports of Duplicates<a class="headerlink" href="#email-reports-of-duplicates" title="Permalink to this headline">¶</a></h5>
+<p>Set up iWatch to trigger notifications on folder where reports are created.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="upgrade-notes">
+<h2>Upgrade Notes<a class="headerlink" href="#upgrade-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="release-2-2-5-openemory-relaunch-interface-changes">
+<h3>Release 2.2.5 - OpenEmory Relaunch Interface Changes<a class="headerlink" href="#release-2-2-5-openemory-relaunch-interface-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Please use the Django Admin to edit the flatpage contents in the database
+so that the site navigation can be updated. The &#8220;/about/authors-rights/&#8221; needs
+to be updated to &#8220;/about/author-rights/&#8221;, title &#8220;Authors&#8217; Rights&#8221; needs to
+be updated to &#8220;Author Rights&#8221;.</li>
+<li>Please use the Django Admin to edit the flatpage contents in the database
+so that the site navigation can be updated. The &#8220;/data-archiving/&#8221; needs
+to be updated to &#8220;/publishing-your-data/&#8221;, title &#8220;Data Archiving&#8221; needs to
+be updated to &#8220;Publishing Your Data&#8221;.</li>
+<li>Please use the Django Admin to edit the flatpage contents in the database
+so that the site navigation can be updated. There needs to be
+&#8220;/about/depositadvice/&#8221; added, &#8220;/how-to/submit/&#8221; updated, and &#8220;/about/staff/&#8221;
+title updated.</li>
+<li>Please check the &#8220;django_flatpage_sites&#8221; table in the database and make sure
+that the &#8220;site_id&#8221; is all marked as &#8220;1&#8221; or the &#8220;site_id&#8221; that we are using
+for this app.</li>
+<li>Currently the Admin page may not be viewable due to a problem in eullocal;
+until it is fixed permanently, we just need to delete: <cite>SiteProfileNotAvailable</cite>
+from <cite>/home/httpd/openemory/env/lib/python2.7/site-packages/eullocal/django/ldap/backends.py</cite>.</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-2-merging-old-preconnector">
+<h3>Release 2.1.2 - Merging Old Preconnector<a class="headerlink" href="#release-2-1-2-merging-old-preconnector" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>fixing embargo duration</li>
+<li>pdf file download bug</li>
+<li>pubsid report</li>
+<li>download pmc subset</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-1-author-enhancements">
+<h3>Release 2.1.1 - Author Enhancements<a class="headerlink" href="#release-2-1-1-author-enhancements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>fixing styles for publication page</li>
+<li>adjusting mods to save non emory faculty authors</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-0-content-type-harmonization">
+<h3>Release 2.1.0 - Content Type Harmonization<a class="headerlink" href="#release-2-1-0-content-type-harmonization" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>mime type debugging</li>
+<li>fixing styles</li>
+</ul>
+</div>
+<div class="section" id="release-2-0-0-new-content-type-presentation">
+<h3>Release 2.0.0 - New Content Type (Presentation)<a class="headerlink" href="#release-2-0-0-new-content-type-presentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>adding new content</li>
+</ul>
+</div>
+<div class="section" id="release-1-9-0-new-content-type-poster">
+<h3>Release 1.9.0 - New Content Type (Poster)<a class="headerlink" href="#release-1-9-0-new-content-type-poster" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>adding new content</li>
+</ul>
+</div>
+<div class="section" id="release-1-8-0-new-content-type-report">
+<h3>Release 1.8.0 - New Content Type (Report)<a class="headerlink" href="#release-1-8-0-new-content-type-report" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>debugging conflicting policies in XACML</li>
+</ul>
+</div>
+<div class="section" id="release-1-7-0-new-content-type-conference">
+<h3>Release 1.7.0 - New Content Type (Conference)<a class="headerlink" href="#release-1-7-0-new-content-type-conference" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="release-1-6-0-new-content-type-chapter">
+<h3>Release 1.6.0 - New Content Type (Chapter)<a class="headerlink" href="#release-1-6-0-new-content-type-chapter" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run this script to cleanup journal articles (updated)</p>
+<blockquote>
+<div><p>$ python manage.py journal_title</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-5-0-new-content-type-book">
+<h3>Release 1.5.0 - New Content Type (Book)<a class="headerlink" href="#release-1-5-0-new-content-type-book" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run this script to match all content models for articles and books</p>
+<blockquote>
+<div><p>$ python manage.py cmodel_cleanup</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-4-0-author-enhancements">
+<h3>Release 1.4.0 - Author Enhancements<a class="headerlink" href="#release-1-4-0-author-enhancements" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run this script to match all current journal titles with Sherpa Romeo</p>
+<blockquote>
+<div><p>$ python manage.py journal_title</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-3-pre-fedora-migration">
+<h3>Release 1.3 - Pre Fedora Migration<a class="headerlink" href="#release-1-3-pre-fedora-migration" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run migrations for downtime</p>
+<blockquote>
+<div><p>$ python ./manage.py migrate downtime
+$ python ./manage.py migrate mx</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-16-connector">
+<h3>Release 1.2.16 - Connector<a class="headerlink" href="#release-1-2-16-connector" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run migrations for publication</p>
+<blockquote>
+<div><p>$ python ./manage.py migrate publication</p>
+</div></blockquote>
+</li>
+<li><p class="first">create LastRun object:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ from openemory.publication.models import LastRun
+$ LastRun(name=&#39;Convert Symp to OE&#39;, start_time=&#39;2014-01-01 00:00:00&#39;).save()
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set up iWatch to trigger notifications on folder where reports are created</p>
+</li>
+<li><p class="first">Setup cron job to run import command</p>
+</li>
+<li><p class="first">Configure <code class="docutils literal"><span class="pre">REPORTS_DIR</span></code>  in localsettings.py</p>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-10-symplectic-elements">
+<h3>Release 1.2.10 - Symplectic Elements<a class="headerlink" href="#release-1-2-10-symplectic-elements" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">run migrations for accounts to add add_articlerecord to Site Admin group permissions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py migrate accounts
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the following variables to localsettings.py:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># SYMPLECTIC-Elements</span>
+<span class="n">SYMPLECTIC_BASE_URL</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">URL</span><span class="o">&gt;</span>
+<span class="n">SYMPLECTIC_USER</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;</span>
+<span class="n">SYMPLECTIC_PASSWORD</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">PASS</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-9-odds-and-ends">
+<h3>Release 1.2.9 - Odds and Ends<a class="headerlink" href="#release-1-2-9-odds-and-ends" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run migrations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py migrate accounts
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-7-oai-modifications">
+<h3>Release 1.2.7 - OAI modifications<a class="headerlink" href="#release-1-2-7-oai-modifications" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run <cite>add_dc_ident</cite> to modify dc data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py add_dc_ident --username=&lt;USERNAME&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run <cite>add_to_oai</cite> to update OAI info:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py add_to_oai --username=&lt;USERNAME&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-5-bug-fix">
+<h3>Release 1.2.5 - Bug Fix<a class="headerlink" href="#release-1-2-5-bug-fix" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">The system pip and virtualenv packages need to be updated before the fab file is run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo pip install --upgrade pip
+$ sudo pip install --upgrade virtualenv
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run <cite>add_dc_ident</cite> to restore dc identifiers:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py add_dc_ident
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-4-captcha-bug-fixes">
+<h3>Release 1.2.4 - Captcha / Bug Fixes<a class="headerlink" href="#release-1-2-4-captcha-bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Add the following to local setting <strong>BEFORE</strong> fab is run. Values will be provided at deploy time:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># reCAPTCHA keys for your server or domain from https://www.google.com/recaptcha/</span>
+<span class="n">RECAPTCHA_PUBLIC_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">RECAPTCHA_PRIVATE_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">RECAPTCHA_OPTIONS</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-3-oai">
+<h3>Release 1.2.3 - OAI<a class="headerlink" href="#release-1-2-3-oai" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run <cite>syncrepo</cite> to load collection object:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py syncrepo
+</pre></div>
+</div>
+</li>
+<li><p class="first">A manage commnd needs to be run to prepare the articles to be harvested by OAI:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py add_to_oai --username=&lt;USERNAME&gt; &gt; oai.log
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-2-license-and-rights-enhancements">
+<h3>Release 1.2.2 - License and Rights Enhancements<a class="headerlink" href="#release-1-2-2-license-and-rights-enhancements" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run migrations to add License model:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py migrate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the following command to load the initial license info:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python ./manage.py loaddata init_license
+</pre></div>
+</div>
+</li>
+<li><p class="first">A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
+The script should be run with the <code class="docutils literal"><span class="pre">fedoraAdmin</span></code> user:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py cleanup_articles --username=&lt;USERNAME&gt; &gt; cleanup.log
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-search-engine-optimization-and-bug-fixes">
+<h3>Release 1.2 - Search Engine Optimization and bug fixes<a class="headerlink" href="#release-1-2-search-engine-optimization-and-bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">New configurations have been added <code class="docutils literal"><span class="pre">localsettings.py</span></code>:</p>
+<ul class="simple">
+<li><strong>GOOGLE_ANALYTICS_ENABLED</strong> - set True/False to enable/disable Google
+Analytics on the site (analytics should generally only be enabled in
+production)</li>
+<li><strong>GOOGLE_SITE_VERIFICATION</strong> - set to the value provided by Google
+Webmaster Tools to allow site verification</li>
+</ul>
+<p>See  <code class="docutils literal"><span class="pre">localsettings.py.dist</span></code> for examples.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-0-design-integration-rights-and-technical-metadata">
+<h3>Release 1.0 - Design Integration, Rights and Technical Metadata<a class="headerlink" href="#release-1-0-design-integration-rights-and-technical-metadata" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Now using <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/flatpages/#module-django.contrib.flatpages" title="(in Django v3.1)"><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.flatpages</span></code></a> for pages with static site
+content (about, how-tos, etc).  Run <code class="docutils literal"><span class="pre">syncdb</span></code> and <code class="docutils literal"><span class="pre">migrate</span></code> to
+update the database:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+$ python manage.py migrate
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For an existing installation with a database you want to preserve,
+you will have to fake the 0012_add_model_announcement migration
+if you receive the error message <strong>Table accounts_announcement already exists</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py migrate accounts 0012 --fake --delete-ghost-migrations
+</pre></div>
+</div>
+<p class="last">You can then run the <code class="docutils literal"><span class="pre">migrate</span></code> command above to finish the migrations.</p>
+</div>
+<ul>
+<li><p class="first">A nightly cron job is needed to run the following command to check for
+embargoes that have expired and reindex them so that the full text can be
+searched:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py expire_embargo
+</pre></div>
+</div>
+<p>The output of this script should be redirected to a log.  The log
+Should be rolled on a regular basis.</p>
+</li>
+<li><p class="first">A nightly cron job is needed to sync indexed faculty data with ESD:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py index_faculty
+</pre></div>
+</div>
+</li>
+<li><p class="first">A cron cron job is needed to run at the beginning of each quarter to send
+out stats for the previous quarter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py quarterly_stats_by_author
+</pre></div>
+</div>
+<p>The output of this script should be redirected to a log.  The log
+Should be rolled on a regular basis.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-7-polish-prep">
+<h3>Release 0.7 - Polish &amp; Prep<a class="headerlink" href="#release-0-7-polish-prep" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">ESD faculty information is now indexed in Solr for search
+functionality.  In order to accommodate indexing disparate types of
+data, the <cite>unique key</cite> for Solr has been changed.  Solr should be
+configured with the new schema, and then all data <strong>must</strong> be cleared
+and reindexed.</p>
+</li>
+<li><p class="first">Restart eulindexer after this and any other solr schema changes.</p>
+</li>
+<li><p class="first">After updating Solr with the new schema, index Faculty data from
+Emory Shared Data into Solr:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py index_faculty
+</pre></div>
+</div>
+</li>
+<li><p class="first">This release adds models and migrations. Sync and migrate the database:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+$ python manage.py migrate
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-6-faculty-demo">
+<h3>Release 0.6 - Faculty Demo<a class="headerlink" href="#release-0-6-faculty-demo" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Now makes use the PID manager and the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/sites/#module-django.contrib.sites" title="(in Django v3.1)"><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.sites</span></code></a>
+module to generate ARKs for repository content.  To configure:<ul>
+<li>After running <code class="docutils literal"><span class="pre">syncdb</span></code> and starting the web app, use the Django
+DB Admin site to configure the default site by replacing the
+<code class="docutils literal"><span class="pre">example.com</span></code> domain with the domain for the deployed web
+application.</li>
+<li>Create a domain and user for OpenEmory ARKs on the PID manager
+(the user should have permissions to create pids and targets), and
+configure all of the <strong>PIDMAN_</strong> settings in <code class="docutils literal"><span class="pre">localsettings.py</span></code>
+based on the examples in <code class="docutils literal"><span class="pre">localsettings.py.dist</span></code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-5-faculty-profiles">
+<h3>Release 0.5 - Faculty Profiles<a class="headerlink" href="#release-0-5-faculty-profiles" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Now includes <code class="xref py py-mod docutils literal"><span class="pre">south</span></code> for database migrations.  For a new
+installation, you should run <code class="docutils literal"><span class="pre">syncdb</span></code> to add the required database
+tables for south and any of the other tables not managed by South:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, Django will prompt you to create a superuser when you
+run <code class="docutils literal"><span class="pre">syncdb</span></code> on a new database; since the user profile model is
+managed by <code class="xref py py-mod docutils literal"><span class="pre">south</span></code>, you should <strong>not</strong> attempt to create any
+accounts until after you have completed the migrations.  To skip
+this prompt, you may run <code class="docutils literal"><span class="pre">syncdb</span></code> with the <code class="docutils literal"><span class="pre">--noinput</span></code>
+option.  After migrations are complete, use the
+<code class="docutils literal"><span class="pre">createsuperuser</span></code> manage.py command to create a new super ures.</p>
+</div>
+<p>Then run the south <code class="docutils literal"><span class="pre">migrate</span></code> command to update the database
+tables that are now managed by <code class="xref py py-mod docutils literal"><span class="pre">south</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py migrate
+</pre></div>
+</div>
+<p>For an existing installation with a database you want to preserve,
+run the <code class="docutils literal"><span class="pre">syncdb</span></code> step above to add the required database tables
+for south, and then fake the initial migrations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py migrate accounts 0001 --fake
+$ python manage.py migrate harvest 0001 --fake
+$ python manage.py migrate publication 0001 --fake
+</pre></div>
+</div>
+<p>After this step, you should be able to use South migrations
+normally.</p>
+</li>
+<li><p class="first">Python dependencies now include Python Imaging Library (PIL).  See
+<a class="reference internal" href="#install-system-dependencies">Install System Dependencies</a> for instructions on the libraries
+required for JPEG and PNG support.</p>
+</li>
+<li><p class="first">Profile editing provides an option for users to upload images; this
+user uploaded content will be stored in the configured
+<strong>MEDIA_ROOT</strong> directory.  System administrators may wish to revisit
+the configuration for this Django setting (previously set in
+<code class="docutils literal"><span class="pre">settings.py</span></code> but now included in <code class="docutils literal"><span class="pre">localsettings.py</span></code>; see
+<code class="docutils literal"><span class="pre">localsettings.py.dist</span></code> for example configuration).</p>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-4-x-article-metadata">
+<h3>Release 0.4.x - Article Metadata<a class="headerlink" href="#release-0-4-x-article-metadata" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run <code class="docutils literal"><span class="pre">syncdb</span></code> to add new article review permissions and update the
+<strong>Site Admin</strong> group permissions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+</pre></div>
+</div>
+</li>
+<li><p class="first">Added new logic for generating Article MODS from NLM records
+harvested from PubMed Central.  Any existing test records should
+either be removed and reharvested, or updated as follows.  Activate
+the virtualenv and start the Django console:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py shell
+</pre></div>
+</div>
+<p>Then run the following to update Articles in the configured
+repository with NLM xml:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">eulfedora.server</span> <span class="kn">import</span> <span class="n">Repository</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.models</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="n">repo</span> <span class="o">=</span> <span class="n">Repository</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">FEDORA_MANAGEMENT_USER</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">FEDORA_MANAGEMENT_PASSWORD</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">repo</span><span class="o">.</span><span class="n">get_objects_with_cmodel</span><span class="p">(</span><span class="n">Article</span><span class="o">.</span><span class="n">ARTICLE_CONTENT_MODEL</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Article</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">exists</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">if</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">descMetadata</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">as_article_mods</span><span class="p">()</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;populating MODs from NLM xml&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">This release includes new solr fields. Configure a new core and reindex
+project content into it.</p>
+</li>
+<li><p class="first">This release includes support for editing inactive Fedora items. This
+support requires updated Fedora policies. Update Fedora policies while
+upgrading this package.</p>
+</li>
+<li><p class="first">Updated Fedora policies provide read access to all OpenEmory content
+(not published content only) to logged-in users with the &#8220;indexer&#8221;
+role.  It is recommended to create a Fedora user with an indexer
+role and configure <code class="xref py py-mod docutils literal"><span class="pre">eulindexer</span></code> to use this account.  For
+example:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;user</span> <span class="na">name=</span><span class="s">&quot;eulindexer&quot;</span> <span class="na">password=</span><span class="s">&quot;...&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;fedoraRole&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;value&gt;</span>indexer<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;/attribute&gt;</span>
+<span class="nt">&lt;/user&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-3-x-searching-social">
+<h3>Release 0.3.x - Searching &amp; Social<a class="headerlink" href="#release-0-3-x-searching-social" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">This release includes new relational Python modules and database
+tables.  To upgrade, install new python dependencies in your
+virtualenv:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install -r pip-install-req.txt
+</pre></div>
+</div>
+<p>And then update the database with new tables via <code class="docutils literal"><span class="pre">syncdb</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As part of this release, the user profile model has been
+customized, which entails a database change.  If you wish to
+create profiles for existing Emory LDAP users, run the
+<strong>inituser</strong> script with the usernames. You may also want to drop
+the former ldap profile table,
+<code class="docutils literal"><span class="pre">emory_ldap_emoryldapuserprofile</span></code>, as it is no longer in use.
+Any users created or updated after this upgrade will get the new
+profiles automatically.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="release-0-2-x-harvesting">
+<h3>Release 0.2.x - Harvesting<a class="headerlink" href="#release-0-2-x-harvesting" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">This release includes new relational database tables and fixtures.
+Upgrade requires a <code class="docutils literal"><span class="pre">syncdb</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py syncdb
+</pre></div>
+</div>
+</li>
+<li><p class="first">This release changes the project solr schema. Before installing the
+software, set up a new solr core for the project. The solr configuration
+files will be produced as part of the release. If the URL of this solr
+core is different from the old one then update it in
+<code class="docutils literal"><span class="pre">localsettings.py</span></code>. After the updated OpenEmory website is live,
+reindex the site. As <code class="docutils literal"><span class="pre">eulindexer</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python manage.py reindex -s openemory
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DEPLOYNOTES</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#software-dependencies">Software dependencies</a><ul>
+<li><a class="reference internal" href="#bootstrapping-a-development-environment">Bootstrapping a development environment</a></li>
+<li><a class="reference internal" href="#configure-the-environment">Configure the environment</a></li>
+<li><a class="reference internal" href="#install-system-dependencies">Install System Dependencies</a></li>
+<li><a class="reference internal" href="#install-python-dependencies">Install python dependencies</a></li>
+<li><a class="reference internal" href="#solr-eulindexer">Solr/EULindexer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-the-application">Install the application</a><ul>
+<li><a class="reference internal" href="#apache">Apache</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#cron-jobs">Cron jobs</a><ul>
+<li><a class="reference internal" href="#session-cleanup">Session cleanup</a></li>
+<li><a class="reference internal" href="#index-faculty">Index faculty</a></li>
+<li><a class="reference internal" href="#statistics-email">Statistics email</a></li>
+<li><a class="reference internal" href="#harvest-pmc-data">Harvest PMC Data</a></li>
+<li><a class="reference internal" href="#email-reports-of-duplicates">Email Reports of Duplicates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#upgrade-notes">Upgrade Notes</a><ul>
+<li><a class="reference internal" href="#release-2-2-5-openemory-relaunch-interface-changes">Release 2.2.5 - OpenEmory Relaunch Interface Changes</a></li>
+<li><a class="reference internal" href="#release-2-1-2-merging-old-preconnector">Release 2.1.2 - Merging Old Preconnector</a></li>
+<li><a class="reference internal" href="#release-2-1-1-author-enhancements">Release 2.1.1 - Author Enhancements</a></li>
+<li><a class="reference internal" href="#release-2-1-0-content-type-harmonization">Release 2.1.0 - Content Type Harmonization</a></li>
+<li><a class="reference internal" href="#release-2-0-0-new-content-type-presentation">Release 2.0.0 - New Content Type (Presentation)</a></li>
+<li><a class="reference internal" href="#release-1-9-0-new-content-type-poster">Release 1.9.0 - New Content Type (Poster)</a></li>
+<li><a class="reference internal" href="#release-1-8-0-new-content-type-report">Release 1.8.0 - New Content Type (Report)</a></li>
+<li><a class="reference internal" href="#release-1-7-0-new-content-type-conference">Release 1.7.0 - New Content Type (Conference)</a></li>
+<li><a class="reference internal" href="#release-1-6-0-new-content-type-chapter">Release 1.6.0 - New Content Type (Chapter)</a></li>
+<li><a class="reference internal" href="#release-1-5-0-new-content-type-book">Release 1.5.0 - New Content Type (Book)</a></li>
+<li><a class="reference internal" href="#release-1-4-0-author-enhancements">Release 1.4.0 - Author Enhancements</a></li>
+<li><a class="reference internal" href="#release-1-3-pre-fedora-migration">Release 1.3 - Pre Fedora Migration</a></li>
+<li><a class="reference internal" href="#release-1-2-16-connector">Release 1.2.16 - Connector</a></li>
+<li><a class="reference internal" href="#release-1-2-10-symplectic-elements">Release 1.2.10 - Symplectic Elements</a></li>
+<li><a class="reference internal" href="#release-1-2-9-odds-and-ends">Release 1.2.9 - Odds and Ends</a></li>
+<li><a class="reference internal" href="#release-1-2-7-oai-modifications">Release 1.2.7 - OAI modifications</a></li>
+<li><a class="reference internal" href="#release-1-2-5-bug-fix">Release 1.2.5 - Bug Fix</a></li>
+<li><a class="reference internal" href="#release-1-2-4-captcha-bug-fixes">Release 1.2.4 - Captcha / Bug Fixes</a></li>
+<li><a class="reference internal" href="#release-1-2-3-oai">Release 1.2.3 - OAI</a></li>
+<li><a class="reference internal" href="#release-1-2-2-license-and-rights-enhancements">Release 1.2.2 - License and Rights Enhancements</a></li>
+<li><a class="reference internal" href="#release-1-2-search-engine-optimization-and-bug-fixes">Release 1.2 - Search Engine Optimization and bug fixes</a></li>
+<li><a class="reference internal" href="#release-1-0-design-integration-rights-and-technical-metadata">Release 1.0 - Design Integration, Rights and Technical Metadata</a></li>
+<li><a class="reference internal" href="#release-0-7-polish-prep">Release 0.7 - Polish &amp; Prep</a></li>
+<li><a class="reference internal" href="#release-0-6-faculty-demo">Release 0.6 - Faculty Demo</a></li>
+<li><a class="reference internal" href="#release-0-5-faculty-profiles">Release 0.5 - Faculty Profiles</a></li>
+<li><a class="reference internal" href="#release-0-4-x-article-metadata">Release 0.4.x - Article Metadata</a></li>
+<li><a class="reference internal" href="#release-0-3-x-searching-social">Release 0.3.x - Searching &amp; Social</a></li>
+<li><a class="reference internal" href="#release-0-2-x-harvesting">Release 0.2.x - Harvesting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="changelog.html"
+                        title="previous chapter">CHANGELOG</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="devnotes.html"
+                        title="next chapter">Notes for developers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/deploynotes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="devnotes.html" title="Notes for developers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="CHANGELOG"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

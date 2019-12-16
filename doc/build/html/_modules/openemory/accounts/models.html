@@ -1,0 +1,702 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.accounts.models &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.accounts.models</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/accounts/models.py</span>
+<span class="c1">#</span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">django.core.files.base</span> <span class="kn">import</span> <span class="n">ContentFile</span>
+<span class="kn">from</span> <span class="nn">django.core.validators</span> <span class="kn">import</span> <span class="n">MaxLengthValidator</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">DatabaseError</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
+<span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
+<span class="kn">from</span> <span class="nn">taggit.managers</span> <span class="kn">import</span> <span class="n">TaggableManager</span>
+<span class="kn">from</span> <span class="nn">taggit.models</span> <span class="kn">import</span> <span class="n">TaggedItem</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1"># from south.modelsinspector import add_introspection_rules</span>
+
+<span class="kn">from</span> <span class="nn">openemory.util</span> <span class="kn">import</span> <span class="n">solr_interface</span>
+<span class="kn">from</span> <span class="nn">openemory.accounts.fields</span> <span class="kn">import</span> <span class="n">YesNoBooleanField</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.models</span> <span class="kn">import</span> <span class="n">Publication</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.views</span> <span class="kn">import</span> <span class="n">PUBLICATION_VIEW_FIELDS</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># add_introspection_rules([], [&#39;^openemory\.accounts\.fields\.YesNoBooleanField&#39;])</span>
+
+<div class="viewcode-block" id="UserProfile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile">[docs]</a><span class="k">class</span> <span class="nc">UserProfile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">research_interests</span> <span class="o">=</span> <span class="n">TaggableManager</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Research Interests&#39;</span><span class="p">,</span>
+        <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Comma-separated list of public research interests&#39;</span><span class="p">,</span>
+        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">show_suppressed</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Show information even if directory or internet suppressed&#39;</span><span class="p">)</span>
+    <span class="n">nonfaculty_profile</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;User is allowed to have a profile even if they are non-faculty&#39;</span><span class="p">)</span>
+    <span class="n">photo</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s1">&#39;profile-photos/%Y/%m/&#39;</span><span class="p">,</span>
+                              <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    	<span class="c1"># image field has height_field and width_field options; do we need those?</span>
+    <span class="n">biography</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Biographical paragraph for public profile&#39;</span><span class="p">,</span>
+        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">phone</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">dept_num</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">full_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">employee_num</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">subdept_code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">hr_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+   
+
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user__username&#39;</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+<div class="viewcode-block" id="UserProfile.get_full_name"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.get_full_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get full name from LDAP if available; returns</span>
+<span class="sd">        :meth:`django.contrib.auth.models.User.get_full_name` when</span>
+<span class="sd">        full_name is not set in profile.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_find_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Query Solr to find articles by this author.  Returns a solr</span>
+<span class="sd">        query filtered by owner and content model, and fields limited</span>
+<span class="sd">        to the standard view fields.</span>
+
+<span class="sd">        Internal method with common functionality for</span>
+<span class="sd">        :meth:`recent_articles` and :meth:`unpublished_articles`.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">solr</span> <span class="o">=</span> <span class="n">solr_interface</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">solr</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">content_model</span><span class="o">=</span><span class="n">Publication</span><span class="o">.</span><span class="n">ARTICLE_CONTENT_MODEL</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">field_limit</span><span class="p">(</span><span class="n">PUBLICATION_VIEW_FIELDS</span><span class="p">)</span>
+
+<div class="viewcode-block" id="UserProfile.recent_articles_query"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.recent_articles_query">[docs]</a>    <span class="k">def</span> <span class="nf">recent_articles_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return a Solr query for recent articles by this author. Use this</span>
+<span class="sd">        if you want to further paginate or modify the article query: If you</span>
+<span class="sd">        just want the articles themselves then use :meth:`recent_articles`.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">solrquery</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_articles</span><span class="p">()</span>
+        <span class="n">solrquery</span> <span class="o">=</span> <span class="n">solrquery</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;-last_modified&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solrquery</span></div>
+
+<div class="viewcode-block" id="UserProfile.recent_articles"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.recent_articles">[docs]</a>    <span class="k">def</span> <span class="nf">recent_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Query Solr to find recent articles by this author.</span>
+
+<span class="sd">        :param limit: number of articles to return. (defaults to 3)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">solrquery</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recent_articles_query</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">solrquery</span> <span class="o">=</span> <span class="n">solrquery</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solrquery</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="UserProfile.unpublished_articles"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.unpublished_articles">[docs]</a>    <span class="k">def</span> <span class="nf">unpublished_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Query Solr to find unpublished articles by this author.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">solrquery</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_articles</span><span class="p">()</span>
+        <span class="n">solrquery</span> <span class="o">=</span> <span class="n">solrquery</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;-last_modified&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solrquery</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">esd_model</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">EsdPerson</span>
+
+<div class="viewcode-block" id="UserProfile.esd_data"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.esd_data">[docs]</a>    <span class="k">def</span> <span class="nf">esd_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Find the :class:`EsdPerson` corresponding to this profile.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># TODO: It would be nice to have a ForeignKey field for this, but</span>
+        <span class="c1"># the capitalization looks like it would require subclassing</span>
+        <span class="c1"># ForeignKey, which looks a little insane.</span>
+        <span class="n">EsdClass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_model</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">EsdClass</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">netid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">suppress_esd_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Boolean property to indicate whether ESD data can be shown</span>
+<span class="sd">        (e.g., on a profile page), based on</span>
+<span class="sd">        :attr:`EsdPerson.internet_suppressed` and</span>
+<span class="sd">        :attr:`EsdPerson.directory_suppressed` flag and on the profile</span>
+<span class="sd">        override flag, :attr:`UserProfile.show_suppressed`.</span>
+
+<span class="sd">        If True, ESD data should be suppressed. If False, ESD data can</span>
+<span class="sd">        be displayed.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">esd_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_data</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">esd_data</span><span class="o">.</span><span class="n">internet_suppressed</span> <span class="ow">or</span> <span class="n">esd_data</span><span class="o">.</span><span class="n">directory_suppressed</span><span class="p">)</span> \
+               <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_suppressed</span>
+
+
+<div class="viewcode-block" id="UserProfile.has_profile_page"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.has_profile_page">[docs]</a>    <span class="k">def</span> <span class="nf">has_profile_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return ``True`` if the user should have a public-facing web</span>
+<span class="sd">        profile on the site, ``False`` if not.</span>
+
+<span class="sd">        Currently only faculty or users with nonfaculty_profile flag = True have profiles.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">esd_data</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">esd_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_data</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">EsdPerson</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="c1"># Only pass if DatabaseError has the specific message otherwise raise the error</span>
+        <span class="k">except</span> <span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">dbe</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;object no longer exists&#39;</span> <span class="ow">in</span> <span class="n">dbe</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">dbe</span>
+
+        <span class="c1"># user is faculty or has nonfaculty_profile flag set</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">esd_data</span> <span class="ow">and</span> <span class="n">esd_data</span><span class="o">.</span><span class="n">has_profile_page</span><span class="p">())</span> <span class="ow">or</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">nonfaculty_profile</span></div>
+
+    <span class="n">PHOTO_MAX_WIDTH</span> <span class="o">=</span> <span class="mi">207</span>
+
+<div class="viewcode-block" id="UserProfile.resize_photo"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.UserProfile.resize_photo">[docs]</a>    <span class="k">def</span> <span class="nf">resize_photo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Resize the :attr:`photo` associated with this profile (if</span>
+<span class="sd">        any) to :attr:`PHOTO_MAX_WIDTH`, preserving aspect ratio.  If</span>
+<span class="sd">        the image width is already smaller than</span>
+<span class="sd">        :attr:`PHOTO_MAX_WIDTH`, no changes are made.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="p">:</span>
+            <span class="c1"># if the photo is smaller than our maximum size, don&#39;t do anything</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PHOTO_MAX_WIDTH</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Photo size is </span><span class="si">%d</span><span class="s1">x</span><span class="si">%d</span><span class="s1">; not resizing to max width </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> \
+                             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">PHOTO_MAX_WIDTH</span><span class="p">))</span>
+                <span class="k">return</span>
+
+            <span class="c1"># calculate the scale from current photo width to max width</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PHOTO_MAX_WIDTH</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+            <span class="n">new_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">height</span><span class="o">*</span><span class="n">scale</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Scaling photo from </span><span class="si">%d</span><span class="s1">x</span><span class="si">%d</span><span class="s1"> to </span><span class="si">%d</span><span class="s1">x</span><span class="si">%d</span><span class="s1"> (</span><span class="si">%.02f</span><span class="s1">)&#39;</span> <span class="o">%</span> \
+                             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">PHOTO_MAX_WIDTH</span><span class="p">,</span> <span class="n">new_height</span><span class="p">,</span>
+                              <span class="n">scale</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="p">)</span>
+            <span class="n">sized</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">PHOTO_MAX_WIDTH</span><span class="p">,</span> <span class="n">new_height</span><span class="p">),</span>
+                               <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="c1"># save the photo to a buffer in the same format of the original</span>
+            <span class="n">buf</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+            <span class="n">sized</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+            <span class="c1"># save the contents back to the photo imagefield</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">name</span>
+            <span class="c1"># - delete the current photo image but don&#39;t update the database yet</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">save</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="c1"># - save the new version with the old filename</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">photo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ContentFile</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()))</span>
+            <span class="n">buf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="Degree"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Degree">[docs]</a><span class="k">class</span> <span class="nc">Degree</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.db.models.Model` for a degree held by a user.&#39;&#39;&#39;</span>
+    <span class="n">holder</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">UserProfile</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Degree holder&#39;</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Degree Name&#39;</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">institution</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Institution that granted the degree&#39;</span><span class="p">)</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span> <span class="c1"># optional</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">institution</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s1">&#39;, </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,)</span>
+        <span class="k">return</span> <span class="n">desc</span></div>
+
+
+<div class="viewcode-block" id="Position"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Position">[docs]</a><span class="k">class</span> <span class="nc">Position</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.db.models.Model` for an academic title (e.g.: named</span>
+<span class="sd">    chair, organization president, journal editor) held by a user.&#39;&#39;&#39;</span>
+    <span class="n">holder</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">UserProfile</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Position holder&#39;</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Position Name&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="Grant"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Grant">[docs]</a><span class="k">class</span> <span class="nc">Grant</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.db.models.Model` for a research grant to be</span>
+<span class="sd">    displayed on a user profile.&#39;&#39;&#39;</span>
+    <span class="n">grantee</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">UserProfile</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">grantor</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">project_title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Basic text description of grant, primarily for the admin view</span>
+<span class="sd">        and/or dev. Probably not useful for the profile display, as that</span>
+<span class="sd">        will want a bit more complexity and possibly markup.&#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grantor</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;grant from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grantor</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_title</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;grant for &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grantor</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="c1"># should be impossible</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;unnamed grant&#39;</span>
+        <span class="k">if</span> <span class="n">year</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="ExternalLink"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.ExternalLink">[docs]</a><span class="k">class</span> <span class="nc">ExternalLink</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.db.models.model` for an external link held by a user.&#39;&#39;&#39;</span>
+    <span class="n">holder</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">UserProfile</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">URLField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="researchers_by_interest"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.researchers_by_interest">[docs]</a><span class="k">def</span> <span class="nf">researchers_by_interest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">slug</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Find researchers by interest.  Returns a QuerySet of</span>
+<span class="sd">    :class:`~django.contrib.auth.models.User` objects who have the</span>
+<span class="sd">    specified interest tagged as a research interest on their profile.</span>
+<span class="sd">    Allows searching by tag name or slug.</span>
+
+<span class="sd">    :param name: normal display name of the research interest tag</span>
+<span class="sd">    :param slug:</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># filtering on userprofile__research_interests__name fails, but</span>
+    <span class="c1"># this form seems to work correctly</span>
+    <span class="n">tagfilter_prefix</span> <span class="o">=</span> <span class="s1">&#39;userprofile__tagged_items__tag&#39;</span>
+    <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">__name&#39;</span> <span class="o">%</span> <span class="n">tagfilter_prefix</span> <span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+    <span class="k">elif</span> <span class="n">slug</span><span class="p">:</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">__slug&#39;</span> <span class="o">%</span> <span class="n">tagfilter_prefix</span><span class="p">:</span> <span class="n">slug</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Interest tag name or slug required&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="nb">filter</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Bookmark"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Bookmark">[docs]</a><span class="k">class</span> <span class="nc">Bookmark</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.db.models.Model` to allow users to create</span>
+<span class="sd">    private bookmarks and tags for</span>
+<span class="sd">    :class:`~eulfedora.models.DigitalObject` instances.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;:class:`~django.contrib.auth.models.User` who created and owns</span>
+<span class="sd">    this bookmark&#39;&#39;&#39;</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;permanent id of the :class:`~eulfedora.models.DigitalObject` in</span>
+<span class="sd">    Fedora&#39;&#39;&#39;</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">TaggableManager</span><span class="p">()</span>
+    <span class="sd">&#39;&#39;&#39;:class:`taggit.managers.TaggableManager` for tags associated with</span>
+<span class="sd">    the object&#39;&#39;&#39;</span>
+    <span class="n">unique_together</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span><span class="p">),</span> <span class="p">)</span>
+
+<div class="viewcode-block" id="Bookmark.display_tags"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Bookmark.display_tags">[docs]</a>    <span class="k">def</span> <span class="nf">display_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;comma-separated string with all tags&#39;</span>
+        <span class="c1"># for display in django db-admin</span>
+        <span class="k">return</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="pids_by_tag"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.pids_by_tag">[docs]</a><span class="k">def</span> <span class="nf">pids_by_tag</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Find the pids of bookmarked objects for a given</span>
+<span class="sd">    :class:`~django.contrib.auth.models.User` and</span>
+<span class="sd">    :class:`~taggit.models.Tag`. Returns a list of pids.</span>
+
+<span class="sd">    :param user: :class:`~django.contrib.auth.models.User` whose</span>
+<span class="sd">        :class:`~openemory.accounts.models.Bookmark` objects should be</span>
+<span class="sd">        searched</span>
+<span class="sd">    :param tag: :class:`~taggit.models.Tag` tag to filter</span>
+<span class="sd">        :class:`~openemory.accounts.models.Bookmark` objects</span>
+<span class="sd">    :returns: list of pids</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">Bookmark</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                                   <span class="n">tags</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;pid&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="articles_by_tag"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.articles_by_tag">[docs]</a><span class="k">def</span> <span class="nf">articles_by_tag</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Find articles in Solr based on a</span>
+<span class="sd">    :class:`~django.contrib.auth.models.User` and their</span>
+<span class="sd">    :class:`~openemory.accounts.models.Bookmark` s.</span>
+
+<span class="sd">    Calls :meth:`pids_by_tag` to find the pids of bookmarked objects</span>
+<span class="sd">    for the specified user and tag, and then queries Solr to get</span>
+<span class="sd">    display information for those objects.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">solr</span> <span class="o">=</span> <span class="n">solr_interface</span><span class="p">()</span>
+    <span class="n">pidfilter</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="c1"># find any objects with pids bookmarked by the user</span>
+    <span class="c1"># - generates a filter that looks like Q(pid=pid1) | Q(pid=pid2) | Q(pid=pid3)</span>
+    <span class="n">tagged_pids</span> <span class="o">=</span> <span class="n">pids_by_tag</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+    <span class="c1"># if no pids are found, just return an empty list</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tagged_pids</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pid</span> <span class="ow">in</span> <span class="n">tagged_pids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pidfilter</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">pidfilter</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="n">pid</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pidfilter</span> <span class="o">|=</span> <span class="n">solr</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="n">pid</span><span class="p">)</span>
+    <span class="n">solrquery</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">pidfilter</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">field_limit</span><span class="p">(</span><span class="n">PUBLICATION_VIEW_FIELDS</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;-last_modified&#39;</span><span class="p">)</span>	<span class="c1"># best option ?</span>
+
+    <span class="c1"># return solrquery instead of calling execute so the result can be</span>
+    <span class="c1"># paginated</span>
+    <span class="k">return</span> <span class="n">solrquery</span></div>
+
+
+<span class="k">class</span> <span class="nc">EsdFacultyManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_query_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EsdFacultyManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_query_set</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">person_type</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EsdPerson"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.EsdPerson">[docs]</a><span class="k">class</span> <span class="nc">EsdPerson</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A partial user profile from the external read-only ESD database.</span>
+<span class="sd">    Users may be indexed by ppid or netid.&#39;&#39;&#39;</span>
+
+    <span class="n">_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">AutoField</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_i&#39;</span><span class="p">,</span> <span class="n">editable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">ppid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_i_pblc&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;public person id/directory key&quot;</span><span class="p">)</span>
+    <span class="n">directory_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_n_full_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;full name in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">ad_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_n_dspl_acdr&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;name in Active Directory&quot;</span><span class="p">)</span>
+    <span class="n">firstmid_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_n_fm_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;first and middle name in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_n_last_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;last name in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">name_suffix</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_n_sufx_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;honorary or other name suffix in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_e_titl_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;position title in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">phone</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prad_a_tlph_empe_fmtt&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;phone number in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">fax</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prad_a_fax_empe_fmtt&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;fax number in the online directory&quot;</span><span class="p">)</span>
+    <span class="n">department_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;dprt_c&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;identifying code of the department the user works in&quot;</span><span class="p">)</span>
+    <span class="n">department_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;dprt8dtry_n&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;human-readable name of the department the user works in&quot;</span><span class="p">)</span>
+    <span class="n">division_code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;dvsn_i&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;identifying code of the division the user works in&quot;</span><span class="p">)</span>
+    <span class="n">division_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;dvsn8dtry_n&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;human-readable name of the division the user works in&quot;</span><span class="p">)</span>
+    <span class="n">mailstop_code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;mlst_i&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;identifying code of the user&#39;s mailstop&quot;</span><span class="p">)</span>
+    <span class="n">mailstop_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;mlst_n&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;human-readable name of the user&#39;s mailstop&quot;</span><span class="p">)</span>
+
+    <span class="n">netid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;logn8ntwr_i&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;network login&quot;</span><span class="p">)</span> <span class="c1"># always all-caps</span>
+    <span class="n">internet_suppressed</span> <span class="o">=</span> <span class="n">YesNoBooleanField</span><span class="p">(</span><span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_f_sprs_intt&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;suppress user&#39;s directory information to off-campus clients&quot;</span><span class="p">)</span>
+    <span class="n">directory_suppressed</span> <span class="o">=</span> <span class="n">YesNoBooleanField</span><span class="p">(</span><span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_f_sprs_dtry&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;suppress user&#39;s directory information to all clients&quot;</span><span class="p">)</span>
+    <span class="n">information_suppressed</span> <span class="o">=</span> <span class="n">YesNoBooleanField</span><span class="p">(</span><span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_f_sprs_infr&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;no reference allowed to user&quot;</span><span class="p">)</span>
+    <span class="n">faculty_flag</span> <span class="o">=</span> <span class="n">YesNoBooleanField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;empe_f_fclt&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;user is a faculty member&quot;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;emad_n&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;user&#39;s primary email address&quot;</span><span class="p">)</span>
+    <span class="n">email_forward</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;emad8frwd_n&#39;</span><span class="p">,</span>
+            <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;internal or external forwarding address for email&quot;</span><span class="p">)</span>
+
+    <span class="c1"># default manager</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+    <span class="n">faculty</span> <span class="o">=</span> <span class="n">EsdFacultyManager</span><span class="p">()</span>
+    <span class="s1">&#39;custom object manager for faculty persons only&#39;</span>
+
+    <span class="c1"># choice meanings per email from esd team</span>
+    <span class="n">EMPLOYEE_STATUS_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;deceased&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;on leave&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;on-boarding&#39;</span><span class="p">),</span> <span class="c1"># ESD&#39;s term. not sure what it means</span>
+        <span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;sponsored&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;terminated&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">employee_status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">EMPLOYEE_STATUS_CHOICES</span><span class="p">,</span>
+                                       <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;emjo_c_stts_empe&#39;</span><span class="p">)</span>
+
+    <span class="c1"># choice meanings per email from esd team</span>
+    <span class="n">PERSON_TYPE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;administrative&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;student/staff&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;staff/student&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;staff&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;faculty&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;EU job eligible&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;student applicant&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;sponsored&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;retired&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-start&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">person_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">db_column</span><span class="o">=</span><span class="s1">&#39;prsn_c_type&#39;</span><span class="p">)</span>
+
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_tablespace</span> <span class="o">=</span> <span class="s1">&#39;esdv&#39;</span>
+        <span class="c1"># oracle tablespace requires this db_table syntax as of django</span>
+        <span class="c1"># 1.3.1. mysql interprets it as a table name with quotes and a</span>
+        <span class="c1"># period in it.</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;&quot;esdv&quot;.&quot;v_oem_fclt&quot;&#39;</span>
+        <span class="n">managed</span><span class="o">=</span><span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ppid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">netid</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">department_shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">department_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">department_name</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">department_name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">department_name</span>
+
+<div class="viewcode-block" id="EsdPerson.profile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.EsdPerson.profile">[docs]</a>    <span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Find the :class:`UserProfile` corresponding to this</span>
+<span class="sd">        :class:`EsdPerson`.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user__username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">netid</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="EsdPerson.has_profile_page"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.EsdPerson.has_profile_page">[docs]</a>    <span class="k">def</span> <span class="nf">has_profile_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return ``True`` if the user should have a public-facing web</span>
+<span class="sd">        profile on the site, ``False`` if not.  Currently requires</span>
+<span class="sd">        Faculty status.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">person_type</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span></div>
+
+    <span class="c1"># additional field mappings for solr indexing</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;ppid:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppid</span>
+
+    <span class="n">_first_name</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">first_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;First and middle name for indexing in Solr.</span>
+
+<span class="sd">        Uses :attr:`firstmid_name` when available; if empty, attempts</span>
+<span class="sd">        to infer first name based on :attr:`last_name` and</span>
+<span class="sd">        :attr`ad_name`.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># if first-middle directory name is available, use it</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstmid_name</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstmid_name</span>
+
+            <span class="c1"># otherwise, if both last name and ad name are available and match,</span>
+            <span class="c1"># infer first name from ad name (ad name format: lastname, first middle)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ad_name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ad_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ad_name</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="p">):]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; ,&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">username</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Lower-case form of :attr:`netid`, for indexing in Solr.&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">netid</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">record_type</span> <span class="o">=</span> <span class="s1">&#39;accounts_esdperson&#39;</span>
+    <span class="s1">&#39;record type for Solr index, to distinguish from other indexed content&#39;</span>
+    <span class="c1"># following django contenttype convention: app_label, model</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">division_dept_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Delimited field with division name and code, along with</span>
+<span class="sd">        department name and id, so Departments and Divisions can be</span>
+<span class="sd">        used with Solr facets but linked to the appropriate code or</span>
+<span class="sd">        id.  Uses the shortened name of the department.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">division_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">division_code</span><span class="p">,</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">department_shortname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">department_id</span><span class="p">])</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">split_department</span><span class="p">(</span><span class="n">division_dept_id</span><span class="p">):</span>
+        <span class="n">div</span><span class="p">,</span> <span class="n">div_code</span><span class="p">,</span> <span class="n">dept</span><span class="p">,</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="n">division_dept_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;division_name&#39;</span><span class="p">:</span> <span class="n">div</span><span class="p">,</span>
+            <span class="s1">&#39;division_code&#39;</span><span class="p">:</span> <span class="n">div_code</span><span class="p">,</span>
+            <span class="s1">&#39;department_name&#39;</span><span class="p">:</span> <span class="n">dept</span><span class="p">,</span>
+            <span class="s1">&#39;department_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">affiliations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profile</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">profile</span><span class="o">.</span><span class="n">position_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+<div class="viewcode-block" id="EsdPerson.index_data"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.EsdPerson.index_data">[docs]</a>    <span class="k">def</span> <span class="nf">index_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Indexing information for this :class:`EsdPerson` instance</span>
+<span class="sd">        in a format that :meth:`sunburnt.SolrInterface.add` can</span>
+<span class="sd">        handle.  If this person is internet or directory suppressed</span>
+<span class="sd">        and does not have a local profile overridding that</span>
+<span class="sd">        suppression, returns a dictionary with minimal information to</span>
+<span class="sd">        be indexed.  Otherwise, returns the item itself for</span>
+<span class="sd">        :mod:`sunburnt` to inspect and index all fields that match</span>
+<span class="sd">        fields in the Solr schema.</span>
+
+<span class="sd">        :returns: dict or :class:`EsdPerson`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">internet_suppressed</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">directory_suppressed</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profile</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="n">profile</span> <span class="o">=</span> <span class="bp">None</span>
+
+            <span class="c1"># if profile does not exist or suppression override is not set,</span>
+            <span class="c1"># return *minimal* information</span>
+            <span class="k">if</span> <span class="n">profile</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">profile</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">profile</span><span class="o">.</span><span class="n">show_suppressed</span><span class="p">:</span>
+                <span class="k">return</span>  <span class="p">{</span>
+                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;ppid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppid</span><span class="p">,</span>
+                    <span class="s1">&#39;record_type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_type</span><span class="p">,</span>
+                    <span class="c1"># info required for co-author lookup</span>
+                    <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                    <span class="s1">&#39;ad_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ad_name</span><span class="p">,</span>
+                    <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+                    <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+                <span class="p">}</span>
+
+
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<div class="viewcode-block" id="Announcement"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Announcement">[docs]</a><span class="k">class</span> <span class="nc">Announcement</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Subclass of :class:`~django.db.models.Model` to allow site admins to create</span>
+<span class="sd">    and maintain announcements for display in the dashboard.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1">#max lenght for message</span>
+    <span class="nb">max</span> <span class="o">=</span> <span class="mi">500</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="nb">max</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MaxLengthValidator</span><span class="p">(</span><span class="nb">max</span><span class="p">)])</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Announcement.get_displayable"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.models.Announcement.get_displayable">[docs]</a>    <span class="k">def</span> <span class="nf">get_displayable</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        returns list of :class:`~openemory.accounts.models.Announcement` objects that should be</span>
+<span class="sd">        displayed based date/time and active status</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">announcements</span> <span class="o">=</span> <span class="n">Announcement</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">active</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span>\
+        <span class="nb">filter</span><span class="p">((</span><span class="n">Q</span><span class="p">(</span><span class="n">start__lt</span><span class="o">=</span><span class="n">now</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">end__gt</span><span class="o">=</span><span class="n">now</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">announcements</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

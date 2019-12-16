@@ -1,0 +1,982 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.accounts.views &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.accounts.views</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/accounts/views.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.views</span> <span class="kn">import</span> <span class="n">mail_listserv</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.views</span> <span class="kn">import</span> <span class="n">mail_listserv</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ObjectDoesNotExist</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="kn">import</span> <span class="n">mail_managers</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.core.serializers.json</span> <span class="kn">import</span> <span class="n">DjangoJSONEncoder</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">views</span> <span class="k">as</span> <span class="n">authviews</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">django.contrib.sites.models</span> <span class="kn">import</span> <span class="n">get_current_site</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Count</span><span class="p">,</span> <span class="n">Q</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">HttpResponseForbidden</span><span class="p">,</span> \
+                        <span class="n">HttpResponseRedirect</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_http_methods</span>
+<span class="kn">from</span> <span class="nn">eulcommon.djangoextras.http</span> <span class="kn">import</span> <span class="n">HttpResponseSeeOtherRedirect</span><span class="p">,</span> <span class="n">content_negotiation</span>
+<span class="kn">from</span> <span class="nn">eulfedora.server</span> <span class="kn">import</span> <span class="n">Repository</span>
+<span class="kn">from</span> <span class="nn">eulfedora.views</span> <span class="kn">import</span> <span class="n">login_and_store_credentials_in_session</span>
+<span class="kn">from</span> <span class="nn">django_auth_ldap.backend</span> <span class="kn">import</span> <span class="n">LDAPBackend</span> <span class="k">as</span> <span class="n">EmoryLDAPBackend</span>
+<span class="kn">from</span> <span class="nn">eulxml.xmlmap.dc</span> <span class="kn">import</span> <span class="n">DublinCore</span>
+<span class="kn">from</span> <span class="nn">rdflib.graph</span> <span class="kn">import</span> <span class="n">Graph</span> <span class="k">as</span> <span class="n">RdfGraph</span>
+<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">BNode</span>
+<span class="kn">from</span> <span class="nn">taggit.utils</span> <span class="kn">import</span> <span class="n">parse_tags</span>
+<span class="kn">from</span> <span class="nn">taggit.models</span> <span class="kn">import</span> <span class="n">Tag</span>
+
+<span class="kn">from</span> <span class="nn">openemory.publication.models</span> <span class="kn">import</span> <span class="n">Publication</span><span class="p">,</span> <span class="n">ArticleStatistics</span>
+<span class="kn">from</span> <span class="nn">openemory.rdfns</span> <span class="kn">import</span> <span class="n">FRBR</span><span class="p">,</span> <span class="n">FOAF</span><span class="p">,</span> <span class="n">ns_prefixes</span>
+<span class="kn">from</span> <span class="nn">openemory.accounts.auth</span> <span class="kn">import</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">require_self_or_admin</span>
+<span class="kn">from</span> <span class="nn">openemory.accounts.forms</span> <span class="kn">import</span> <span class="n">ProfileForm</span><span class="p">,</span> <span class="n">InterestFormSet</span><span class="p">,</span> <span class="n">FeedbackForm</span>
+<span class="kn">from</span> <span class="nn">openemory.accounts.models</span> <span class="kn">import</span> <span class="n">researchers_by_interest</span> <span class="k">as</span> <span class="n">users_by_interest</span><span class="p">,</span> \
+     <span class="n">Bookmark</span><span class="p">,</span> <span class="n">articles_by_tag</span><span class="p">,</span> <span class="n">Degree</span><span class="p">,</span> <span class="n">EsdPerson</span><span class="p">,</span> <span class="n">Grant</span><span class="p">,</span> <span class="n">UserProfile</span><span class="p">,</span> <span class="n">Announcement</span><span class="p">,</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">openemory.util</span> <span class="kn">import</span> <span class="n">paginate</span><span class="p">,</span> <span class="n">solr_interface</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">json_serializer</span> <span class="o">=</span> <span class="n">DjangoJSONEncoder</span><span class="p">(</span><span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<div class="viewcode-block" id="login"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.login">[docs]</a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Log in, store credentials for Fedora access, and redirect to</span>
+<span class="sd">    the user profile page if no **next** url was specified.  If login</span>
+<span class="sd">    fails, the user will be redirect either to the **next** url (if</span>
+<span class="sd">    specified) or to the site index, with an error message to indicate</span>
+<span class="sd">    the login failure.</span>
+
+<span class="sd">    Login functionality is based on</span>
+<span class="sd">    :meth:`eulfedora.views.login_and_store_credentials_in_session` and</span>
+<span class="sd">    :meth:`django.contrib.auth.views.login`</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">login_and_store_credentials_in_session</span><span class="p">(</span><span class="n">request</span><span class="p">,</span>
+        <span class="c1"># NOTE: specifying 401.html because default accounts/registration.html</span>
+        <span class="c1"># doesn&#39;t exist; we should handle this better</span>
+        <span class="n">template_name</span><span class="o">=</span><span class="s1">&#39;401.html&#39;</span><span class="p">)</span>
+    <span class="c1"># if login succeeded and a next url was not specified,</span>
+    <span class="c1"># redirect the user somewhere appropriate</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">next_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">next_url</span><span class="p">:</span>
+            <span class="c1"># if the user is in the Site Admin group, redirect</span>
+            <span class="c1"># to the harvest queue page</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Site Admin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
+                <span class="n">next_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;harvest:queue&#39;</span><span class="p">)</span>
+
+            <span class="c1"># if the user has a profile page, redirect t</span>
+            <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">userprofile</span><span class="o">.</span><span class="n">has_profile_page</span><span class="p">():</span>
+                <span class="n">next_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:profile&#39;</span><span class="p">,</span>
+                                   <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">})</span>
+
+            <span class="k">if</span> <span class="n">next_url</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">next_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;site-index&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">HttpResponseSeeOtherRedirect</span><span class="p">(</span><span class="n">next_url</span><span class="p">)</span>
+
+        <span class="c1"># if this was a post, but the user is not authenticated, login must have failed</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="c1"># add an error message, then redirect the user back to where they were</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Login failed. Please try again.&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">next_url</span><span class="p">:</span>
+                <span class="n">next_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;site-index&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">HttpResponseSeeOtherRedirect</span><span class="p">(</span><span class="n">next_url</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="logout"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.logout">[docs]</a><span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="s1">&#39;Log out and redirect to the site index page.&#39;</span>
+    <span class="k">return</span> <span class="n">authviews</span><span class="o">.</span><span class="n">logout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">next_page</span><span class="o">=</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;site-index&#39;</span><span class="p">))</span></div>
+
+
+<span class="k">def</span> <span class="nf">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Find the :class:`~django.contrib.auth.models.User` and</span>
+<span class="sd">    :class:`~openemory.accounts.models.UserProfile` for a specified</span>
+<span class="sd">    username, for use in profile pages.  The specified ``username``</span>
+<span class="sd">    must exist as an :class:`~openemory.accounts.models.EsdPerson`; if</span>
+<span class="sd">    the corresponding :class:`~openemory.accounts.models.UserProfile`</span>
+<span class="sd">    does not yet exist, it will be initialized from LDAP.</span>
+
+<span class="sd">    Raises a :class:`django.http.Http404` if any of the models cannot</span>
+<span class="sd">    be found or created.</span>
+
+<span class="sd">    Helper method for profile views (:meth:`rdf_profile` and</span>
+<span class="sd">    :meth:`profile`).</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># FIXME: It made sense in the past to require an EsdPerson for every</span>
+    <span class="c1"># User/UserProfile. As of 2012-03-06, this shouldn&#39;t be so important.</span>
+    <span class="c1"># At some point we should make this work if the User and UserProfile</span>
+    <span class="c1"># exist (assuming profile.has_profile_page()) even if the EsdPerson</span>
+    <span class="c1"># doesn&#39;t.</span>
+
+    <span class="c1"># retrieve the ESD db record for the requested user</span>
+    <span class="n">esdperson</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">EsdPerson</span><span class="p">,</span> <span class="n">netid</span><span class="o">=</span><span class="n">username</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+    <span class="c1"># get the corresponding local profile &amp; user</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">profile</span> <span class="o">=</span> <span class="n">esdperson</span><span class="o">.</span><span class="n">profile</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">user</span>
+        <span class="c1"># 404 if the user exists but should not have a profile page</span>
+        <span class="c1"># (check against UserProfile if there is one, for local profile override)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">profile</span><span class="o">.</span><span class="n">has_profile_page</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+    <span class="k">except</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="c1"># if local account doesn&#39;t exist, make sure ESD indicates the</span>
+        <span class="c1"># user should have a profile before proceeding</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">esdperson</span><span class="o">.</span><span class="n">has_profile_page</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+
+        <span class="c1"># local account doesn&#39;t exist but user should have a profile:</span>
+        <span class="c1"># attempt to init local user &amp; profile</span>
+
+        <span class="n">backend</span> <span class="o">=</span> <span class="n">EmoryLDAPBackend</span><span class="p">()</span>
+        <span class="n">user_dn</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">find_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="n">profile</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span>
+
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">profile</span>
+
+
+
+<div class="viewcode-block" id="rdf_profile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.rdf_profile">[docs]</a><span class="k">def</span> <span class="nf">rdf_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Profile information comparable to the human-readable content</span>
+<span class="sd">    returned by :meth:`profile`, but in RDF format.&#39;&#39;&#39;</span>
+
+    <span class="c1"># retrieve user &amp; publications - same logic as profile above</span>
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">recent_articles</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># build an rdf graph with information author &amp; publications</span>
+    <span class="n">rdf</span> <span class="o">=</span> <span class="n">RdfGraph</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">ns</span> <span class="ow">in</span> <span class="n">ns_prefixes</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
+    <span class="n">author_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
+    <span class="n">profile_uri</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:profile&#39;</span><span class="p">,</span>
+                                                    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">})))</span>
+    <span class="n">profile_data_uri</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:profile-data&#39;</span><span class="p">,</span>
+                                                         <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">})))</span>
+
+    <span class="c1"># author information</span>
+    <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">profile_uri</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">primaryTopic</span><span class="p">,</span> <span class="n">author_node</span><span class="p">))</span>
+    <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">Person</span><span class="p">))</span>
+    <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">nick</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+    <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">publications</span><span class="p">,</span> <span class="n">profile_uri</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">esd_data</span> <span class="o">=</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">esd_data</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">EsdPerson</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="n">esd_data</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">if</span> <span class="n">esd_data</span><span class="p">:</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">esd_data</span><span class="o">.</span><span class="n">directory_name</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">())))</span>
+
+    <span class="k">if</span> <span class="n">esd_data</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">suppress_esd_data</span><span class="p">:</span>
+        <span class="n">mbox_sha1sum</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">esd_data</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">mbox_sha1sum</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">mbox_sha1sum</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">esd_data</span><span class="o">.</span><span class="n">phone</span><span class="p">:</span>
+            <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">phone</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="n">esd_data</span><span class="o">.</span><span class="n">phone</span><span class="p">)))</span>
+
+    <span class="c1"># TODO: use ESD profile data where appropriate</span>
+    <span class="c1"># (and honor internet/directory suppressed, suppression override)</span>
+
+    <span class="c1"># article information</span>
+    <span class="n">repo</span> <span class="o">=</span> <span class="n">Repository</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="n">Publication</span><span class="p">)</span>
+        <span class="n">obj_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span> <span class="c1"># info:fedora/ uri is not public</span>
+
+        <span class="c1"># relate to author</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FRBR</span><span class="o">.</span><span class="n">creatorOf</span><span class="p">,</span> <span class="n">obj_node</span><span class="p">))</span>
+        <span class="n">rdf</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">author_node</span><span class="p">,</span> <span class="n">FOAF</span><span class="o">.</span><span class="n">made</span><span class="p">,</span> <span class="n">obj_node</span><span class="p">))</span>
+        <span class="c1"># add object rdf</span>
+        <span class="n">rdf</span> <span class="o">+=</span> <span class="n">obj</span><span class="o">.</span><span class="n">as_rdf</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">obj_node</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">rdf</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/rdf+xml&#39;</span><span class="p">)</span>
+    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">profile_data_uri</span>
+    <span class="k">return</span> <span class="n">response</span></div>
+
+
+
+
+<span class="nd">@content_negotiation</span><span class="p">({</span><span class="s1">&#39;application/rdf+xml&#39;</span><span class="p">:</span> <span class="n">rdf_profile</span><span class="p">})</span>
+<div class="viewcode-block" id="profile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.profile">[docs]</a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display public profile information and publications for the requested</span>
+<span class="sd">    author.  Uses content negotation to provide equivalent content via</span>
+<span class="sd">    RDF (see :meth:`rdf_profile`).</span>
+
+<span class="sd">    If a logged in author or site admin looks at the profile, a</span>
+<span class="sd">    dashboard view is displayed instead of the public profile</span>
+<span class="sd">    information.&#39;&#39;&#39;</span>
+
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+    <span class="c1"># if request is from a logged in user looking at their own profile</span>
+    <span class="c1"># or a site admin, return the faculty dashboard view</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">user</span> \
+           <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_perm</span><span class="p">(</span><span class="s1">&#39;accounts.change_userprofile&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/dashboard.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">})</span>
+
+    <span class="c1"># otherwise, return the public profile</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">public_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="public_profile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.public_profile">[docs]</a><span class="k">def</span> <span class="nf">public_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display public profile information and publications for the</span>
+<span class="sd">    requested author.</span>
+
+<span class="sd">    When requested via AJAX, returns HTML that can be displayed inside</span>
+<span class="sd">    a faculty dashboard tab.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+    <span class="n">form</span><span class="p">,</span> <span class="n">interest_formset</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ProfileForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">userprofile</span><span class="p">)</span>
+        <span class="n">interest_formset</span> <span class="o">=</span> <span class="n">InterestFormSet</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;interests&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span> <span class="ow">and</span> <span class="n">interest_formset</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="c1"># save and redirect to profile</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">new_interests</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interest&#39;</span><span class="p">)</span>
+                             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">interest_formset</span><span class="o">.</span><span class="n">forms</span>
+                             <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interest&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                                <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)]</span>
+            <span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">*</span><span class="n">new_interests</span><span class="p">)</span>
+            <span class="c1"># if a new photo file was posted, resize it</span>
+            <span class="k">if</span> <span class="s1">&#39;photo&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">:</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">resize_photo</span><span class="p">()</span>
+            <span class="n">userprofile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Your profile was updated.&#39;</span><span class="p">)</span>
+            <span class="c1"># TODO: might want a different behavior when POSTed via ajax</span>
+            <span class="k">return</span> <span class="n">HttpResponseSeeOtherRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:dashboard-profile&#39;</span><span class="p">,</span>
+                                                        <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">}))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s1">&#39;invalid_form&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_perm</span><span class="p">(</span><span class="s2">&quot;accounts.change_userprofile&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">user</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ProfileForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">userprofile</span><span class="p">)</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">inlineformsets</span>
+        <span class="n">interest_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;interest&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span>
+                             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">all</span><span class="p">())]</span>
+        <span class="n">interest_formset</span> <span class="o">=</span> <span class="n">InterestFormSet</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="n">interest_data</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;interests&#39;</span><span class="p">)</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span>
+        <span class="s1">&#39;interest_formset&#39;</span><span class="p">:</span> <span class="n">interest_formset</span><span class="p">,</span>
+    <span class="p">})</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="c1"># display a briefer version of the profile, for inclusion in faculty dash</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/snippets/profile-tab.html&#39;</span>
+
+    <span class="c1"># for non-ajax requests, display full profile with documents</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># get articles where the user is the author</span>
+        <span class="n">articles_query</span> <span class="o">=</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">recent_articles_query</span><span class="p">()</span>
+        <span class="n">paginated_articles</span><span class="p">,</span> <span class="n">show_pages</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">articles_query</span><span class="p">)</span>
+
+        <span class="n">url_params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">url_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">paginated_articles</span><span class="p">,</span>
+            <span class="s1">&#39;show_pages&#39;</span><span class="p">:</span> <span class="n">show_pages</span><span class="p">,</span>
+            <span class="s1">&#39;url_params&#39;</span><span class="p">:</span> <span class="n">url_params</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(),</span>
+        <span class="p">})</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/profile.html&#39;</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<span class="nd">@require_self_or_admin</span>
+<div class="viewcode-block" id="edit_profile"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.edit_profile">[docs]</a><span class="k">def</span> <span class="nf">edit_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display and process profile edit form.  On GET, displays the</span>
+<span class="sd">    form; on POST, processes the form and saves if valid.  Currently</span>
+<span class="sd">    redirects to profile view on success.</span>
+
+<span class="sd">    When requested via AJAX, returns HTML that can be displayed in a</span>
+<span class="sd">    dashboard tab; otherwise, returns the dashboard page with edit</span>
+<span class="sd">    content loaded.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ProfileForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">userprofile</span><span class="p">)</span>
+        <span class="n">interest_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;interest&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span>
+                         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">all</span><span class="p">())]</span>
+        <span class="n">interest_formset</span> <span class="o">=</span> <span class="n">InterestFormSet</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="n">interest_data</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;interests&#39;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ProfileForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">userprofile</span><span class="p">)</span>
+        <span class="n">interest_formset</span> <span class="o">=</span> <span class="n">InterestFormSet</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;interests&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span> <span class="ow">and</span> <span class="n">interest_formset</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="c1"># save and redirect to profile</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">new_interests</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interest&#39;</span><span class="p">)</span>
+                             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">interest_formset</span><span class="o">.</span><span class="n">forms</span>
+                             <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interest&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                                <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)]</span>
+            <span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">*</span><span class="n">new_interests</span><span class="p">)</span>
+            <span class="c1"># if a new photo file was posted, resize it</span>
+            <span class="k">if</span> <span class="s1">&#39;photo&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">:</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">resize_photo</span><span class="p">()</span>
+            <span class="n">userprofile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="c1"># TODO: might want a different behavior when POSTed via ajax</span>
+            <span class="k">return</span> <span class="n">HttpResponseSeeOtherRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:dashboard-profile&#39;</span><span class="p">,</span>
+                                                        <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">}))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s1">&#39;invalid_form&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">context</span><span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">form</span>
+    <span class="n">context</span><span class="p">[</span><span class="s1">&#39;interest_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interest_formset</span>
+
+    <span class="c1"># template for the tab-only portion</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/snippets/edit-profile-tab.html&#39;</span>
+
+    <span class="c1"># for a non-ajax request, load the tab template in the dashboard</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;tab_template&#39;</span><span class="p">:</span> <span class="n">template_name</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">:</span> <span class="s1">&#39;profile&#39;</span><span class="p">})</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/dashboard.html&#39;</span>
+
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+
+<span class="nd">@require_self_or_admin</span>
+<div class="viewcode-block" id="dashboard_summary"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.dashboard_summary">[docs]</a><span class="k">def</span> <span class="nf">dashboard_summary</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display dashboard summary information for a logged-in faculty</span>
+<span class="sd">    user looking at their own profile (or a site admin looking at any</span>
+<span class="sd">    faculty profile).</span>
+
+<span class="sd">    When requested via AJAX, returns HTML for the dashboard tab only;</span>
+<span class="sd">    otherwise, returns the dashboard with tab content loaded.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="c1"># get articles where the user is the author</span>
+    <span class="n">articles_query</span> <span class="o">=</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">recent_articles_query</span><span class="p">()</span>
+    <span class="n">paginated_articles</span><span class="p">,</span> <span class="n">show_pages</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">articles_query</span><span class="p">)</span>
+
+    <span class="c1"># collect all stats for articles</span>
+    <span class="n">user_stats</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">user_stats</span><span class="p">[</span><span class="s1">&#39;total_items&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">paginated_articles</span><span class="o">.</span><span class="n">paginator</span><span class="o">.</span><span class="n">count</span>
+    <span class="c1"># get individual stat records and add them up</span>
+    <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">paginated_articles</span><span class="o">.</span><span class="n">object_list</span><span class="p">:</span>
+        <span class="n">stats</span>  <span class="o">=</span> <span class="n">ArticleStatistics</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">])</span>
+        <span class="c1"># FIXME: use django aggregations here?</span>
+        <span class="c1"># (should aggregate stats be a function userprofile?)</span>
+        <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+            <span class="n">user_stats</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">stat</span><span class="o">.</span><span class="n">num_views</span>
+            <span class="n">user_stats</span><span class="p">[</span><span class="s1">&#39;downloads&#39;</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">stat</span><span class="o">.</span><span class="n">num_downloads</span>
+
+    <span class="n">announcements</span> <span class="o">=</span>  <span class="n">Announcement</span><span class="o">.</span><span class="n">get_displayable</span><span class="p">()</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s1">&#39;user_stats&#39;</span><span class="p">:</span> <span class="n">user_stats</span><span class="p">,</span>
+        <span class="s1">&#39;unpublished_articles&#39;</span><span class="p">:</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">unpublished_articles</span><span class="p">(),</span>
+        <span class="s1">&#39;announcements&#39;</span><span class="p">:</span> <span class="n">announcements</span>
+    <span class="p">}</span>
+
+    <span class="c1"># template for the tab-only portion</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/snippets/dashboard-tab.html&#39;</span>
+
+    <span class="c1"># for a non-ajax request, load the tab template in the dashboard</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;tab_template&#39;</span><span class="p">:</span> <span class="n">template_name</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">:</span> <span class="s1">&#39;dashboard&#39;</span><span class="p">})</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/dashboard.html&#39;</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+<span class="nd">@require_self_or_admin</span>
+<div class="viewcode-block" id="dashboard_documents"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.dashboard_documents">[docs]</a><span class="k">def</span> <span class="nf">dashboard_documents</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display dashboard tab with documents for a logged-in faculty</span>
+<span class="sd">    user looking at their own profile or a site admin looking at any</span>
+<span class="sd">    faculty profile.</span>
+
+<span class="sd">    When requested via AJAX, returns HTML for the dashboard tab only;</span>
+<span class="sd">    otherwise, returns the dashboard with tab content loaded.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">user</span><span class="p">,</span> <span class="n">userprofile</span> <span class="o">=</span> <span class="n">_get_profile_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="c1"># get articles where the user is the author</span>
+    <span class="n">articles_query</span> <span class="o">=</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">recent_articles_query</span><span class="p">()</span>
+    <span class="n">paginated_articles</span><span class="p">,</span> <span class="n">show_pages</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">articles_query</span><span class="p">)</span>
+
+    <span class="n">url_params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">url_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">paginated_articles</span><span class="p">,</span>
+        <span class="s1">&#39;show_pages&#39;</span><span class="p">:</span> <span class="n">show_pages</span><span class="p">,</span>
+        <span class="s1">&#39;url_params&#39;</span><span class="p">:</span> <span class="n">url_params</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(),</span>
+        <span class="s1">&#39;unpublished_articles&#39;</span><span class="p">:</span> <span class="n">userprofile</span><span class="o">.</span><span class="n">unpublished_articles</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1"># template for the tab-only portion</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/snippets/documents-tab.html&#39;</span>
+
+    <span class="c1"># for a non-ajax request, load the tab template in the dashboard</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;tab_template&#39;</span><span class="p">:</span> <span class="n">template_name</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">:</span> <span class="s1">&#39;documents&#39;</span><span class="p">})</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;accounts/dashboard.html&#39;</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<span class="nd">@require_http_methods</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="profile_tags"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.profile_tags">[docs]</a><span class="k">def</span> <span class="nf">profile_tags</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Add &amp; display tags (aka research interests) on a user profile.</span>
+
+<span class="sd">    On an HTTP GET, returns a JSON list of the tags for the specified</span>
+<span class="sd">    user profile.</span>
+
+<span class="sd">    On an HTTP PUT, if the requesting user is logged in and adding</span>
+<span class="sd">    tags to their own profile, will replace any existing tags with</span>
+<span class="sd">    tags from the body of the request.  Uses</span>
+<span class="sd">    :meth:`taggit.utils.parse_tags` to parse tags, with the same logic</span>
+<span class="sd">    :mod:`taggit` uses for parsing keyword and phrase tags on forms.</span>
+<span class="sd">    After a successul PUT, returns the a JSON response with the</span>
+<span class="sd">    updated tags and their corresponding urls.</span>
+
+<span class="sd">    On an HTTP POST, performs the same tag parsing and permission</span>
+<span class="sd">    checking as for PUT, but *adds* the POSTed tags to any existing</span>
+<span class="sd">    tags instead of replacing them.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+    <span class="c1"># check authenticated user</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+                <span class="c1"># user is not logged in</span>
+                <span class="n">code</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="mi">401</span><span class="p">,</span> <span class="s1">&#39;Not Authorized&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># user is authenticated but not allowed</span>
+                <span class="n">code</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="mi">403</span><span class="p">,</span> <span class="s1">&#39;Permission Denied&#39;</span>
+            <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+                                <span class="n">status</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+        <span class="c1"># user is authenticated and request user is the user being tagged</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="n">parse_tags</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PUT&#39;</span><span class="p">:</span>	<span class="c1"># replace tags with new set</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">*</span><span class="n">tags</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>	<span class="c1"># add new tag to existing tags</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">tags</span><span class="p">)</span>
+
+        <span class="c1"># fall through to GET handling and display the newly-updated tags</span>
+
+    <span class="c1"># GET or successful PUT/POST</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">tag</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:by-interest&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="o">.</span><span class="n">slug</span><span class="p">}))</span>
+                  <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span><span class="o">.</span><span class="n">research_interests</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span>
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tags</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="researchers_by_interest"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.researchers_by_interest">[docs]</a><span class="k">def</span> <span class="nf">researchers_by_interest</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Find users by research interest.</span>
+
+<span class="sd">    :param tag: slug value for the research interest tag</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Tag</span><span class="p">,</span> <span class="n">slug</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">users_by_interest</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="n">tag</span><span class="o">.</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/research_interest.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;interest&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="p">,</span>
+                                                               <span class="s1">&#39;users&#39;</span><span class="p">:</span> <span class="n">users</span><span class="p">})</span></div>
+<div class="viewcode-block" id="interests_autocomplete"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.interests_autocomplete">[docs]</a><span class="k">def</span> <span class="nf">interests_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Auto-complete for user profile research interests.  Finds tags</span>
+<span class="sd">    that are currently in use as</span>
+<span class="sd">    :class:`~openemory.accounts.models.UserProfile` research interests.</span>
+
+<span class="sd">    See documentation on :meth:`tag_autocompletion` for more details.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag_qs</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">taggit_taggeditem_items__content_type__model</span><span class="o">=</span><span class="s1">&#39;userprofile&#39;</span><span class="p">)</span>
+    <span class="c1"># NOTE: using content-type filter because filtering on</span>
+    <span class="c1"># userprofile__isnull=False incorrectly includes bookmark tags</span>
+    <span class="k">return</span> <span class="n">tag_autocompletion</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">tag_qs</span><span class="p">,</span> <span class="s1">&#39;userprofile__user__id&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="degree_autocomplete"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.degree_autocomplete">[docs]</a><span class="k">def</span> <span class="nf">degree_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Auto-complete for :class:`~openemory.accounts.model.Degree`</span>
+<span class="sd">    institutions and degree names.</span>
+
+<span class="sd">    Autocompletion is based on ``term`` query string parameter.</span>
+
+<span class="sd">    :param mode: autocomplete mode - supported values are</span>
+<span class="sd">    	``instutition`` or ``name``</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;institution&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">Http404</span>
+
+    <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># find degree institutions or degree names with any match;</span>
+    <span class="n">term_filter</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">__icontains&#39;</span> <span class="o">%</span> <span class="n">mode</span><span class="p">:</span> <span class="n">term</span><span class="p">}</span> <span class="c1"># filter based on mode</span>
+    <span class="c1"># sort the most common matches first</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">Degree</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="n">term_filter</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span> \
+                         <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;pk&#39;</span><span class="p">))</span> \
+                         <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-count&#39;</span><span class="p">)</span>
+    <span class="n">suggestions</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="n">mode</span><span class="p">]}</span>
+                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+                   <span class="p">]</span>
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">suggestions</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="position_autocomplete"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.position_autocomplete">[docs]</a><span class="k">def</span> <span class="nf">position_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Auto-complete for :class:`~openemory.accounts.model.Position`</span>
+<span class="sd">    A.K.A. Institute Affiliations</span>
+
+<span class="sd">    Autocompletion is based on ``term`` query string parameter.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># find position names with any match;</span>
+    <span class="n">term_filter</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name__icontains&#39;</span><span class="p">:</span> <span class="n">term</span><span class="p">}</span> <span class="c1"># filter based on mode</span>
+
+    <span class="c1"># sort the most common matches first and get the counts</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">Position</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="n">term_filter</span><span class="p">)</span> \
+                         <span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> \
+                         <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> \
+                         <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-count&#39;</span><span class="p">)</span>
+
+    <span class="n">suggestions</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]),</span>  <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]}</span>
+                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">suggestions</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">grant_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">Grant</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">grantor__icontains</span><span class="o">=</span><span class="n">term</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;grantor&#39;</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;pk&#39;</span><span class="p">))</span> \
+                    <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-count&#39;</span><span class="p">)</span>
+    <span class="n">suggestions</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;grantor&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">suggestions</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">faculty_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># handle multiple terms and strip off commas</span>
+    <span class="c1"># e.g., if user searches for &quot;lastname, firstname&quot;</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">term</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">t</span><span class="p">]</span>
+    <span class="c1"># TODO: consider using eulcommon.searchutil here</span>
+
+    <span class="n">solr</span> <span class="o">=</span> <span class="n">solr_interface</span><span class="p">()</span>
+    <span class="c1"># do an OR search for partial or exact matches in the full name</span>
+    <span class="n">term_filter</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">Q</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
+        <span class="c1"># exact match or partial match (exact word with * does not match)</span>
+        <span class="n">term_filter</span> <span class="o">|=</span> <span class="n">solr</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">ad_name</span><span class="o">=</span><span class="n">t</span><span class="p">)</span> <span class="o">|</span> <span class="n">solr</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">ad_name</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">*&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">term_filter</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">record_type</span><span class="o">=</span><span class="n">EsdPerson</span><span class="o">.</span><span class="n">record_type</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">field_limit</span><span class="p">([</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;department_name&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;ad_name&#39;</span><span class="p">],</span> <span class="n">score</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;-score&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;ad_name_sort&#39;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+    <span class="c1"># NOTE: may want to cut off based on some relevance score,</span>
+    <span class="c1"># (e.g., if score is below 0.5 and there is at least one good match,</span>
+    <span class="c1"># omit the less relevant items)</span>
+    
+    <span class="c1"># for u2 in r2:</span>
+    <span class="c1">#     print u2</span>
+
+    <span class="k">print</span> <span class="n">r</span>
+    <span class="n">suggestions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;ad_name&#39;</span><span class="p">],</span>  <span class="c1"># directory name in lastname, firstname format</span>
+         <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;department_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>  <span class="c1"># may be suppressed</span>
+         <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+         <span class="c1"># first name is missing in some cases-- don&#39;t error if it&#39;s not present</span>
+         <span class="c1"># NOTE: if first name is missing, name may be listed/filled in wrong</span>
+         <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+         <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;affiliation&#39;</span><span class="p">:</span> <span class="s1">&#39;Emory University&#39;</span><span class="p">}</span>
+         <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">r</span>
+        <span class="p">]</span>
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">suggestions</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+
+
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="tags_autocomplete"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.tags_autocomplete">[docs]</a><span class="k">def</span> <span class="nf">tags_autocomplete</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Auto-complete for private tags.  Finds tags that the currently</span>
+<span class="sd">    logged-in user has used for any of their</span>
+<span class="sd">    :class:`~openemory.accounts.models.Bookmark` s.</span>
+
+<span class="sd">    See documentation on :meth:`tag_autocompletion` for more details.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag_qs</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bookmark__user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tag_autocompletion</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">tag_qs</span><span class="p">,</span> <span class="s1">&#39;bookmark__user&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="tag_autocompletion"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.tag_autocompletion">[docs]</a><span class="k">def</span> <span class="nf">tag_autocompletion</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">tag_qs</span><span class="p">,</span> <span class="n">count_field</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Common autocomplete functionality for tags.  Given a</span>
+<span class="sd">    :class:`~taggit.models.Tag` QuerySet and a field to count, returns</span>
+<span class="sd">    a distinct list of the 10 most common tags filtered on the</span>
+<span class="sd">    specified search term (case-insensitive).  Results are returned as</span>
+<span class="sd">    JSON, with a tag id (slug), display label (tag name and count),</span>
+<span class="sd">    and the value to be used (tag name) for each matching tag</span>
+<span class="sd">    found. Return format is suitable for use with `JQuery UI</span>
+<span class="sd">    Autocomplete`_ widget.</span>
+
+<span class="sd">    .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/</span>
+
+<span class="sd">    Single term autocompletion is based on ``s`` query string</span>
+<span class="sd">    parameter.  If ``s`` is empty, this method will check for a</span>
+<span class="sd">    ``term`` parameter and use :meth:`taggit.utils.parse_tags` to do</span>
+<span class="sd">    tag autocompletion on the last tag in a list of tags.</span>
+
+<span class="sd">    :param request: the http request passed to the original view</span>
+<span class="sd">        method (used to retrieve the search term)</span>
+
+<span class="sd">    :param tag_qs: a :class:`~taggit.models.Tag` QuerySet filtered to</span>
+<span class="sd">        the appropriate set of tags (for further filtering by search term)</span>
+
+<span class="sd">    :param count_field: field to be used for count annotation - used</span>
+<span class="sd">         for tag ordering (most-used tags first) and display in the</span>
+<span class="sd">         autocompletion</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="n">suffix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">term</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">term</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">term</span><span class="p">:</span>
+            <span class="c1"># NOTE: taggit has a parse_tags method, but unfortunately</span>
+            <span class="c1"># it *sort* the tags, so we can&#39;t use it to identify the last term</span>
+            <span class="n">last_index</span> <span class="o">=</span> <span class="n">term</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="c1"># preserve the original string for inclusion in selected value</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">term</span><span class="p">[:</span><span class="n">last_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="n">term</span><span class="p">[</span><span class="n">last_index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span>
+
+    <span class="c1"># find tags attached to user profiles that contain the search term</span>
+    <span class="n">tag_qs</span> <span class="o">=</span> <span class="n">tag_qs</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__icontains</span><span class="o">=</span><span class="n">term</span><span class="p">)</span>
+    <span class="c1"># annotate the query string with a count of the number of profiles with that tag,</span>
+    <span class="c1"># order so most commonly used tags will be listed first</span>
+    <span class="n">annotated_qs</span> <span class="o">=</span> <span class="n">tag_qs</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="n">count_field</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-count&#39;</span><span class="p">)</span>
+    <span class="c1"># generate a dictionary to return via json with id, label (including count), value</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="o">.</span><span class="n">slug</span><span class="p">,</span>
+             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">count</span><span class="p">),</span>
+             <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">prefix</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">suffix</span><span class="p">])</span> <span class="p">}</span>
+            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">annotated_qs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>	<span class="c1"># limit to the first 10 tags</span>
+           <span class="p">]</span>
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tags</span><span class="p">),</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+
+
+<span class="nd">@login_required</span>
+<span class="nd">@require_http_methods</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="object_tags"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.object_tags">[docs]</a><span class="k">def</span> <span class="nf">object_tags</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pid</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Set &amp; display private tags on a particular</span>
+<span class="sd">    :class:`~eulfedora.models.DigitalObject` (saved in the database by</span>
+<span class="sd">    way of :class:`~openemory.accounts.models.Bookmark`).</span>
+
+<span class="sd">    On an HTTP GET, returns a JSON list of the tags for the specified</span>
+<span class="sd">    object, or 404 if the object has not been tagged.</span>
+
+<span class="sd">    On an HTTP PUT, will replace any existing tags with tags from the</span>
+<span class="sd">    body of the request.  Uses :meth:`taggit.utils.parse_tags` to</span>
+<span class="sd">    parse tags, with the same logic :mod:`taggit` uses for parsing</span>
+<span class="sd">    keyword and phrase tags on forms.  After a successul PUT, returns</span>
+<span class="sd">    the a JSON response with a list of the updated tags.  If the</span>
+<span class="sd">    Fedora object does not exist, returns a 404 error.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># bookmark options that will be used to create a new or find an</span>
+    <span class="c1"># existing bookmark for either GET or PUT</span>
+    <span class="n">bkmark_opts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span><span class="p">:</span> <span class="n">pid</span><span class="p">}</span>
+
+    <span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>	<span class="c1"># if all goes well, unless creating a new bookmark</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PUT&#39;</span><span class="p">:</span>
+        <span class="c1"># don&#39;t allow tagging non-existent objects</span>
+        <span class="c1"># NOTE: this will 404 if a bookmark is created and an object</span>
+        <span class="c1"># subsequently is removed or otherwise becomes unavailable in</span>
+        <span class="c1"># the repository</span>
+        <span class="n">repo</span> <span class="o">=</span> <span class="n">Repository</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+        <span class="c1"># if this fedora API call becomes expensive, may want to</span>
+        <span class="c1"># consider querying Solr instead</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">obj</span><span class="o">.</span><span class="n">exists</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+
+        <span class="n">bookmark</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">Bookmark</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="o">**</span><span class="n">bkmark_opts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">created</span><span class="p">:</span>
+            <span class="n">status_code</span> <span class="o">=</span> <span class="mi">201</span>
+        <span class="n">bookmark</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">*</span><span class="n">parse_tags</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+        <span class="c1"># fall through to GET handling and display the newly-updated tags</span>
+        <span class="c1"># should we return 201 when creating a new bookmark ?</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">bookmark</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Bookmark</span><span class="p">,</span> <span class="o">**</span><span class="n">bkmark_opts</span><span class="p">)</span>
+
+
+    <span class="c1"># GET or successful PUT</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">bookmark</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+    <span class="k">return</span>  <span class="n">HttpResponse</span><span class="p">(</span><span class="n">json_serializer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tags</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span>
+                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">tagged_items</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Tag</span><span class="p">,</span> <span class="n">slug</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">articles_by_tag</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">show_pages</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">articles</span><span class="p">)</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="p">,</span>
+        <span class="s1">&#39;articles&#39;</span><span class="p">:</span> <span class="n">results</span><span class="p">,</span>
+        <span class="s1">&#39;show_pages&#39;</span><span class="p">:</span> <span class="n">show_pages</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/tagged_items.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="departments"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.departments">[docs]</a><span class="k">def</span> <span class="nf">departments</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;List department names based on Faculty information in ESD,</span>
+<span class="sd">    grouped by division name.&#39;&#39;&#39;</span>
+    <span class="n">solr</span> <span class="o">=</span> <span class="n">solr_interface</span><span class="p">()</span>
+    <span class="n">div_dept_field</span> <span class="o">=</span> <span class="s1">&#39;division_dept_id&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">record_type</span><span class="o">=</span><span class="n">EsdPerson</span><span class="o">.</span><span class="n">record_type</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">facet_by</span><span class="p">(</span><span class="n">div_dept_field</span><span class="p">,</span> <span class="n">limit</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="n">div_depts</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">facet_counts</span><span class="o">.</span><span class="n">facet_fields</span><span class="p">[</span><span class="n">div_dept_field</span><span class="p">]</span>
+
+    <span class="c1"># division_dept_id field is indexed in Solr as</span>
+    <span class="c1"># division_name|division_code|department_shortname|department_id</span>
+    <span class="c1"># split out and convert to list of dict</span>
+    <span class="n">depts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">total</span> <span class="ow">in</span> <span class="n">div_depts</span><span class="p">:</span>
+        <span class="n">dept</span> <span class="o">=</span> <span class="n">EsdPerson</span><span class="o">.</span><span class="n">split_department</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">dept</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total</span>
+        <span class="n">depts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dept</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/departments.html&#39;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s1">&#39;departments&#39;</span><span class="p">:</span> <span class="n">depts</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="view_department"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.view_department">[docs]</a><span class="k">def</span> <span class="nf">view_department</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;View a list of faculty (or non-faculty users with profiles) in a</span>
+<span class="sd">    single department.</span>
+
+<span class="sd">    :param id: department id</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># get a list of people by department code</span>
+    <span class="n">dep_id</span> <span class="o">=</span> <span class="nb">id</span>
+    <span class="n">solr</span> <span class="o">=</span> <span class="n">solr_interface</span><span class="p">()</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="n">solr</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">department_id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span> \
+                 <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">record_type</span><span class="o">=</span><span class="n">EsdPerson</span><span class="o">.</span><span class="n">record_type</span><span class="p">)</span> \
+                 <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span> \
+                 <span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    
+    <span class="c1"># filter = request.GET[&#39;filter&#39;] if &#39;filter&#39; in request.GET else &#39;&#39;</span>
+
+    <span class="c1"># q = solr.query(department_id=id).filter(content_model=Article.ARTICLE_CONTENT_MODEL, state=&#39;A&#39;).facet_by(&#39;creator_sorting&#39;, mincount=1, limit=-1, sort=&#39;index&#39;, prefix=filter.lower())</span>
+    <span class="c1"># result = q.paginate(rows=0).execute()</span>
+    <span class="c1"># print result</span>
+    <span class="c1"># facets = result.facet_counts.facet_fields[&#39;creator_sorting&#39;]</span>
+
+    <span class="c1"># #removes name from field for proper presentation</span>
+    <span class="c1"># facets = [(name.split(&quot;|&quot;)[1], count) for name, count in facets]</span>
+
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">people</span><span class="p">):</span>
+        <span class="n">division</span> <span class="o">=</span> <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;division_name&#39;</span><span class="p">]</span>
+        <span class="n">depts</span> <span class="o">=</span> <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;department_name&#39;</span><span class="p">]</span>
+        <span class="c1"># department_name is a list since an article can have 0..n. An</span>
+        <span class="c1"># EsdPerson, though, only has one, so just grab the first.</span>
+        <span class="n">dept</span> <span class="o">=</span> <span class="n">depts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">depts</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># shorten department name for display, since we have division</span>
+        <span class="c1"># name for context</span>
+        <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">dept</span><span class="p">:</span>
+            <span class="n">dept</span> <span class="o">=</span> <span class="n">dept</span><span class="p">[</span><span class="n">dept</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># it&#39;s possible no profile users were found (unlikely with real data)</span>
+        <span class="c1"># if no users were found, look up department code to get</span>
+        <span class="c1"># division &amp; department names</span>
+        <span class="n">deptinfo</span> <span class="o">=</span> <span class="n">EsdPerson</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">department_id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>\
+                    <span class="o">.</span><span class="n">only</span><span class="p">(</span><span class="s1">&#39;department_name&#39;</span><span class="p">,</span> <span class="s1">&#39;division_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+        <span class="c1"># no department found for that id - 404</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">deptinfo</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="n">deptinfo</span> <span class="o">=</span> <span class="n">deptinfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">division</span> <span class="o">=</span> <span class="n">deptinfo</span><span class="o">.</span><span class="n">division_name</span>
+        <span class="n">dept</span> <span class="o">=</span> <span class="n">deptinfo</span><span class="o">.</span><span class="n">department_shortname</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/department.html&#39;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s1">&#39;esdpeople&#39;</span><span class="p">:</span> <span class="n">people</span><span class="p">,</span> <span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="n">dept</span><span class="p">,</span> <span class="s1">&#39;division&#39;</span><span class="p">:</span> <span class="n">division</span><span class="p">,</span> <span class="s1">&#39;dep_id&#39;</span><span class="p">:</span><span class="n">dep_id</span><span class="p">})</span></div>
+
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="admin_dashboard"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.views.admin_dashboard">[docs]</a><span class="k">def</span> <span class="nf">admin_dashboard</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Admin dashboard to provide access to various admin</span>
+<span class="sd">    functionality in one place.  Based on the faculty dashboard.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># TODO: possibly add a dashboard summary tab?  number of items</span>
+    <span class="c1"># published/unpublished/unreviewed queue size for harvest/review</span>
+    <span class="c1"># possibly re-use site statistics content...</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/admin_dashboard.html&#39;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">feedback</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">FeedbackForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">user_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;anonymous user&#39;</span>
+            <span class="n">user_email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+            <span class="n">user_subject</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39; </span><span class="si">%s</span><span class="s1"> &#39;</span><span class="o">%</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="n">subject</span> <span class="o">=</span> <span class="s1">&#39;OpenEmory site feedback:</span><span class="si">%s</span><span class="s1">from </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user_subject</span><span class="p">,</span> <span class="n">user_name</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;accounts/feedback-email.txt&#39;</span><span class="p">,</span>
+                    <span class="p">{</span>
+                     <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+                     <span class="s1">&#39;form_data&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">,</span>
+                     <span class="s1">&#39;site&#39;</span><span class="p">:</span> <span class="n">get_current_site</span><span class="p">(</span><span class="n">request</span><span class="p">),</span>
+                    <span class="p">})</span>
+
+            <span class="c1"># mail_managers(subject, content)</span>
+            <span class="n">mail_listserv</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;site-index&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+                    <span class="n">profile</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span>
+                    <span class="k">if</span> <span class="n">profile</span><span class="o">.</span><span class="n">has_profile_page</span><span class="p">():</span>
+                        <span class="n">destination</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:profile&#39;</span><span class="p">,</span>
+                                <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">})</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span> <span class="c1"># no user, or no profile. just use the default destination</span>
+
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Thanks for your feedback! We&#39;ve sent it to our site admins.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">profile</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">userprofile</span>
+                <span class="n">esd</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">esd_data</span><span class="p">()</span>
+                <span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esd</span><span class="o">.</span><span class="n">directory_name</span>
+                <span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esd</span><span class="o">.</span><span class="n">email</span>
+                <span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esd</span><span class="o">.</span><span class="n">phone</span>
+            <span class="k">except</span> <span class="n">EsdPerson</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="c1"># profile, but no esd</span>
+                <span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span>
+                <span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">FeedbackForm</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="n">form_data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/feedback.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

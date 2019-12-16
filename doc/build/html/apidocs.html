@@ -1,0 +1,2373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory Code Documentation &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="index.html" />
+    <link rel="next" title="CHANGELOG" href="changelog.html" />
+    <link rel="prev" title="README" href="readme.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="CHANGELOG"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="README"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-openemory">
+<span id="openemory-code-documentation"></span><h1><a class="reference internal" href="#module-openemory" title="openemory"><code class="xref py py-mod docutils literal"><span class="pre">openemory</span></code></a> Code Documentation<a class="headerlink" href="#module-openemory" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openemory.accounts">
+<span id="accounts"></span><h2>Accounts<a class="headerlink" href="#module-openemory.accounts" title="Permalink to this headline">¶</a></h2>
+<p>This Django application is for functionality dealing with user
+accounts, such as custom authorization handling specific to
+<a class="reference internal" href="#module-openemory" title="openemory"><code class="xref py py-mod docutils literal"><span class="pre">openemory</span></code></a>, as well as account-based views such as profile
+pages.</p>
+<div class="section" id="module-openemory.accounts.auth">
+<span id="auth"></span><h3>Auth<a class="headerlink" href="#module-openemory.accounts.auth" title="Permalink to this headline">¶</a></h3>
+<p>Utilities for dealing with authentiation &amp; authorization in
+<a class="reference internal" href="#module-openemory" title="openemory"><code class="xref py py-mod docutils literal"><span class="pre">openemory</span></code></a>.</p>
+<p>Includes variant permisson-checing decorators without the redirect
+logic used in the standard Django versions, since <a class="reference internal" href="#module-openemory" title="openemory"><code class="xref py py-mod docutils literal"><span class="pre">openemory</span></code></a>
+includes a login form on every page.</p>
+<dl class="function">
+<dt id="openemory.accounts.auth.login_required">
+<code class="descclassname">openemory.accounts.auth.</code><code class="descname">login_required</code><span class="sig-paren">(</span><em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/auth.html#login_required"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.auth.login_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for views that checks that the user is logged in,
+rendering a 401 or 403 template as appropriate.  See
+<a class="reference internal" href="#openemory.accounts.auth.user_passes_test_401_or_403" title="openemory.accounts.auth.user_passes_test_401_or_403"><code class="xref py py-meth docutils literal"><span class="pre">user_passes_test_401_or_403()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.auth.permission_required">
+<code class="descclassname">openemory.accounts.auth.</code><code class="descname">permission_required</code><span class="sig-paren">(</span><em>perm</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/auth.html#permission_required"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.auth.permission_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for views that checks whether a user has a particular
+permission enabled, rendering a 401 or 403 as necessary.
+Convenience wrapper for
+<a class="reference internal" href="#openemory.accounts.auth.user_passes_test_401_or_403" title="openemory.accounts.auth.user_passes_test_401_or_403"><code class="xref py py-meth docutils literal"><span class="pre">user_passes_test_401_or_403()</span></code></a>.</p>
+<p>See <code class="xref py py-meth docutils literal"><span class="pre">django.contrib.auth.decorators.permission_required()</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.auth.require_self_or_admin">
+<code class="descclassname">openemory.accounts.auth.</code><code class="descname">require_self_or_admin</code><span class="sig-paren">(</span><em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/auth.html#require_self_or_admin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.auth.require_self_or_admin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if user is logged and matches the specified username,
+is a superuser, or belongs to the SiteAdmin group.</p>
+<p>First parameter to the wrapped view must be the username to
+compare against.  For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@require_self_or_admin</span>
+<span class="k">def</span> <span class="nf">edit_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.auth.user_passes_test_401_or_403">
+<code class="descclassname">openemory.accounts.auth.</code><code class="descname">user_passes_test_401_or_403</code><span class="sig-paren">(</span><em>test_func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/auth.html#user_passes_test_401_or_403"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.auth.user_passes_test_401_or_403" title="Permalink to this definition">¶</a></dt>
+<dd><p>View decorator that checks to see if the user passes the specified test.
+See <code class="xref py py-meth docutils literal"><span class="pre">django.contrib.auth.decorators.user_passes_test()</span></code>.</p>
+<p>Anonymous users will be given a 401 error, which will render the
+<strong>401.html</strong> template (which is expected to include the login
+form); logged in users that fail the test will be given a 403
+error.  In the case of a 403, the function will render the
+<strong>403.html</strong> template.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.accounts.backends">
+<span id="backends"></span><h3>Backends<a class="headerlink" href="#module-openemory.accounts.backends" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="openemory.accounts.backends.FacultyOrLocalAdminBackend">
+<em class="property">class </em><code class="descclassname">openemory.accounts.backends.</code><code class="descname">FacultyOrLocalAdminBackend</code><a class="reference internal" href="_modules/openemory/accounts/backends.html#FacultyOrLocalAdminBackend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.backends.FacultyOrLocalAdminBackend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Customized authentication backend based on
+<code class="xref py py-class docutils literal"><span class="pre">EmoryLDAPBackend</span></code>.
+Only users who are designated as Faculty, in ESD or local users who
+are designated as superusers, Site Admins, or non-faculty with the
+nonfaculty_profile flag set are allowed to log in.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.accounts.db">
+<span id="db"></span><h3>Db<a class="headerlink" href="#module-openemory.accounts.db" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="openemory.accounts.db.EsdRouter">
+<em class="property">class </em><code class="descclassname">openemory.accounts.db.</code><code class="descname">EsdRouter</code><a class="reference internal" href="_modules/openemory/accounts/db.html#EsdRouter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.db.EsdRouter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/multi-db/">database router</a>
+to divert <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> objects to the
+<code class="docutils literal"><span class="pre">esd</span></code> database.</p>
+<dl class="method">
+<dt id="openemory.accounts.db.EsdRouter.allow_syncdb">
+<code class="descname">allow_syncdb</code><span class="sig-paren">(</span><em>db</em>, <em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/db.html#EsdRouter.allow_syncdb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.db.EsdRouter.allow_syncdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sync <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> objects to the
+<code class="docutils literal"><span class="pre">esd</span></code> database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.db.EsdRouter.db_for_read">
+<code class="descname">db_for_read</code><span class="sig-paren">(</span><em>model</em>, <em>**hints</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/db.html#EsdRouter.db_for_read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.db.EsdRouter.db_for_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> objects from
+the <code class="docutils literal"><span class="pre">esd</span></code> database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.db.EsdRouter.db_for_write">
+<code class="descname">db_for_write</code><span class="sig-paren">(</span><em>model</em>, <em>**hints</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/db.html#EsdRouter.db_for_write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.db.EsdRouter.db_for_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> objects to
+the <code class="docutils literal"><span class="pre">esd</span></code> database.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.accounts.models">
+<span id="models"></span><h3>Models<a class="headerlink" href="#module-openemory.accounts.models" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="openemory.accounts.models.Announcement">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">Announcement</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Announcement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Announcement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass of <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/instances/#django.db.models.Model" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a> to allow site admins to create
+and maintain announcements for display in the dashboard.</p>
+<dl class="staticmethod">
+<dt id="openemory.accounts.models.Announcement.get_displayable">
+<em class="property">static </em><code class="descname">get_displayable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Announcement.get_displayable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Announcement.get_displayable" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns list of <a class="reference internal" href="#openemory.accounts.models.Announcement" title="openemory.accounts.models.Announcement"><code class="xref py py-class docutils literal"><span class="pre">Announcement</span></code></a> objects that should be
+displayed based date/time and active status</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.Bookmark">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">Bookmark</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Bookmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Bookmark" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/instances/#django.db.models.Model" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a> to allow users to create
+private bookmarks and tags for
+<a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/models.html#eulfedora.models.DigitalObject" title="(in eulfedora v1.7)"><code class="xref py py-class docutils literal"><span class="pre">DigitalObject</span></code></a> instances.</p>
+<dl class="method">
+<dt id="openemory.accounts.models.Bookmark.display_tags">
+<code class="descname">display_tags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Bookmark.display_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Bookmark.display_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>comma-separated string with all tags</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.Bookmark.pid">
+<code class="descname">pid</code><em class="property"> = None</em><a class="headerlink" href="#openemory.accounts.models.Bookmark.pid" title="Permalink to this definition">¶</a></dt>
+<dd><p>permanent id of the <a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/models.html#eulfedora.models.DigitalObject" title="(in eulfedora v1.7)"><code class="xref py py-class docutils literal"><span class="pre">DigitalObject</span></code></a> in
+Fedora</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.Bookmark.tags">
+<code class="descname">tags</code><em class="property"> = &lt;taggit.managers._TaggableManager object&gt;</em><a class="headerlink" href="#openemory.accounts.models.Bookmark.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal"><span class="pre">taggit.managers.TaggableManager</span></code> for tags associated with
+the object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.Bookmark.user">
+<code class="descname">user</code><a class="headerlink" href="#openemory.accounts.models.Bookmark.user" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> who created and owns
+this bookmark</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.Degree">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">Degree</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Degree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Degree" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/instances/#django.db.models.Model" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a> for a degree held by a user.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.EsdPerson">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">EsdPerson</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#EsdPerson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.EsdPerson" title="Permalink to this definition">¶</a></dt>
+<dd><p>A partial user profile from the external read-only ESD database.
+Users may be indexed by ppid or netid.</p>
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.division_dept_id">
+<code class="descname">division_dept_id</code><a class="headerlink" href="#openemory.accounts.models.EsdPerson.division_dept_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delimited field with division name and code, along with
+department name and id, so Departments and Divisions can be
+used with Solr facets but linked to the appropriate code or
+id.  Uses the shortened name of the department.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.faculty">
+<code class="descname">faculty</code><em class="property"> = &lt;openemory.accounts.models.EsdFacultyManager object&gt;</em><a class="headerlink" href="#openemory.accounts.models.EsdPerson.faculty" title="Permalink to this definition">¶</a></dt>
+<dd><p>custom object manager for faculty persons only</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.first_name">
+<code class="descname">first_name</code><a class="headerlink" href="#openemory.accounts.models.EsdPerson.first_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>First and middle name for indexing in Solr.</p>
+<p>Uses <code class="xref py py-attr docutils literal"><span class="pre">firstmid_name</span></code> when available; if empty, attempts
+to infer first name based on <code class="xref py py-attr docutils literal"><span class="pre">last_name</span></code> and
+:attr`ad_name`.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.EsdPerson.has_profile_page">
+<code class="descname">has_profile_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#EsdPerson.has_profile_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.EsdPerson.has_profile_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the user should have a public-facing web
+profile on the site, <code class="docutils literal"><span class="pre">False</span></code> if not.  Currently requires
+Faculty status.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.id">
+<code class="descname">id</code><a class="headerlink" href="#openemory.accounts.models.EsdPerson.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id for use as Solr common id - <cite>ppid:P####</cite>, based on <code class="xref py py-attr docutils literal"><span class="pre">ppid</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.EsdPerson.index_data">
+<code class="descname">index_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#EsdPerson.index_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.EsdPerson.index_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indexing information for this <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> instance
+in a format that <code class="xref py py-meth docutils literal"><span class="pre">sunburnt.SolrInterface.add()</span></code> can
+handle.  If this person is internet or directory suppressed
+and does not have a local profile overridding that
+suppression, returns a dictionary with minimal information to
+be indexed.  Otherwise, returns the item itself for
+<code class="xref py py-mod docutils literal"><span class="pre">sunburnt</span></code> to inspect and index all fields that match
+fields in the Solr schema.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict or <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.EsdPerson.profile">
+<code class="descname">profile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#EsdPerson.profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.EsdPerson.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the <a class="reference internal" href="#openemory.accounts.models.UserProfile" title="openemory.accounts.models.UserProfile"><code class="xref py py-class docutils literal"><span class="pre">UserProfile</span></code></a> corresponding to this
+<a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.record_type">
+<code class="descname">record_type</code><em class="property"> = 'accounts_esdperson'</em><a class="headerlink" href="#openemory.accounts.models.EsdPerson.record_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>record type for Solr index, to distinguish from other indexed content</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.EsdPerson.username">
+<code class="descname">username</code><a class="headerlink" href="#openemory.accounts.models.EsdPerson.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower-case form of <code class="xref py py-attr docutils literal"><span class="pre">netid</span></code>, for indexing in Solr.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.ExternalLink">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">ExternalLink</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#ExternalLink"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.ExternalLink" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal"><span class="pre">model</span></code> for an external link held by a user.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.Grant">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">Grant</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Grant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Grant" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/instances/#django.db.models.Model" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a> for a research grant to be
+displayed on a user profile.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.Position">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">Position</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#Position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/instances/#django.db.models.Model" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a> for an academic title (e.g.: named
+chair, organization president, journal editor) held by a user.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.accounts.models.UserProfile">
+<em class="property">class </em><code class="descclassname">openemory.accounts.models.</code><code class="descname">UserProfile</code><span class="sig-paren">(</span><em>id</em>, <em>user</em>, <em>show_suppressed</em>, <em>nonfaculty_profile</em>, <em>photo</em>, <em>biography</em>, <em>phone</em>, <em>dept_num</em>, <em>full_name</em>, <em>title</em>, <em>employee_num</em>, <em>subdept_code</em>, <em>hr_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="openemory.accounts.models.UserProfile.esd_data">
+<code class="descname">esd_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.esd_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.esd_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the <a class="reference internal" href="#openemory.accounts.models.EsdPerson" title="openemory.accounts.models.EsdPerson"><code class="xref py py-class docutils literal"><span class="pre">EsdPerson</span></code></a> corresponding to this profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.get_full_name">
+<code class="descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.get_full_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.get_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get full name from LDAP if available; returns
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User.get_full_name" title="(in Django v3.1)"><code class="xref py py-meth docutils literal"><span class="pre">django.contrib.auth.models.User.get_full_name()</span></code></a> when
+full_name is not set in profile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.has_profile_page">
+<code class="descname">has_profile_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.has_profile_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.has_profile_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the user should have a public-facing web
+profile on the site, <code class="docutils literal"><span class="pre">False</span></code> if not.</p>
+<p>Currently only faculty or users with nonfaculty_profile flag = True have profiles.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.recent_articles">
+<code class="descname">recent_articles</code><span class="sig-paren">(</span><em>limit=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.recent_articles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.recent_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query Solr to find recent articles by this author.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>limit</strong> &#8211; number of articles to return. (defaults to 3)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.recent_articles_query">
+<code class="descname">recent_articles_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.recent_articles_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.recent_articles_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Solr query for recent articles by this author. Use this
+if you want to further paginate or modify the article query: If you
+just want the articles themselves then use <a class="reference internal" href="#openemory.accounts.models.UserProfile.recent_articles" title="openemory.accounts.models.UserProfile.recent_articles"><code class="xref py py-meth docutils literal"><span class="pre">recent_articles()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.resize_photo">
+<code class="descname">resize_photo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.resize_photo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.resize_photo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize the <code class="xref py py-attr docutils literal"><span class="pre">photo</span></code> associated with this profile (if
+any) to <code class="xref py py-attr docutils literal"><span class="pre">PHOTO_MAX_WIDTH</span></code>, preserving aspect ratio.  If
+the image width is already smaller than
+<code class="xref py py-attr docutils literal"><span class="pre">PHOTO_MAX_WIDTH</span></code>, no changes are made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.accounts.models.UserProfile.suppress_esd_data">
+<code class="descname">suppress_esd_data</code><a class="headerlink" href="#openemory.accounts.models.UserProfile.suppress_esd_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean property to indicate whether ESD data can be shown
+(e.g., on a profile page), based on
+<code class="xref py py-attr docutils literal"><span class="pre">EsdPerson.internet_suppressed</span></code> and
+<code class="xref py py-attr docutils literal"><span class="pre">EsdPerson.directory_suppressed</span></code> flag and on the profile
+override flag, <code class="xref py py-attr docutils literal"><span class="pre">UserProfile.show_suppressed</span></code>.</p>
+<p>If True, ESD data should be suppressed. If False, ESD data can
+be displayed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.accounts.models.UserProfile.unpublished_articles">
+<code class="descname">unpublished_articles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#UserProfile.unpublished_articles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.UserProfile.unpublished_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query Solr to find unpublished articles by this author.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.models.articles_by_tag">
+<code class="descclassname">openemory.accounts.models.</code><code class="descname">articles_by_tag</code><span class="sig-paren">(</span><em>user</em>, <em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#articles_by_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.articles_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find articles in Solr based on a
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> and their
+<a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a> s.</p>
+<p>Calls <a class="reference internal" href="#openemory.accounts.models.pids_by_tag" title="openemory.accounts.models.pids_by_tag"><code class="xref py py-meth docutils literal"><span class="pre">pids_by_tag()</span></code></a> to find the pids of bookmarked objects
+for the specified user and tag, and then queries Solr to get
+display information for those objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.models.pids_by_tag">
+<code class="descclassname">openemory.accounts.models.</code><code class="descname">pids_by_tag</code><span class="sig-paren">(</span><em>user</em>, <em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#pids_by_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.pids_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the pids of bookmarked objects for a given
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> and
+<code class="xref py py-class docutils literal"><span class="pre">Tag</span></code>. Returns a list of pids.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> &#8211; <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> whose
+<a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a> objects should be
+searched</li>
+<li><strong>tag</strong> &#8211; <code class="xref py py-class docutils literal"><span class="pre">Tag</span></code> tag to filter
+<a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a> objects</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of pids</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.models.researchers_by_interest">
+<code class="descclassname">openemory.accounts.models.</code><code class="descname">researchers_by_interest</code><span class="sig-paren">(</span><em>name=None</em>, <em>slug=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/models.html#researchers_by_interest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.models.researchers_by_interest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find researchers by interest.  Returns a QuerySet of
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> objects who have the
+specified interest tagged as a research interest on their profile.
+Allows searching by tag name or slug.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; normal display name of the research interest tag</li>
+<li><strong>slug</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.accounts.views">
+<span id="views"></span><h3>Views<a class="headerlink" href="#module-openemory.accounts.views" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="openemory.accounts.views.admin_dashboard">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">admin_dashboard</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#admin_dashboard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.admin_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Admin dashboard to provide access to various admin
+functionality in one place.  Based on the faculty dashboard.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.dashboard_documents">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">dashboard_documents</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#dashboard_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.dashboard_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display dashboard tab with documents for a logged-in faculty
+user looking at their own profile or a site admin looking at any
+faculty profile.</p>
+<p>When requested via AJAX, returns HTML for the dashboard tab only;
+otherwise, returns the dashboard with tab content loaded.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.dashboard_summary">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">dashboard_summary</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#dashboard_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.dashboard_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display dashboard summary information for a logged-in faculty
+user looking at their own profile (or a site admin looking at any
+faculty profile).</p>
+<p>When requested via AJAX, returns HTML for the dashboard tab only;
+otherwise, returns the dashboard with tab content loaded.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.degree_autocomplete">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">degree_autocomplete</code><span class="sig-paren">(</span><em>request</em>, <em>mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#degree_autocomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.degree_autocomplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-complete for <code class="xref py py-class docutils literal"><span class="pre">Degree</span></code>
+institutions and degree names.</p>
+<p>Autocompletion is based on <code class="docutils literal"><span class="pre">term</span></code> query string parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> &#8211; autocomplete mode - supported values are
+<code class="docutils literal"><span class="pre">instutition</span></code> or <code class="docutils literal"><span class="pre">name</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.departments">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">departments</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#departments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.departments" title="Permalink to this definition">¶</a></dt>
+<dd><p>List department names based on Faculty information in ESD,
+grouped by division name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.edit_profile">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">edit_profile</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#edit_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.edit_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display and process profile edit form.  On GET, displays the
+form; on POST, processes the form and saves if valid.  Currently
+redirects to profile view on success.</p>
+<p>When requested via AJAX, returns HTML that can be displayed in a
+dashboard tab; otherwise, returns the dashboard page with edit
+content loaded.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.interests_autocomplete">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">interests_autocomplete</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#interests_autocomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.interests_autocomplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-complete for user profile research interests.  Finds tags
+that are currently in use as
+<a class="reference internal" href="#openemory.accounts.models.UserProfile" title="openemory.accounts.models.UserProfile"><code class="xref py py-class docutils literal"><span class="pre">UserProfile</span></code></a> research interests.</p>
+<p>See documentation on <a class="reference internal" href="#openemory.accounts.views.tag_autocompletion" title="openemory.accounts.views.tag_autocompletion"><code class="xref py py-meth docutils literal"><span class="pre">tag_autocompletion()</span></code></a> for more details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.login">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">login</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log in, store credentials for Fedora access, and redirect to
+the user profile page if no <strong>next</strong> url was specified.  If login
+fails, the user will be redirect either to the <strong>next</strong> url (if
+specified) or to the site index, with an error message to indicate
+the login failure.</p>
+<p>Login functionality is based on
+<code class="xref py py-meth docutils literal"><span class="pre">eulfedora.views.login_and_store_credentials_in_session()</span></code> and
+<code class="xref py py-meth docutils literal"><span class="pre">django.contrib.auth.views.login()</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.logout">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">logout</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log out and redirect to the site index page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.object_tags">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">object_tags</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#object_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.object_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set &amp; display private tags on a particular
+<a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/models.html#eulfedora.models.DigitalObject" title="(in eulfedora v1.7)"><code class="xref py py-class docutils literal"><span class="pre">DigitalObject</span></code></a> (saved in the database by
+way of <a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a>).</p>
+<p>On an HTTP GET, returns a JSON list of the tags for the specified
+object, or 404 if the object has not been tagged.</p>
+<p>On an HTTP PUT, will replace any existing tags with tags from the
+body of the request.  Uses <code class="xref py py-meth docutils literal"><span class="pre">taggit.utils.parse_tags()</span></code> to
+parse tags, with the same logic <code class="xref py py-mod docutils literal"><span class="pre">taggit</span></code> uses for parsing
+keyword and phrase tags on forms.  After a successul PUT, returns
+the a JSON response with a list of the updated tags.  If the
+Fedora object does not exist, returns a 404 error.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.position_autocomplete">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">position_autocomplete</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#position_autocomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.position_autocomplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-complete for <code class="xref py py-class docutils literal"><span class="pre">Position</span></code>
+A.K.A. Institute Affiliations</p>
+<p>Autocompletion is based on <code class="docutils literal"><span class="pre">term</span></code> query string parameter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.profile">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">profile</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display public profile information and publications for the requested
+author.  Uses content negotation to provide equivalent content via
+RDF (see <a class="reference internal" href="#openemory.accounts.views.rdf_profile" title="openemory.accounts.views.rdf_profile"><code class="xref py py-meth docutils literal"><span class="pre">rdf_profile()</span></code></a>).</p>
+<p>If a logged in author or site admin looks at the profile, a
+dashboard view is displayed instead of the public profile
+information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.profile_tags">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">profile_tags</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#profile_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.profile_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add &amp; display tags (aka research interests) on a user profile.</p>
+<p>On an HTTP GET, returns a JSON list of the tags for the specified
+user profile.</p>
+<p>On an HTTP PUT, if the requesting user is logged in and adding
+tags to their own profile, will replace any existing tags with
+tags from the body of the request.  Uses
+<code class="xref py py-meth docutils literal"><span class="pre">taggit.utils.parse_tags()</span></code> to parse tags, with the same logic
+<code class="xref py py-mod docutils literal"><span class="pre">taggit</span></code> uses for parsing keyword and phrase tags on forms.
+After a successul PUT, returns the a JSON response with the
+updated tags and their corresponding urls.</p>
+<p>On an HTTP POST, performs the same tag parsing and permission
+checking as for PUT, but <em>adds</em> the POSTed tags to any existing
+tags instead of replacing them.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.public_profile">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">public_profile</code><span class="sig-paren">(</span><em>request</em>, <em>username</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#public_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.public_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display public profile information and publications for the
+requested author.</p>
+<p>When requested via AJAX, returns HTML that can be displayed inside
+a faculty dashboard tab.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.rdf_profile">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">rdf_profile</code><span class="sig-paren">(</span><em>request</em>, <em>username</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#rdf_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.rdf_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Profile information comparable to the human-readable content
+returned by <a class="reference internal" href="#openemory.accounts.views.profile" title="openemory.accounts.views.profile"><code class="xref py py-meth docutils literal"><span class="pre">profile()</span></code></a>, but in RDF format.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.researchers_by_interest">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">researchers_by_interest</code><span class="sig-paren">(</span><em>request</em>, <em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#researchers_by_interest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.researchers_by_interest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find users by research interest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tag</strong> &#8211; slug value for the research interest tag</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.tag_autocompletion">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">tag_autocompletion</code><span class="sig-paren">(</span><em>request</em>, <em>tag_qs</em>, <em>count_field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#tag_autocompletion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.tag_autocompletion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Common autocomplete functionality for tags.  Given a
+<code class="xref py py-class docutils literal"><span class="pre">Tag</span></code> QuerySet and a field to count, returns
+a distinct list of the 10 most common tags filtered on the
+specified search term (case-insensitive).  Results are returned as
+JSON, with a tag id (slug), display label (tag name and count),
+and the value to be used (tag name) for each matching tag
+found. Return format is suitable for use with <a class="reference external" href="http://jqueryui.com/demos/autocomplete/">JQuery UI
+Autocomplete</a> widget.</p>
+<p>Single term autocompletion is based on <code class="docutils literal"><span class="pre">s</span></code> query string
+parameter.  If <code class="docutils literal"><span class="pre">s</span></code> is empty, this method will check for a
+<code class="docutils literal"><span class="pre">term</span></code> parameter and use <code class="xref py py-meth docutils literal"><span class="pre">taggit.utils.parse_tags()</span></code> to do
+tag autocompletion on the last tag in a list of tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> &#8211; the http request passed to the original view
+method (used to retrieve the search term)</li>
+<li><strong>tag_qs</strong> &#8211; a <code class="xref py py-class docutils literal"><span class="pre">Tag</span></code> QuerySet filtered to
+the appropriate set of tags (for further filtering by search term)</li>
+<li><strong>count_field</strong> &#8211; field to be used for count annotation - used
+for tag ordering (most-used tags first) and display in the
+autocompletion</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.tags_autocomplete">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">tags_autocomplete</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#tags_autocomplete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.tags_autocomplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-complete for private tags.  Finds tags that the currently
+logged-in user has used for any of their
+<a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a> s.</p>
+<p>See documentation on <a class="reference internal" href="#openemory.accounts.views.tag_autocompletion" title="openemory.accounts.views.tag_autocompletion"><code class="xref py py-meth docutils literal"><span class="pre">tag_autocompletion()</span></code></a> for more details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.accounts.views.view_department">
+<code class="descclassname">openemory.accounts.views.</code><code class="descname">view_department</code><span class="sig-paren">(</span><em>request</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/views.html#view_department"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.views.view_department" title="Permalink to this definition">¶</a></dt>
+<dd><p>View a list of faculty (or non-faculty users with profiles) in a
+single department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; department id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.accounts.templatetags.tags">
+<span id="template-tags-filters"></span><h3>Template Tags &amp; Filters<a class="headerlink" href="#module-openemory.accounts.templatetags.tags" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="openemory.accounts.templatetags.tags.tags_for_user">
+<code class="descclassname">openemory.accounts.templatetags.tags.</code><code class="descname">tags_for_user</code><span class="sig-paren">(</span><em>object</em>, <em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/accounts/templatetags/tags.html#tags_for_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.accounts.templatetags.tags.tags_for_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of <code class="xref py py-class docutils literal"><span class="pre">Tag</span></code> objects for the
+specified object and user.  Returns an empty list if the user is
+not authenticated, object does not have a pid, or no
+<a class="reference internal" href="#openemory.accounts.models.Bookmark" title="openemory.accounts.models.Bookmark"><code class="xref py py-class docutils literal"><span class="pre">Bookmark</span></code></a> record is found.
+Example use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">article</span><span class="o">|</span><span class="n">tags_for_user</span><span class="p">:</span><span class="n">user</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{{</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="p">}}{</span><span class="o">%</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">forloop</span><span class="o">.</span><span class="n">last</span> <span class="o">%</span><span class="p">},</span> <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>object</strong> &#8211; tagged, bookmarked object - can be anything with a
+pid attribute or a dictionary with a pid value (e.g., a
+<code class="xref py py-class docutils literal"><span class="pre">DigitalObject</span></code> or a <code class="xref py py-mod docutils literal"><span class="pre">sunburnt</span></code>
+Solr result)</li>
+<li><strong>user</strong> &#8211; the user whose tags should be retrieved</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-openemory.publication">
+<span id="publication"></span><h2>Publication<a class="headerlink" href="#module-openemory.publication" title="Permalink to this headline">¶</a></h2>
+<p>This Django application handles the management of publications such as
+scholarly articles, including repository ingest, metadata editing, and
+basic access.</p>
+<div class="section" id="id1">
+<h3>Models<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-openemory.publication.models"></span><dl class="class">
+<dt id="openemory.publication.models.ArticleRecord">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">ArticleRecord</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#ArticleRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.ArticleRecord" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.ArticleStatistics">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">ArticleStatistics</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#ArticleStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.ArticleStatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregated access statistics for a single <code class="xref py py-class docutils literal"><span class="pre">Article</span></code>.
+Subdivided by year and quarter to allow quarterly reporting.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.FeaturedArticle">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">FeaturedArticle</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#FeaturedArticle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.FeaturedArticle" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of pid associated with article that are marked as Featured. One of these is
+selected at random and displayed on the homepage in the
+Slider.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.LastRun">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">LastRun</code><span class="sig-paren">(</span><em>id</em>, <em>name</em>, <em>start_time</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#LastRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.LastRun" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.License">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">License</code><span class="sig-paren">(</span><em>id</em>, <em>short_name</em>, <em>title</em>, <em>version</em>, <em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#License"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.License" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.NlmArticle">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">NlmArticle</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmArticle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmArticle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal wrapper for NLM XML article</p>
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.abstract">
+<code class="descname">abstract</code><em class="property"> = &lt;eulxml.xmlmap.fields.NodeField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>article abstract</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.article_subtitle">
+<code class="descname">article_subtitle</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.article_subtitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>subtitle of the article</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.article_title">
+<code class="descname">article_title</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.article_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>title of the article, not including subtitle</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.authors">
+<code class="descname">authors</code><em class="property"> = &lt;eulxml.xmlmap.fields.NodeListField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of authors contributing to the article (list of
+<a class="reference internal" href="#openemory.publication.models.NlmAuthor" title="openemory.publication.models.NlmAuthor"><code class="xref py py-class docutils literal"><span class="pre">NlmAuthor</span></code></a>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.body">
+<code class="descname">body</code><em class="property"> = &lt;eulxml.xmlmap.fields.NodeField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>preliminary mapping to article body (currently used to
+determine when full-text of the article is available)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.corresponding_author_emails">
+<code class="descname">corresponding_author_emails</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringListField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.corresponding_author_emails" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of email addresses listed in article metadata for correspondence</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.docid">
+<code class="descname">docid</code><em class="property"> = &lt;eulxml.xmlmap.fields.IntegerField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.docid" title="Permalink to this definition">¶</a></dt>
+<dd><p>PMC document id from <code class="xref py py-class docutils literal"><span class="pre">ESearchResponse</span></code>; <em>not</em> PMID</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.doi">
+<code class="descname">doi</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.doi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Digital Object Identifier (DOI) for the article</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.first_page">
+<code class="descname">first_page</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.first_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>first page</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.fulltext_available">
+<code class="descname">fulltext_available</code><a class="headerlink" href="#openemory.publication.models.NlmArticle.fulltext_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean; indicates whether or not the full text of the
+article is included in the fetched article.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.NlmArticle.identifiable_authors">
+<code class="descname">identifiable_authors</code><span class="sig-paren">(</span><em>refresh=False</em>, <em>derive=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmArticle.identifiable_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmArticle.identifiable_authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify any Emory authors for the article and, if
+possible, return a list of corresponding
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> objects.
+If derive is True it will try harder to match,
+it will try to derive based on netid and name.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The current implementation is preliminary and has the
+following <strong>known limitations</strong>:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Ignores authors that are associated with Emory
+but do not have an Emory email address included in the
+article metadata</li>
+<li>User look-up uses LDAP, which only finds authors who are
+currently associated with Emory</li>
+</ul>
+</div></blockquote>
+</div>
+<p>By default, caches the identified authors on the first
+look-up, in order to avoid unecessarily repeating LDAP
+queries.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.NlmArticle.identifiable_authors_email">
+<code class="descname">identifiable_authors_email</code><span class="sig-paren">(</span><em>refresh=False</em>, <em>derive=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmArticle.identifiable_authors_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmArticle.identifiable_authors_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify any Emory authors for the article and, if
+possible, return a list of corresponding
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> objects.
+If derive is True it will try harder to match,
+it will try to derive based on netid and name.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The current implementation is preliminary and has the
+following <strong>known limitations</strong>:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Ignores authors that are associated with Emory
+but do not have an Emory email address included in the
+article metadata</li>
+<li>User look-up uses LDAP, which only finds authors who are
+currently associated with Emory</li>
+</ul>
+</div></blockquote>
+</div>
+<p>By default, caches the identified authors on the first
+look-up, in order to avoid unecessarily repeating LDAP
+queries.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.issue">
+<code class="descname">issue</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.issue" title="Permalink to this definition">¶</a></dt>
+<dd><p>journal issue</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.journal_title">
+<code class="descname">journal_title</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.journal_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>title of the journal that published the article</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.keywords">
+<code class="descname">keywords</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringListField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.keywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>keywords describing the content of the article</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.last_page">
+<code class="descname">last_page</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.last_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>last page</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.pmid">
+<code class="descname">pmid</code><em class="property"> = &lt;eulxml.xmlmap.fields.IntegerField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.pmid" title="Permalink to this definition">¶</a></dt>
+<dd><p>PubMed id of the article</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.pubdates">
+<code class="descname">pubdates</code><em class="property"> = &lt;eulxml.xmlmap.fields.NodeListField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.pubdates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Article publication dates as list of <a class="reference internal" href="#openemory.publication.models.NlmPubDate" title="openemory.publication.models.NlmPubDate"><code class="xref py py-class docutils literal"><span class="pre">NlmPubDate</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.publication_date">
+<code class="descname">publication_date</code><a class="headerlink" href="#openemory.publication.models.NlmArticle.publication_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Article publication date as <a class="reference internal" href="#openemory.publication.models.NlmPubDate" title="openemory.publication.models.NlmPubDate"><code class="xref py py-class docutils literal"><span class="pre">NlmPubDate</span></code></a>.  Looks for the
+article pub-date by type, and takes the first available of these,
+in this order: <cite>epub-ppub</cite> (both epub and ppub dates), <cite>ppub</cite>
+(print publication), <cite>epub</cite> (electronic publication).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.publisher">
+<code class="descname">publisher</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.publisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>journal publisher</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.sponsors">
+<code class="descname">sponsors</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringListField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.sponsors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sponsor or funding group</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmArticle.volume">
+<code class="descname">volume</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmArticle.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>journal volume</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.NlmAuthor">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">NlmAuthor</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmAuthor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmAuthor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal wrapper for author in NLM XML</p>
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmAuthor.affiliation">
+<code class="descname">affiliation</code><a class="headerlink" href="#openemory.publication.models.NlmAuthor.affiliation" title="Permalink to this definition">¶</a></dt>
+<dd><p>author institutional affiliation, or None if missing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmAuthor.email">
+<code class="descname">email</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmAuthor.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>author email, or None if missing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmAuthor.given_names">
+<code class="descname">given_names</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmAuthor.given_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>author given name(s)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.NlmAuthor.surname">
+<code class="descname">surname</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.publication.models.NlmAuthor.surname" title="Permalink to this definition">¶</a></dt>
+<dd><p>author surname</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.NlmPubDate">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">NlmPubDate</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmPubDate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmPubDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publication date in NLM XML</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.NlmSection">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">NlmSection</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#NlmSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.NlmSection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A group of material with a heading; a section of an article</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.Publication">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">Publication</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass of <code class="xref py py-class docutils literal"><span class="pre">DigitalObject</span></code> to
+represent Scholarly Publications.</p>
+<p>Following <a class="reference external" href="https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators">Hydra content model</a> conventions where appropriate;
+similar to the generic simple Hydra content model
+<a class="reference external" href="https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators#Hydraobjects%2Ccontentmodels%28cModels%29anddisseminators-genericContent">genericContent</a>.</p>
+<dl class="method">
+<dt id="openemory.publication.models.Publication.aggregate_statistics">
+<code class="descname">aggregate_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.aggregate_statistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.aggregate_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get statistics for this article, aggregated across all available
+<a class="reference internal" href="#openemory.publication.models.ArticleStatistics" title="openemory.publication.models.ArticleStatistics"><code class="xref py py-class docutils literal"><span class="pre">ArticleStatistics</span></code></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary with <code class="docutils literal"><span class="pre">num_views</span></code> and <code class="docutils literal"><span class="pre">num_downloads</span></code>
+members</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.as_rdf">
+<code class="descname">as_rdf</code><span class="sig-paren">(</span><em>node=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.as_rdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.as_rdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about this Publication in RDF format.  Currently,
+makes use of <a class="reference external" href="http://bibliontology.com/">Bibliographic Ontology</a> and FRBR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">instance of <code class="xref py py-class docutils literal"><span class="pre">rdflib.graph.Graph</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.as_symp">
+<code class="descname">as_symp</code><span class="sig-paren">(</span><em>source='manual'</em>, <em>source_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.as_symp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.as_symp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an optional source param that will set the source in the <code class="xref py py-class docutils literal"><span class="pre">SympRelation</span></code> objects.
+source_id param that will set the source-id in the <code class="xref py py-class docutils literal"><span class="pre">SympRelation</span></code> objects.
+Returns a <code class="xref py py-class docutils literal"><span class="pre">OESympImportPublication</span></code> object
+and a list of <code class="xref py py-class docutils literal"><span class="pre">SympRelation</span></code> objects
+for use with Symplectic-Elements</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.authorAgreement">
+<code class="descname">authorAgreement</code><a class="headerlink" href="#openemory.publication.models.Publication.authorAgreement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional <code class="docutils literal"><span class="pre">authorAgreement</span></code> datastream stores the authors&#8217; agreement
+(if available) with the publisher.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.collection">
+<code class="descname">collection</code><a class="headerlink" href="#openemory.publication.models.Publication.collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>collection this object belongs to</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.contentMetadata">
+<code class="descname">contentMetadata</code><a class="headerlink" href="#openemory.publication.models.Publication.contentMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional datastream for additional content metadata for a
+scholarly article that is not the primary descriptive metadata as an
+<a class="reference internal" href="#openemory.publication.models.NlmArticle" title="openemory.publication.models.NlmArticle"><code class="xref py py-class docutils literal"><span class="pre">NlmArticle</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.descMetadata">
+<code class="descname">descMetadata</code><a class="headerlink" href="#openemory.publication.models.Publication.descMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descriptive Metadata datastream, as <code class="xref py py-class docutils literal"><span class="pre">PublicationMods</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.embargo_end">
+<code class="descname">embargo_end</code><a class="headerlink" href="#openemory.publication.models.Publication.embargo_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="xref py py-attr docutils literal"><span class="pre">PublicationMods.embargo_end</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.embargo_end_date">
+<code class="descname">embargo_end_date</code><a class="headerlink" href="#openemory.publication.models.Publication.embargo_end_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access <code class="xref py py-attr docutils literal"><span class="pre">PublicationMods.embargo_end</span></code> on the local
+<a class="reference internal" href="#openemory.publication.models.Publication.descMetadata" title="openemory.publication.models.Publication.descMetadata"><code class="xref py py-attr docutils literal"><span class="pre">descMetadata</span></code></a> datastream as a <a class="reference external" href="http://docs.python.org/library/datetime.html#datetime.date" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">datetime.date</span></code></a>
+instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.from_symp">
+<code class="descname">from_symp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.from_symp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.from_symp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies the current object and datastreams to be a <a class="reference internal" href="#openemory.publication.models.Publication" title="openemory.publication.models.Publication"><code class="xref py py-class docutils literal"><span class="pre">Publication</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.image_cover">
+<code class="descname">image_cover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.image_cover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.image_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a PDF cover page based on the MODS descriptive
+metadata associated with this article (<a class="reference internal" href="#openemory.publication.models.Publication.descMetadata" title="openemory.publication.models.Publication.descMetadata"><code class="xref py py-attr docutils literal"><span class="pre">descMetadata</span></code></a>),
+using <code class="xref py py-mod docutils literal"><span class="pre">xhtml2pdf</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">cStringIO.StringIO</span></code> with PDF content</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.image_with_cover">
+<code class="descname">image_with_cover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.image_with_cover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.image_with_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the PDF associated with this image (the contents
+of the <code class="xref py py-attr docutils literal"><span class="pre">png,jpeg</span></code> datastream) with a custom cover page
+(generated by <a class="reference internal" href="#openemory.publication.models.Publication.pdf_cover" title="openemory.publication.models.Publication.pdf_cover"><code class="xref py py-meth docutils literal"><span class="pre">pdf_cover()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.index_data">
+<code class="descname">index_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.index_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.index_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend the default
+<code class="xref py py-meth docutils literal"><span class="pre">openemory.common.fedora.DigitalObject.index_data()</span></code> method to
+include fields needed for search and display of Publication
+objects.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.is_embargoed">
+<code class="descname">is_embargoed</code><a class="headerlink" href="#openemory.publication.models.Publication.is_embargoed" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean indicator that this publication is currently embargoed
+(i.e., there is an embargo end date set and that date is not
+in the past).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.is_published">
+<code class="descname">is_published</code><a class="headerlink" href="#openemory.publication.models.Publication.is_published" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean indicator that this publication is currently published
+(currently defined as object by object state being <strong>active</strong>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.is_withdrawn">
+<code class="descname">is_withdrawn</code><a class="headerlink" href="#openemory.publication.models.Publication.is_withdrawn" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean indicator that this publication is currently withdrawn from
+the public-facing website.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.number_of_pages">
+<code class="descname">number_of_pages</code><a class="headerlink" href="#openemory.publication.models.Publication.number_of_pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of pages in the PDF associated with this object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.oai_itemID">
+<code class="descname">oai_itemID</code><a class="headerlink" href="#openemory.publication.models.Publication.oai_itemID" title="Permalink to this definition">¶</a></dt>
+<dd><p>OAI identifier</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.pdf">
+<code class="descname">pdf</code><a class="headerlink" href="#openemory.publication.models.Publication.pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>PDF content of a scholarly publication, stored and accessed as a
+<a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/models.html#eulfedora.models.FileDatastream" title="(in eulfedora v1.7)"><code class="xref py py-class docutils literal"><span class="pre">FileDatastream</span></code></a>; datastream is
+configured to be versioned and managed; default mimetype is
+<code class="docutils literal"><span class="pre">application/pdf</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.pdf_cover">
+<code class="descname">pdf_cover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.pdf_cover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.pdf_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a PDF cover page based on the MODS descriptive
+metadata associated with this article (<a class="reference internal" href="#openemory.publication.models.Publication.descMetadata" title="openemory.publication.models.Publication.descMetadata"><code class="xref py py-attr docutils literal"><span class="pre">descMetadata</span></code></a>),
+using <code class="xref py py-mod docutils literal"><span class="pre">xhtml2pdf</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">cStringIO.StringIO</span></code> with PDF content</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.pdf_with_cover">
+<code class="descname">pdf_with_cover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.pdf_with_cover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.pdf_with_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the PDF associated with this article (the contents
+of the <a class="reference internal" href="#openemory.publication.models.Publication.pdf" title="openemory.publication.models.Publication.pdf"><code class="xref py py-attr docutils literal"><span class="pre">pdf</span></code></a> datastream) with a custom cover page
+(generated by <a class="reference internal" href="#openemory.publication.models.Publication.pdf_cover" title="openemory.publication.models.Publication.pdf_cover"><code class="xref py py-meth docutils literal"><span class="pre">pdf_cover()</span></code></a>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method currently does <strong>not</strong> trap for errors such as           <code class="xref py py-class docutils literal"><span class="pre">pyPdf.util.PdfReadError</span></code> or           <code class="xref py py-class docutils literal"><span class="pre">eulfedora.util.RequestFailed</span></code> (e.g., if the           datastream does not exist or cannot be accessed, or the           datastream exists but the PDF is unreadable with           <code class="xref py py-mod docutils literal"><span class="pre">pyPdf</span></code>).</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">cStringIO.StringIO</span></code> instance with the         merged pdf content</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.provenance">
+<code class="descname">provenance</code><a class="headerlink" href="#openemory.publication.models.Publication.provenance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional <code class="docutils literal"><span class="pre">provenanceMetadata</span></code> datastream for PREMIS Event
+metadata; datastream XML content will be an instance of
+<a class="reference internal" href="#openemory.publication.models.PublicationPremis" title="openemory.publication.models.PublicationPremis"><code class="xref py py-class docutils literal"><span class="pre">PublicationPremis</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.public_url">
+<code class="descname">public_url</code><a class="headerlink" href="#openemory.publication.models.Publication.public_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>symplectic elements public url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend default <a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/models.html#eulfedora.models.DigitalObject.save" title="(in eulfedora v1.7)"><code class="xref py py-meth docutils literal"><span class="pre">eulfedora.models.DigitalObject.save()</span></code></a>
+to update a few fields before saving to Fedora.</p>
+<blockquote>
+<div><ul class="simple">
+<li>set object owners based on ids from authors set in
+<a class="reference internal" href="#openemory.publication.models.Publication.descMetadata" title="openemory.publication.models.Publication.descMetadata"><code class="xref py py-attr docutils literal"><span class="pre">descMetadata</span></code></a> content; if this would result in no owners,
+the previous value is left as is.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.statistics">
+<code class="descname">statistics</code><span class="sig-paren">(</span><em>year=None</em>, <em>quarter=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.statistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the <a class="reference internal" href="#openemory.publication.models.ArticleStatistics" title="openemory.publication.models.ArticleStatistics"><code class="xref py py-class docutils literal"><span class="pre">ArticleStatistics</span></code></a> for this object on the given
+year and / or quarter. If no year is specified, use the current year.
+If no quarter is specified, use the current quarter.
+Returns None if this article does not yet have a PID.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.statistics_queryset">
+<code class="descname">statistics_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.statistics_queryset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.statistics_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/models/querysets/#django.db.models.query.QuerySet" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">QuerySet</span></code></a> for all this
+article&#8217;s <a class="reference internal" href="#openemory.publication.models.ArticleStatistics" title="openemory.publication.models.ArticleStatistics"><code class="xref py py-class docutils literal"><span class="pre">ArticleStatistics</span></code></a>. Returns None if this article
+does not yet have a PID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.publication.models.Publication.sympAtom">
+<code class="descname">sympAtom</code><a class="headerlink" href="#openemory.publication.models.Publication.sympAtom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descriptive Metadata datastream, as <code class="xref py py-class docutils literal"><span class="pre">PublicationMods</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.Publication.zip_with_cover">
+<code class="descname">zip_with_cover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#Publication.zip_with_cover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.Publication.zip_with_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the zip associated with this publication (the contents
+of the zip is <cite>excel,powerpoint,word</cite> datastream) with a custom cover page
+(generated by <a class="reference internal" href="#openemory.publication.models.Publication.pdf_cover" title="openemory.publication.models.Publication.pdf_cover"><code class="xref py py-meth docutils literal"><span class="pre">pdf_cover()</span></code></a>).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.PublicationPremis">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">PublicationPremis</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="xref py py-class docutils literal"><span class="pre">eulxml.xmlmap.premis.Premis</span></code> to add convenience
+mappings to admin review event, review date, harvest event, harvest date,
+upload event, date uploaded.</p>
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.harvested">
+<code class="descname">harvested</code><span class="sig-paren">(</span><em>user</em>, <em>pmcid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.harvested"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.harvested" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been
+harvested. Wrapper for <a class="reference internal" href="#openemory.publication.models.PublicationPremis.premis_event" title="openemory.publication.models.PublicationPremis.premis_event"><code class="xref py py-meth docutils literal"><span class="pre">premis_event()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a>
+who harvested the article</li>
+<li><strong>pmcid</strong> &#8211; the pmcid of the article in PubMed Central</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.merged">
+<code class="descname">merged</code><span class="sig-paren">(</span><em>original_pid</em>, <em>element_pid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.merged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.merged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been
+reviewed. Wrapper for <a class="reference internal" href="#openemory.publication.models.PublicationPremis.premis_event" title="openemory.publication.models.PublicationPremis.premis_event"><code class="xref py py-meth docutils literal"><span class="pre">premis_event()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reviewer</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a>
+who reviewed the article</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.premis_event">
+<code class="descname">premis_event</code><span class="sig-paren">(</span><em>user</em>, <em>type</em>, <em>detail</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.premis_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.premis_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the common logic when creating premeis events. A <a class="reference external" href="http://docs.python.org/library/exceptions.html#KeyError" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">KeyError</span></code></a> Exception will be raised
+if the type is not in the list of allowed types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a>
+who is performing the action.</li>
+<li><strong>type</strong> &#8211; <p>the type of event. Currently the allowed values are:</p>
+<ul>
+<li>review</li>
+<li>harvest</li>
+<li>upload</li>
+<li>withdraw</li>
+<li>reinstate</li>
+<li>merge</li>
+</ul>
+</li>
+<li><strong>detail</strong> &#8211; detail message for event`</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.reinstated">
+<code class="descname">reinstated</code><span class="sig-paren">(</span><em>user</em>, <em>reason=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.reinstated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.reinstated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been reinstated
+to the public-facing collection by a site administrator (after a
+past withdrawal).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> who
+reinstated the article</li>
+<li><strong>reason</strong> &#8211; optional user-entered string explaining the reason
+for reinstatement, to be included in the event detail</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.reviewed">
+<code class="descname">reviewed</code><span class="sig-paren">(</span><em>reviewer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.reviewed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.reviewed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been
+reviewed. Wrapper for <a class="reference internal" href="#openemory.publication.models.PublicationPremis.premis_event" title="openemory.publication.models.PublicationPremis.premis_event"><code class="xref py py-meth docutils literal"><span class="pre">premis_event()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reviewer</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a>
+who reviewed the article</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.symp_ingest">
+<code class="descname">symp_ingest</code><span class="sig-paren">(</span><em>user</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.symp_ingest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.symp_ingest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been
+ingested from Symplectic-Elements. Wrapper for <a class="reference internal" href="#openemory.publication.models.PublicationPremis.premis_event" title="openemory.publication.models.PublicationPremis.premis_event"><code class="xref py py-meth docutils literal"><span class="pre">premis_event()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; the id of the article in Symplectic-Elements</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.uploaded">
+<code class="descname">uploaded</code><span class="sig-paren">(</span><em>user</em>, <em>legal_statement=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.uploaded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.uploaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been
+uploaded. Wrapper for <a class="reference internal" href="#openemory.publication.models.PublicationPremis.premis_event" title="openemory.publication.models.PublicationPremis.premis_event"><code class="xref py py-meth docutils literal"><span class="pre">premis_event()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a>
+who uploaded the file</li>
+<li><strong>legal_statement</strong> &#8211; string representing form of agreement
+indicated by user: &#8216;AUTHOR&#8217; for agreement to author&#8217;s Assent to
+Deposit; &#8216;MEDIATED&#8217; for agreement to admin Mediated Deposit
+statement. This value should never be left as the default None:
+This will generate a statement that the item was uploaded
+without the user agreeing to a rights statement.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.PublicationPremis.withdrawn">
+<code class="descname">withdrawn</code><span class="sig-paren">(</span><em>user</em>, <em>reason</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#PublicationPremis.withdrawn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.PublicationPremis.withdrawn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an event to indicate that this article has been withdrawn
+from the public-facing collection by a site administrator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; the <a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">User</span></code></a> who
+withdrew the article</li>
+<li><strong>reason</strong> &#8211; user-entered string explaining the reason for
+withdrawal, to be included in the event detail</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.publication.models.ResearchFields">
+<em class="property">class </em><code class="descclassname">openemory.publication.models.</code><code class="descname">ResearchFields</code><a class="reference internal" href="_modules/openemory/publication/models.html#ResearchFields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.ResearchFields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper-class for access to UMI/ProQuest research fields (also
+known as Subject Categories).</p>
+<dl class="method">
+<dt id="openemory.publication.models.ResearchFields.as_category_completion">
+<code class="descname">as_category_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#ResearchFields.as_category_completion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.ResearchFields.as_category_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten the SKOS hierarchy into a list of dictionaries that
+can be used as the basis for a category-based jQueryUI
+autocomplete (see <a class="reference external" href="http://jqueryui.com/demos/autocomplete/#categories">http://jqueryui.com/demos/autocomplete/#categories</a> ).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.publication.models.ResearchFields.as_field_choices">
+<code class="descname">as_field_choices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#ResearchFields.as_field_choices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.ResearchFields.as_field_choices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate and a list of choices, based on the SKOS
+collection hierarchy, that can be used with a
+<a class="reference external" href="https://docs.djangoproject.com/en/1.3/ref/ref/forms/fields/#django.forms.ChoiceField" title="(in Django v3.1)"><code class="xref py py-class docutils literal"><span class="pre">django.forms.ChoiceField</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.models.marc_language_codelist">
+<code class="descclassname">openemory.publication.models.</code><code class="descname">marc_language_codelist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#marc_language_codelist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.marc_language_codelist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize and return <code class="xref py py-class docutils literal"><span class="pre">CodeList</span></code> instance from the MARC
+languages Code List.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.models.year_quarter">
+<code class="descclassname">openemory.publication.models.</code><code class="descname">year_quarter</code><span class="sig-paren">(</span><em>month</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/models.html#year_quarter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.models.year_quarter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the quarter the year based on month param.
+For example month 2 would return 1, month 4 would return 2</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>Views<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-openemory.publication.views"></span><dl class="function">
+<dt id="openemory.publication.views.audit_trail">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">audit_trail</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#audit_trail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.audit_trail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access XML audit trail on
+<code class="xref py py-class docutils literal"><span class="pre">openemory.publication.model.Article</span></code> objects</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.bibliographic_metadata">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">bibliographic_metadata</code><span class="sig-paren">(</span><em>request</em>, <em>pid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#bibliographic_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.bibliographic_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return bibliographic metadata for an article. Currently this view is
+used primarily to support import to EndNote, though it may be extended
+to support other formats in the future.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.browse_field">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">browse_field</code><span class="sig-paren">(</span><em>request</em>, <em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#browse_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.browse_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Browse a list of values for a specific field, e.g. authors,
+subjects, or journal titles.  Displays a list of values for the
+specified field with a count for the number of articles associated
+with the particular author, subject, or journal, and a link to a
+search for articles with the specified field and value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>field</strong> &#8211; Expected to be one of <strong>authors</strong>, <strong>subjects</strong>, or
+<strong>journals</strong></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.departments">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">departments</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#departments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.departments" title="Permalink to this definition">¶</a></dt>
+<dd><p>List department names based on article information in solr,
+grouped by division name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.download_pdf">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">download_pdf</code><span class="sig-paren">(</span><em>request</em>, <em>pid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#download_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.download_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>View to allow access the All datastream of a
+<a class="reference internal" href="#openemory.publication.models.Publication" title="openemory.publication.models.Publication"><code class="xref py py-class docutils literal"><span class="pre">openemory.publication.models.Publication</span></code></a> object.  Sets a
+content-disposition header that will prompt the file to be saved
+with a default title based on the object label.</p>
+<p>Returns the original Publication Mime Type with a cover page, if possible;
+if there is an error generating the cover page version of the PDF,
+the original PDF will be returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.edit_metadata">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">edit_metadata</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#edit_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.edit_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>View to edit the metadata for an existing
+<code class="xref py py-class docutils literal"><span class="pre">Article</span></code> .</p>
+<p>On GET, display the form.  When valid form data is POSTed, updates
+thes object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.ingest">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">ingest</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#ingest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.ingest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <code class="xref py py-class docutils literal"><span class="pre">Article</span></code>
+object and ingest into the repository one of two ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li>By uploading a file from a web form.  On GET, displays the
+upload form.  On POST with a valid file, ingests the content
+into Fedora.</li>
+<li>When a request is POSTed via AJAX, looks for a pmcid in the
+request to find the
+<a class="reference internal" href="#openemory.harvest.models.HarvestRecord" title="openemory.harvest.models.HarvestRecord"><code class="xref py py-class docutils literal"><span class="pre">HarvestRecord</span></code></a> to be
+ingested.  Requires site admin permissions.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.mail_listserv">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">mail_listserv</code><span class="sig-paren">(</span><em>subject</em>, <em>message</em>, <em>fail_silently=False</em>, <em>connection=None</em>, <em>html_message=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#mail_listserv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.mail_listserv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a message to the managers, as defined by the MANAGERS setting.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.object_last_modified">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">object_last_modified</code><span class="sig-paren">(</span><em>request</em>, <em>pid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#object_last_modified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.object_last_modified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the last modification date for an object in Fedora, to
+allow for conditional processing with use with
+<code class="xref py py-meth docutils literal"><span class="pre">django.views.decorators.last_modified()</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.open_access_fund">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">open_access_fund</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#open_access_fund"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.open_access_fund" title="Permalink to this definition">¶</a></dt>
+<dd><p>A form for submitting an OA Fund Proposal</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.review_queue">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">review_queue</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#review_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.review_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>List published but unreviewed articles so admins can review
+metadata.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.site_index">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">site_index</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#site_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.site_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Site index page, including 10 most viewed and 10 recently
+published articles.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.suggest_from_solr">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">suggest_from_solr</code><span class="sig-paren">(</span><em>request</em>, <em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#suggest_from_solr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.suggest_from_solr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggest terms based on a specified field and term prefix, using
+Solr facets.  Returns a JSON response with the 15 most common
+matching terms in the requested field with the specified prefix.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to the current implementation and the limitations of facet
+querying in Solr, the search term is case-sensitive and only
+matches at the beginning of the string.</p>
+</div>
+<p>Return format is suitable for use with <a class="reference external" href="http://jqueryui.com/demos/autocomplete/">JQuery UI Autocomplete</a>
+widget.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> &#8211; the http request passed to the original view
+method (used to retrieve the search term)</li>
+<li><strong>field</strong> &#8211; the name of the field to query in Solr (without the
+<em>_facet</em> portion).  Currently supported fields:
+<strong>author_affiliation</strong>, <strong>funder</strong>, <strong>journal_publisher</strong>,
+<strong>keyword</strong></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.summary">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">summary</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publication summary page with a list of most downloaded and
+most recent content.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.view_article">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">view_article</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#view_article"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.view_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>View to display an
+<code class="xref py py-class docutils literal"><span class="pre">Article</span></code> .</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.view_datastream">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">view_datastream</code><span class="sig-paren">(</span><em>request</em>, <em>pid</em>, <em>dsid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#view_datastream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.view_datastream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access object datastreams on
+<code class="xref py py-class docutils literal"><span class="pre">openemory.publication.model.Article</span></code> objects</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.publication.views.view_private_datastream">
+<code class="descclassname">openemory.publication.views.</code><code class="descname">view_private_datastream</code><span class="sig-paren">(</span><em>request</em>, <em>pid</em>, <em>dsid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/publication/views.html#view_private_datastream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.publication.views.view_private_datastream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access raw object datastreams accessible only to object owners and
+superusers.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-openemory.harvest">
+<span id="harvest"></span><h2>Harvest<a class="headerlink" href="#module-openemory.harvest" title="Permalink to this headline">¶</a></h2>
+<p>This Django application deals with harvesting content from other
+sources for potential ingest into the OpenEmory repository, along with
+administrative functionality for managing the queue of harvested
+records.</p>
+<div class="section" id="id4">
+<h3>Models<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-openemory.harvest.models"></span><dl class="class">
+<dt id="openemory.harvest.models.HarvestRecord">
+<em class="property">class </em><code class="descclassname">openemory.harvest.models.</code><code class="descname">HarvestRecord</code><span class="sig-paren">(</span><em>id</em>, <em>pmcid</em>, <em>title</em>, <em>harvested</em>, <em>status</em>, <em>fulltext</em>, <em>content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="openemory.harvest.models.HarvestRecord.access_url">
+<code class="descname">access_url</code><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.access_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Direct link to this PubMed Central article, based on PubMed Central ID.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.models.HarvestRecord.as_publication_article">
+<code class="descname">as_publication_article</code><span class="sig-paren">(</span><em>repo=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord.as_publication_article"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.as_publication_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize (but do not save) a new
+<code class="xref py py-class docutils literal"><span class="pre">Article</span></code> instance and
+based on harvested record information and Article XML.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>repo</strong> &#8211; optional; pass in an existing
+<a class="reference external" href="http://eulfedora.readthedocs.org/en/latest/fedora/server.html#eulfedora.server.Repository" title="(in eulfedora v1.7)"><code class="xref py py-class docutils literal"><span class="pre">eulfedora.server.Repository</span></code></a> object initialized
+with the desired credentials</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">unsaved <code class="xref py py-class docutils literal"><span class="pre">Article</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.models.HarvestRecord.ingestable">
+<code class="descname">ingestable</code><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.ingestable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean; indicates of this record is in an accetable status
+for ingest.?</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="openemory.harvest.models.HarvestRecord.init_from_fetched_article">
+<em class="property">static </em><code class="descname">init_from_fetched_article</code><span class="sig-paren">(</span><em>article</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord.init_from_fetched_article"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.init_from_fetched_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new
+<a class="reference internal" href="#openemory.harvest.models.HarvestRecord" title="openemory.harvest.models.HarvestRecord"><code class="xref py py-class docutils literal"><span class="pre">HarvestRecord</span></code></a> instance based
+on information from an
+<a class="reference internal" href="#openemory.publication.models.NlmArticle" title="openemory.publication.models.NlmArticle"><code class="xref py py-class docutils literal"><span class="pre">NlmArticle</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">saved <a class="reference internal" href="#openemory.harvest.models.HarvestRecord" title="openemory.harvest.models.HarvestRecord"><code class="xref py py-class docutils literal"><span class="pre">HarvestRecord</span></code></a> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.models.HarvestRecord.mark_ignored">
+<code class="descname">mark_ignored</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord.mark_ignored"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.mark_ignored" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark this record as ignored (will not be ingested into the
+repository0.  Updates the status and removes the harvestd
+Article xml file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.models.HarvestRecord.mark_in_process">
+<code class="descname">mark_in_process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord.mark_in_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.mark_in_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark this record as in process for ingest by another process to
+minimize the chances of accidentally ingesting an object twice.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.models.HarvestRecord.mark_ingested">
+<code class="descname">mark_ingested</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#HarvestRecord.mark_ingested"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.HarvestRecord.mark_ingested" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark this record as ingested into the repository.  Updates
+the status and removes the harvestd Article xml file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.harvest.models.OpenEmoryEntrezClient">
+<em class="property">class </em><code class="descclassname">openemory.harvest.models.</code><code class="descname">OpenEmoryEntrezClient</code><a class="reference internal" href="_modules/openemory/harvest/models.html#OpenEmoryEntrezClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.OpenEmoryEntrezClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Project-specific methods build on top of an
+<a class="reference internal" href="#openemory.harvest.entrez.EntrezClient" title="openemory.harvest.entrez.EntrezClient"><code class="xref py py-class docutils literal"><span class="pre">EntrezClient</span></code></a>.</p>
+<dl class="method">
+<dt id="openemory.harvest.models.OpenEmoryEntrezClient.get_emory_articles">
+<code class="descname">get_emory_articles</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/models.html#OpenEmoryEntrezClient.get_emory_articles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.models.OpenEmoryEntrezClient.get_emory_articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search Entrez for Emory articles, currently limited to PMC
+articles with &#8220;emory&#8221; in the affiliation metadata.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#openemory.harvest.entrez.ESearchResponse" title="openemory.harvest.entrez.ESearchResponse"><code class="xref py py-class docutils literal"><span class="pre">ESearchResponse</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>Views<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-openemory.harvest.views"></span><dl class="function">
+<dt id="openemory.harvest.views.queue">
+<code class="descclassname">openemory.harvest.views.</code><code class="descname">queue</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/views.html#queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.views.queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the queue of harvested records.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.harvest.views.record">
+<code class="descclassname">openemory.harvest.views.</code><code class="descname">record</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/views.html#record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.views.record" title="Permalink to this definition">¶</a></dt>
+<dd><p>View for a single
+<a class="reference internal" href="#openemory.harvest.models.HarvestRecord" title="openemory.harvest.models.HarvestRecord"><code class="xref py py-class docutils literal"><span class="pre">HarvestRecord</span></code></a>.  Currently only
+supports HTTP DELETE.</p>
+<p>On DELETE, marks the record as <code class="docutils literal"><span class="pre">ignored</span></code> (i.e., will not be
+ingested into the repository).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openemory.harvest.entrez">
+<span id="entrez-querying"></span><h3>Entrez querying<a class="headerlink" href="#module-openemory.harvest.entrez" title="Permalink to this headline">¶</a></h3>
+<p>Tools for querying NCBI Entrez E-utilities, notably including PubMed.</p>
+<dl class="class">
+<dt id="openemory.harvest.entrez.EFetchAuthor">
+<em class="property">class </em><code class="descclassname">openemory.harvest.entrez.</code><code class="descname">EFetchAuthor</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/entrez.html#EFetchAuthor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.EFetchAuthor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal wrapper for author in EFetch XML returns</p>
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EFetchAuthor.affiliation">
+<code class="descname">affiliation</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.EFetchAuthor.affiliation" title="Permalink to this definition">¶</a></dt>
+<dd><p>author institutional affiliation, or None if missing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EFetchAuthor.email">
+<code class="descname">email</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.EFetchAuthor.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>author email, or None if missing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EFetchAuthor.given_names">
+<code class="descname">given_names</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.EFetchAuthor.given_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>author given name(s)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EFetchAuthor.surname">
+<code class="descname">surname</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.EFetchAuthor.surname" title="Permalink to this definition">¶</a></dt>
+<dd><p>author surname</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.harvest.entrez.EFetchResponse">
+<em class="property">class </em><code class="descclassname">openemory.harvest.entrez.</code><code class="descname">EFetchResponse</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/entrez.html#EFetchResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.EFetchResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal wrapper for EFetch XML returns</p>
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EFetchResponse.articles">
+<code class="descname">articles</code><em class="property"> = &lt;eulxml.xmlmap.fields.NodeListField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.EFetchResponse.articles" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of requested article data as a list of
+<a class="reference internal" href="#openemory.publication.models.NlmArticle" title="openemory.publication.models.NlmArticle"><code class="xref py py-class docutils literal"><span class="pre">NlmArticle</span></code></a> objects</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.harvest.entrez.ESearchResponse">
+<em class="property">class </em><code class="descclassname">openemory.harvest.entrez.</code><code class="descname">ESearchResponse</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/entrez.html#ESearchResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.ESearchResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal wrapper for ESearch XML returns</p>
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.ESearchResponse.count">
+<code class="descname">count</code><em class="property"> = &lt;eulxml.xmlmap.fields.IntegerField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.ESearchResponse.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>total articles matching the query</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.ESearchResponse.docid">
+<code class="descname">docid</code><em class="property"> = &lt;eulxml.xmlmap.fields.IntegerListField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.ESearchResponse.docid" title="Permalink to this definition">¶</a></dt>
+<dd><p>first page of document UIDs (<em>not</em> PMIDs) matching the query</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.ESearchResponse.query_key">
+<code class="descname">query_key</code><em class="property"> = &lt;eulxml.xmlmap.fields.IntegerField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.ESearchResponse.query_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>server-assigned id for this query in history</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.ESearchResponse.webenv">
+<code class="descname">webenv</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.harvest.entrez.ESearchResponse.webenv" title="Permalink to this definition">¶</a></dt>
+<dd><p>server-assigned web environment for history management</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.harvest.entrez.EntrezClient">
+<em class="property">class </em><code class="descclassname">openemory.harvest.entrez.</code><code class="descname">EntrezClient</code><a class="reference internal" href="_modules/openemory/harvest/entrez.html#EntrezClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generic client for making web requests to NCBI Entrez E-utilities in
+accordance with their <a class="reference external" href="http://www.ncbi.nlm.nih.gov/books/NBK25497/">guidlines and requirements</a>.</p>
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.EFETCH">
+<code class="descname">EFETCH</code><em class="property"> = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.EFETCH" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL path of efetch queries</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.ESEARCH">
+<code class="descname">ESEARCH</code><em class="property"> = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.ESEARCH" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL path of esearch queries</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.ESUMMARY">
+<code class="descname">ESUMMARY</code><em class="property"> = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.ESUMMARY" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL path of esummary queries</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.EUTILS_EMAIL">
+<code class="descname">EUTILS_EMAIL</code><em class="property"> = 'LIBSYSDEV-L&#64;listserv.cc.emory.edu'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.EUTILS_EMAIL" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">email</span></code> query argument added to all eutils queries</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.EUTILS_QUERY_DELAY_SECONDS">
+<code class="descname">EUTILS_QUERY_DELAY_SECONDS</code><em class="property"> = 0.34</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.EUTILS_QUERY_DELAY_SECONDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>minimum seconds to pause between consecutive eutils requests</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.EUTILS_TOOL">
+<code class="descname">EUTILS_TOOL</code><em class="property"> = 'emory-libs-openemory'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.EUTILS_TOOL" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">tool</span></code> query argument added to all eutils queries</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.harvest.entrez.EntrezClient.QUERY_ROOT">
+<code class="descname">QUERY_ROOT</code><em class="property"> = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'</em><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.QUERY_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL root of all eutils queries</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.entrez.EntrezClient.efetch">
+<code class="descname">efetch</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/entrez.html#EntrezClient.efetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.efetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query EFetch, forwarding all arguments as URL query arguments.
+Adds <code class="docutils literal"><span class="pre">tool</span></code>, <code class="docutils literal"><span class="pre">email</span></code>, and <code class="docutils literal"><span class="pre">retmode</span></code> query arguments if they
+are not included.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#openemory.harvest.entrez.EFetchResponse" title="openemory.harvest.entrez.EFetchResponse"><code class="xref py py-class docutils literal"><span class="pre">EFetchResponse</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.harvest.entrez.EntrezClient.esearch">
+<code class="descname">esearch</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/harvest/entrez.html#EntrezClient.esearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.harvest.entrez.EntrezClient.esearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query ESearch, forwarding all arguments as URL query arguments.
+Adds <code class="docutils literal"><span class="pre">tool</span></code> and <code class="docutils literal"><span class="pre">email</span></code> query arguments if they are not
+included.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#openemory.harvest.entrez.ESearchResponse" title="openemory.harvest.entrez.ESearchResponse"><code class="xref py py-class docutils literal"><span class="pre">ESearchResponse</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="misc">
+<h2>Misc.<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-openemory.common.romeo">
+<span id="sherpa-romeo"></span><h3>SHERPA/RoMEO<a class="headerlink" href="#module-openemory.common.romeo" title="Permalink to this headline">¶</a></h3>
+<p>SHERPA/RoMEO API access</p>
+<p>This module provides access to the <a class="reference external" href="http://www.sherpa.ac.uk/romeo/">SHERPA/RoMEO</a> publisher copyright
+policy database through its <a class="reference external" href="http://www.sherpa.ac.uk/romeo/api.html">web API</a>. The API provides seven basic
+search types, which are exposed here as functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#openemory.common.romeo.search_publisher_name" title="openemory.common.romeo.search_publisher_name"><code class="xref py py-func docutils literal"><span class="pre">search_publisher_name()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.search_publisher_id" title="openemory.common.romeo.search_publisher_id"><code class="xref py py-func docutils literal"><span class="pre">search_publisher_id()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.search_journal_title" title="openemory.common.romeo.search_journal_title"><code class="xref py py-func docutils literal"><span class="pre">search_journal_title()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.search_journal_followup" title="openemory.common.romeo.search_journal_followup"><code class="xref py py-func docutils literal"><span class="pre">search_journal_followup()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.search_journal_issn" title="openemory.common.romeo.search_journal_issn"><code class="xref py py-func docutils literal"><span class="pre">search_journal_issn()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.all_publishers" title="openemory.common.romeo.all_publishers"><code class="xref py py-func docutils literal"><span class="pre">all_publishers()</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.search_colour" title="openemory.common.romeo.search_colour"><code class="xref py py-func docutils literal"><span class="pre">search_colour()</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>The SHERPA/RoMEO API returns XML responses. This module wraps those in
+<code class="xref py py-class docutils literal"><span class="pre">XmlObject</span></code> instances:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#openemory.common.romeo.Response" title="openemory.common.romeo.Response"><code class="xref py py-class docutils literal"><span class="pre">Response</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.Journal" title="openemory.common.romeo.Journal"><code class="xref py py-class docutils literal"><span class="pre">Journal</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a></li>
+<li><a class="reference internal" href="#openemory.common.romeo.Copyright" title="openemory.common.romeo.Copyright"><code class="xref py py-class docutils literal"><span class="pre">Copyright</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Note that we follow the SHERPA/RoMEO spelling of <cite>colour</cite> where it appears
+in this module.</p>
+<div class="section" id="funder-info">
+<h4>funder_info<a class="headerlink" href="#funder-info" title="Permalink to this headline">¶</a></h4>
+<p>Query functions in this module all take an optional <cite>funder_info</cite> argument.
+If the argument is something other than <code class="docutils literal"><span class="pre">'none'</span></code> (the default), then
+<a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> objects in the response will include <a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a>
+details for the funders matching the argument value. SHERPA/RoMEO accepts
+the following values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">'none'</span></code>: Include no <a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details</li>
+<li><code class="docutils literal"><span class="pre">'all'</span></code>: Include all <a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details for this
+<a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a></li>
+<li>a funder&#8217;s full case-insensitive name from <a class="reference external" href="http://www.sherpa.ac.uk/juliet/">JULIET</a>: Include
+<a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details for the named funder</li>
+<li>a funder&#8217;s case-insensitive acronym from <a class="reference external" href="http://www.sherpa.ac.uk/juliet/">JULIET</a>: Include
+<a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details for the first funder matching the specified
+acronym</li>
+<li>a funder&#8217;s <a class="reference external" href="http://www.sherpa.ac.uk/juliet/">JULIET</a> PID: Include <a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details for the
+identified funder</li>
+<li>a <cite>iso-3166 two-letter country code</cite>: Include <a class="reference internal" href="#openemory.common.romeo.Mandate" title="openemory.common.romeo.Mandate"><code class="xref py py-class docutils literal"><span class="pre">Mandate</span></code></a> details for
+funding by the identified country</li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="openemory.common.romeo.search_publisher_name">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_publisher_name</code><span class="sig-paren">(</span><em>name</em>, <em>type=None</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_publisher_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_publisher_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a publisher by name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; string of words in the name</li>
+<li><strong>type</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to search for all tokens in any order;
+<code class="docutils literal"><span class="pre">'any'</span></code> to search for one or more tokens in any
+order; <code class="docutils literal"><span class="pre">'exact'</span></code> to search for the <cite>name</cite> as a
+case-insensitive substring of the publisher name.
+defaults to <code class="docutils literal"><span class="pre">'all'</span></code></li>
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of matching <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> objects</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.search_publisher_id">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_publisher_id</code><span class="sig-paren">(</span><em>id</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_publisher_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_publisher_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a publisher by SHERPA/RoMEO id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>id</strong> &#8211; a SHERPA/RoMEO identifier</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">matching <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a>, or <code class="docutils literal"><span class="pre">None</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.search_journal_title">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_journal_title</code><span class="sig-paren">(</span><em>name</em>, <em>type=None</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_journal_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_journal_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a journal by title.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; string</li>
+<li><strong>type</strong> &#8211; <code class="docutils literal"><span class="pre">'starts'</span></code> to search for journals starting with
+<cite>name</cite>; <code class="docutils literal"><span class="pre">'contains'</span></code> to search for journals
+containing <cite>name</cite> as a substring`; <code class="docutils literal"><span class="pre">'exact'</span></code> for a
+case-insensitive exact match with <cite>name</cite>. defaults to
+<code class="docutils literal"><span class="pre">'starts'</span></code>.</li>
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of <a class="reference internal" href="#openemory.common.romeo.Journal" title="openemory.common.romeo.Journal"><code class="xref py py-class docutils literal"><span class="pre">Journal</span></code></a> objects</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.search_journal_followup">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_journal_followup</code><span class="sig-paren">(</span><em>name</em>, <em>publisher_zetoc</em>, <em>publisher_romeo</em>, <em>issn=None</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_journal_followup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_journal_followup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a single journal by title and publisher name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; string</li>
+<li><strong>publisher_zetoc</strong> &#8211; publisher name in ZETOC database</li>
+<li><strong>publisher_romeo</strong> &#8211; publisher name in RoMEO database</li>
+<li><strong>issn</strong> &#8211; journal ISSN</li>
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#openemory.common.romeo.Journal" title="openemory.common.romeo.Journal"><code class="xref py py-class docutils literal"><span class="pre">Journal</span></code></a> or <code class="docutils literal"><span class="pre">None</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.search_journal_issn">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_journal_issn</code><span class="sig-paren">(</span><em>issn</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_journal_issn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_journal_issn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a single journal by ISSN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>issn</strong> &#8211; string</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#openemory.common.romeo.Journal" title="openemory.common.romeo.Journal"><code class="xref py py-class docutils literal"><span class="pre">Journal</span></code></a> or <code class="docutils literal"><span class="pre">None</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.all_publishers">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">all_publishers</code><span class="sig-paren">(</span><em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#all_publishers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.all_publishers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all publishers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> objects</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="openemory.common.romeo.search_colour">
+<code class="descclassname">openemory.common.romeo.</code><code class="descname">search_colour</code><span class="sig-paren">(</span><em>colour</em>, <em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#search_colour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.search_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all publishers matching a SHERPA/RoMEO color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>colour</strong> &#8211; <code class="docutils literal"><span class="pre">'green'</span></code>, <code class="docutils literal"><span class="pre">'blue'</span></code>, <code class="docutils literal"><span class="pre">'yellow'</span></code>, or <code class="docutils literal"><span class="pre">'white'</span></code></li>
+<li><strong>versions</strong> &#8211; <code class="docutils literal"><span class="pre">'all'</span></code> to include publisher policies for all
+available versions. Without this, PDF policy
+information will not be included</li>
+<li><strong>funder_info</strong> &#8211; see module notes on <cite>funder_info</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> objects</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.common.romeo.Response">
+<em class="property">class </em><code class="descclassname">openemory.common.romeo.</code><code class="descname">Response</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Response" title="Permalink to this definition">¶</a></dt>
+<dd><p>An XML response to a SHERPA/RoMEO query</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.common.romeo.Journal">
+<em class="property">class </em><code class="descclassname">openemory.common.romeo.</code><code class="descname">Journal</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Journal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Journal" title="Permalink to this definition">¶</a></dt>
+<dd><p>A journal</p>
+<dl class="method">
+<dt id="openemory.common.romeo.Journal.publisher_details">
+<code class="descname">publisher_details</code><span class="sig-paren">(</span><em>versions=None</em>, <em>funder_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Journal.publisher_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Journal.publisher_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> of this journal. Returns the <code class="docutils literal"><span class="pre">Publisher</span></code>
+included in the same response as this journal, if applicable;
+otherwise queries SHERPA/RoMEO for the publisher details.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.common.romeo.Journal.publisher_romeo">
+<code class="descname">publisher_romeo</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.common.romeo.Journal.publisher_romeo" title="Permalink to this definition">¶</a></dt>
+<dd><p>publisher name in the RoMEO database</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="openemory.common.romeo.Journal.publisher_zetoc">
+<code class="descname">publisher_zetoc</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.common.romeo.Journal.publisher_zetoc" title="Permalink to this definition">¶</a></dt>
+<dd><p>publisher name in the Zetoc database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openemory.common.romeo.Journal.response_includes_publisher_details">
+<code class="descname">response_includes_publisher_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Journal.response_includes_publisher_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Journal.response_includes_publisher_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal"><span class="pre">True</span></code> if the API response that contains this
+<a class="reference internal" href="#openemory.common.romeo.Journal" title="openemory.common.romeo.Journal"><code class="xref py py-class docutils literal"><span class="pre">Journal</span></code></a> also contains its <a class="reference internal" href="#openemory.common.romeo.Publisher" title="openemory.common.romeo.Publisher"><code class="xref py py-class docutils literal"><span class="pre">Publisher</span></code></a> details. If
+this method returns <code class="docutils literal"><span class="pre">True</span></code> then <a class="reference internal" href="#openemory.common.romeo.Journal.publisher_details" title="openemory.common.romeo.Journal.publisher_details"><code class="xref py py-meth docutils literal"><span class="pre">publisher_details()</span></code></a> will not
+require a new API request.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.common.romeo.Publisher">
+<em class="property">class </em><code class="descclassname">openemory.common.romeo.</code><code class="descname">Publisher</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Publisher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Publisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>A journal publisher</p>
+<dl class="attribute">
+<dt id="openemory.common.romeo.Publisher.romeo_colour">
+<code class="descname">romeo_colour</code><em class="property"> = &lt;eulxml.xmlmap.fields.StringField&gt;</em><a class="headerlink" href="#openemory.common.romeo.Publisher.romeo_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://www.sherpa.ac.uk/romeoinfo.html#colours">Colour values</a>
+used by RoMEO to describe archiving rights</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.common.romeo.Mandate">
+<em class="property">class </em><code class="descclassname">openemory.common.romeo.</code><code class="descname">Mandate</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Mandate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Mandate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A publisher&#8217;s policy compliance with an open-access funding mandate
+from a research funder</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="openemory.common.romeo.Copyright">
+<em class="property">class </em><code class="descclassname">openemory.common.romeo.</code><code class="descname">Copyright</code><span class="sig-paren">(</span><em>node=None</em>, <em>context=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openemory/common/romeo.html#Copyright"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openemory.common.romeo.Copyright" title="Permalink to this definition">¶</a></dt>
+<dd><p>A link to a portion of a publisher&#8217;s copyright policy
+documentation</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-openemory.rdfns">
+<span id="rdf-namespaces"></span><h3>RDF namespaces<a class="headerlink" href="#module-openemory.rdfns" title="Permalink to this headline">¶</a></h3>
+<p>RDF Namespaces initialized as instances of <code class="xref py py-class docutils literal"><span class="pre">rdflib.Namespace</span></code>,
+along with namespace prefixes, for use accessing and generating RDF content
+throughout the application.</p>
+<dl class="data">
+<dt id="openemory.rdfns.BIBO">
+<code class="descclassname">openemory.rdfns.</code><code class="descname">BIBO</code><em class="property"> = Namespace(u'http://purl.org/ontology/bibo/')</em><a class="headerlink" href="#openemory.rdfns.BIBO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bibliographic Ontology</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="openemory.rdfns.DC">
+<code class="descclassname">openemory.rdfns.</code><code class="descname">DC</code><em class="property"> = Namespace(u'http://purl.org/dc/elements/1.1/')</em><a class="headerlink" href="#openemory.rdfns.DC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dublin Core</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="openemory.rdfns.FOAF">
+<code class="descclassname">openemory.rdfns.</code><code class="descname">FOAF</code><em class="property"> = Namespace(u'http://xmlns.com/foaf/0.1/')</em><a class="headerlink" href="#openemory.rdfns.FOAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Friend-of-a-Friend</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="openemory.rdfns.FRBR">
+<code class="descclassname">openemory.rdfns.</code><code class="descname">FRBR</code><em class="property"> = Namespace(u'http://purl.org/vocab/frbr/core#')</em><a class="headerlink" href="#openemory.rdfns.FRBR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functional Requirements for Bibliographic Records (FRBR core)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="openemory.rdfns.ns_prefixes">
+<code class="descclassname">openemory.rdfns.</code><code class="descname">ns_prefixes</code><em class="property"> = {'foaf': Namespace(u'http://xmlns.com/foaf/0.1/'), 'frbr': Namespace(u'http://purl.org/vocab/frbr/core#'), 'dc': Namespace(u'http://purl.org/dc/elements/1.1/'), 'bibo': Namespace(u'http://purl.org/ontology/bibo/')}</em><a class="headerlink" href="#openemory.rdfns.ns_prefixes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prefixes for RDF Namespaces defined here in <a class="reference internal" href="#module-openemory.rdfns" title="openemory.rdfns"><code class="xref py py-mod docutils literal"><span class="pre">openemory.rdfns</span></code></a>,
+for consistency in serializing RDF content throughout the application.
+To use, bind each prefixes and corresponding namespace to your graph:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rdf</span> <span class="o">=</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">ns</span> <span class="ow">in</span> <span class="n">ns_prefixes</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+   <span class="n">rdf</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">openemory</span></code> Code Documentation</a><ul>
+<li><a class="reference internal" href="#module-openemory.accounts">Accounts</a><ul>
+<li><a class="reference internal" href="#module-openemory.accounts.auth">Auth</a></li>
+<li><a class="reference internal" href="#module-openemory.accounts.backends">Backends</a></li>
+<li><a class="reference internal" href="#module-openemory.accounts.db">Db</a></li>
+<li><a class="reference internal" href="#module-openemory.accounts.models">Models</a></li>
+<li><a class="reference internal" href="#module-openemory.accounts.views">Views</a></li>
+<li><a class="reference internal" href="#module-openemory.accounts.templatetags.tags">Template Tags &amp; Filters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-openemory.publication">Publication</a><ul>
+<li><a class="reference internal" href="#id1">Models</a></li>
+<li><a class="reference internal" href="#id2">Views</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-openemory.harvest">Harvest</a><ul>
+<li><a class="reference internal" href="#id4">Models</a></li>
+<li><a class="reference internal" href="#id5">Views</a></li>
+<li><a class="reference internal" href="#module-openemory.harvest.entrez">Entrez querying</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#misc">Misc.</a><ul>
+<li><a class="reference internal" href="#module-openemory.common.romeo">SHERPA/RoMEO</a><ul>
+<li><a class="reference internal" href="#funder-info">funder_info</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-openemory.rdfns">RDF namespaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="readme.html"
+                        title="previous chapter">README</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="changelog.html"
+                        title="next chapter">CHANGELOG</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/apidocs.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="CHANGELOG"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="README"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

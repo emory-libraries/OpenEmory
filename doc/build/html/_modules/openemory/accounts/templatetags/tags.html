@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.accounts.templatetags.tags &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.accounts.templatetags.tags</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/accounts/templatetags/tags.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">template</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ObjectDoesNotExist</span><span class="p">,</span> <span class="n">MultipleObjectsReturned</span>
+
+<span class="kn">from</span> <span class="nn">openemory.accounts.models</span> <span class="kn">import</span> <span class="n">Bookmark</span>
+
+<span class="n">register</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">Library</span><span class="p">()</span>
+
+<span class="nd">@register.filter</span>
+<div class="viewcode-block" id="tags_for_user"><a class="viewcode-back" href="../../../../apidocs.html#openemory.accounts.templatetags.tags.tags_for_user">[docs]</a><span class="k">def</span> <span class="nf">tags_for_user</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return a list of :class:`~taggit.models.Tag` objects for the</span>
+<span class="sd">    specified object and user.  Returns an empty list if the user is</span>
+<span class="sd">    not authenticated, object does not have a pid, or no</span>
+<span class="sd">    :class:`~openemory.accounts.models.Bookmark` record is found.</span>
+<span class="sd">    Example use::</span>
+
+<span class="sd">       {% for tag in article|tags_for_user:user %}</span>
+<span class="sd">         {{ tag.name }}{% if not forloop.last %}, {% endif %}</span>
+<span class="sd">       {% endfor %}</span>
+
+<span class="sd">    :param object: tagged, bookmarked object - can be anything with a</span>
+<span class="sd">    	pid attribute or a dictionary with a pid value (e.g., a</span>
+<span class="sd">    	:class:`~eulfedora.model.DigitalObject` or a :mod:`sunburnt`</span>
+<span class="sd">    	Solr result)</span>
+<span class="sd">    :param user: the user whose tags should be retrieved</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">pid</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pid</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="s1">&#39;pid&#39;</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pid</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">bk</span> <span class="o">=</span> <span class="n">Bookmark</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="n">pid</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bk</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">ObjectDoesNotExist</span><span class="p">,</span> <span class="n">MultipleObjectsReturned</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+    
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

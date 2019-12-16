@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rdflib.namespace &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for rdflib.namespace</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">generators</span>
+<span class="kn">from</span> <span class="nn">rdflib.py3compat</span> <span class="kn">import</span> <span class="n">format_doctest_out</span>
+
+<span class="n">__doc__</span> <span class="o">=</span> <span class="n">format_doctest_out</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">===================</span>
+<span class="s2">Namespace Utilities</span>
+<span class="s2">===================</span>
+
+<span class="s2">RDFLib provides mechanisms for managing Namespaces.</span>
+
+<span class="s2">In particular, there is a :class:`~rdflib.namespace.Namespace` class that takes as its argument the base URI of the namespace.</span>
+
+<span class="s2">.. code-block:: pycon</span>
+
+<span class="s2">    &gt;&gt;&gt; from rdflib.namespace import Namespace</span>
+<span class="s2">    &gt;&gt;&gt; fuxi = Namespace(&#39;http://metacognition.info/ontologies/FuXi.n3#&#39;)</span>
+
+<span class="s2">Fully qualified URIs in the namespace can be constructed either by attribute or by dictionary access on Namespace instances:</span>
+
+<span class="s2">.. code-block:: pycon</span>
+
+<span class="s2">    &gt;&gt;&gt; fuxi.ruleBase</span>
+<span class="s2">    rdflib.term.URIRef(</span><span class="si">%(u)s</span><span class="s2">&#39;http://metacognition.info/ontologies/FuXi.n3#ruleBase&#39;)</span>
+<span class="s2">    &gt;&gt;&gt; fuxi[&#39;ruleBase&#39;]</span>
+<span class="s2">    rdflib.term.URIRef(</span><span class="si">%(u)s</span><span class="s2">&#39;http://metacognition.info/ontologies/FuXi.n3#ruleBase&#39;)</span>
+
+<span class="s2">Automatic handling of unknown predicates</span>
+<span class="s2">-----------------------------------------</span>
+
+<span class="s2">As a programming convenience, a namespace binding is automatically </span>
+<span class="s2">created when :class:`rdflib.term.URIRef` predicates are added to the graph.</span>
+
+<span class="s2">Importable namespaces</span>
+<span class="s2">-----------------------</span>
+
+<span class="s2">The following namespaces are available by directly importing from rdflib:</span>
+
+<span class="s2">* RDF</span>
+<span class="s2">* RDFS</span>
+<span class="s2">* OWL</span>
+<span class="s2">* XSD</span>
+
+<span class="s2">.. code-block:: pycon</span>
+
+<span class="s2">    &gt;&gt;&gt; from rdflib import OWL</span>
+<span class="s2">    &gt;&gt;&gt; OWL.seeAlso</span>
+<span class="s2">    rdflib.term.URIRef(</span><span class="si">%(u)s</span><span class="s2">&#39;http://www.w3.org/2002/07/owl#seeAlso&#39;)</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">urlparse</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urldefrag</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">pathname2url</span>
+
+<span class="kn">from</span> <span class="nn">rdflib.term</span> <span class="kn">import</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">Variable</span><span class="p">,</span> <span class="n">_XSD_PFX</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_ncname&#39;</span><span class="p">,</span> <span class="s1">&#39;split_uri&#39;</span><span class="p">,</span> <span class="s1">&#39;Namespace&#39;</span><span class="p">,</span> <span class="s1">&#39;NamespaceDict&#39;</span><span class="p">,</span> <span class="s1">&#39;ClosedNamespace&#39;</span><span class="p">,</span> <span class="s1">&#39;NamespaceManager&#39;</span><span class="p">,</span> <span class="s1">&#39;XMLNS&#39;</span><span class="p">,</span> <span class="s1">&#39;RDF&#39;</span><span class="p">,</span> <span class="s1">&#39;RDFS&#39;</span><span class="p">,</span> <span class="s1">&#39;XSD&#39;</span><span class="p">,</span> <span class="s1">&#39;OWL&#39;</span><span class="p">,</span> <span class="s1">&#39;SKOS&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Namespace</span><span class="p">(</span><span class="n">URIRef</span><span class="p">):</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">URIRef</span><span class="p">(</span><span class="bp">self</span> <span class="o">+</span> <span class="s1">&#39;title&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">URIRef</span><span class="p">(</span><span class="bp">self</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">):</span> <span class="c1"># ignore any special Python names!</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NamespaceDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">inst</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
+        <span class="n">inst</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span> <span class="c1"># TODO: do we need to set these both here and in __init__ ??</span>
+        <span class="n">inst</span><span class="o">.</span><span class="n">__context</span> <span class="o">=</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">inst</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__context</span> <span class="o">=</span> <span class="n">context</span>
+
+    <span class="k">def</span> <span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">uri</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__context</span> <span class="ow">and</span> <span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__context</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> not defined&quot;</span> <span class="o">%</span> <span class="n">uri</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="n">uri</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="n">default</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;rdflib.namespace.NamespaceDict(&#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ClosedNamespace</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">terms</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uris</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__uris</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__uris</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">uri</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;term &#39;</span><span class="si">%s</span><span class="s2">&#39; not in namespace &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uri</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">):</span> <span class="c1"># ignore any special Python names!</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;rdf.namespace.ClosedNamespace(&#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_RDFNamespace</span><span class="p">(</span><span class="n">ClosedNamespace</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_RDFNamespace</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">URIRef</span><span class="p">(</span><span class="s2">&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;</span><span class="p">),</span>
+            <span class="n">terms</span><span class="o">=</span><span class="p">[</span>
+        <span class="c1"># Syntax Names</span>
+        <span class="s2">&quot;RDF&quot;</span><span class="p">,</span> <span class="s2">&quot;Description&quot;</span><span class="p">,</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;parseType&quot;</span><span class="p">,</span> <span class="s2">&quot;resource&quot;</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="s2">&quot;nodeID&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype&quot;</span><span class="p">,</span>
+
+        <span class="c1"># RDF Classes</span>
+        <span class="s2">&quot;Seq&quot;</span><span class="p">,</span> <span class="s2">&quot;Bag&quot;</span><span class="p">,</span> <span class="s2">&quot;Alt&quot;</span><span class="p">,</span> <span class="s2">&quot;Statement&quot;</span><span class="p">,</span> <span class="s2">&quot;Property&quot;</span><span class="p">,</span> <span class="s2">&quot;XMLLiteral&quot;</span><span class="p">,</span> <span class="s2">&quot;List&quot;</span><span class="p">,</span> <span class="s2">&quot;PlainLiteral&quot;</span><span class="p">,</span>
+
+        <span class="c1"># RDF Properties</span>
+        <span class="s2">&quot;subject&quot;</span><span class="p">,</span> <span class="s2">&quot;predicate&quot;</span><span class="p">,</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;rest&quot;</span><span class="p">,</span>
+        <span class="c1"># and _n where n is a non-negative integer</span>
+
+        <span class="c1"># RDF Resources</span>
+        <span class="s2">&quot;nil&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">URIRef</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">_RDFNamespace</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">term</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">RDF</span> <span class="o">=</span> <span class="n">_RDFNamespace</span><span class="p">()</span>
+
+<span class="n">RDFS</span> <span class="o">=</span> <span class="n">ClosedNamespace</span><span class="p">(</span>
+    <span class="n">uri</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="s2">&quot;http://www.w3.org/2000/01/rdf-schema#&quot;</span><span class="p">),</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;Resource&quot;</span><span class="p">,</span> <span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;subClassOf&quot;</span><span class="p">,</span> <span class="s2">&quot;subPropertyOf&quot;</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;range&quot;</span><span class="p">,</span> <span class="s2">&quot;seeAlso&quot;</span><span class="p">,</span> <span class="s2">&quot;isDefinedBy&quot;</span><span class="p">,</span> <span class="s2">&quot;Literal&quot;</span><span class="p">,</span> <span class="s2">&quot;Container&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ContainerMembershipProperty&quot;</span><span class="p">,</span> <span class="s2">&quot;member&quot;</span><span class="p">,</span> <span class="s2">&quot;Datatype&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">OWL</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#&#39;</span><span class="p">)</span>
+
+<span class="n">XSD</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="n">_XSD_PFX</span><span class="p">)</span>
+
+<span class="n">SKOS</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2004/02/skos/core#&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">NamespaceManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Sample usage from FuXi ...</span>
+<span class="sd">    </span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        ruleStore = N3RuleStore(additionalBuiltins=additionalBuiltins)</span>
+<span class="sd">        nsMgr = NamespaceManager(Graph(ruleStore))</span>
+<span class="sd">        ruleGraph = Graph(ruleStore,namespace_manager=nsMgr)            </span>
+
+
+<span class="sd">    and ...</span>
+
+<span class="sd">    .. code-block:: pycon</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; from rdflib import Graph, OWL</span>
+<span class="sd">        &gt;&gt;&gt; exNs = Namespace(&#39;http://example.com/&#39;)        </span>
+<span class="sd">        &gt;&gt;&gt; namespace_manager = NamespaceManager(Graph())</span>
+<span class="sd">        &gt;&gt;&gt; namespace_manager.bind(&#39;ex&#39;, exNs, override=False)</span>
+<span class="sd">        &gt;&gt;&gt; namespace_manager.bind(&#39;owl&#39;, OWL, override=False)</span>
+<span class="sd">        &gt;&gt;&gt; g = Graph()    </span>
+<span class="sd">        &gt;&gt;&gt; g.namespace_manager = namespace_manager</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__log</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;xml&quot;</span><span class="p">,</span> <span class="s2">u&quot;http://www.w3.org/XML/1998/namespace&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;rdf&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;rdfs&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.w3.org/2000/01/rdf-schema#&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">__get_store</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">store</span>
+    <span class="n">store</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">__get_store</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">qname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_qname</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prefix</span><span class="o">==</span><span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">prefix</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">normalizeUri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rdfTerm</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Takes an RDF Term and &#39;normalizes&#39; it into a QName (using the registered prefix)</span>
+<span class="sd">        or (unlike compute_qname) the Notation 3 form for URIs: &lt;...URI...&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">split_uri</span><span class="p">(</span><span class="n">rdfTerm</span><span class="p">)</span>
+            <span class="n">namespace</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rdfTerm</span><span class="p">,</span><span class="n">Variable</span><span class="p">):</span>
+                <span class="k">return</span> <span class="s2">&quot;?</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">rdfTerm</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="o">%</span><span class="n">rdfTerm</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rdfTerm</span><span class="p">,</span><span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;?</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">rdfTerm</span>
+        <span class="k">elif</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="o">%</span><span class="n">rdfTerm</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qNameParts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_qname</span><span class="p">(</span><span class="n">rdfTerm</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">qNameParts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">qNameParts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="k">def</span> <span class="nf">compute_qname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">generate</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">uri</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">:</span>
+            <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">split_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+            <span class="n">namespace</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">generate</span><span class="p">:</span> 
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No known prefix for </span><span class="si">%s</span><span class="s2"> and generate=False&quot;</span><span class="p">)</span>
+                <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;ns</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">num</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">namespace</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+                        <span class="k">break</span>
+                    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">[</span><span class="n">uri</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">[</span><span class="n">uri</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">namespace</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+        <span class="c1"># When documenting explain that override only applies in what cases</span>
+        <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">bound_namespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">namespace</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bound_namespace</span> <span class="ow">and</span> <span class="n">bound_namespace</span><span class="o">!=</span><span class="n">namespace</span><span class="p">:</span>
+            <span class="c1"># prefix already in use for different namespace</span>
+            <span class="c1">#</span>
+            <span class="c1"># append number to end of prefix until we find one</span>
+            <span class="c1"># that&#39;s not in use.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">prefix</span><span class="p">:</span>
+                <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">new_prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">namespace</span><span class="p">(</span><span class="n">new_prefix</span><span class="p">):</span>
+                    <span class="k">break</span>
+                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">new_prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bound_prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">bound_prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">bound_prefix</span> <span class="o">==</span> <span class="n">prefix</span><span class="p">:</span>
+                <span class="k">pass</span> <span class="c1"># already bound</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">override</span> <span class="ow">or</span> <span class="n">bound_prefix</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">):</span> <span class="c1"># or a generated prefix</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">namespaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">namespaces</span><span class="p">():</span>
+            <span class="n">namespace</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">namespace</span>
+
+    <span class="k">def</span> <span class="nf">absolutize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">defrag</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="s2">&quot;file:&quot;</span><span class="p">,</span> <span class="n">pathname2url</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="n">base</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">allow_fragments</span><span class="o">=</span><span class="ow">not</span> <span class="n">defrag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">defrag</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">urldefrag</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">defrag</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">uri</span> <span class="ow">and</span> <span class="n">uri</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;#&quot;</span> <span class="ow">and</span> <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s2">&quot;#&quot;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">#&quot;</span> <span class="o">%</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># From: http://www.w3.org/TR/REC-xml#NT-CombiningChar</span>
+<span class="c1">#</span>
+<span class="c1"># * Name start characters must have one of the categories Ll, Lu, Lo,</span>
+<span class="c1">#   Lt, Nl.</span>
+<span class="c1">#</span>
+<span class="c1"># * Name characters other than Name-start characters must have one of</span>
+<span class="c1">#   the categories Mc, Me, Mn, Lm, or Nd.</span>
+<span class="c1">#</span>
+<span class="c1"># * Characters in the compatibility area (i.e. with character code</span>
+<span class="c1">#   greater than #xF900 and less than #xFFFE) are not allowed in XML</span>
+<span class="c1">#   names.</span>
+<span class="c1">#</span>
+<span class="c1"># * Characters which have a font or compatibility decomposition</span>
+<span class="c1">#   (i.e. those with a &quot;compatibility formatting tag&quot; in field 5 of the</span>
+<span class="c1">#   database -- marked by field 5 beginning with a &quot;&lt;&quot;) are not allowed.</span>
+<span class="c1">#</span>
+<span class="c1"># * The following characters are treated as name-start characters rather</span>
+<span class="c1">#   than name characters, because the property file classifies them as</span>
+<span class="c1">#   Alphabetic: [#x02BB-#x02C1], #x0559, #x06E5, #x06E6.</span>
+<span class="c1">#</span>
+<span class="c1"># * Characters #x20DD-#x20E0 are excluded (in accordance with Unicode</span>
+<span class="c1">#   2.0, section 5.14).</span>
+<span class="c1">#</span>
+<span class="c1"># * Character #x00B7 is classified as an extender, because the property</span>
+<span class="c1">#   list so identifies it.</span>
+<span class="c1">#</span>
+<span class="c1"># * Character #x0387 is added as a name character, because #x00B7 is its</span>
+<span class="c1">#   canonical equivalent.</span>
+<span class="c1">#</span>
+<span class="c1"># * Characters &#39;:&#39; and &#39;_&#39; are allowed as name-start characters.</span>
+<span class="c1">#</span>
+<span class="c1"># * Characters &#39;-&#39; and &#39;.&#39; are allowed as name characters.</span>
+
+<span class="kn">from</span> <span class="nn">unicodedata</span> <span class="kn">import</span> <span class="n">category</span><span class="p">,</span> <span class="n">decomposition</span>
+
+<span class="n">NAME_START_CATEGORIES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ll&quot;</span><span class="p">,</span> <span class="s2">&quot;Lu&quot;</span><span class="p">,</span> <span class="s2">&quot;Lo&quot;</span><span class="p">,</span> <span class="s2">&quot;Lt&quot;</span><span class="p">,</span> <span class="s2">&quot;Nl&quot;</span><span class="p">]</span>
+<span class="n">NAME_CATEGORIES</span> <span class="o">=</span> <span class="n">NAME_START_CATEGORIES</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Mc&quot;</span><span class="p">,</span> <span class="s2">&quot;Me&quot;</span><span class="p">,</span> <span class="s2">&quot;Mn&quot;</span><span class="p">,</span> <span class="s2">&quot;Lm&quot;</span><span class="p">,</span> <span class="s2">&quot;Nd&quot;</span><span class="p">]</span>
+<span class="n">ALLOWED_NAME_CHARS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">u&quot;</span><span class="se">\u00B7</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">u&quot;</span><span class="se">\u0387</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">u&quot;-&quot;</span><span class="p">,</span> <span class="s2">u&quot;.&quot;</span><span class="p">,</span> <span class="s2">u&quot;_&quot;</span><span class="p">]</span>
+
+<span class="c1"># http://www.w3.org/TR/REC-xml-names/#NT-NCName</span>
+<span class="c1">#  [4] NCName ::= (Letter | &#39;_&#39;) (NCNameChar)* /* An XML Name, minus</span>
+<span class="c1">#      the &quot;:&quot; */</span>
+<span class="c1">#  [5] NCNameChar ::= Letter | Digit | &#39;.&#39; | &#39;-&#39; | &#39;_&#39; | CombiningChar</span>
+<span class="c1">#      | Extender</span>
+
+<span class="k">def</span> <span class="nf">is_ncname</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">first</span><span class="o">==</span><span class="s2">&quot;_&quot;</span> <span class="ow">or</span> <span class="n">category</span><span class="p">(</span><span class="n">first</span><span class="p">)</span> <span class="ow">in</span> <span class="n">NAME_START_CATEGORIES</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">category</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">NAME_CATEGORIES</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ALLOWED_NAME_CHARS</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">return</span> <span class="mi">0</span>
+            <span class="c1">#if in compatibility area</span>
+            <span class="c1">#if decomposition(c)!=&#39;&#39;:</span>
+            <span class="c1">#    return 0</span>
+
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">XMLNS</span> <span class="o">=</span> <span class="s2">&quot;http://www.w3.org/XML/1998/namespace&quot;</span>
+
+<span class="k">def</span> <span class="nf">split_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">uri</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">XMLNS</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">XMLNS</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">XMLNS</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">uri</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">category</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">NAME_CATEGORIES</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ALLOWED_NAME_CHARS</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">category</span><span class="p">(</span><span class="n">uri</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="ow">in</span> <span class="n">NAME_START_CATEGORIES</span> <span class="ow">or</span> <span class="n">uri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;_&quot;</span><span class="p">:</span>
+                    <span class="n">ns</span> <span class="o">=</span> <span class="n">uri</span><span class="p">[:</span><span class="n">j</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">ns</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">ln</span> <span class="o">=</span> <span class="n">uri</span><span class="p">[</span><span class="n">j</span><span class="p">:]</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ln</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t split &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">uri</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

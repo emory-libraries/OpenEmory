@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.accounts.db &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.accounts.db</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/accounts/db.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<div class="viewcode-block" id="EsdRouter"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.db.EsdRouter">[docs]</a><span class="k">class</span> <span class="nc">EsdRouter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A `database router &lt;https://docs.djangoproject.com/en/dev/topics/db/multi-db/&gt;`_</span>
+<span class="sd">    to divert :class:`~openemory.accounts.models.EsdPerson` objects to the</span>
+<span class="sd">    ``esd`` database.&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">esd_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">app_label</span> <span class="o">==</span> <span class="s1">&#39;accounts&#39;</span> <span class="ow">and</span> \
+            <span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">object_name</span> <span class="o">==</span> <span class="s1">&#39;EsdPerson&#39;</span>
+
+<div class="viewcode-block" id="EsdRouter.db_for_read"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.db.EsdRouter.db_for_read">[docs]</a>    <span class="k">def</span> <span class="nf">db_for_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read :class:`~openemory.accounts.models.EsdPerson` objects from</span>
+<span class="sd">        the ``esd`` database.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;esd&#39;</span></div>
+        <span class="c1"># otherwise no opinion</span>
+
+<div class="viewcode-block" id="EsdRouter.db_for_write"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.db.EsdRouter.db_for_write">[docs]</a>    <span class="k">def</span> <span class="nf">db_for_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write :class:`~openemory.accounts.models.EsdPerson` objects to</span>
+<span class="sd">        the ``esd`` database.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;esd&#39;</span></div>
+
+<div class="viewcode-block" id="EsdRouter.allow_syncdb"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.db.EsdRouter.allow_syncdb">[docs]</a>    <span class="k">def</span> <span class="nf">allow_syncdb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Sync :class:`~openemory.accounts.models.EsdPerson` objects to the</span>
+<span class="sd">        ``esd`` database.&#39;&#39;&#39;</span>
+        <span class="c1"># sync EsdPerson to esd</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="o">==</span> <span class="s1">&#39;esd&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="c1"># don&#39;t sync anything else to esd or EsdPerson to any other db</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="o">==</span> <span class="s1">&#39;esd&#39;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">esd_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span></div></div>
+        <span class="c1"># no opinion on any other combinations</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

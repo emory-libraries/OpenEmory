@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.harvest.views &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.harvest.views</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/harvest/views.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_http_methods</span>
+
+<span class="kn">from</span> <span class="nn">openemory.accounts.auth</span> <span class="kn">import</span> <span class="n">permission_required</span>
+<span class="kn">from</span> <span class="nn">openemory.harvest.models</span> <span class="kn">import</span> <span class="n">HarvestRecord</span>
+<span class="kn">from</span> <span class="nn">openemory.util</span> <span class="kn">import</span>  <span class="n">paginate</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@permission_required</span><span class="p">(</span><span class="s1">&#39;harvest.view_harvestrecord&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="queue"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.views.queue">[docs]</a><span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Display the queue of harvested records. &#39;&#39;&#39;</span>
+
+    <span class="c1"># - Restrict to only harvested records (which can be ingested or ignored)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">HarvestRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;harvested&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;harvested&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">show_pages</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">records</span><span class="p">)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;harvest/queue.html&#39;</span>
+    <span class="c1"># for ajax requests, only display the inner content</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;harvest/snippets/queue.html&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span>
+            <span class="p">{</span><span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">results</span><span class="p">,</span> <span class="s1">&#39;show_pages&#39;</span><span class="p">:</span> <span class="n">show_pages</span><span class="p">})</span></div>
+
+<span class="nd">@require_http_methods</span><span class="p">([</span><span class="s1">&#39;DELETE&#39;</span><span class="p">])</span>
+<span class="nd">@permission_required</span><span class="p">(</span><span class="s1">&#39;harvest.ignore_harvestrecord&#39;</span><span class="p">)</span> 
+<div class="viewcode-block" id="record"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.views.record">[docs]</a><span class="k">def</span> <span class="nf">record</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;View for a single</span>
+<span class="sd">    :class:`~openemory.harvest.models.HarvestRecord`.  Currently only</span>
+<span class="sd">    supports HTTP DELETE.</span>
+
+<span class="sd">    On DELETE, marks the record as ``ignored`` (i.e., will not be</span>
+<span class="sd">    ingested into the repository).</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">HarvestRecord</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">:</span>
+        <span class="c1"># set the specified record to ignored</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">mark_ignored</span><span class="p">()</span>
+        <span class="c1"># return a 200 Ok response on success</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s1">&#39;Record ignored&#39;</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)</span></div>
+
+        
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

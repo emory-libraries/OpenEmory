@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.accounts.auth &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.accounts.auth</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/accounts/auth.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">Utilities for dealing with authentiation &amp; authorization in</span>
+<span class="sd">:mod:`openemory`.</span>
+
+<span class="sd">Includes variant permisson-checing decorators without the redirect</span>
+<span class="sd">logic used in the standard Django versions, since :mod:`openemory`</span>
+<span class="sd">includes a login form on every page.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">RequestContext</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">get_template</span>
+<span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">available_attrs</span>
+
+
+<div class="viewcode-block" id="user_passes_test_401_or_403"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.auth.user_passes_test_401_or_403">[docs]</a><span class="k">def</span> <span class="nf">user_passes_test_401_or_403</span><span class="p">(</span><span class="n">test_func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View decorator that checks to see if the user passes the specified test.</span>
+<span class="sd">    See :meth:`django.contrib.auth.decorators.user_passes_test`.</span>
+
+<span class="sd">    Anonymous users will be given a 401 error, which will render the</span>
+<span class="sd">    **401.html** template (which is expected to include the login</span>
+<span class="sd">    form); logged in users that fail the test will be given a 403</span>
+<span class="sd">    error.  In the case of a 403, the function will render the</span>
+<span class="sd">    **403.html** template.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">view_func</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">view_func</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="n">available_attrs</span><span class="p">(</span><span class="n">view_func</span><span class="p">))</span>
+        <span class="k">def</span> <span class="nf">_wrapped_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">passes</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="c1"># allow test functions access to view arguments,</span>
+                <span class="c1"># but only pass if the function fails without them</span>
+                <span class="n">passes</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">passes</span><span class="p">:</span>
+                <span class="c1"># if the test passes, return the view function normally</span>
+                <span class="k">return</span> <span class="n">view_func</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+                <span class="c1"># if the test fails and user is not authenticated</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="mi">401</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Not Authorized&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># test fails and user is already authenticated</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="mi">403</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Permission Denied&#39;</span>
+
+            <span class="c1"># send a plain-text response to ajax requests</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+                                    <span class="n">status</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+                
+            <span class="n">tpl</span> <span class="o">=</span> <span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="n">code</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">tpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">)),</span>
+                                <span class="n">status</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_wrapped_view</span>
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+<div class="viewcode-block" id="permission_required"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.auth.permission_required">[docs]</a><span class="k">def</span> <span class="nf">permission_required</span><span class="p">(</span><span class="n">perm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator for views that checks whether a user has a particular</span>
+<span class="sd">    permission enabled, rendering a 401 or 403 as necessary.</span>
+<span class="sd">    Convenience wrapper for</span>
+<span class="sd">    :meth:`~openemory.accounts.auth.user_passes_test_401_or_403`.</span>
+
+<span class="sd">    See :meth:`django.contrib.auth.decorators.permission_required`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">user_passes_test_401_or_403</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">has_perm</span><span class="p">(</span><span class="n">perm</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="login_required"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.auth.login_required">[docs]</a><span class="k">def</span> <span class="nf">login_required</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator for views that checks that the user is logged in,</span>
+<span class="sd">    rendering a 401 or 403 template as appropriate.  See</span>
+<span class="sd">    :meth:`~openemory.accounts.auth.user_passes_test_401_or_403`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">actual_decorator</span> <span class="o">=</span> <span class="n">user_passes_test_401_or_403</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">actual_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">actual_decorator</span></div>
+
+
+<div class="viewcode-block" id="require_self_or_admin"><a class="viewcode-back" href="../../../apidocs.html#openemory.accounts.auth.require_self_or_admin">[docs]</a><span class="k">def</span> <span class="nf">require_self_or_admin</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Check if user is logged and matches the specified username,</span>
+<span class="sd">    is a superuser, or belongs to the SiteAdmin group.</span>
+
+<span class="sd">    First parameter to the wrapped view must be the username to</span>
+<span class="sd">    compare against.  For example::</span>
+
+<span class="sd">	@require_self_or_admin</span>
+<span class="sd">	def edit_profile(request, username):</span>
+<span class="sd">            ...</span>
+
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">test_self_or_admin</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="n">username</span><span class="p">)</span> \
+               <span class="ow">or</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span> \
+               <span class="ow">or</span> <span class="n">user</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Site Admin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="n">actual_decorator</span> <span class="o">=</span> <span class="n">user_passes_test_401_or_403</span><span class="p">(</span><span class="n">test_self_or_admin</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">actual_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">actual_decorator</span></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

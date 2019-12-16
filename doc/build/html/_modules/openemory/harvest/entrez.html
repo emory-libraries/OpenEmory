@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.harvest.entrez &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.harvest.entrez</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/harvest/entrez.py</span>
+<span class="c1">#</span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="sd">&#39;&#39;&#39;Tools for querying NCBI Entrez E-utilities, notably including PubMed.&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">urlencode</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">django.core.validators</span> <span class="kn">import</span> <span class="n">URLValidator</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ValidationError</span>
+
+<span class="kn">from</span> <span class="nn">django_auth_ldap.backend</span> <span class="kn">import</span> <span class="n">LDAPBackend</span> <span class="k">as</span> <span class="n">EmoryLDAPBackend</span>
+<span class="kn">from</span> <span class="nn">eulxml</span> <span class="kn">import</span> <span class="n">xmlmap</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="kn">from</span> <span class="nn">openemory.publication.models</span> <span class="kn">import</span> <span class="n">NlmArticle</span>
+
+<span class="c1"># Developers MUST read E-Utilities guidelines and requirements at:</span>
+<span class="c1">#   http://www.ncbi.nlm.nih.gov/books/NBK25497/</span>
+<span class="c1"># Entrez E-utilities docs at:</span>
+<span class="c1">#   http://www.ncbi.nlm.nih.gov/books/NBK25499/</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EntrezClient"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.EntrezClient">[docs]</a><span class="k">class</span> <span class="nc">EntrezClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Generic client for making web requests to NCBI Entrez E-utilities in</span>
+<span class="sd">    accordance with their `guidlines and requirements</span>
+<span class="sd">    &lt;http://www.ncbi.nlm.nih.gov/books/NBK25497/&gt;`_.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">QUERY_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://eutils.ncbi.nlm.nih.gov/entrez/eutils/&#39;</span>
+    <span class="s1">&#39;URL root of all eutils queries&#39;</span>
+    <span class="n">ESEARCH</span> <span class="o">=</span> <span class="n">QUERY_ROOT</span> <span class="o">+</span> <span class="s1">&#39;esearch.fcgi?&#39;</span>
+    <span class="s1">&#39;URL path of esearch queries&#39;</span>
+    <span class="n">EFETCH</span> <span class="o">=</span> <span class="n">QUERY_ROOT</span> <span class="o">+</span> <span class="s1">&#39;efetch.fcgi?&#39;</span>
+    <span class="s1">&#39;URL path of efetch queries&#39;</span>
+    <span class="n">ESUMMARY</span> <span class="o">=</span> <span class="n">QUERY_ROOT</span> <span class="o">+</span> <span class="s1">&#39;esummary.fcgi?&#39;</span>
+    <span class="s1">&#39;URL path of esummary queries&#39;</span>
+    <span class="n">EUTILS_TOOL</span> <span class="o">=</span> <span class="s1">&#39;emory-libs-openemory&#39;</span>
+    <span class="s1">&#39;``tool`` query argument added to all eutils queries&#39;</span>
+    <span class="n">EUTILS_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;LIBSYSDEV-L@listserv.cc.emory.edu&#39;</span>
+    <span class="s1">&#39;``email`` query argument added to all eutils queries&#39;</span>
+    <span class="n">EUTILS_QUERY_DELAY_SECONDS</span> <span class="o">=</span> <span class="mf">0.34</span>
+    <span class="s1">&#39;minimum seconds to pause between consecutive eutils requests&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_query_time</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="EntrezClient.esearch"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.EntrezClient.esearch">[docs]</a>    <span class="k">def</span> <span class="nf">esearch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Query ESearch, forwarding all arguments as URL query arguments.</span>
+<span class="sd">        Adds ``tool`` and ``email`` query arguments if they are not</span>
+<span class="sd">        included.</span>
+
+<span class="sd">        :returns: :class:`ESearchResponse`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ESEARCH</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">ESearchResponse</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EntrezClient.efetch"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.EntrezClient.efetch">[docs]</a>    <span class="k">def</span> <span class="nf">efetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Query EFetch, forwarding all arguments as URL query arguments.</span>
+<span class="sd">        Adds ``tool``, ``email``, and ``retmode`` query arguments if they</span>
+<span class="sd">        are not included.</span>
+
+<span class="sd">        :returns: :class:`EFetchResponse`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;retmode&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;retmode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;xml&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EFETCH</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">EFetchResponse</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">qargs</span><span class="p">,</span> <span class="n">response_xmlclass</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Utility method: Adds required query arguments, returns response</span>
+<span class="sd">        as a caller-specified :class:`~eulxml.xmlmap.XmlObject`. Delays if</span>
+<span class="sd">        necessary to enforce EUtils query speed policy.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enforce_query_timing</span><span class="p">()</span>
+        <span class="n">qargs</span> <span class="o">=</span> <span class="n">qargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;tool&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qargs</span><span class="p">:</span>
+            <span class="n">qargs</span><span class="p">[</span><span class="s1">&#39;tool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EUTILS_TOOL</span>
+        <span class="k">if</span> <span class="s1">&#39;email&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qargs</span><span class="p">:</span>
+            <span class="n">qargs</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EUTILS_EMAIL</span>
+        <span class="c1"># TODO: When we start making more than one query we need to sleep to</span>
+        <span class="c1"># avoid making more than 3 requests per second per E-Utilities</span>
+        <span class="c1"># policies.</span>
+        <span class="n">qurl</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">qargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;EntrezClient querying: &#39;</span> <span class="o">+</span> <span class="n">qurl</span><span class="p">)</span>
+
+        <span class="c1"># use a url validator to examine if the qurl is a file location or a url</span>
+        <span class="c1"># open the remote file with urllib.urlopen if it is a url</span>
+        <span class="c1"># or open it as a file</span>
+        <span class="n">url_validator</span> <span class="o">=</span> <span class="n">URLValidator</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url_validator</span><span class="p">(</span><span class="n">qurl</span><span class="p">)</span>
+            <span class="n">target_file</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">qurl</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">load_xmlobject_from_file</span><span class="p">(</span><span class="n">target_file</span><span class="p">,</span> <span class="n">xmlclass</span><span class="o">=</span><span class="n">response_xmlclass</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ValidationError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">load_xmlobject_from_file</span><span class="p">(</span><span class="n">qurl</span><span class="p">,</span> <span class="n">xmlclass</span><span class="o">=</span><span class="n">response_xmlclass</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_enforce_query_timing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Enforce EUtils query speed policy by sleeping to keep queries</span>
+<span class="sd">        separated by at least :data:`EUTILS_QUERY_DELAY_SECONDS`.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_query_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">next_query_allowed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_query_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">EUTILS_QUERY_DELAY_SECONDS</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;EntrezClient timing next=</span><span class="si">%s</span><span class="s1">; now=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> \
+                    <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">next_query_allowed</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">now</span> <span class="o">&lt;</span> <span class="n">next_query_allowed</span><span class="p">:</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="n">next_query_allowed</span> <span class="o">-</span> <span class="n">now</span>
+                <span class="c1"># don&#39;t calculate anything larger than seconds: this assumes</span>
+                <span class="c1"># that EUTILS_QUERY_DELAY_SECONDS &lt; 1day</span>
+                <span class="n">delay_seconds</span> <span class="o">=</span> <span class="n">delay</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> <span class="n">delay</span><span class="o">.</span><span class="n">microseconds</span> <span class="o">/</span> <span class="mf">1000000.0</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;EntrezClient sleeping for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">delay_seconds</span><span class="p">))</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="n">delay_seconds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_query_time</span> <span class="o">=</span> <span class="n">now</span></div>
+
+
+<span class="k">class</span> <span class="nc">ArticleQuerySet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entrez</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrez</span> <span class="o">=</span> <span class="n">entrez</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_opts</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span>
+
+        <span class="k">if</span> <span class="n">stop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span>
+        <span class="k">elif</span> <span class="n">stop</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">stop</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span>
+
+        <span class="k">if</span> <span class="n">stop</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;slicing does not support step&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">start</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+            <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="n">key</span><span class="o">.</span><span class="n">start</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">key</span><span class="o">.</span><span class="n">start</span>
+
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+            <span class="k">elif</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">stop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+            <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">stop</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="n">key</span><span class="o">.</span><span class="n">stop</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">key</span><span class="o">.</span><span class="n">stop</span>
+
+            <span class="k">if</span> <span class="n">stop</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+            <span class="k">elif</span> <span class="n">stop</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+
+            <span class="k">return</span> <span class="n">ArticleQuerySet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entrez</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span>
+                    <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">query_opts</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">long</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;index out of range&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span><span class="o">.</span><span class="n">articles</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;index must be a number or a slice&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">query_opts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_opts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">query_opts</span><span class="p">[</span><span class="s1">&#39;retstart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        <span class="n">query_opts</span><span class="p">[</span><span class="s1">&#39;retmax&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span><span class="o">**</span><span class="n">query_opts</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_chunk</span><span class="o">.</span><span class="n">articles</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span>
+
+
+<div class="viewcode-block" id="ESearchResponse"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.ESearchResponse">[docs]</a><span class="k">class</span> <span class="nc">ESearchResponse</span><span class="p">(</span><span class="n">xmlmap</span><span class="o">.</span><span class="n">XmlObject</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Minimal wrapper for ESearch XML returns&#39;&#39;&#39;</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;total articles matching the query&#39;&#39;&#39;</span>
+    <span class="n">query_key</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="s1">&#39;QueryKey&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;server-assigned id for this query in history&#39;&#39;&#39;</span>
+    <span class="n">webenv</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;WebEnv&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;server-assigned web environment for history management&#39;&#39;&#39;</span>
+    <span class="n">docid</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">IntegerListField</span><span class="p">(</span><span class="s1">&#39;IdList/Id&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;first page of document UIDs (*not* PMIDs) matching the query&#39;&#39;&#39;</span></div>
+
+
+<div class="viewcode-block" id="EFetchAuthor"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.EFetchAuthor">[docs]</a><span class="k">class</span> <span class="nc">EFetchAuthor</span><span class="p">(</span><span class="n">xmlmap</span><span class="o">.</span><span class="n">XmlObject</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Minimal wrapper for author in EFetch XML returns&#39;&#39;&#39;</span>
+    <span class="n">surname</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;name/surname&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;author surname&#39;&#39;&#39;</span>
+    <span class="n">given_names</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;name/given-names&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;author given name(s)&#39;&#39;&#39;</span>
+    <span class="n">affiliation</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;aff&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;author institutional affiliation, or None if missing&#39;&#39;&#39;</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;author email, or None if missing&#39;&#39;&#39;</span></div>
+
+
+<div class="viewcode-block" id="EFetchResponse"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.entrez.EFetchResponse">[docs]</a><span class="k">class</span> <span class="nc">EFetchResponse</span><span class="p">(</span><span class="n">xmlmap</span><span class="o">.</span><span class="n">XmlObject</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Minimal wrapper for EFetch XML returns&#39;&#39;&#39;</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">xmlmap</span><span class="o">.</span><span class="n">NodeListField</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="n">NlmArticle</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;list of requested article data as a list of</span>
+<span class="sd">    :class:`~openemory.publication.models.NlmArticle` objects&#39;&#39;&#39;</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

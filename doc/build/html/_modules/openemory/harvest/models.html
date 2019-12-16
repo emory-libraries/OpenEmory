@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>openemory.harvest.models &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for openemory.harvest.models</h1><div class="highlight"><pre>
+<span></span><span class="c1"># file openemory/harvest/models.py</span>
+<span class="c1"># </span>
+<span class="c1">#   Copyright 2010 Emory University General Library</span>
+<span class="c1">#</span>
+<span class="c1">#   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#   you may not use this file except in compliance with the License.</span>
+<span class="c1">#   You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#       http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#   Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#   See the License for the specific language governing permissions and</span>
+<span class="c1">#   limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.core.files.base</span> <span class="kn">import</span> <span class="n">ContentFile</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">eulfedora.server</span> <span class="kn">import</span> <span class="n">Repository</span>
+<span class="kn">from</span> <span class="nn">eulxml.xmlmap</span> <span class="kn">import</span> <span class="n">load_xmlobject_from_string</span><span class="p">,</span> <span class="n">load_xmlobject_from_file</span>
+<span class="kn">from</span> <span class="nn">openemory.harvest.entrez</span> <span class="kn">import</span> <span class="n">EntrezClient</span><span class="p">,</span> <span class="n">ArticleQuerySet</span>
+<span class="kn">from</span> <span class="nn">openemory.publication.models</span> <span class="kn">import</span> <span class="n">Publication</span><span class="p">,</span> <span class="n">NlmArticle</span><span class="p">,</span> <span class="n">Article</span>
+<span class="kn">from</span> <span class="nn">openemory.util</span> <span class="kn">import</span> <span class="n">pmc_access_url</span>
+<span class="kn">import</span>  <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HarvestRecord"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord">[docs]</a><span class="k">class</span> <span class="nc">HarvestRecord</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">STATUSES</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;harvested&#39;</span><span class="p">,</span> <span class="s1">&#39;inprocess&#39;</span><span class="p">,</span> <span class="s1">&#39;ingested&#39;</span><span class="p">,</span> <span class="s1">&#39;ignored&#39;</span><span class="p">)</span>
+    <span class="n">DEFAULT_STATUS</span> <span class="o">=</span> <span class="n">STATUSES</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">STATUS_CHOICES</span> <span class="o">=</span> <span class="p">[(</span><span class="n">val</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">STATUSES</span><span class="p">]</span>
+    <span class="n">pmcid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="s1">&#39;PubMed Central ID&#39;</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">editable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="s1">&#39;Article Title&#39;</span><span class="p">)</span>
+    <span class="n">harvested</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s1">&#39;Date Harvested&#39;</span><span class="p">,</span> <span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">editable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">STATUS_CHOICES</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                              <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_STATUS</span><span class="p">)</span>
+    <span class="n">fulltext</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">editable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s1">&#39;harvest/%Y/%m/</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c1"># file storage for the full Article XML fetched from PMC</span>
+    <span class="c1"># TODO: content file should be removed when record is ingested or ignored</span>
+    
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">permissions</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="c1"># add, change, delete are avilable by default</span>
+            <span class="p">(</span><span class="s1">&#39;view_harvestrecord&#39;</span><span class="p">,</span> <span class="s1">&#39;Can see available harvested records&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;ingest_harvestrecord&#39;</span><span class="p">,</span> <span class="s1">&#39;Can ingest harvested record to Fedora&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;ignore_harvestrecord&#39;</span><span class="p">,</span> <span class="s1">&#39;Can mark a harvested record as ignored&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">u&#39;</span><span class="si">%s</span><span class="s1"> (PMC</span><span class="si">%d</span><span class="s1">, </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmcid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">access_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Direct link to this PubMed Central article, based on PubMed Central ID.&#39;</span>
+        <span class="k">return</span> <span class="n">pmc_access_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pmcid</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HarvestRecord.mark_in_process"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord.mark_in_process">[docs]</a>    <span class="k">def</span> <span class="nf">mark_in_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Mark this record as in process for ingest by another process to</span>
+<span class="sd">        minimize the chances of accidentally ingesting an object twice.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;inprocess&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="HarvestRecord.mark_ingested"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord.mark_ingested">[docs]</a>    <span class="k">def</span> <span class="nf">mark_ingested</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Mark this record as ingested into the repository.  Updates</span>
+<span class="sd">        the status and removes the harvestd Article xml file.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;ingested&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ingestable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Boolean; indicates of this record is in an accetable status</span>
+<span class="sd">        for ingest.?&#39;&#39;&#39;</span>
+        <span class="c1"># don&#39;t allow ingesting records that have already been</span>
+        <span class="c1"># ingested or marked as ignored</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;harvested&#39;</span>
+
+<div class="viewcode-block" id="HarvestRecord.mark_ignored"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord.mark_ignored">[docs]</a>    <span class="k">def</span> <span class="nf">mark_ignored</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Mark this record as ignored (will not be ingested into the</span>
+<span class="sd">        repository0.  Updates the status and removes the harvestd</span>
+<span class="sd">        Article xml file.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;ignored&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="HarvestRecord.init_from_fetched_article"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord.init_from_fetched_article">[docs]</a>    <span class="k">def</span> <span class="nf">init_from_fetched_article</span><span class="p">(</span><span class="n">article</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Initialize a new</span>
+<span class="sd">        :class:`~openemory.harvest.models.HarvestRecord` instance based</span>
+<span class="sd">        on information from an</span>
+<span class="sd">        :class:`~openemory.publication.models.NlmArticle`.</span>
+
+<span class="sd">        :returns: saved :class:`HarvestRecord` instance</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># article StringField attributes are unicode-like objects, not true</span>
+        <span class="c1"># unicode objects. some database layers (notably mysql) try to turn</span>
+        <span class="c1"># them into strings, failing on non-ascii data. convert them</span>
+        <span class="c1"># explicitly into real unicode objects here before passing them into</span>
+        <span class="c1"># the db later to avoid this problem.</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">HarvestRecord</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">unicode</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">article_title</span><span class="p">),</span>
+                               <span class="n">pmcid</span><span class="o">=</span><span class="n">article</span><span class="o">.</span><span class="n">docid</span><span class="p">,</span>
+                               <span class="n">fulltext</span><span class="o">=</span><span class="n">article</span><span class="o">.</span><span class="n">fulltext_available</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">article</span><span class="o">.</span><span class="n">identifiable_authors</span><span class="p">():</span>
+            <span class="c1"># record must be saved before we can add relation to authors</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">identifiable_authors</span><span class="p">()</span>
+
+        <span class="c1"># save article xml as a file associated with this record</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">.xml&#39;</span> <span class="o">%</span> <span class="n">article</span><span class="o">.</span><span class="n">docid</span><span class="p">,</span>
+                            <span class="n">ContentFile</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">pretty</span><span class="o">=</span><span class="bp">True</span><span class="p">)))</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">record</span></div>
+
+
+<div class="viewcode-block" id="HarvestRecord.as_publication_article"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.HarvestRecord.as_publication_article">[docs]</a>    <span class="k">def</span> <span class="nf">as_publication_article</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">repo</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Initialize (but do not save) a new</span>
+<span class="sd">        :class:`~openemory.publication.models.Article` instance and</span>
+<span class="sd">        based on harvested record information and Article XML.</span>
+
+<span class="sd">        :param repo: optional; pass in an existing</span>
+<span class="sd">           :class:`eulfedora.server.Repository` object initialized</span>
+<span class="sd">           with the desired credentials</span>
+
+<span class="sd">        :returns: unsaved :class:`~openemory.publication.models.Article`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">repo</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">repo</span> <span class="o">=</span> <span class="n">Repository</span><span class="p">()</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">Article</span><span class="p">)</span>
+        <span class="c1"># using comma-delimited usernames to indicate object has multiple owners</span>
+        <span class="c1"># should work with existing XACML owner policy;</span>
+        <span class="c1"># for more detail, see https://jira.duraspace.org/browse/FCREPO-82</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">auth</span><span class="o">.</span><span class="n">username</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+        <span class="c1"># VERY preliminary, minimal metadata mapping </span>
+        <span class="n">article</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">dc</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">dc</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">creator_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">auth</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span>
+                                                <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">dc</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">identifier_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">access_url</span><span class="p">,</span>
+                                               <span class="s1">&#39;PMC</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmcid</span><span class="p">])</span>
+
+        <span class="c1"># set the XML article content as the contentMetadata datastream</span>
+        <span class="c1"># - record content is a file field with a read method, which should be</span>
+        <span class="c1">#   handled correctly by eulfedora for ingest</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;read&#39;</span><span class="p">):</span>
+            <span class="n">article</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">load_xmlobject_from_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">NlmArticle</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">article</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="n">article</span><span class="o">.</span><span class="n">descMetadata</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">contentMetadata</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">as_article_mods</span><span class="p">()</span>
+
+            
+        <span class="c1"># FIXME: datastream checksum!</span>
+        <span class="c1"># TODO: format uri for this datastream ? </span>
+
+        <span class="k">return</span> <span class="n">article</span></div></div>
+    
+
+<div class="viewcode-block" id="OpenEmoryEntrezClient"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.OpenEmoryEntrezClient">[docs]</a><span class="k">class</span> <span class="nc">OpenEmoryEntrezClient</span><span class="p">(</span><span class="n">EntrezClient</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Project-specific methods build on top of an</span>
+<span class="sd">    :class:`~openemory.harvest.entrez.EntrezClient`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># FIXME: This doesn&#39;t feel like a &quot;model&quot; per se, but not sure precisely</span>
+    <span class="c1"># where else it belongs...</span>
+
+<div class="viewcode-block" id="OpenEmoryEntrezClient.get_emory_articles"><a class="viewcode-back" href="../../../apidocs.html#openemory.harvest.models.OpenEmoryEntrezClient.get_emory_articles">[docs]</a>    <span class="k">def</span> <span class="nf">get_emory_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Search Entrez for Emory articles, currently limited to PMC</span>
+<span class="sd">        articles with &quot;emory&quot; in the affiliation metadata.</span>
+
+<span class="sd">        :returns: :class:`~openemory.harvest.entrez.ESearchResponse`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># basic args for query</span>
+        <span class="n">qargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;usehistory&#39;</span> <span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="c1"># store server-side history for later queries</span>
+            <span class="s1">&#39;db&#39;</span> <span class="p">:</span> <span class="s1">&#39;pmc&#39;</span><span class="p">,</span>       <span class="c1"># search PubMed Central</span>
+            <span class="s1">&#39;term&#39;</span><span class="p">:</span> <span class="s1">&#39;emory&#39;</span><span class="p">,</span>   <span class="c1"># for the term &quot;emory&quot;</span>
+            <span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="s1">&#39;affl&#39;</span>   <span class="c1"># in the &quot;Affiliation&quot; field</span>
+        <span class="p">}</span>
+
+        <span class="c1">#add any addition args for query</span>
+        <span class="n">qargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">search_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">esearch</span><span class="p">(</span><span class="o">**</span><span class="n">qargs</span><span class="p">)</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="n">ArticleQuerySet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_result</span><span class="p">,</span> 
+            <span class="n">db</span><span class="o">=</span><span class="s1">&#39;pmc&#39;</span><span class="p">,</span>       <span class="c1"># search PubMed Central</span>
+            <span class="n">usehistory</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="c1"># use stored server-side history</span>
+            <span class="n">WebEnv</span><span class="o">=</span><span class="n">search_result</span><span class="o">.</span><span class="n">webenv</span><span class="p">,</span>
+            <span class="n">query_key</span><span class="o">=</span><span class="n">search_result</span><span class="o">.</span><span class="n">query_key</span><span class="p">,</span>
+        <span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">qs</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

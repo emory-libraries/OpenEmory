@@ -1,0 +1,1051 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CHANGELOG &mdash; OpenEmory 2.2.8-dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.8-dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="OpenEmory 2.2.8-dev documentation" href="index.html" />
+    <link rel="next" title="DEPLOYNOTES" href="deploynotes.html" />
+    <link rel="prev" title="openemory Code Documentation" href="apidocs.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploynotes.html" title="DEPLOYNOTES"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="apidocs.html" title="openemory Code Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="changelog">
+<h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="release-2-2-7-openemory-tech-debt">
+<h2>Release 2.2.7 - OpenEmory Tech Debt<a class="headerlink" href="#release-2-2-7-openemory-tech-debt" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>add the following redirects to the OpenEmory Test and Production sites</li>
+<li>When clicking on the User Profile section in Admin there is an error.</li>
+<li>no longer auto populates with the Sherpa RoMEO feed bug fix</li>
+<li>access OA Pub Fund form the link goes to error page bug fix</li>
+<li>Remove Eullocal dep from OE</li>
+</ul>
+</div>
+<div class="section" id="release-2-2-5-openemory-relaunch-interface-changes">
+<h2>Release 2.2.5 - OpenEmory Relaunch Interface Changes<a class="headerlink" href="#release-2-2-5-openemory-relaunch-interface-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Cannot Ingest PMC articles from Harvest Q in OpenEmory TEST</li>
+<li>Update eullocal so it doesn&#8217;t crash deploy process</li>
+<li>Add lxml rebuild to the fab deploy process so that it rebuilds every
+time after being deployed; update the version of eullocal to avoid
+SiteProfileNotAvailable error after deploy</li>
+<li>As an OpenEmory user accessing the “For Authors” tab, I want to Add the
+words “Author Rights” to the menu dropdown, with this link:
+<a class="reference external" href="https://open.library.emory.edu/about/authors-rights/">https://open.library.emory.edu/about/authors-rights/</a> so that I can
+easily access the page.</li>
+<li>As an OpenEmory user accessing the “For Authors” dropdown, I want to see
+the words &#8220;Data Archiving&#8221; changed to &#8220;Publishing Your Data&#8221; so that the
+language is consistent with the changes made to the page content.</li>
+<li>As an OpenEmory user accessing the “Left navigation Blue box” I want to
+see the “Author Rights&#8221; words and link added underneath the &#8220;For Authors&#8221;
+heading&#8221;, so that the left navigation is consistent with the top
+navigation.</li>
+<li>As an OpenEmory user accessing the “For Authors” left navigation blue
+box, I want to see the words &#8220;Data Archiving&#8221; changed to &#8220;Publishing
+Your Data&#8221; so that the left navigation is consistent with the top
+navigation.</li>
+<li>As an OpenEmory user accessing the “About OpenEmory” top navigation
+dropdown, I want to see the words &#8220;Citing OpenEmory Content&#8221; with a
+link: <a class="reference external" href="https://open.library.emory.edu/about/citing/">https://open.library.emory.edu/about/citing/</a>, so that I can easily
+access the page.</li>
+<li>As an OpenEmory user accessing the “Left navigation Blue box” I want to
+see the words “Citing OpenEmory Content&#8221; added underneath the &#8220;About
+OpenEmory&#8221; heading with a link:
+<a class="reference external" href="https://open.library.emory.edu/about/citing/">https://open.library.emory.edu/about/citing/</a>, so that the left navigation
+is consistent with the top navigation.</li>
+<li>As an OpenEmory user accessing the “Left navigation Blue box” I want to
+see the “How to Guides’ deleted on every page with Related Content (see
+description for multiple page links) so that the left navigation is
+consistent with the top navigation</li>
+<li>As an OpenEmory user accessing the “For Authors” tab, I want to see the
+words “Deposit Advice” directly underneath the changed <em>How to Submit</em>
+so that the added words “Deposit Advice” will link directly to this
+page: <a class="reference external" href="https://open.library.emory.edu/about/depositadvice/">https://open.library.emory.edu/about/depositadvice/</a></li>
+<li>As an OpenEmory user accessing the “About OpenEmory” tab, I want to see
+the order of Menu items re-arranged in this way: 1) About OpenEmory,
+2) About Us, 3) Contact Us, 4) Privacy Policy, 5) Terms of Use, so that
+the new order is consistent with the changes made to the OpenEmory page
+content.</li>
+<li>As an OpenEmory User, I want to see the Emory Open Access Policy link
+moved FROM the &#8220;About OpenEmory&#8221; dropdown  and TO the &#8216;For Authors&#8221;
+dropdown, so that the information is more useful to individual authors</li>
+<li>As an OpenEmory user accessing the “Feedback Form,” I want to see the
+words: “Contact OpenEmory staff&#8221; in Bold and larger text above the words:
+“You can also find information about OpenEmory on our list of Frequently
+Asked Questions” so that the contact link to OpenEmory staff is clear.</li>
+<li>As an OpenEmory user, accessing the bottom Blue Box I want to see “Tell
+us what you think:” and “View Top 10 Items and more:” deleted so that the
+language is removed from the interface.</li>
+<li>As an OpenEmory user accessing the “Feedback Form,” I want to see the
+word: “Feedback&#8221; in the Blue Box replaced with &#8220;Contact Us&#8221; in Bold Text,
+so that the purpose of the form is clear.</li>
+<li>As an OpenEmory user accessing the “Feedback Form,” I want to see the
+words: “To contact a faculty author, please use the “Emory Online
+Directory&#8221; with a link to the directory:
+<a class="reference external" href="http://directory.service.emory.edu/index.cfm">http://directory.service.emory.edu/index.cfm</a> added to the Blue Box
+underneath the words: “To View a list of OpenEmory staff, please click
+here, so that the purpose of the form is clear.</li>
+<li>As an OpenEmory user accessing the “For Authors” tab, I want to see the
+order of Menu items arranged in this way: 1) How To Submit, 2) Deposit
+advice, 3) Data Archiving, 4) FAQ, 5) Emory Open Access Policy,
+6) Open Access Fund, so that the new order is consistent with the
+changes made to the OpenEmory page content.</li>
+<li>As an OpenEmory user accessing the “Left navigation Blue box” I want
+to see the left navigation categories consistent with top navigation
+(For Authors and About OpenEmory) so that the left navigation is
+consistent with the top navigation.</li>
+<li>PMC Harvest queue not Populating since 11.3.2016 - INC02592840</li>
+<li>As an OpenEmory user, accessing the bottom Blue Box I want to see the
+words: “Give Feedback” changed to “Contact Us” and the words:
+“OpenEmory At a Glance” changed to “Recent and popular items” so that
+the language is consistent with the changes made to the OpenEmory page
+content.</li>
+<li>As an OpenEmory user accessing the bottom blue box, I want to see the
+Copyright date changed from 2012 to 2016, so that the date is current.</li>
+</ul>
+</div>
+<div class="section" id="release-2-2-4-merging-old-pre-connector-records">
+<h2>Release 2.2.4 Merging old pre connector records<a class="headerlink" href="#release-2-2-4-merging-old-pre-connector-records" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>fixing solr filter to search buy keywords</li>
+<li>search by title bug fix</li>
+<li>incomplete pid notifications via slack</li>
+<li>fixed indexing issue for newly converted records</li>
+<li>manage command to merge records</li>
+</ul>
+</div>
+<div class="section" id="release-2-2-1-author-enhancement">
+<h2>Release 2.2.1 Author Enhancement<a class="headerlink" href="#release-2-2-1-author-enhancement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>jenkins test fixes for Django 1.8</li>
+</ul>
+</div>
+<div class="section" id="release-2-2-0-author-enhancement">
+<h2>Release 2.2.0 Author Enhancement<a class="headerlink" href="#release-2-2-0-author-enhancement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Django Upgrade 1.8</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-4-author-enhancement">
+<h2>Release 2.1.4 Author Enhancement<a class="headerlink" href="#release-2-1-4-author-enhancement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added manage merge command for publications</li>
+<li>Added author limit to cover page</li>
+<li>Made collapsible view of more than ten authors</li>
+<li>Extracted image logo for Emory First</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-1-author-enhancement">
+<h2>Release 2.1.1 Author Enhancement<a class="headerlink" href="#release-2-1-1-author-enhancement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added and modified Google Analytics Tracking IDs</li>
+<li>Added Copyright information to the PDF download cover page</li>
+<li>Fixed About This Item statistics display issues</li>
+<li>Added non Emory authors to the MODS</li>
+</ul>
+</div>
+<div class="section" id="release-2-1-0-harmonization-of-content-types">
+<h2>Release 2.1.0 Harmonization of Content Types<a class="headerlink" href="#release-2-1-0-harmonization-of-content-types" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed mime type issues with old pyPdf library</li>
+<li>Resolved duplicates when adding a  different mime type</li>
+<li>Fixed tests for publications</li>
+<li>Adding new fields for Poster, Presentation</li>
+<li>Revised design of of publications view</li>
+<li>Added descriptive titles to mods in publica view for publications</li>
+</ul>
+</div>
+<div class="section" id="release-2-0-0-presentation-content-type">
+<h2>Release 2.0.0 Presentation Content Type<a class="headerlink" href="#release-2-0-0-presentation-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enhanced importing from symplectic script to work with a Presentation content type</li>
+<li>Integrated additional mime types to upload from Emory First</li>
+<li>Citation changes for a presentation content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a presentation</li>
+</ul>
+</div>
+<div class="section" id="release-1-9-0-poster-content-type">
+<h2>Release 1.9.0 Poster Content Type<a class="headerlink" href="#release-1-9-0-poster-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enhanced importing from symplectic script to work with a Poster content type</li>
+<li>Integrated additional mime types to upload from Emory First</li>
+<li>Citation changes for a poster content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a poster</li>
+</ul>
+</div>
+<div class="section" id="release-1-8-0-report-content-type">
+<h2>Release 1.8.0 Report Content Type<a class="headerlink" href="#release-1-8-0-report-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enhanced importing from symplectic script to work with a Report content type</li>
+<li>Integrated additional mime types to upload from Emory First</li>
+<li>Citation changes for a report content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a report</li>
+<li>debugging XACML</li>
+</ul>
+</div>
+<div class="section" id="release-1-7-0-conference-content-type">
+<h2>Release 1.7.0 Conference Content Type<a class="headerlink" href="#release-1-7-0-conference-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enhanced importing from symplectic script to work with a Conference content type</li>
+<li>Integrated additional mime types to upload from Emory First</li>
+<li>Citation changes for a conference content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a conference</li>
+<li>debugging ark_uri</li>
+</ul>
+</div>
+<div class="section" id="release-1-6-0-book-chapter-content-type">
+<h2>Release 1.6.0 Book Chapter Content Type<a class="headerlink" href="#release-1-6-0-book-chapter-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enhanced importing from symplectic script to work with a Book Chapter content type</li>
+<li>Site wide word changes of Article specific content to a generic content</li>
+<li>Citation changes for a book chapter content type</li>
+<li>Cover page changes for a book chapter content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a book chapter</li>
+<li>debugging article content type in production</li>
+</ul>
+</div>
+<div class="section" id="release-1-5-0-book-content-type">
+<h2>Release 1.5.0 Book Content Type<a class="headerlink" href="#release-1-5-0-book-content-type" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Refactoring digital object models to easily add new content types</li>
+<li>Adding and a generic content model for all content types</li>
+<li>Expanding symplectic atom classes for a book content type</li>
+<li>Enhanced importing from symplectic script to work with a Book content type</li>
+<li>Site wide word changes of Article specific content to a generic content</li>
+<li>Citation changes for a book content type</li>
+<li>Cover page changes for a book content type</li>
+<li>Adding new fields for Search, Edit, View, Review pages that are specific for a book</li>
+</ul>
+</div>
+<div class="section" id="release-1-4-0-author-enhancements">
+<h2>Release 1.4.0 Author enhancements<a class="headerlink" href="#release-1-4-0-author-enhancements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Finish Author enhancements</li>
+<li>Added Email confirmation for OpenFund</li>
+<li>Added funstionality to check aticle titles and publishers against Sherpa Romeo&#8217;s API when importing from Symplectic</li>
+<li>Created a customized script to to check and correct existing titles and publisher against Sherpa Romeo</li>
+<li>Made all author suggestions available during the search</li>
+<li>Pubmed affiliation script</li>
+</ul>
+</div>
+<div class="section" id="release-1-3-1-fedora-migration">
+<h2>Release 1.3.1 Fedora Migration<a class="headerlink" href="#release-1-3-1-fedora-migration" title="Permalink to this headline">¶</a></h2>
+<p>Changes for Fedora 3.8</p>
+</div>
+<div class="section" id="release-1-3-pre-fedora-migration">
+<h2>Release 1.3 - Pre Fedora Migration<a class="headerlink" href="#release-1-3-pre-fedora-migration" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Upgraded Django to 1.5</li>
+<li>Added downpage and maintenance banner</li>
+<li>Changed DC datastreams to be managed</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-17-link-styles">
+<h2>Release 1.2.17 - Link Styles<a class="headerlink" href="#release-1-2-17-link-styles" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Wrap hyperlinks in sidebar</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-16-connector">
+<h2>Release 1.2.16 - Connector<a class="headerlink" href="#release-1-2-16-connector" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added bit and pices that are required for processing Symplectic objects</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-15-bug-fixes">
+<h2>Release 1.2.15 - Bug Fixes<a class="headerlink" href="#release-1-2-15-bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed footer Feedback link</li>
+<li>Changed Title to be required on OA form</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-14-virtuals">
+<h2>Release 1.2.14 - Virtuals<a class="headerlink" href="#release-1-2-14-virtuals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Modified Grant Proposal forom</li>
+<li>Updated Privacy Policy link</li>
+<li>Fixed file upload button when using FireFox</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-13-menus-cleanup">
+<h2>Release 1.2.13 - Menus Cleanup<a class="headerlink" href="#release-1-2-13-menus-cleanup" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated Library Tools and Resources menu</li>
+<li>Updated Browse menus</li>
+<li>Updated Browse page titles</li>
+<li>Updated import_to_symplectic so that it matches the title based on percent of the title that matches.</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-12-symplectic-elements">
+<h2>Release 1.2.12 - Symplectic Elements<a class="headerlink" href="#release-1-2-12-symplectic-elements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated import_to_symplectic with &#8211;rel flag to force update of author info on existing publications</li>
+</ul>
+</div>
+<div class="section" id="missing-tag-symplectic-elements">
+<h2>&lt;missing tag&gt; - Symplectic Elements<a class="headerlink" href="#missing-tag-symplectic-elements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added import-to-symplectic command to create OE Articles in Symplectic-Elements</li>
+<li>Remove ability for self-upload of Articles</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-11-bug-fix">
+<h2>Release 1.2.11 - Bug Fix<a class="headerlink" href="#release-1-2-11-bug-fix" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed xml parsing error with ROMEO auto-complete</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-10-supplemental-materials">
+<h2>Release 1.2.10 - Supplemental Materials<a class="headerlink" href="#release-1-2-10-supplemental-materials" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added Supplemental Materials to edit form and article view</li>
+<li>Fixed big with deleting repeating fields</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-9-odds-and-ends">
+<h2>Release 1.2.9 - Odds and Ends<a class="headerlink" href="#release-1-2-9-odds-and-ends" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Admins no longer contribute to site stats</li>
+<li>New FlatPage Data Archiving is now viewable</li>
+<li>New branding images</li>
+<li>Resolved issue with missing spaces in indexdata</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-8-reports">
+<h2>Release 1.2.8 - Reports<a class="headerlink" href="#release-1-2-8-reports" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Reports by Division, Author and Lead Author</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-7-oai-modifications">
+<h2>Release 1.2.7 - OAI modifications<a class="headerlink" href="#release-1-2-7-oai-modifications" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Modified add_to_oai and add_dc_ident commands to query Fedora directly instead of Solr and and unmap dc.relation.</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-6-bug-fix-and-enhancements">
+<h2>Release 1.2.6 - Bug Fix and Enhancements<a class="headerlink" href="#release-1-2-6-bug-fix-and-enhancements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed issue with author ordering on initial add</li>
+<li>Fixed Harvest script so that it can harvest all available articles</li>
+<li>Added feature to Harvest script to allow query by date range</li>
+<li>Added feature to Harvest script to optionally show progress bar</li>
+<li>Added pagination to Harvest queue</li>
+<li>Modified code to use the &#8211;derive flag on ldap.find_user_by_email()</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-5-bug-fix">
+<h2>Release 1.2.5 - Bug Fix<a class="headerlink" href="#release-1-2-5-bug-fix" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Restored dc identifiers to produce View on PubMed link</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-4-captcha-bug-fixes">
+<h2>Release 1.2.4 - Captcha / Bug Fixes<a class="headerlink" href="#release-1-2-4-captcha-bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Several bug fixes</li>
+<li>Added Captcha to feedback form</li>
+<li>Removed non-functional RSS button</li>
+<li>Revised site statistics text</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-3-oai">
+<h2>Release 1.2.3 - OAI<a class="headerlink" href="#release-1-2-3-oai" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added  ability for articles to be harvested by OAI</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-2-license-and-rights-enhancements">
+<h2>Release 1.2.2 - License and Rights Enhancements<a class="headerlink" href="#release-1-2-2-license-and-rights-enhancements" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">An authorized user can edit and save optional Creative Commons license information
+that is consistent with harvested content.</p>
+</li>
+<li><dl class="first docutils">
+<dt>When an OpenEmory Admin ingests a harvested record, any license information</dt>
+<dd><p class="first last">will be saved to the MODS metadata, for consistency with uploaded articles.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">A sysadmin or developer can run a manage command to update all  articles to save
+any license information in the MODS metadata.</p>
+</li>
+<li><p class="first">An uploaded article should not get an empty NLM XML datastream on ingest.</p>
+</li>
+<li><p class="first">An openEmory admin can add and edit available license choices through the
+admin panel so they can provide the user with the most relevant choices for licenses.</p>
+</li>
+<li><p class="first">When unauthenticated users view an uploaded article, they see the associated
+Creative Commons license information (if any), so that they are aware of any restrictions on reuse.</p>
+</li>
+<li><p class="first">An external system (such as DiscoverE) can harvest published OpenEmory articles
+via OAI-PMH, so that OpenEmory content can be made searchable and discoverable through other sources.</p>
+</li>
+<li><p class="first">A sysadmin or developer can run a migration script to make published articles available via OAI,
+so that existing records will be included in OAI-PMH harvests.</p>
+</li>
+<li><p class="first">A user viewing the &#8220;Submit an Article Page&#8221;, sees updated text for &#8220;Mediated Deposit&#8221; section; also
+PREMIS message has been modified.</p>
+</li>
+<li><p class="first">An admin ingesting a harvested article, copyright information is populated into the MODs record.</p>
+</li>
+<li><p class="first">An author editing a record can add a copyright statement before the record is published .</p>
+</li>
+<li><p class="first">An admin editing any type of record can include a non-public optional administrative note.</p>
+</li>
+<li><p class="first">An admin editing any uploaded article, can record the date that rights research was conducted.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-1">
+<h2>Release 1.2.1<a class="headerlink" href="#release-1-2-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Bug fix: correct a conflict between flatpages url /publication/submit/ and
+article urls in publication views.</li>
+</ul>
+</div>
+<div class="section" id="release-1-2-0-search-engine-optimization-and-bugfixes">
+<h2>Release 1.2.0 - Search Engine optimization and bugfixes<a class="headerlink" href="#release-1-2-0-search-engine-optimization-and-bugfixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When a user sees an OpenEmory article or profile in search engine
+results (such as Google), the article title or person&#8217;s name will be
+listed first, so that the page content is more clear.</li>
+<li>A sysadmin or developer can configure whether Google Analytics
+should be used, so that Google Analytics can be enabled in production
+and disabled in staging or development sites.</li>
+<li>A sysadmin or developer can configure a Google site verification code,
+so that the site can verified and monitored with Google Webmaster Tools.</li>
+<li>When a user clicks &#8220;Save Changes&#8221; on the profile edit, they see some form of
+feedback to indicate that the page is saving or has been saved, so that they
+are not confused about whether clicking the button had any effect.</li>
+<li>If users follow an old link for one of the first 78 articles added to the
+site with the wrong pid, they will be redirected to the corrected pid so
+that they find the article and so that search engine page ranks transfer to
+the corrected articles.</li>
+<li>Bug fixes:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Fix save/ingest error on articles with too many authors.</li>
+<li>Fix whitespace issues when displaying biography text on profile pages.</li>
+<li>Fix formatting for degrees on profile edit form.</li>
+<li>Fix for faculty autocomplete when no first name is indexed</li>
+<li>Fix an error generating article citation when a keyword is set to <cite>None</cite></li>
+<li>Corrected sitemap.xml URL in robots.txt</li>
+<li>Sectioned sitemaps out by type of content, added last-modified data for articles,
+and included flat pages</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release-1-1-2-bugfixes">
+<h2>Release 1.1.2 - bugfixes<a class="headerlink" href="#release-1-1-2-bugfixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix a bug in profile edit that disables edit after saving changes.</li>
+<li>Fix a bug in article metadata edit that prevents editing authors in
+Firefox.</li>
+</ul>
+</div>
+<div class="section" id="release-1-1-1-bugfixes-and-legal-language">
+<h2>Release 1.1.1 - bugfixes and legal language<a class="headerlink" href="#release-1-1-1-bugfixes-and-legal-language" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Always show Submit an Article link under For Authors</li>
+<li>Fix department formatting error in faculty profiles by department</li>
+<li>Use https for Share button script to eliminate browser security warning.</li>
+<li>Fix an incorrect HTML comment hiding some content on the article metadata
+edit form.</li>
+<li>Update legal language on article upload form, and allow admins to agree to
+legal terms for mediated upload in addition to author upload.</li>
+</ul>
+</div>
+<div class="section" id="release-1-1-0">
+<h2>Release 1.1.0<a class="headerlink" href="#release-1-1-0" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Admins can withdraw items.</li>
+<li>Admins can select articles to feature on the home page.</li>
+<li>Users can link to other sites on their profile page.</li>
+<li>Faculty members edit their profiles inline in the profile view.</li>
+<li>Disable profile photo upload and display while design issues are
+addressed.</li>
+<li>Autocomplete article Publisher from SHERPA/RoMEO, and use it to help
+admins assess publisher copyright policy.</li>
+<li>Add HTML head metadata to improve search engine accuracy.</li>
+</ul>
+</div>
+<div class="section" id="release-1-0-0-initial-production-release">
+<h2>Release 1.0.0 - Initial production release<a class="headerlink" href="#release-1-0-0-initial-production-release" title="Permalink to this headline">¶</a></h2>
+<p>This is our first release to the production website, with most basic
+functionality implemented. It still contains a number of minor issues and
+rough edges that need cleaning, so our first <em>publicized</em> release will be
+1.1.0, but this is the first one aiming for installation on the real
+production server.</p>
+<ul class="simple">
+<li>Users see site-themed search results to maintain design consistency across
+the site.</li>
+<li>Users see site-themed At A Glance page to maintain design consistency
+across the site.</li>
+<li>Users can access a site-themed (non-functional) feedback form, to maintain
+design consistency and so demo audiences understand what functionality will
+be available in future.</li>
+<li>When an authenticated user makes changes to an article, they see a
+site-themed message on the following page to alert them to the result of
+their action.</li>
+<li>Users see site-themed error messages for missing pages or pages they don&#8217;t
+have permission to view, in order to reduce disorientation and help them
+continue using the site.</li>
+<li>Logged in faculty see a site-themed faculty dashboard to maintain design
+consistency across the site and so they can access their content and manage
+their profile from one page.</li>
+<li>Users see site-themed error messages when the server encounters an
+unexpected error to reduce disorientation and help them continue using the
+site.</li>
+<li>When a user clicks on the &#8220;Emory Open Access Policy&#8221; link under the About
+Us navigation tab, the page opens in a new window, so that they can return
+to OpenEmory more easily if desired.</li>
+<li>Logged in faculty and site admins see site-themed article edit and upload
+pages, for consistency and visual appeal.</li>
+<li>A logged-in user can upload a photo to their profile, so that they can
+customize their profile.</li>
+<li>Faculty members can see statistics for their own articles in order to
+gauge their personal research impact.</li>
+<li>Users editing the document edit form can edit authors without having to
+retype the entire list of authors in order, so that they can enter the
+author names to reflect the names on the article itself.</li>
+<li>An admin user viewing an article can click on a link to see the XML Fedora
+object audit trail.</li>
+<li>An admin user can see the provenance of a record, so that they can
+understand what repository the article came from (if harvested) or if the
+author deposited the article.</li>
+<li>A logged in site admin can access the harvest and review queues and the
+Django db-admin from a single Admin Dashboard so that they can perform or
+easily get to admin functions from one page.</li>
+<li>A site admin can create and maintain site-wide announcements, which are
+displayed to all users, to alert them of site-wide updates and planned
+downtime.</li>
+<li>When an embargo expires, the full text becomes visible and searchable
+within a day.</li>
+<li>In the edit profile page, faculty users can enter Research Interests in
+repeating fields consistent with the design of affiliation and degree
+inputs, so that all fields seem to have the same level of importance and so
+that they can easily enter phrases or single keywords.</li>
+<li>When a user is viewing their &#8220;edit profile&#8221; page , their entry for Center
+or Institute Affiliations will be autocompleted with suggestions using
+data entered by others, so that they have less confusion in completing the
+form and so that we can eventually sort articles by Center or Institute
+Affiliation.</li>
+<li>A user can import citations from OpenEmory into EndNote and Zotero, so that
+they can use articles in their work.</li>
+<li>A user can search a name in the search box and receive a list of people as
+well as a list of articles in their search results, so that they can search
+for faculty profiles within the same search interface as that used for
+articles.</li>
+<li>Faculty members can receive reports from OpenEmory quarterly, containing
+statistics about their articles, so that they can understand that people are
+looking at their items and build a connection with the site.</li>
+<li>When a user clicks &#8220;submit&#8221; on the Feedback Form, the form is sent to an
+appropraite admin email address so that administrators can process user
+feedback.</li>
+<li>Users can use a site UI feature to share articles via social media tools
+in order to increase easy sharing of site content.</li>
+<li>A faculty member using the document edit form sees a form with a clear
+layout of fields grouped logically, so that they can enter required
+information and optional information to their uploaded article.</li>
+<li>Users can browse articles by the School, Department or Division of their
+authors, so that they can see articles published by faculty members in
+various groups.</li>
+<li>Numerous additional minor design tweaks.</li>
+</ul>
+</div>
+<div class="section" id="release-0-7-0-polish-and-prep">
+<h2>Release 0.7.0 - Polish and Prep<a class="headerlink" href="#release-0-7-0-polish-and-prep" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of this milestone is to polish the faculty demo prototype, and
+to begin to ready the site for template integration by adding features which
+appear in the design.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<ul class="simple">
+<li>When an author is editing article metadata, they can enter co-author names
+and select from suggestions (including name and division) from ESD data, so
+that they can add correct co-author names without knowing netIDs.</li>
+<li>When an author uploads an article, the file type is checked, so that users
+cannot upload non-PDF&#8217;s.</li>
+<li>When a user is viewing information for an article, they can see the
+number of downloads and the number of views for that item, so that both
+anonymous users and authors can know the popularity of an article.</li>
+<li>When a user is viewing the footer of any page, they can see the total
+number of repository items, the total number of items downloaded, the number
+of items downloaded this year, the total number of members, and the number
+of members currently online, so that users can understand the size of the
+community and repository.</li>
+<li>On the Search Results page, a user can limit their original search by
+filters (facets), so that they can find records limited by Author, Journal,
+Subject, or Year.</li>
+<li>When a user clicks on a Subject, they are taken to a list of articles
+which share that subject, so that they can see research similar to the
+article they have found.</li>
+<li>On the Search Results page, a user can type into the &#8220;search within
+results...&#8221; box, so that they can search again within the results list.</li>
+<li>When a user clicks &#8220;OpenEmory at a Glance,&#8221; they can see a page listing
+Top 10 Downloads and 10 Recent Additions, so that they can get a sense of
+what is being posted, and what is being downloaded, on the site.</li>
+<li>When a user clicks the &#8220;Browse by&#8221; navigation tab, they can choose
+Author, Subject, and Journal, so that they can browse the scholarship posted
+in Open Emory.</li>
+<li>When a logged-in user tries to leave the metadata edit form without saving,
+they see only one prompt to urge them to save, so that they can decide
+whether to save or leave the page.</li>
+<li>When an author is choosing a Subject on the metadata edit form, they can
+type into a text box with autofill and select the proper choice, so that
+they do not have to choose from an unwieldy list of subjects.</li>
+<li>When a user mouses over the &#8220;View Abstract&#8221; link in the item list view,
+they can see the abstract of the article, so that they can decide whether to
+pursue the article.</li>
+<li>When an anonymous user clicks the link to the PubMed version of an article,
+that version opens in a new tab or window, so that the user can easily
+differentiate and return to the Open Emory interface.</li>
+<li>When an admin ingests an article from the Harvest Queue, the article
+information changes to a link to the article and a link to edit the
+metadata, so that they can choose to view and/or review harvested articles
+from the same interface.</li>
+<li>Admin users can &#8220;publish&#8221; as well as &#8220;save,&#8221; so that administrators can also
+change the status of a document to posted.</li>
+</ul>
+</div>
+<div class="section" id="release-0-6-0-faculty-demo">
+<h2>Release 0.6.0 - Faculty Demo<a class="headerlink" href="#release-0-6-0-faculty-demo" title="Permalink to this headline">¶</a></h2>
+<p>This milestone is intended to compile various tasks necessary for
+producing a faculty demo site. Authors will be able to attach and
+specify licensing and embargo information to deposited articles. Tasks
+also include automatic recording and display of file information (size
+and type) and assigning a permalink to each article, as well as
+attaching a cover page to each article. Finally, the workflow for
+saving and publishing articles will be fixed per feedback from the
+Article Metadata milestone. User stories are somewhat disparate in
+nature, but are required for producing a faculty demo.</p>
+<p><strong>Demo &#8211; Not for production release</strong></p>
+<ul class="simple">
+<li>When a logged in user initiates an article upload they are presented
+with a stub &#8220;Assent to Deposit&#8221; check form so demo audience members
+understand the feature as it will be implemented at a later date.</li>
+<li>When an author is editing article metadata, they can specify an
+optional embargo of 6 months, 18 months, or 1, 2, or 3 years (based
+on the publication date), so that they can elect to hide deposited
+items for a period of time of their own choosing, or mandated by
+their publisher.</li>
+<li>When a user other than the author or an admin views an embargoed
+record, they see a note about the embargo and the date the item will
+be available alongside the metadata instead of a full text link, so
+that they will understand why they can&#8217;t download the full text.</li>
+<li>When a user is viewing an article that was harvested from an
+external source with licensing information (such as Creative
+Commons) attached, that license information is displayed with the
+article metadata, so the licensing information can be determined by
+anonymous users.</li>
+<li>When an Author ingests an article, it is assigned an ARK, so a
+permalink can be generated and the article can be persistently
+accessed.</li>
+<li>When an anonymous user views the PDF of an Open Emory article, a
+cover page precedes the article text, so that any anonymous user can
+identify the PDF as being from Open Emory.</li>
+<li>A user can save the metadata edit form without filling in all
+required fields, so that they can return to finish editing if they
+do not know the information contained in a required field.</li>
+<li>An Article owner can upload a PDF of the author agreement in the
+Metadata edit form so authors and site admins can maintain a
+definitive record of the publishing agreement.</li>
+<li>When an anonymous user views record information for an article, they
+see the file size and type in human readable format, so that they
+can understand what they&#8217;re downloading before they do so.</li>
+</ul>
+</div>
+<div class="section" id="release-0-5-0-faculty-profiles">
+<h2>Release 0.5.0 - Faculty Profiles<a class="headerlink" href="#release-0-5-0-faculty-profiles" title="Permalink to this headline">¶</a></h2>
+<p>This milestone is intended to create basic faculty profiles using Emory
+Shared Data for basic directory information. Authors will also have the
+opportunity to provide biographical and professional information to augment
+their profiles. Authors may supply and edit some profile information at any
+time. Authors who have instructed UTS to suppress their information will be
+prompted to share some or all of this information through the Open Emory
+interface.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Unauthenticated users can visit profile pages for faculty with the
+faculty member&#8217;s name, suffix, title, department, school, and list of
+uploaded or harvested articles, so that they learn more about the faculty
+member and publications.</li>
+<li>When an unauthenticated user tries to visit a profile page for a
+non-faculty Emory user, they are told that no such profile exists, so
+that only Emory faculty members and manually-added users have public
+profiles.</li>
+<li>When an authenticated user who isn&#8217;t faculty or an admin tries to log in,
+their password is rejected and they are treated as if they do not have an
+account, so that only Emory faculty members can log in to the system.</li>
+<li>When an anonymous user looks up a faculty member who is &#8220;directory
+suppressed&#8221; or &#8220;internet suppressed,&#8221; they see the name and Open Emory
+data, but no other data imported from the directory, in order to maintain
+their privacy and abide by the university&#8217;s privacy policies.</li>
+<li>When a faculty member who is &#8220;directory suppressed&#8221; or &#8220;internet
+suppressed&#8221; is looking at their profile, they can choose to display their
+profile information as if they were not suppressed, so that their profile
+page can be populated and displayed.</li>
+<li>An authenticated faculty user can add Degrees to their profile, including
+name of degree, institution, and year (with suggestions autofilled for
+the institution), so that they can describe themselves on their profile.</li>
+<li>An authenticated faculty user can add a profile picture in gif, jpeg, or
+png format, to their own profile, so that they can display a photo when
+others view their profile. If no photo is uploaded, no placeholder image
+will be displayed.</li>
+<li>An authenticated faculty user can add a biographical paragraph to their
+profile, so that they can describe their career in more detail.</li>
+<li>An authenticated faculty user can add Positions to their profile, so that
+they can identify academic positions as director of an institute or
+program not supplied by UTS data.</li>
+<li>An authenticated faculty user can add information to their profile on
+grants received, including granting agency, project title, and date (with
+autofilled suggestions for granting agency), so that they can describe
+their career in more detail.</li>
+<li>An anonymous user can browse faculty profiles by school and department
+and division, so that they can identify Emory faculty members working in
+a particular field.</li>
+<li>An admin user can edit the profile page of a faculty member or a
+pseudo-faculty member, so that admins can maintain and update and support
+users.</li>
+<li>An admin user can manually create a profile page that looks like a
+faculty profile page for a non-faculty member, so that key administration
+advocates who do not have faculty status can nonetheless be added to the
+repository. That non-faculty user can edit the profile page as a faculty
+member would, so that they can display their information.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release-0-4-0-article-metadata">
+<h2>Release 0.4.0 - Article Metadata<a class="headerlink" href="#release-0-4-0-article-metadata" title="Permalink to this headline">¶</a></h2>
+<p>Attach searchable MODS descriptive metadata to articles. Authors can edit
+this metadata as they are uploading the document. Further edits are the
+responsibility of site admins.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>When an author successfully uploads an article, they see a form where
+they can edit article metadata before that article is visible to the
+public so that they can describe the item correctly before publishing it.</li>
+<li>When editing article metadata, an author can specify free text values
+for: title, funding groups (multiple), journal title, journal publisher,
+volume, issue, page numbers, abstract, author notes, and keywords so they
+can describe the item correctly.</li>
+<li>An author can click a &#8220;publish&#8221; button to save the metadata form and
+populate the record in the repository so that an item record can be
+displayed on the website. (Redirect to profile after successful publish).</li>
+<li>When an author uploads an article, the type of resource is prepopulated
+as text, the file format as PDF, and the genre as article, so that the
+items are sharable and identifiable according to the requirements of
+MODS.</li>
+<li>When editing article metadata, an author can specify co-authors by netid
+in order to credit colleagues and share metadata maintenance permission.
+The system will automatically assign these authors an Emory University
+institutional affiliation.</li>
+<li>An author can specify a name (with an optional institutional affiliation)
+as a co-author instead of a netid so that they can include non-Emory
+co-authors. If they do, then the author name will not be linked to a
+profile.</li>
+<li>An author can remove a co-author by deleting their name or netid and
+saving the form so that they can correct errors.</li>
+<li>When editing article metadata, an author is required to specify whether
+an article is a pre-print, post-print, or final published version, so
+that users know which version of an authoritative peer-reviewed scholarly
+article they are downloading.</li>
+<li>When editing article metadata, an author can specify the date of
+publication, with the year required and the month and day optional so
+that users can identify when the article was first published.</li>
+<li>When editing article metadata, an author can specify a URL and/or DOI for
+the final published version of the article so that readers can access
+this version. The URL will be verified when the form is saved.</li>
+<li>When editing article metadata, an author can specify additional URLs
+associated with the article (PubMed, other repository, etc) so that
+readers can find more information about it.</li>
+<li>When editing article metadata, an author is required to select a text
+language from a drop-down menu in which the first option is English so
+that readers can decide whether to download the article. If no language
+is selected, the value will default to English.</li>
+<li>When editing article metadata, an author can select subject headings
+taken from the ETD list of ProQuest research fields to aid searchability.
+Use same options and configuration available in ETD&#8217;s, but hide numbers
+associated with field names.</li>
+<li>When editing an article&#8217;s funding group, journal title, journal
+publisher, keywords, or co-author affiliation, an author will be prompted
+with suggestions pulled from existing entries to those fields to improve
+normalization of data and reduce errors.</li>
+<li>When an author is editing an article, they can click a &#8220;save&#8221; button to
+save their changes without publishing, so they can revise the record
+later.</li>
+<li>When an author is editing an article and navigates away or closes the
+browser, they will see a warning if they have unsaved changes so they do
+not lose their work.</li>
+<li>When an author logs in, they will see a list of any unpublished records
+on their profile page, so that they can edit and publish those items.</li>
+<li>An anonymous user can view a published item record page, populated by the
+article&#8217;s full metadata, so that they can decide whether to download it.
+This page should include a link to download the article as well as a
+permanent id (ARK/DOI) for the article.</li>
+<li>When an author publishes an article, it will appear immediately in search
+and browse results and on any Emory author profile pages, so that the
+article can be viewed immediately.</li>
+<li>An admin can view a list of recently published, un-reviewed items, so
+that they can select an item to review.</li>
+<li>An admin can review and edit a published article, and mark it as
+&#8220;reviewed,&#8221; for quality control on metadata. Once an article has been
+marked as &#8220;reviewed,&#8221; the author can no longer edit it. Once an article
+has been marked as &#8220;reviewed,&#8221; the review event will be recorded (date
+and user) and displayed for admins.</li>
+<li>Admins will see an edit link for each article in every search, browse,
+and display view, so they can easily find and edit items from anywhere in
+the site.</li>
+<li>A user browsing search results can see author names (rather than netID)
+to provide correct citation information.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release-0-3-0-searching-and-social">
+<h2>Release 0.3.0 - Searching and Social<a class="headerlink" href="#release-0-3-0-searching-and-social" title="Permalink to this headline">¶</a></h2>
+<p>Full-text searching of articles, and basic social features. Users can add
+private tags to articles as well as use tagging systems to indicate their
+own research interests.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Anonymous users can search for words or phrases that appear anywhere in
+the full-text (PDF or PMC xml) or available metadata, in order to find
+relevant articles.</li>
+<li>Anonymous users who search for articles can see results with relevancy
+score, title, author, date uploaded, and context highlighting, so that
+they can determine which articles to view.</li>
+<li>An authenticated user can enter a public research interest on their
+profile page so that they can indicate their research interests (with
+auto-suggest based on existing public research interests).</li>
+<li>An authenticated user entering a tag will be given suggestions from their
+own previous tags, so that they can be consistent in their tagging.</li>
+<li>An unauthenticated user can view researcher interests on a user&#8217;s profile
+pages and click on them to see other researchers with those interests.</li>
+<li>An authenticated user looking at research interest page can click a
+button/link to add that research interest to their own profile.</li>
+<li>Authenticated users viewing search results, profile listings, or a single
+article can add and edit private tags on any article so that they can
+refer to them later.</li>
+<li>An authenticated user can view their own tags in a sidebar on any page so
+that they can access the articles they&#8217;ve tagged from anywhere in the
+site.</li>
+<li>When an authenticated user clicks on one of their tags, they&#8217;re brought
+to a list of articles with that tag so that they can select which article
+to view.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release-0-2-0-harvesting">
+<h2>Release 0.2.0 - Harvesting<a class="headerlink" href="#release-0-2-0-harvesting" title="Permalink to this headline">¶</a></h2>
+<p>Harvest metadata from PubMed Central for articles written by Emory authors.
+Do not publish this metadata immediately, but allow site admins to decide
+whether or not to publish it.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>An admin user can designate other users as admin users in order to share
+the work of the maintaining the site.</li>
+<li>When an admin user logs in, they are redirected to a queue of PubMed
+articles targeted for harvesting so that they can review items and select
+them for ingest.</li>
+<li>Admin users looking at the harvesting queue have access to the metadata,
+the PubMed ID, a link to the PubMed entry and the associated user to
+enable selection for ingest.</li>
+<li>When looking at an item in the harvesting queue, an admin user can click
+&#8220;ingest&#8221; to indicate that the item should be scheduled for harvest, and
+disappear from the harvesting queue.</li>
+<li>When looking at an item in the harvesting queue, an admin user can click
+&#8220;ignore&#8221; to indicate that the item should be ignored &amp; disappear from the
+harvesting queue.</li>
+<li>An unauthenticated user can view items ingested from PubMed harvest on
+faculty profile pages with links to PubMed for content so they can read
+articles or metadata about articles by Emory authors.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="release-0-1-0-initial-prototype">
+<h2>Release 0.1.0 - Initial Prototype<a class="headerlink" href="#release-0-1-0-initial-prototype" title="Permalink to this headline">¶</a></h2>
+<p>First working system prototype. Emory users can authenticate, ingest
+content, and edit metadata for items. Unauthenticated users can view
+ingested content and user profiles.</p>
+<p><strong>Internal prototype: Not for production release</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>An anonymous user enters the site through a landing page that includes a
+login box so they can start to upload.</li>
+<li>An anonymous user can log into the site using Emory credentials to allow
+them to manage their own content. New Task</li>
+<li>An authenticated user can use a web form to ingest a PDF into the repository
+to ensure enduring access and discoverability of that file.</li>
+<li>An anonymous user can view any user&#8217;s basic user profile page, which lists
+information about the user and the items they have uploaded so they can
+view and download those items.</li>
+<li>An authenticated user is redirected to their profile, which includes a link
+for ingesting content to give them a personalized jumping-off &#8220;home&#8221;
+point for other functionality.</li>
+<li>A file owner can create and edit bibliographic metadata about a file they
+have previously ingested to better identify it and to improve
+discoverability.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CHANGELOG</a><ul>
+<li><a class="reference internal" href="#release-2-2-7-openemory-tech-debt">Release 2.2.7 - OpenEmory Tech Debt</a></li>
+<li><a class="reference internal" href="#release-2-2-5-openemory-relaunch-interface-changes">Release 2.2.5 - OpenEmory Relaunch Interface Changes</a></li>
+<li><a class="reference internal" href="#release-2-2-4-merging-old-pre-connector-records">Release 2.2.4 Merging old pre connector records</a></li>
+<li><a class="reference internal" href="#release-2-2-1-author-enhancement">Release 2.2.1 Author Enhancement</a></li>
+<li><a class="reference internal" href="#release-2-2-0-author-enhancement">Release 2.2.0 Author Enhancement</a></li>
+<li><a class="reference internal" href="#release-2-1-4-author-enhancement">Release 2.1.4 Author Enhancement</a></li>
+<li><a class="reference internal" href="#release-2-1-1-author-enhancement">Release 2.1.1 Author Enhancement</a></li>
+<li><a class="reference internal" href="#release-2-1-0-harmonization-of-content-types">Release 2.1.0 Harmonization of Content Types</a></li>
+<li><a class="reference internal" href="#release-2-0-0-presentation-content-type">Release 2.0.0 Presentation Content Type</a></li>
+<li><a class="reference internal" href="#release-1-9-0-poster-content-type">Release 1.9.0 Poster Content Type</a></li>
+<li><a class="reference internal" href="#release-1-8-0-report-content-type">Release 1.8.0 Report Content Type</a></li>
+<li><a class="reference internal" href="#release-1-7-0-conference-content-type">Release 1.7.0 Conference Content Type</a></li>
+<li><a class="reference internal" href="#release-1-6-0-book-chapter-content-type">Release 1.6.0 Book Chapter Content Type</a></li>
+<li><a class="reference internal" href="#release-1-5-0-book-content-type">Release 1.5.0 Book Content Type</a></li>
+<li><a class="reference internal" href="#release-1-4-0-author-enhancements">Release 1.4.0 Author enhancements</a></li>
+<li><a class="reference internal" href="#release-1-3-1-fedora-migration">Release 1.3.1 Fedora Migration</a></li>
+<li><a class="reference internal" href="#release-1-3-pre-fedora-migration">Release 1.3 - Pre Fedora Migration</a></li>
+<li><a class="reference internal" href="#release-1-2-17-link-styles">Release 1.2.17 - Link Styles</a></li>
+<li><a class="reference internal" href="#release-1-2-16-connector">Release 1.2.16 - Connector</a></li>
+<li><a class="reference internal" href="#release-1-2-15-bug-fixes">Release 1.2.15 - Bug Fixes</a></li>
+<li><a class="reference internal" href="#release-1-2-14-virtuals">Release 1.2.14 - Virtuals</a></li>
+<li><a class="reference internal" href="#release-1-2-13-menus-cleanup">Release 1.2.13 - Menus Cleanup</a></li>
+<li><a class="reference internal" href="#release-1-2-12-symplectic-elements">Release 1.2.12 - Symplectic Elements</a></li>
+<li><a class="reference internal" href="#missing-tag-symplectic-elements">&lt;missing tag&gt; - Symplectic Elements</a></li>
+<li><a class="reference internal" href="#release-1-2-11-bug-fix">Release 1.2.11 - Bug Fix</a></li>
+<li><a class="reference internal" href="#release-1-2-10-supplemental-materials">Release 1.2.10 - Supplemental Materials</a></li>
+<li><a class="reference internal" href="#release-1-2-9-odds-and-ends">Release 1.2.9 - Odds and Ends</a></li>
+<li><a class="reference internal" href="#release-1-2-8-reports">Release 1.2.8 - Reports</a></li>
+<li><a class="reference internal" href="#release-1-2-7-oai-modifications">Release 1.2.7 - OAI modifications</a></li>
+<li><a class="reference internal" href="#release-1-2-6-bug-fix-and-enhancements">Release 1.2.6 - Bug Fix and Enhancements</a></li>
+<li><a class="reference internal" href="#release-1-2-5-bug-fix">Release 1.2.5 - Bug Fix</a></li>
+<li><a class="reference internal" href="#release-1-2-4-captcha-bug-fixes">Release 1.2.4 - Captcha / Bug Fixes</a></li>
+<li><a class="reference internal" href="#release-1-2-3-oai">Release 1.2.3 - OAI</a></li>
+<li><a class="reference internal" href="#release-1-2-2-license-and-rights-enhancements">Release 1.2.2 - License and Rights Enhancements</a></li>
+<li><a class="reference internal" href="#release-1-2-1">Release 1.2.1</a></li>
+<li><a class="reference internal" href="#release-1-2-0-search-engine-optimization-and-bugfixes">Release 1.2.0 - Search Engine optimization and bugfixes</a></li>
+<li><a class="reference internal" href="#release-1-1-2-bugfixes">Release 1.1.2 - bugfixes</a></li>
+<li><a class="reference internal" href="#release-1-1-1-bugfixes-and-legal-language">Release 1.1.1 - bugfixes and legal language</a></li>
+<li><a class="reference internal" href="#release-1-1-0">Release 1.1.0</a></li>
+<li><a class="reference internal" href="#release-1-0-0-initial-production-release">Release 1.0.0 - Initial production release</a></li>
+<li><a class="reference internal" href="#release-0-7-0-polish-and-prep">Release 0.7.0 - Polish and Prep</a></li>
+<li><a class="reference internal" href="#release-0-6-0-faculty-demo">Release 0.6.0 - Faculty Demo</a></li>
+<li><a class="reference internal" href="#release-0-5-0-faculty-profiles">Release 0.5.0 - Faculty Profiles</a></li>
+<li><a class="reference internal" href="#release-0-4-0-article-metadata">Release 0.4.0 - Article Metadata</a></li>
+<li><a class="reference internal" href="#release-0-3-0-searching-and-social">Release 0.3.0 - Searching and Social</a></li>
+<li><a class="reference internal" href="#release-0-2-0-harvesting">Release 0.2.0 - Harvesting</a></li>
+<li><a class="reference internal" href="#release-0-1-0-initial-prototype">Release 0.1.0 - Initial Prototype</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="apidocs.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">openemory</span></code> Code Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deploynotes.html"
+                        title="next chapter">DEPLOYNOTES</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/changelog.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploynotes.html" title="DEPLOYNOTES"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="apidocs.html" title="openemory Code Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenEmory 2.2.8-dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Emory University Libraries.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>
