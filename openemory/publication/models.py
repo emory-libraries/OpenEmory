@@ -2372,7 +2372,7 @@ class Publication(DigitalObject):
                         break
                     except ValueError:
                         line += next(f)
-
+ 
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
