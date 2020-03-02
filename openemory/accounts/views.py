@@ -78,6 +78,9 @@ def login(request):
         if request.user.is_authenticated() and not next_url:
             # if the user is in the Site Admin group, redirect
             # to the harvest queue page
+            profile = UserProfile.objects.filter(user=request.user).first()
+            if not profile:
+                UserProfile.objects.create(user=request.user)
             if request.user.groups.filter(name='Site Admin').count():
                 next_url = reverse('harvest:queue')
 
@@ -130,6 +133,10 @@ def _get_profile_user(username):
     esdperson = get_object_or_404(EsdPerson, netid=username.upper())
     # get the corresponding local profile & user
     try:
+        user_profile = User.objects.get(username=username).userprofile
+        if not esdperson.faculty_flag and not user_profile.nonfaculty_profile:
+            user_profile.nonfaculty_profile = True
+            user_profile.save()
         profile = esdperson.profile()
         user = profile.user
         # 404 if the user exists but should not have a profile page
@@ -228,12 +235,13 @@ def profile(request, username):
     information.'''
 
     user, userprofile = _get_profile_user(username)
+    esd = EsdPerson.objects.get(netid=username.upper())
 
     # if request is from a logged in user looking at their own profile
     # or a site admin, return the faculty dashboard view
     if request.user.is_authenticated() and request.user == user \
            or request.user.has_perm('accounts.change_userprofile'):
-        return render(request, 'accounts/dashboard.html', {'author': user})
+        return render(request, 'accounts/dashboard.html', {'esd_data':esd, 'author': user})
 
     # otherwise, return the public profile
     else:
@@ -248,6 +256,7 @@ def public_profile(request, username):
     a faculty dashboard tab.
     '''
     user, userprofile = _get_profile_user(username)
+    esd_data = EsdPerson.objects.get(netid=username.upper())
 
     form, interest_formset = None, None
 
@@ -285,7 +294,7 @@ def public_profile(request, username):
     context.update({
         'author': user,
         'form': form,
-        'interest_formset': interest_formset,
+        'interest_formset': interest_formset,'esd_data': esd_data,
     })
 
     if request.is_ajax():
