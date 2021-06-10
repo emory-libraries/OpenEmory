@@ -31,7 +31,7 @@ def queue(request):
     '''Display the queue of harvested records. '''
 
     # - Restrict to only harvested records (which can be ingested or ignored)
-    records = HarvestRecord.objects.filter(status='harvested').order_by('harvested').all()
+    records = HarvestRecord.objects.filter(status='harvested').order_by('-harvested').all()
     results, show_pages = paginate(request, records)
     template_name = 'harvest/queue.html'
     # for ajax requests, only display the inner content
