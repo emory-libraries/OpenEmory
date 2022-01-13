@@ -81,7 +81,6 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         # number of articles we want to harvest in this run
         self.max_articles = int(options['max_articles']) if options['max_articles'] else None
-        print options['min_date']
         # self.min_date = options['min_date']
         # self.max_date = options['max_date']
         self.min_date = '2015/09/01'
@@ -211,5 +210,5 @@ class Command(BaseCommand):
                     raise CommandError("Max date must be greter than Min date")
         if date_args:
             date_args['datetype'] = 'edat'
-            print 'Date Range: %(mindate)s - %(maxdate)s' % date_args
+            print('Date Range: %(mindate)s - %(maxdate)s' % date_args)
         return date_args

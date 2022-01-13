@@ -513,7 +513,7 @@ www.352media.com
           <col width="3%"></col>
           <col width="95%"></col>
           <tbody>
-            {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
+            {% for query in sql_queries %}<tr class="{% cycle 'odd' 'even' %}">
             <td>{{ query.time }}</td>
             <td>{{ query.db }}</td>
             <td>{{ query.sql|escape }}</td>

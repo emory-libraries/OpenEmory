@@ -14,10 +14,10 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from openemory.publication import views
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^summary/$', views.summary, name='summary'),
     url(r'^(?P<field>(authors|subjects|journals))/$', views.browse_field, name='browse'),
     url(r'^new/$', views.ingest, name='ingest'),
@@ -39,4 +39,4 @@ urlpatterns = patterns('',
     url(r'^(?P<field>[a-zA-Z0-9_-]+)/autocomplete/$', views.suggest, name='suggest'),
     url(r'^journal_publisher/details/$', views.publisher_details, name='publisher-details'),
     url(r'^oa-fund/proposal/$', views.open_access_fund, name='oa-fund-form'),
-)
+]

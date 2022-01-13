@@ -44,7 +44,7 @@ def tags_for_user(object, user):
     pid = getattr(object, 'pid', None)
     if pid is None and 'pid' in object:
         pid = object['pid']
-    if not pid or not user.is_authenticated():
+    if not pid or not user.is_authenticated:
         return []
     try:
         bk = Bookmark.objects.get(pid=pid, user=user)

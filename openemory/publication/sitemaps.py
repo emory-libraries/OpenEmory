@@ -15,7 +15,7 @@
 #   limitations under the License.
 
 from django.contrib.sitemaps import Sitemap
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from eulfedora.server import Repository
 from openemory.publication.models import Publication
 from openemory.util import solr_interface

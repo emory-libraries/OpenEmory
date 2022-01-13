@@ -25,7 +25,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.template import Context
 from django.template.defaultfilters import slugify
@@ -50,7 +50,7 @@ from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.graph import Graph as RdfGraph
 from rdflib.namespace import ClosedNamespace, Namespace
 import subprocess
-from cStringIO import StringIO
+from io import StringIO
 import subprocess
 import tempfile
 import time
@@ -541,7 +541,6 @@ class NlmAuthor(xmlmap.XmlObject):
                 # contents
                 # TODO: remove label from text ?
                 aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' % aid)
-                #print aff
             return aff
 
 
@@ -674,7 +673,7 @@ class NlmLicense(xmlmap.XmlObject):
             # iterate through node children in serialization order
             for el in self.node.iter():
                 # for now, skip comments & processing instructions
-                if isinstance(el.tag, basestring):
+                if isinstance(el.tag, str):
                     if el.text:
                         txt.append(el.text)
 
@@ -702,7 +701,7 @@ class NlmLicense(xmlmap.XmlObject):
             # iterate through node children in serialization order
             for el in self.node.iter():
                 # for now, skip comments & processing instructions
-                if isinstance(el.tag, basestring):
+                if isinstance(el.tag, str):
                     # special handling for links
                     if el.tag in ['ext-link', 'uri']:
                         link = el.attrib['{%s}href' % self.xlink_ns]
@@ -1381,7 +1380,7 @@ class Publication(DigitalObject):
         try:
             # if this article doesn't have a content datastream, skip it
             if not self.pdf.exists:
-    		return None
+                return None
 
             pdfreader = PdfFileReader(self.pdf.content, strict=False)
             return pdfreader.getNumPages()
@@ -1800,7 +1799,7 @@ class Publication(DigitalObject):
         if quarter is None:
             quarter = year_quarter(date.today().month) #get the quarter 1, 2, 3, 4
 
-        if not isinstance(self.pid, basestring):
+        if not isinstance(self.pid, str):
             return None
 
         stats, created = ArticleStatistics.objects.get_or_create(pid=self.pid, year=year, quarter=quarter)
@@ -1812,7 +1811,7 @@ class Publication(DigitalObject):
         does not yet have a PID.
         '''
 
-        if not isinstance(self.pid, basestring):
+        if not isinstance(self.pid, str):
             return None
         return ArticleStatistics.objects.filter(pid=self.pid)
 
@@ -1910,14 +1909,12 @@ class Publication(DigitalObject):
             # sort by DS timestamp does not work yet asks for global name obj because of lambda function
             new_dict = {}
             for mime in mime_ds_list:
-                # print "Got Here"
                 new_dict[mime] = self.getDatastreamObject(mime)
 
 
             sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
             # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
             mime = sorted_mimes[-1][0]  # most recent
-            # print mime
             if mime:
 
                 mime_type =  self.ds_list[mime].mimeType
@@ -2056,7 +2053,6 @@ class Publication(DigitalObject):
             # load and add cover page first
             cover = PdfFileReader(coverdoc, strict=False)
             doc.addPage(cover.pages[0])
-            # print "Got Here"
             # load pdf datastream contents into a file-like object
             for ch in self.pdf.get_chunked_content():
 
@@ -2598,7 +2594,7 @@ class ResearchFields(object):
                     if flattened:
                         flat_choices.extend(flattened)
 
-                elif all(isinstance(val, basestring) for label,val, in choice[1]):
+                elif all(isinstance(val, str) for label,val, in choice[1]):
                     # this group only has values, no list - add as-is
                     flat_choices.append(['%s%s' % (prefix, choice[0]), choice[1]])
 
@@ -2607,7 +2603,7 @@ class ResearchFields(object):
                     # gather all the values and add them
                     subchoices = []
                     for label,val in sorted(choice[1]):
-                        if isinstance(val, basestring):
+                        if isinstance(val, str):
                             subchoices.append([label, val])
                     flat_choices.append(['%s%s' % (prefix, choice[0]), subchoices])
 

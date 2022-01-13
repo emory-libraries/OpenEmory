@@ -44,7 +44,6 @@ class HarvestRecord(models.Model):
     class Meta:
         permissions = (
             # add, change, delete are avilable by default
-            ('view_harvestrecord', 'Can see available harvested records'),
             ('ingest_harvestrecord', 'Can ingest harvested record to Fedora'),
             ('ignore_harvestrecord', 'Can mark a harvested record as ignored')
         )

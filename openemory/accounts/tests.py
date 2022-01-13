@@ -353,7 +353,6 @@ class AccountViewsTest(TestCase):
         # logged in, looking at own dashboard
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         response = self.client.get(dashboard_url)
-        #print response
 
         # user stats - check for expected numbers
         self.assertContains(response, "<strong>2</strong> total items")
@@ -484,7 +483,6 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertEqual('accounts/profile.html', response.templates[0].name,
             'anonymous access to profile should use accounts/profile.html for primary template')
-        print response
         # ESD data should be displayed (not suppressed)
         self.assertContains(response, self.faculty_esd.last_name,
             msg_prefix="profile page should display user's directory name")
@@ -1999,8 +1997,6 @@ class AccountViewsTest(TestCase):
                               kwargs={'username': self.faculty_username})
         self.assertEqual(response['Location'], 'http://testserver' + profile_url)
         self.assertEqual(len(mail.outbox), 1)
-        print mail.outbox[0].body
-        print "#################"
         self.assertTrue(self.faculty_username in mail.outbox[0].body)
         self.assertTrue(profile_url in mail.outbox[0].body)
         mail.outbox = []

@@ -12,7 +12,7 @@
       {% for page, label in show_pages.items %}
         {% if forloop.first and page > 2 %}<li> ... </li>{% endif %} {# gap before page 1 #}
           <li><a href="{{ page_url }}?{% if url_params %}{{url_params}}&amp;{% endif %}page={{ page }}"
-                 class="within-tab{% if page = items.number %} current{# current page #}{% endif %}">{% firstof label page %}</a></li>
+                 class="within-tab{% if page == items.number %} current{# current page #}{% endif %}">{% firstof label page %}</a></li>
     {% if forloop.last and page|add:1 < items.paginator.num_pages %}<li> ... </li>{% endif %} {# gap before last page #}
     {% endfor %}
       </ol>

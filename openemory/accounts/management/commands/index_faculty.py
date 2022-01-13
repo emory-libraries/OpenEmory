@@ -44,8 +44,8 @@ class Command(BaseCommand):
         self.verbosity = int(verbosity)
 
         if self.verbosity >= self.v_normal:
-            print 'Indexing ESD data for %d faculty members in Solr' % \
-                    (EsdPerson.faculty.all().count(),)
+            print('Indexing ESD data for %d faculty members in Solr' % \
+                    (EsdPerson.faculty.all().count(),))
 
         try:
             solr_url = options.get('index_url', None)
@@ -87,12 +87,12 @@ class Command(BaseCommand):
         for p in EsdPerson.faculty.all():
 
             if self.verbosity >= self.v_all:
-                print 'Indexing faculty', p.username
+                print('Indexing faculty', p.username)
             old_index_data = self.indexed_faculty_data.get(p.username, {})
             index_data = p.index_data()
             if not self.compare_index_data(index_data, old_index_data):
                 if self.verbosity >= self.v_all:
-                    print 'Faculty', p.username, 'has changed.'
+                    print('Faculty', p.username, 'has changed.')
                 self.updated_faculty.add(p.username)
 
             self.active_faculty.add(p.username)
@@ -111,7 +111,7 @@ class Command(BaseCommand):
 
             if new_val and old_val and new_val != old_val and old_val != (new_val,):
                 if self.verbosity >= self.v_all:
-                    print '(%s) %r != %r' % (field, new_val, old_val)
+                    print('(%s) %r != %r' % (field, new_val, old_val))
                 return False
         return True
 
@@ -136,7 +136,7 @@ class Command(BaseCommand):
         for faculty in self.indexed_faculty_data.itervalues():
             if faculty['username'] not in self.active_faculty:
                 if self.verbosity >= self.v_all:
-                    print 'Removing deactivated faculty', faculty['username']
+                    print('Removing deactivated faculty', faculty['username'])
                 self.updated_faculty.add(faculty['username'])
                 self.solr.delete(faculty)
 
@@ -153,14 +153,14 @@ class Command(BaseCommand):
         repo = Repository()
         for pid in updated_articles:
             if self.verbosity >= self.v_all:
-                print 'Indexing article', pid
+                print('Indexing article', pid)
             article = repo.get_object(pid, type=Publication)
             self.solr.add(article.index_data())
 
     def indexed_faculty(self):
         # generator: return solr data for all currently indexed EsdPerson
         if self.verbosity >= self.v_all:
-            print 'Fetching indexed faculty'
+            print('Fetching indexed faculty')
         q = self.solr.query(record_type=EsdPerson.record_type)
         for faculty in self.all_solr_results(q):
             yield faculty
@@ -168,7 +168,7 @@ class Command(BaseCommand):
     def articles_by_faculty(self, username):
         # generator: return solr data for all articles associated with a user
         if self.verbosity >= self.v_all:
-            print 'Fetching articles by', username
+            print('Fetching articles by', username)
         try:
             profile = UserProfile.objects.get(user__username=username)
         except UserProfile.DoesNotExist:

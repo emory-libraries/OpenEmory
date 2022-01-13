@@ -22,12 +22,12 @@ from django.conf import settings
 from openemory.publication.views import mail_listserv
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import mail_managers
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.db.models import Count, Q
 from django.http import HttpResponse, Http404, HttpResponseForbidden, \
@@ -75,7 +75,7 @@ def login(request):
     # redirect the user somewhere appropriate
     if request.method == "POST":
         next_url = request.POST.get('next', None)
-        if request.user.is_authenticated() and not next_url:
+        if request.user.is_authenticated and not next_url:
             # if the user is in the Site Admin group, redirect
             # to the harvest queue page
             profile = UserProfile.objects.filter(user=request.user).first()
@@ -95,7 +95,7 @@ def login(request):
             return HttpResponseSeeOtherRedirect(next_url)
 
         # if this was a post, but the user is not authenticated, login must have failed
-        elif not request.user.is_authenticated():
+        elif not request.user.is_authenticated:
             # add an error message, then redirect the user back to where they were
             messages.error(request, 'Login failed. Please try again.')
             if not next_url:
@@ -239,7 +239,7 @@ def profile(request, username):
 
     # if request is from a logged in user looking at their own profile
     # or a site admin, return the faculty dashboard view
-    if request.user.is_authenticated() and request.user == user \
+    if request.user.is_authenticated and request.user == user \
            or request.user.has_perm('accounts.change_userprofile'):
         return render(request, 'accounts/dashboard.html', {'esd_data':esd, 'author': user})
 
@@ -480,8 +480,8 @@ def profile_tags(request, username):
     user = get_object_or_404(User, username=username)
     # check authenticated user
     if request.method in ['PUT', 'POST']:
-        if not request.user.is_authenticated() or request.user != user:
-            if not request.user.is_authenticated():
+        if not request.user.is_authenticated or request.user != user:
+            if not request.user.is_authenticated:
                 # user is not logged in
                 code, message = 401, 'Not Authorized'
             else:
@@ -610,11 +610,7 @@ def faculty_autocomplete(request):
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
-    
-    # for u2 in r2:
-    #     print u2
 
-    print r
     suggestions = [
         {'label': u['ad_name'],  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
@@ -804,7 +800,6 @@ def view_department(request, id):
 
     # q = solr.query(department_id=id).filter(content_model=Article.ARTICLE_CONTENT_MODEL, state='A').facet_by('creator_sorting', mincount=1, limit=-1, sort='index', prefix=filter.lower())
     # result = q.paginate(rows=0).execute()
-    # print result
     # facets = result.facet_counts.facet_fields['creator_sorting']
 
     # #removes name from field for proper presentation
@@ -857,7 +852,7 @@ def feedback(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            user_name = user.username if user.is_authenticated() else 'anonymous user'
+            user_name = user.username if user.is_authenticated else 'anonymous user'
             user_email = form.cleaned_data['email']
             user_subject = ' ' if not form.cleaned_data['subject'] else ' %s '% form.cleaned_data['subject'].strip()
 
@@ -873,7 +868,7 @@ def feedback(request):
             mail_listserv(subject, content)
             destination = reverse('site-index')
             try:
-                if user.is_authenticated():
+                if user.is_authenticated:
                     profile = user.userprofile
                     if profile.has_profile_page():
                         destination = reverse('accounts:profile',
@@ -886,7 +881,7 @@ def feedback(request):
 
     else:
         form_data = {}
-        if user.is_authenticated():
+        if user.is_authenticated:
             try:
                 profile = user.userprofile
                 esd = profile.esd_data()

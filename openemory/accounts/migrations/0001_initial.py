@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('pid', models.CharField(max_length=255)),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', help_text='A comma-separated list of tags.', verbose_name='Tags')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE)),
             ],
         ),
         migrations.CreateModel(
@@ -120,7 +120,7 @@ class Migration(migrations.Migration):
                 ('photo', models.ImageField(default=b'', upload_to=b'profile-photos/%Y/%m/', blank=True)),
                 ('biography', models.TextField(default=b'', help_text=b'Biographical paragraph for public profile', blank=True)),
                 ('research_interests', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text=b'Comma-separated list of public research interests', verbose_name=b'Research Interests')),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['user__username'],
@@ -129,21 +129,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='position',
             name='holder',
-            field=models.ForeignKey(verbose_name=b'Position holder', to='accounts.UserProfile'),
+            field=models.ForeignKey(verbose_name=b'Position holder', to='accounts.UserProfile', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='grant',
             name='grantee',
-            field=models.ForeignKey(to='accounts.UserProfile'),
+            field=models.ForeignKey(to='accounts.UserProfile', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='externallink',
             name='holder',
-            field=models.ForeignKey(to='accounts.UserProfile'),
+            field=models.ForeignKey(to='accounts.UserProfile', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='degree',
             name='holder',
-            field=models.ForeignKey(verbose_name=b'Degree holder', to='accounts.UserProfile'),
+            field=models.ForeignKey(verbose_name=b'Degree holder', to='accounts.UserProfile', on_delete=models.CASCADE),
         ),
     ]

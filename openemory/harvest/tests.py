@@ -83,7 +83,6 @@ class HarvestViewsTest(TestCase):
             for author in record.authors.all():
                 self.assertContains(response, author.get_full_name(),
                     msg_prefix='record author full name should be included in queue')
-                print author.username
                 self.assertContains(response, reverse('accounts:profile',
                                                       kwargs={'username': author.username}),
                     msg_prefix='record author profile link should be included in queue')
@@ -213,7 +212,6 @@ class EntrezTest(TestCase):
 
         # self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 1)
         # # check the first query url
-        # print mock_load.urls[0]
         # self.assertTrue('esearch.fcgi' in mock_load.urls[0])
         # # these should always be in there per E-Utils policy (see entrez.py)
         # self.assertTrue('tool=' in mock_load.urls[0])

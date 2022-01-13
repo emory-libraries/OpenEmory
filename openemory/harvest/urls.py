@@ -14,10 +14,10 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from openemory.harvest import views
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^queue/$', views.queue, name='queue'),
     url(r'^records/(?P<id>[0-9]+)/$', views.record, name='record'),
-)
+]

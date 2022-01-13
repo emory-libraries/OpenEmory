@@ -75,7 +75,7 @@ def sitepages(request):
 
     # build a dictionary of nickname -> flatpage object
     nick_pages = {}
-    for nick, url in nick_urls.iteritems():
+    for nick, url in nick_urls.items():
         if url in pages_by_url:
             nick_pages[nick] = pages_by_url[url]
     return {'sitepages': nick_pages}
