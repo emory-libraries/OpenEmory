@@ -21,7 +21,8 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
 
-from openemory.accounts import captchafield
+# from openemory.accounts import captchafield
+from captcha.fields import ReCaptchaField
 
 from openemory.accounts.models import UserProfile, Degree, Position, Grant, ExternalLink
 from openemory.inlinemodelformsets import ModelForm
@@ -134,4 +135,4 @@ class FeedbackForm(forms.Form):
                            widget=forms.TextInput(attrs={'class': 'text'}))
     message = forms.CharField(required=True, label='Message',
                            widget=forms.Textarea)
-    captcha = captchafield.ReCaptchaField()
+    captcha = ReCaptchaField()

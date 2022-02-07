@@ -104,7 +104,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 
    {% if user.is_authenticated %}
      {# display an edit link when appropriate -  author+unpublished or reviewer #}
-     {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
+     {% if user.username in article.owner and article.state == 'I' or perms.publication.review_article %}
        <li><a href="{% url 'publication:edit' article.pid %}" class="editDocument">Edit</a></li> {# TODO: needs 352 style/icon  #}
      {% endif %} {# end permission to edit #}
    {% endif %} {# end logged in #}

@@ -14,7 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from cStringIO import StringIO
+from io import StringIO
 import datetime
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 # add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     research_interests = TaggableManager(verbose_name='Research Interests',
         help_text='Comma-separated list of public research interests',
         blank=True)
@@ -219,7 +219,7 @@ class UserProfile(models.Model):
 
 class Degree(models.Model):
     ''':class:`~django.db.models.Model` for a degree held by a user.'''
-    holder = models.ForeignKey(UserProfile, verbose_name='Degree holder')
+    holder = models.ForeignKey(UserProfile, verbose_name='Degree holder', on_delete=models.CASCADE)
     name = models.CharField(verbose_name='Degree Name',
         max_length=30)
     institution = models.CharField(max_length=255,
@@ -236,7 +236,7 @@ class Degree(models.Model):
 class Position(models.Model):
     ''':class:`~django.db.models.Model` for an academic title (e.g.: named
     chair, organization president, journal editor) held by a user.'''
-    holder = models.ForeignKey(UserProfile, verbose_name='Position holder')
+    holder = models.ForeignKey(UserProfile, verbose_name='Position holder', on_delete=models.CASCADE)
     name = models.CharField(verbose_name='Position Name', max_length=200)
 
     def __unicode__(self):
@@ -246,7 +246,7 @@ class Position(models.Model):
 class Grant(models.Model):
     ''':class:`~django.db.models.Model` for a research grant to be
     displayed on a user profile.'''
-    grantee = models.ForeignKey(UserProfile)
+    grantee = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=250, blank=True)
     grantor = models.CharField(max_length=250, blank=True)
     project_title = models.CharField(max_length=250, blank=True)
@@ -271,7 +271,7 @@ class Grant(models.Model):
 
 class ExternalLink(models.Model):
     ''':class:`~django.db.models.model` for an external link held by a user.'''
-    holder = models.ForeignKey(UserProfile)
+    holder = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     url = models.URLField()
 
@@ -305,7 +305,7 @@ class Bookmark(models.Model):
     private bookmarks and tags for
     :class:`~eulfedora.models.DigitalObject` instances.
     '''
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     ''':class:`~django.contrib.auth.models.User` who created and owns
     this bookmark'''
     pid = models.CharField(max_length=255)

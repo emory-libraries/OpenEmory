@@ -20,9 +20,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict as SortedDict
 from django.utils.safestring import mark_safe
-from localflavor.us.forms import USPhoneNumberField
 # collections.OrderedDict not available until Python 2.7
 import magic
 
@@ -562,7 +561,7 @@ def language_choices():
     codes = language_codes()
     # put english at the top of the list
     choices = [('eng', codes['eng'])]
-    choices.extend((code, name) for code, name in codes.iteritems()
+    choices.extend((code, name) for code, name in codes.items()
                    if code != 'eng')
     return choices
 
@@ -647,7 +646,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    # publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
+    
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -659,15 +658,10 @@ class PublicationModsEditForm(BaseXmlObjectForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
-    #author_agreement = forms.FileField(required=False,
-    #                                   help_text="Upload a copy of the " +
-    #                                   "article's author agreement.",
-    #                                   widget=forms.FileInput(attrs={'class': 'text'}),
-    #                                   validators=[FileTypeValidator(types=['application/pdf'],
-    #                                                                 message=PDF_ERR_MSG)])
+    
     publication_date = W3CDateField(widget=LocalW3CDateWidget,
         error_messages={'invalid':  u'Enter at least year (YYYY); ' +
                         u'enter two-digit month and day if known.',
@@ -920,7 +914,7 @@ class ArticleEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -999,7 +993,7 @@ class BookEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1079,7 +1073,7 @@ class ChapterEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1157,7 +1151,7 @@ class ConferenceEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1235,7 +1229,7 @@ class ReportEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1313,7 +1307,7 @@ class PosterEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1391,7 +1385,7 @@ class PresentationEditForm(PublicationModsEditForm):
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
-    embargo_duration = forms.ChoiceField(_embargo_choices,
+    embargo_duration = forms.ChoiceField(choices=_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
@@ -1451,7 +1445,7 @@ class OpenAccessProposalForm(forms.Form):
     department = forms.CharField(label='Department', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     school_div = forms.CharField(label='School or Division', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
-    phone = USPhoneNumberField(label='Phone', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    phone = forms.CharField(label='Phone', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     #status = forms.CharField(label='Status', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     status = forms.ChoiceField(label='Status', choices=status_choices)
     journal_book_title = forms.CharField(label='Journal or Book Title', widget=forms.TextInput(attrs={'class': 'text'}), required=True)

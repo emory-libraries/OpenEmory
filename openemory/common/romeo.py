@@ -73,8 +73,8 @@ the following values:
 #   http://www.sherpa.ac.uk/romeo/SHERPA%20RoMEO%20API%20V-2-4%202009-10-29.pdf
 # at which also see Conditions of Use
 
-from urllib import urlencode
-from urllib2 import urlopen
+from urllib.parse import urlencode
+from urllib.request import urlopen
 from django.conf import settings
 from eulxml import xmlmap
 

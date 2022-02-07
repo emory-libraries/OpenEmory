@@ -20,14 +20,14 @@ import logging
 import zipfile
 from slugify import slugify
 import time
-from pyPdf import PdfFileReader, PdfFileWriter
-from cStringIO import StringIO
-from urllib import urlencode
+from PyPDF2 import PdfFileReader, PdfFileWriter
+from io import StringIO
+from urllib.parse import urlencode
 from rdflib import URIRef, Literal
 from rdflib.graph import Graph as RdfGraph, Namespace
 from django.conf import settings
 from django.contrib import messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.mail import mail_managers, send_mail
 from django.db.models import Sum
@@ -46,8 +46,8 @@ from eulfedora.rdfns import relsext, oai
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
-from pyPdf.utils import PdfReadError
-from sunburnt import sunburnt
+from PyPDF2.utils import PdfReadError
+from sunburnt import *
 from django.template import Context
 from django.core.mail import EmailMultiAlternatives
 
@@ -403,7 +403,7 @@ def view_article(request, pid):
 
     obj = _get_article_for_request(request, pid)
 
-
+    print(obj.descMetadata.content.genre)
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
         if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
@@ -485,13 +485,9 @@ def edit_metadata(request, pid):
             
         # publish
         else:
-            print "got here"
             form = editform(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm)
-            print form.errors
-            print form.non_field_errors()
         if form.is_valid():
-            print "got here 2"
 
             withdrawn = obj.is_withdrawn
             newly_reinstated = newly_withdrawn = False
@@ -609,13 +605,11 @@ def edit_metadata(request, pid):
 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
 
-                print "obj is not saved"
+                
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
-                    print "permisssions"
                     msg = 'You don\'t have permission to modify this object in the repository.'
                 else:
-                    print "repo error"
                     msg = 'There was an error communicating with the repository.'
                 messages.error(request,
                                msg + ' Please contact a site administrator.')
@@ -626,10 +620,6 @@ def edit_metadata(request, pid):
 
         # form was posted but not valid
         else:
-            print len(form.errors)
-            # print form
-            # for error in form.non_field_errors:
-            #     print error
             context['invalid_form'] = True
 
     context['form'] = form
@@ -658,7 +648,7 @@ def download_pdf(request, pid):
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
             # only logged-in authors or site admins are allowed
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated:
                 tpl = get_template('401.html')
                 return HttpResponse(tpl.render(RequestContext(request)), status=401)
             if not (request.user.username in obj.owner \
@@ -673,7 +663,6 @@ def download_pdf(request, pid):
             if request.method == 'GET':
                 stats = obj.statistics()
                 stats.num_downloads += 1
-                print "hitting it"
                 stats.save()
         # try:
         if obj.what_mime_type() == 'pdf':
@@ -759,12 +748,12 @@ def view_private_datastream(request, pid, dsid):
                     (obj.pid, dsid),
         }
         # use generic raw datastream view from eulfedora
-        if (request.user.is_authenticated()) and \
+        if (request.user.is_authenticated) and \
            (request.user.username in obj.owner
                or request.user.is_superuser):
             return raw_datastream(request, pid, dsid,
                                   repo=repo, headers=extra_headers)
-        elif request.user.is_authenticated():
+        elif request.user.is_authenticated:
             tpl = get_template('403.html')
             return HttpResponseForbidden(tpl.render(RequestContext(request)))
         else:
@@ -929,8 +918,10 @@ def site_index(request):
             pid_filter |= solr.Q(pid=pid)
         most_viewed = q.filter(pid_filter).execute()
         # re-sort the solr results according to stats order
-        most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
-                                                              pids.index(y['pid'])))
+        # most_viewed = []
+        print(most_viewed)
+        # most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
+        #                                                       pids.index(y['pid'])))
     else:
         most_viewed = []
 
@@ -1074,6 +1065,8 @@ def search(request):
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
     q = solr.query().filter(**cm_filter)
+
+    print(q)
     people_q = solr.query().filter(record_type='accounts_esdperson')
     if item_terms:
         name_info = _parse_name(item_terms)
@@ -1168,7 +1161,7 @@ def search(request):
                 facets.append(facet)
 
     people = people_q.paginate(rows=100).execute()
-
+    print(results)
     return render(request, 'publication/search-results.html', {
             'results': results,
             'authors': people,
@@ -1364,8 +1357,6 @@ def review_queue(request):
     # q = solr.query().exclude(review_date__any=False)
     q = q.sort_by('created')
     results, show_pages = paginate(request, q)
-    # for article in results.object_list:
-    #     print article.genre
     template_name = 'publication/review-queue.html'
     # for ajax requests, only display the inner content
     if request.is_ajax():

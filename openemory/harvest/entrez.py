@@ -19,8 +19,8 @@
 from datetime import datetime, timedelta
 import logging
 from time import sleep
-from urllib import urlencode
-from urllib import urlopen
+from urllib.parse import urlencode
+from urllib.request import urlopen
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
@@ -107,7 +107,7 @@ class EntrezClient(object):
             url_validator(qurl)
             target_file = urlopen(qurl)
             return xmlmap.load_xmlobject_from_file(target_file, xmlclass=response_xmlclass)
-        except ValidationError, e:
+        except ValidationError:
             return xmlmap.load_xmlobject_from_file(qurl, xmlclass=response_xmlclass)
 
     def _enforce_query_timing(self):

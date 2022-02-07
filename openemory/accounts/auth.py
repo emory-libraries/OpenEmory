@@ -31,7 +31,6 @@ from functools import wraps
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import get_template
-from django.utils.decorators import available_attrs
 
 
 def user_passes_test_401_or_403(test_func):
@@ -46,7 +45,7 @@ def user_passes_test_401_or_403(test_func):
     **403.html** template.
     """
     def decorator(view_func):
-        @wraps(view_func, assigned=available_attrs(view_func))
+        @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
             try:
                 passes = test_func(request.user)
@@ -59,7 +58,7 @@ def user_passes_test_401_or_403(test_func):
                 # if the test passes, return the view function normally
                 return view_func(request, *args, **kwargs)
 
-            elif not request.user.is_authenticated():
+            elif not request.user.is_authenticated:
                 # if the test fails and user is not authenticated
                 code = 401
                 text = 'Not Authorized'
@@ -97,7 +96,7 @@ def login_required(function=None):
     rendering a 401 or 403 template as appropriate.  See
     :meth:`~openemory.accounts.auth.user_passes_test_401_or_403`.
     """
-    actual_decorator = user_passes_test_401_or_403(lambda u: u.is_authenticated())
+    actual_decorator = user_passes_test_401_or_403(lambda u: u.is_authenticated)
     if function:
         return actual_decorator(function)
     return actual_decorator
@@ -118,7 +117,7 @@ def require_self_or_admin(function=None):
     '''
     
     def test_self_or_admin(user, username, *args, **kwargs):
-        return (user.is_authenticated() and user.username == username) \
+        return (user.is_authenticated and user.username == username) \
                or user.is_superuser \
                or user.groups.filter(name='Site Admin').count()
 

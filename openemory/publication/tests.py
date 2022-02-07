@@ -240,7 +240,6 @@ class NlmArticleTest(TestCase):
     # @patch.object(EmoryLDAPBackend, 'find_user_by_email', new=mock_find_by_email)
     def test_as_article_mods(self):
         amods = self.article.as_article_mods()
-        # print amods.authors[0].all()
         self.assertEqual(self.article.article_title, amods.title_info.title)
         self.assertEqual(self.article.article_subtitle, amods.title_info.subtitle)
         self.assertEqual('text', amods.resource_type)
@@ -699,7 +698,6 @@ class ArticleTest(TestCase):
             'cover page should include second author name')
         self.assert_(amods.authors[0].affiliation in covertext,
             'cover page should include author affiliation')
-        print covertext
         self.assert_(amods.journal.title in covertext,
             'cover page should include journal title')
         # ARK
@@ -855,7 +853,6 @@ class ArticleTest(TestCase):
         self.article.descMetadata.content.authors.extend([n1, n2])
 
         pub, relations = self.article.as_symp()
-        print pub.publisher
 
         self.assertEqual(pub.type_id, '5')
         self.assertEqual(pub.types[0], 'Article')
@@ -896,7 +893,6 @@ class ArticleTest(TestCase):
 
         # existing configs, should generate ark as expected
         ark_uri = self.article.ark_uri_from_pid()
-        print ark_uri
         self.assertEqual('%sark:/%s/%s' % (settings.PIDMAN_HOST, settings.PID_NAAN,
                                            self.article.noid),
                          ark_uri)
@@ -2220,7 +2216,7 @@ class PublicationViewsTest(TestCase):
             articles = MagicMock()
             mocksolr.query.execute.return_value = articles
             mocksolr.__getitem__.return_value = articles
-            print mocksolr.__getitem__.return_value
+            print(mocksolr.__getitem__.return_value)
             search_url = reverse('publication:search')
             response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',
                                                     'within_keyword': 'discount', 'past_within_keyword': 'quality'})
@@ -2661,8 +2657,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.authors[0].family_name)
         self.assertContains(response, amods.authors[0].given_name)
         self.assertContains(response, amods.authors[0].affiliation)
-        print amods.authors[0].id
-        print response
+        print(amods.authors[0].id)
+        print(response)
         self.assertContains(response, reverse('accounts:profile',
                                               kwargs={'username': amods.authors[0].id}))
 
@@ -2734,7 +2730,6 @@ class PublicationViewsTest(TestCase):
                             msg_prefix = "Admin should see filesize even though it is embargoed")
 
         # site admin can see all premis events
-        # print response
         self.assertContains(response, harvest_text)
         self.assertContains(response, review_text)
 
@@ -3099,7 +3094,6 @@ class PublicationViewsTest(TestCase):
         with self._use_statistics_context():
             index_url = reverse('site-index')
             response = self.client.get(index_url)
-            # print response.context['ARTICLE_STATISTICS']
             # self.assertTrue('ARTICLE_STATISTICS' in response.context)
             # self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
             # self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
@@ -3698,8 +3692,6 @@ class ArticlePremisTest(TestCase):
         ev.agent_id = 'aadmyn'
         pr.events.append(ev)
         # if changes cause validation errors, uncomment the next 2 lines to debug
-        #pr.is_valid()
-        #print pr.validation_errors()
         self.assert_(pr.is_valid())
 
         self.assertEqual(ev, pr.review_event)
@@ -3901,7 +3893,6 @@ class ArticleModsForm(TestCase):
     def test__license_desc(self):
         form = amods(pid='fake:pid')
         result = amods._license_desc(form, "http://creativecommons.org/licenses/by/3.0/")
-        print result
         self.assertIn('http://creativecommons.org/licenses/by/3.0/', result)
         self.assertIn('This is an Open Access work distributed', result)
         self.assertIn('under the terms of the Creative Commons', result)

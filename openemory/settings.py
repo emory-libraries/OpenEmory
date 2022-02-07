@@ -63,41 +63,47 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
 
-TEMPLATE_CONTEXT_PROCESSORS = [
-    # defaults:
-    "django.contrib.auth.context_processors.auth",
-    "django.template.context_processors.debug",
-    "django.template.context_processors.i18n",
-    "django.template.context_processors.media",
-    "django.template.context_processors.static",
-    "django.template.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, '..', 'templates')],
+        'OPTIONS': {
+            'context_processors': [
+                # defaults:
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.template.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
 
-    # application-specific:
-    "openemory.version_context",
-    "openemory.context_processors.debug",
-    "openemory.context_processors.sitepages",
-    "openemory.context_processors.site_analytics",
-    "openemory.mx.context_processors.downtime_context",
-    "openemory.accounts.context_processors.authentication_context",
-    "openemory.accounts.context_processors.user_tags",
-    "openemory.accounts.context_processors.statistics",
-    "openemory.publication.context_processors.search_form",
-    "openemory.publication.context_processors.statistics",
+                # application-specific:
+                "openemory.version_context",
+                "openemory.context_processors.debug",
+                "openemory.context_processors.sitepages",
+                "openemory.context_processors.site_analytics",
+                # "openemory.mx.context_processors.downtime_context",
+                "openemory.accounts.context_processors.authentication_context",
+                "openemory.accounts.context_processors.user_tags",
+                "openemory.accounts.context_processors.statistics",
+                "openemory.publication.context_processors.search_form",
+                "openemory.publication.context_processors.statistics",
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                
+            ],
+        },
+    },
 ]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'openemory.mx.middleware.DownpageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -107,14 +113,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'openemory.urls'
 
-
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, '..', 'templates'),
-)
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -131,12 +129,12 @@ INSTALLED_APPS = [
     'eulfedora',
     'eulcommon.searchutil',
     'taggit',
-    'openemory.mx',
-    'downtime',
+    #'downtime',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',
     'openemory.harvest',
+    'captcha',
     'widget_tweaks',
 ]
 
@@ -181,7 +179,7 @@ DOWNTIME_EXEMPT_PATHS = (
 DOWNTIME_ALLOWED_IPS = []
 
 try:
-    from localsettings import *
+    from openemory.localsettings import *
 except ImportError:
     import sys
     print >>sys.stderr, '''Settings not defined. Please configure a version
