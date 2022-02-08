@@ -214,11 +214,11 @@ def setup_virtualenv(python=None):
                 sudo(pip_local_cmd, user=env.remote_acct)
                 sudo(pip_cmd, user=env.remote_acct)
                 sudo('python -m pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
-                if files.exists('../pip-local-req.txt'):
-                    pip_cmd = 'python -m pip install -r ../pip-local-req.txt'
-                    if env.remote_proxy:
-                        pip_cmd += ' --proxy=%(remote_proxy)s' % env
-                    sudo(pip_cmd, user=env.remote_acct)
+                # if files.exists('../pip-local-req.txt'):
+                #     pip_cmd = 'python -m pip install -r ../pip-local-req.txt'
+                #     if env.remote_proxy:
+                #         pip_cmd += ' --proxy=%(remote_proxy)s' % env
+                #     sudo(pip_cmd, user=env.remote_acct)
 
 
 def configure_site():
