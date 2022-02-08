@@ -15,7 +15,7 @@
 #   limitations under the License.
 
 from django.contrib.sitemaps import Sitemap
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from openemory.accounts.models import EsdPerson
 
 class ProfileSitemap(Sitemap):

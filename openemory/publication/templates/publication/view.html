@@ -18,7 +18,7 @@
       <meta name="citation_author" content="{{ author.given_name|escape }} {{ author.family_name|escape }}">
     {% endfor %}
     <meta name="citation_publication_date" content="{{ mods.publication_date|escape }}">
-    {% if mods.genre = "Article"%}
+    {% if mods.genre == "Article"%}
     <meta name="citation_journal_title" content="{{ mods.journal.title|escape }}">
     
       {% if mods.journal.volume %}
@@ -246,7 +246,7 @@
 
     {% if user.is_authenticated %}
       {# display an edit link when appropriate -  author+unpublished or reviewer #}
-      {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
+      {% if user.username in article.owner and article.state == 'I' or perms.publication.review_article %}
       <li><a href="{% url 'publication:edit' article.pid %}" class="editDocument"><span></span>Edit this record</a></li>  {# TODO: style/icon #}
       {% endif %}
 

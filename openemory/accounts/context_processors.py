@@ -45,7 +45,7 @@ class LocalAuthenticationForm(AuthenticationForm):
 
 def authentication_context(request):
     'Context processor to add a login form to every page.'
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return {}
     else:
         # TODO: auth form should display login error message when a
@@ -55,7 +55,7 @@ def authentication_context(request):
 
 def user_tags(request):
     '''Context processor to add the tags for the current user to every page.'''
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         # taggit v0.9.3 (the current version as of 2011-12-07) doesn't
         # recognize that filtering Tag objects on bookmark__user implies
         # that we only want tags for bookmarks. so here we have to make that

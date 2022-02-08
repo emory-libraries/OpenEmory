@@ -272,7 +272,7 @@ def build_source_package(path=None, user=None, url_prefix='',
     package_source()
 
 @task
-def deploy(path=None, user=None, url_prefix='', python=None,
+def deploy(path=None, user=None, url_prefix='', python='/opt/rh/rh-python36/root/usr/bin/python3',
            remote_proxy=None):
     '''Deploy the web app to a remote server.
 

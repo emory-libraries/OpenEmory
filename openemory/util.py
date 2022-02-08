@@ -26,11 +26,12 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 import sunburnt
 from eulcommon.searchutil import pages_to_show
 #from pyPdf import PdfFileReader
-from pdfminer.pdfinterp import PDFResourceManager, process_pdf
+from pdfminer.pdfinterp import PDFResourceManager
+from pdfminer.pdfpage import PDFPage
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
-from cStringIO import StringIO
-from urlparse import urlparse
+from io import StringIO
+from urllib.parse import urlparse
 import os
 import re
 import difflib
@@ -84,9 +85,9 @@ def solr_interface():
                                         proxy_host=parsed_proxy.hostname,
                                         proxy_port=parsed_proxy.port)
         http_opts['proxy_info'] = proxy_info
-    http = httplib2.Http(**http_opts)
+    # http = httplib2.Http(**http_opts)
 
-    solr_opts = {'http_connection': http}
+    solr_opts = {}
     # since we have the schema available, don't bother requesting it
     # from solr every time we initialize a new connection
     if hasattr(settings, 'SOLR_SCHEMA'):
@@ -131,7 +132,7 @@ def pdf_to_text(pdfstream):
     device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
     
     fp = pdfstream
-    process_pdf(rsrcmgr, device, fp)
+    PDFPage.get_pages(rsrcmgr, device, fp)
     fp.close()
     device.close()
 

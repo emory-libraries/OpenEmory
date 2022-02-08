@@ -47,7 +47,6 @@ can be found in :mod:`findingaids.content.forms`
 
 import json
 from recaptcha.client import captcha
-
 from django.conf import settings
 from django.forms import CharField, ValidationError
 from django.forms.widgets import Widget

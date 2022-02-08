@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:2.7
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          command: |
+            python -m venv venv
+            . env/bin/activate
+            pip install -r pip-install-req.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "pip-install-req.txt" }}
+          paths:
+            - "env"
+      - run:
+          name: Running tests
+          command: |
+            . env/bin/activate
+            python manage.py test
+      - store_artifacts:
+          path: test-reports/
+          destination: python_app

@@ -14,12 +14,12 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from openemory.accounts import views
 
-urlpatterns = patterns('openemory.accounts.views',
-    url(r'^login/$', 'login', name='login'),
-    url(r'^logout/$', 'logout', name='logout'),
+urlpatterns = [
+    url(r'^login/$', views.login, name='login'),
+    url(r'^logout/$', views.logout, name='logout'),
     # department browse
     url(r'^profiles/departments/$', views.departments, name='list-departments'),
     url(r'^profiles/departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
@@ -29,14 +29,14 @@ urlpatterns = patterns('openemory.accounts.views',
         name='faculty-autocomplete'),
     url(r'^profiles/positions/autocomplete/$',
         views.position_autocomplete ,name='position-autocomplete'),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', views.profile, name='profile'),
     # dashboard tab content pages
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/summary/$', 'dashboard_summary', name='dashboard'),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/documents/$', 'dashboard_documents', name='documents'),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/info/$', 'public_profile', name='dashboard-profile'),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/edit/$', 'public_profile', name='edit-profile'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/summary/$', views.dashboard_summary, name='dashboard'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/documents/$', views.dashboard_documents, name='documents'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/info/$', views.public_profile, name='dashboard-profile'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/edit/$', views.public_profile, name='edit-profile'),
                        
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/data/$', 'rdf_profile', name='profile-data'),
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/data/$', views.rdf_profile, name='profile-data'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/tags/$', views.profile_tags, name='profile-tags'),
     # profile-specific auto-complete views
     url(r'^profiles/degrees/(?P<mode>(institution|name))/autocomplete/$',
@@ -56,4 +56,4 @@ urlpatterns = patterns('openemory.accounts.views',
     # admin dashboard
     url(r'^admin/$', views.admin_dashboard, name='admin-dashboard'),
 
-)
+]
