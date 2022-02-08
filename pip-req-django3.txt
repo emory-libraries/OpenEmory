@@ -1,0 +1,9 @@
+#eulcommon
+-e git+https://github.com/emory-libraries/eulcommon.git#egg=eulcommon
+#eulfedora
+-e git+https://github.com/emory-libraries/eulfedora.git#egg=eulfedora
+#eullocal==0.19.0
+#git+ssh://git@github.com/emory-libraries/eullocal.git@oe_eullocal#egg=eullocal
+-e git+https://github.com/emory-libraries/eulxml.git#egg=eulxml
+-e git+https://github.com/emory-libraries/pidman-client.git@a0a40284749e684d09820977818b60c5a04e5727#egg=pidservices
+

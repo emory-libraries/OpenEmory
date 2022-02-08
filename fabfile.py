@@ -17,7 +17,8 @@
 import os
 import re
 import shutil
-from urllib import urlencode, urlopen
+from urllib.parse import urlencode
+from urllib.request import urlopen
 from xml.etree.ElementTree import XML
 
 from fabric.api import abort, env, lcd, local, prefix, put, puts, require, \
@@ -202,18 +203,19 @@ def setup_virtualenv(python=None):
     with cd('%(remote_path)s/%(build_dir)s' % env):
         # TODO: we should be using an http proxy here  (how?)
         # create the virtualenv under the build dir
-        sudo('virtualenv --no-site-packages %s env' % (python_opt,),
-             user=env.remote_acct)
+        sudo('python3 -m venv env', user=env.remote_acct)
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
             with bootstrap_unix_env():
-                pip_cmd = 'pip install -r pip-install-req.txt'
+                pip_cmd = 'python -m pip install -r pip-req-django3.txt'
+                pip_local_cmd = 'python -m pip install -r pip-req-local-django3.txt'
                 if env.remote_proxy:
                     pip_cmd += ' --proxy=%(remote_proxy)s' % env
+                sudo(pip_local_cmd, user=env.remote_acct)
                 sudo(pip_cmd, user=env.remote_acct)
-                sudo('pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
+                sudo('python -m pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
-                    pip_cmd = 'pip install -r ../pip-local-req.txt'
+                    pip_cmd = 'python -m pip install -r ../pip-local-req.txt'
                     if env.remote_proxy:
                         pip_cmd += ' --proxy=%(remote_proxy)s' % env
                     sudo(pip_cmd, user=env.remote_acct)
@@ -237,7 +239,7 @@ def configure_site():
                 sudo('python manage.py collectstatic --noinput' % env,
                      user=env.remote_acct)
                 # make static files world-readable
-                sudo('chmod -R a+r `env DJANGO_SETTINGS_MODULE="%(project)s.settings" python -c "from django.conf import settings; print settings.STATIC_ROOT"`' % env,
+                sudo('chmod -R a+r `env DJANGO_SETTINGS_MODULE="%(project)s.settings" python -c "from django.conf import settings; print(settings.STATIC_ROOT)"`' % env,
                      user=env.remote_acct)
 
 
