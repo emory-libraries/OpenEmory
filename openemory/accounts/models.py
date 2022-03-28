@@ -74,7 +74,7 @@ class UserProfile(models.Model):
         ordering = ['user__username']
         
     def __unicode__(self):
-        return unicode(self.user)
+        return str(self.user)
 
     def get_full_name(self):
         '''Get full name from LDAP if available; returns

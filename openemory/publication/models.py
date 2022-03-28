@@ -95,17 +95,17 @@ def publisher_suggestion_data(publisher):
         'romeo_id': publisher.id,
         'preprint': {
                 'archiving': publisher.preprint_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.preprint_restrictions],
             },
         'postprint': {
                 'archiving': publisher.postprint_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.postprint_restrictions],
             },
         'pdf': {
                 'archiving': publisher.pdf_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.pdf_restrictions],
             },
         }
@@ -559,8 +559,8 @@ class NlmAuthorNotes(xmlmap.XmlObject):
     def notes(self):
         n = []
         if self.corresp:
-            n.append(unicode(self.corresp))
-        n.extend([unicode(fn) for fn in self.fn])
+            n.append(str(self.corresp))
+        n.extend([str(fn) for fn in self.fn])
         return n
 
 
@@ -619,7 +619,7 @@ class NlmAbstract(xmlmap.XmlObject):
         if self.paragraphs:
             text += '\n'.join(self.paragraphs)
         if self.sections:
-            text += '\n\n'.join(unicode(sec) for sec in self.sections)
+            text += '\n\n'.join(str(sec) for sec in self.sections)
         return text
 
 _cc_prefix = 'http://creativecommons.org/licenses/'
@@ -1004,13 +1004,13 @@ class NlmArticle(xmlmap.XmlObject):
             amods.journal.pages.start = self.first_page
             amods.journal.pages.end = self.last_page
         if self.publication_date:
-            amods.publication_date = unicode(self.publication_date)
+            amods.publication_date = str(self.publication_date)
 
         if self.abstract:
             amods.create_abstract()
             # nlm abstract may can contain formatting; convert to
             # text-only for now
-            amods.abstract.text = unicode(self.abstract)
+            amods.abstract.text = str(self.abstract)
 
         if self.doi:
             amods.create_final_version()
@@ -1520,7 +1520,7 @@ class Publication(DigitalObject):
             rdf.add((node, RDFS.seeAlso, URIRef(pmc_url)))
 
         for el in self.dc.content.elements:
-            if el.name == 'identifier' and unicode(el) == pmc_url:
+            if el.name == 'identifier' and str(el) == pmc_url:
                 continue # PMC url is a RDFS:seeAlso, above. skip it here
             rdf.add((node, DC[el.name], Literal(el)))
         return rdf
@@ -1635,10 +1635,10 @@ class Publication(DigitalObject):
             try:
                 nxml = self.contentMetadata.content
                 if 'fulltext' not in data and nxml.body:
-                    data['fulltext'] = unicode(nxml.body)
+                    data['fulltext'] = str(nxml.body)
                 if nxml.abstract and \
                        'abstract' not in data:	# let MODS abstract take precedence
-                    data['abstract'] = unicode(nxml.abstract)
+                    data['abstract'] = str(nxml.abstract)
             except Exception as e:
                 logger.error('Failed to load %s contentMetadata as xml for indexing: %s' \
                              %  (self.pid, e))
@@ -1920,7 +1920,7 @@ class Publication(DigitalObject):
             # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
             if sorted_mimes:
                 mime = sorted_mimes[-1][0]  # most recent
-                
+
             if mime:
 
                 mime_type =  self.ds_list[mime].mimeType
@@ -2542,8 +2542,8 @@ class ResearchFields(object):
 
     def __init__(self):
         with open(self.source) as rff:
-            print(rff.read())
-            self.graph = parse_rdf(rff.read(), self.source)
+            print(self.source, "###################################")
+            self.graph = parse_rdf(rff.read(), self.source, format="application/rdf+xml")
 
         # loop through all collections to get hierarchy information
         # and find the top-level collection
@@ -2676,7 +2676,7 @@ class ResearchFields(object):
             if category:
                 subcategory = '%s: %s' % (category, self.graph.label(id))
             else:
-                subcategory = unicode(self.graph.label(id))
+                subcategory = str(self.graph.label(id))
             # recurse with subcategory label
             for m in self.hierarchy[id]:
                 category_list.extend(self._get_category_data(m, subcategory))

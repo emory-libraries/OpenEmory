@@ -591,7 +591,7 @@ Release 0.4.x - Article Metadata
     for a in repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, type=Article):
       if a.contentMetadata.exists:
         try:
-          if unicode(a.contentMetadata.content):
+          if str(a.contentMetadata.content):
             a.descMetadata.content = a.contentMetadata.content.as_article_mods()
             a.save('populating MODs from NLM xml')
         except:

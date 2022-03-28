@@ -887,7 +887,7 @@ def _mods_kw_as_ris_value(kw):
     if kw.title:
         return kw.title
     if kw.name:
-        return unicode(kw.name)
+        return str(kw.name)
 
 
 def site_index(request):
@@ -1302,17 +1302,17 @@ def publisher_suggestion_data(publisher):
         'romeo_id': publisher.id,
         'preprint': {
                 'archiving': publisher.preprint_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.preprint_restrictions],
             },
         'postprint': {
                 'archiving': publisher.postprint_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.postprint_restrictions],
             },
         'pdf': {
                 'archiving': publisher.pdf_archiving,
-                'restrictions': [unicode(r)
+                'restrictions': [str(r)
                                  for r in publisher.pdf_restrictions],
             },
         }

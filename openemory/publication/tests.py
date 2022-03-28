@@ -149,14 +149,14 @@ class NlmArticleTest(TestCase):
         self.assert_(self.article.publication_date)
         self.assertEqual('ppub', self.article.publication_date.type)
         self.assertEqual(2008, self.article.publication_date.year)
-        self.assertEqual('2008', unicode(self.article.publication_date))
+        self.assertEqual('2008', str(self.article.publication_date))
 
         self.assert_(self.article_multiauth.publication_date)
         self.assertEqual('epub', self.article_multiauth.publication_date.type)
         self.assertEqual(2005, self.article_multiauth.publication_date.year)
         self.assertEqual(5, self.article_multiauth.publication_date.month)
         self.assertEqual(31, self.article_multiauth.publication_date.day)
-        self.assertEqual('2005-05-31', unicode(self.article_multiauth.publication_date))
+        self.assertEqual('2005-05-31', str(self.article_multiauth.publication_date))
 
     @patch('openemory.publication.models.EmoryLDAPBackend')
     def test_identifiable_authors(self, mockldap):
@@ -244,7 +244,7 @@ class NlmArticleTest(TestCase):
         self.assertEqual(self.article.article_subtitle, amods.title_info.subtitle)
         self.assertEqual('text', amods.resource_type)
         self.assertEqual('Article', amods.genre)
-        self.assertEqual(unicode(self.article.abstract), amods.abstract.text)
+        self.assertEqual(str(self.article.abstract), amods.abstract.text)
         self.assertEqual(len(self.article.sponsors), len(amods.funders))
         self.assertEqual(self.article.sponsors[0], amods.funders[0].name)
         self.assertEqual(self.article.sponsors[1], amods.funders[1].name)
@@ -283,10 +283,10 @@ class NlmArticleTest(TestCase):
         # plain-text formatting for readable abstract (sections/labels)
         # - internal section header - newlines
         self.assert_('\nMethods\nEach of ten'
-                     in unicode(self.article_multiauth.abstract))
+                     in str(self.article_multiauth.abstract))
         # - two newlines between end of one section and beginning of next
         self.assert_('slope.\n\nResults'
-                     in unicode(self.article_multiauth.abstract))
+                     in str(self.article_multiauth.abstract))
         # authors
         self.assertEqual(self.article_multiauth.authors[0].surname,
                          amods.authors[0].family_name)
@@ -2578,7 +2578,7 @@ class PublicationViewsTest(TestCase):
                          (expected, got, view_url))
         self.assertContains(response, self.article.pid)
         self.assertContains(response, self.article.descMetadata.content.title_info.title)
-        self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
+        self.assertContains(response, str(self.article.descMetadata.content.abstract))
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
         self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))

@@ -103,7 +103,7 @@ class HarvestRecord(models.Model):
         # them into strings, failing on non-ascii data. convert them
         # explicitly into real unicode objects here before passing them into
         # the db later to avoid this problem.
-        record = HarvestRecord(title=unicode(article.article_title),
+        record = HarvestRecord(title=str(article.article_title),
                                pmcid=article.docid,
                                fulltext=article.fulltext_available)
         if article.identifiable_authors():
