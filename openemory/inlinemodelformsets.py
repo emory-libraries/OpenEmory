@@ -94,9 +94,9 @@ class ModelForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        if hasattr(self._forms, 'inlines'):
+        if hasattr(self.forms, 'inlines'):
             self.inlineformsets = {}
-            for key, FormSet in self._forms.inlines.items():
+            for key, FormSet in self.forms.inlines.items():
                 try:
                     self.inlineformsets[key] = FormSet(self.data or None, self.files or None,
                                                        prefix=self._get_formset_prefix(key),
@@ -106,8 +106,8 @@ class ModelForm(ModelForm):
 
     def save(self, *args, **kwargs):
         instance = super(ModelForm, self).save(*args, **kwargs)
-        if hasattr(self._forms, 'inlines'):
-            for key, FormSet in self._forms.inlines.items():
+        if hasattr(self.forms, 'inlines'):
+            for key, FormSet in self.forms.inlines.items():
                 fset = FormSet(self.data, self.files, prefix=self._get_formset_prefix(key),
                                instance=instance)
                 if fset.is_valid():

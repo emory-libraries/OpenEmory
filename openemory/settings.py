@@ -23,6 +23,8 @@ LISTSERV = (('OpenEmory Administrator', 'openemory@listserv.cc.emory.edu'),)
 # to load the internationalization machinery.
 USE_I18N = True
 
+LOGOUT_REDIRECT_URL = '/'
+
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
@@ -31,6 +33,7 @@ USE_L10N = True
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
+
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

@@ -172,7 +172,7 @@ def rdf_profile(request, username):
 
     # build an rdf graph with information author & publications
     rdf = RdfGraph()
-    for prefix, ns in ns_prefixes.iteritems():
+    for prefix, ns in ns_prefixes.items():
         rdf.bind(prefix, ns)
     author_node = BNode()
     profile_uri = URIRef(request.build_absolute_uri(reverse('accounts:profile',

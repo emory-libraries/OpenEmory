@@ -127,7 +127,7 @@ class LocalW3CDateWidget(W3CDateWidget):
     # NOTE: this duplicates some logic from the eulcommon widget;
     # the eulcommon version should be modified to make it more extendable,
     # and this class should be refactored to take advantage of that.
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         '''Render the widget as HTML inputs for display on a form.
 
         :param name: form field base name
@@ -159,24 +159,25 @@ class LocalW3CDateWidget(W3CDateWidget):
         output = []
         attrs = css_class.copy()
         attrs['help_text'] = help_text['day']
-        day_input = self.create_textinput(name, self.day_field, day, size=2,
-                                          title='2-digit day',
-                                          **attrs)
+        attrs['size'] = 2
+        attrs['title'] = '2-digit day'
+        day_input = self.create_textinput(name, self.day_field, day, **attrs)
         output.append(output_template % {'id': self._field_id(name, self.day_field),
                                          'input': day_input,
                                          'label': 'Day'})
         attrs = css_class.copy()
         attrs['help_text'] = help_text['month']
-        month_input = self.create_textinput(name, self.month_field, month, size=2,
-                                          title='2-digit month',
-                                          **attrs)
+        attrs['size'] = 2
+        attrs['title'] = '2-digit month'
+        month_input = self.create_textinput(name, self.month_field, month, **attrs)
         output.append(output_template % {'id': self._field_id(name, self.month_field),
                                          'input': month_input,
                                          'label': 'Month'})
         attrs = css_class.copy()
         attrs['help_text'] = help_text['year']
-        year_input = self.create_textinput(name, self.year_field, year, size=4,
-            title='4-digit year', **attrs)
+        attrs['size'] = 4
+        attrs['title'] = '4-digit year'
+        year_input = self.create_textinput(name, self.year_field, year, **attrs)
 
         output.append(output_template % {'id': self._field_id(name, self.year_field),
                                          'input': year_input,
@@ -275,7 +276,7 @@ class OptionalReadOnlyTextInput(forms.TextInput):
     form id field is set, editable otherwise.  Uses the same read-only \
     attributes as :class:`ReadOnlyTextInput`.'''
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         super_render = super(OptionalReadOnlyTextInput, self).render
 
         use_attrs = {'class': 'text'} if self.editable() else READONLY_ATTRS.copy()
@@ -625,7 +626,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     #locations = SubformField(formclass=OtherURLSForm,
     #                         label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -674,7 +675,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -881,7 +882,7 @@ class ArticleEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -935,7 +936,7 @@ class ArticleEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -960,7 +961,7 @@ class BookEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1014,7 +1015,7 @@ class BookEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -1040,7 +1041,7 @@ class ChapterEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1094,7 +1095,7 @@ class ChapterEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -1118,7 +1119,7 @@ class ConferenceEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1172,7 +1173,7 @@ class ConferenceEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -1196,7 +1197,7 @@ class ReportEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1250,7 +1251,7 @@ class ReportEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -1275,7 +1276,7 @@ class PosterEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1328,7 +1329,7 @@ class PosterEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:
@@ -1353,7 +1354,7 @@ class PresentationEditForm(PublicationModsEditForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                             label=OtherURLSForm.form_label)
-    language_code = DynamicChoiceField(language_choices, label='Language',
+    language_code = DynamicChoiceField(language_choices(), label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
@@ -1406,7 +1407,7 @@ class PresentationEditForm(PublicationModsEditForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+    license = DynamicChoiceField(license_choices(), label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
 
     class Meta:

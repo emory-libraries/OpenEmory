@@ -77,7 +77,7 @@ class ReCaptchaWidget(Widget):
         # get global options from settings, if any
         captcha_opts = getattr(settings, 'RECAPTCHA_OPTIONS', {})
         # update those with any locally-specified options
-        captcha_opts.update(dict((k, v) for k, v in final_attrs.iteritems() if k in self.options))        
+        captcha_opts.update(dict((k, v) for k, v in final_attrs.items() if k in self.options))        
         # if there are any Recaptcha options to specify, include javascript when rendering
         if captcha_opts:
             html_opts = '''<script type="text/javascript">

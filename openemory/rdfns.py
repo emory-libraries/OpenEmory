@@ -48,7 +48,7 @@ To use, bind each prefixes and corresponding namespace to your graph::
 
 
    rdf = rdflib.graph.Graph()
-   for prefix, ns in ns_prefixes.iteritems():
+   for prefix, ns in ns_prefixes.items():
       rdf.bind(prefix, ns)
         
 '''

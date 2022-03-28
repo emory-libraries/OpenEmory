@@ -50,7 +50,7 @@ from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.graph import Graph as RdfGraph
 from rdflib.namespace import ClosedNamespace, Namespace
 import subprocess
-from io import StringIO
+from io import StringIO, BytesIO
 import subprocess
 import tempfile
 import time
@@ -1504,7 +1504,7 @@ class Publication(DigitalObject):
             node = self.uriref
 
         rdf = RdfGraph()
-        for prefix, ns in ns_prefixes.iteritems():
+        for prefix, ns in ns_prefixes.items():
             rdf.bind(prefix, ns)
 
         # some redundancy here, for now
@@ -1852,12 +1852,13 @@ class Publication(DigitalObject):
             'article': self,
             'BASE_URL': base_url,
             })
-        html = tpl.render(ctx)
-        result = StringIO()
+        context_dict = ctx.flatten()
+        html = tpl.render(context_dict)
+        result = BytesIO()
         # NOTE: to include images & css, pisa requires a filename path.
         # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
         
-        pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
+        pdf = pisa.pisaDocument(BytesIO(html.encode('UTF-8')), result,
                                 path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
         logger.debug('Generated cover page for %s in %f sec ' % \
                      (self.pid, time.time() - start))
@@ -1886,11 +1887,12 @@ class Publication(DigitalObject):
             'article': self,
             'BASE_URL': base_url,'img_str': img_str,
             })
-        html = tpl.render(ctx)
-        result = StringIO()
+        context_dict = ctx.flatten()
+        html = tpl.render(context_dict)
+        result = BytesIO()
         # NOTE: to include images & css, pisa requires a filename path.
         # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
-        pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
+        pdf = pisa.pisaDocument(BytesIO(html.encode('UTF-8')), result,
                                 path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
         logger.debug('Generated cover page for %s in %f sec ' % \
                      (self.pid, time.time() - start))
@@ -1911,10 +1913,14 @@ class Publication(DigitalObject):
             for mime in mime_ds_list:
                 new_dict[mime] = self.getDatastreamObject(mime)
 
-
-            sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
+            try:
+                sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
+            except:
+                sorted_mimes = []
             # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
-            mime = sorted_mimes[-1][0]  # most recent
+            if sorted_mimes:
+                mime = sorted_mimes[-1][0]  # most recent
+                
             if mime:
 
                 mime_type =  self.ds_list[mime].mimeType
@@ -1950,7 +1956,7 @@ class Publication(DigitalObject):
         coverdoc = self.pdf_cover()
         imagedoc = self.image_cover()
         start = time.time()
-        pdfstream = StringIO()  # io buffer for pdf datastream content
+        pdfstream = BytesIO()  # io buffer for pdf datastream content
         try:
             # create a new pdf file writer to merge cover & pdf into
             doc = PdfFileWriter()
@@ -1961,7 +1967,7 @@ class Publication(DigitalObject):
             doc.addPage(image.pages[0])
 
             # write the resulting pdf to a buffer and return it
-            result = StringIO()
+            result = BytesIO()
             doc.write(result)
             # seek to beginning for re-use (e.g., django httpresponse content)
             result.seek(0)
@@ -1980,7 +1986,7 @@ class Publication(DigitalObject):
 
         coverdoc = self.pdf_cover()
         start = time.time()
-        datastream = StringIO()
+        datastream = BytesIO()
         zip_subdir = self.label
         # load pdf datastream contents into a file-like object
         try:
@@ -2007,7 +2013,7 @@ class Publication(DigitalObject):
                 # mime = 'pdf'
             # write the resulting pdf to a buffer and return it
             zip_subdir = self.label + "/"
-            result = StringIO()
+            result = BytesIO()
             # doc.write(result)
             zf = zipfile.ZipFile(result, "w")
             zf.writestr(zip_subdir + 'coverpage.pdf', coverdoc.getvalue())
@@ -2046,7 +2052,7 @@ class Publication(DigitalObject):
 
         coverdoc = self.pdf_cover()
         start = time.time()
-        pdfstream = StringIO()  # io buffer for pdf datastream content
+        pdfstream = BytesIO()  # io buffer for pdf datastream content
         try:
             # create a new pdf file writer to merge cover & pdf into
             doc = PdfFileWriter()
@@ -2066,7 +2072,7 @@ class Publication(DigitalObject):
                 # print content.pages[p]
 
             # write the resulting pdf to a buffer and return it
-            result = StringIO()
+            result = BytesIO()
             doc.write(result)
             # seek to beginning for re-use (e.g., django httpresponse content)
             result.seek(0)
@@ -2536,6 +2542,7 @@ class ResearchFields(object):
 
     def __init__(self):
         with open(self.source) as rff:
+            print(rff.read())
             self.graph = parse_rdf(rff.read(), self.source)
 
         # loop through all collections to get hierarchy information

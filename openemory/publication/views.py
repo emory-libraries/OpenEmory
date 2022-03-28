@@ -707,7 +707,7 @@ def download_pdf(request, pid):
             # NOTE: could also potentially change based on cover logic changes...
 
             # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
-        for key, val in extra_headers.iteritems():
+        for key, val in extra_headers.items():
             response[key] = val
         return response
 

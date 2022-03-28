@@ -116,7 +116,7 @@ class Command(BaseCommand):
                     continue
                 ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
                 #
-                # for property, value in vars(ds).iteritems():
+                # for property, value in vars(ds).items():
                 #     msg = "%s: %s" %(property, value)
                 #     self.output(1, msg)
 
