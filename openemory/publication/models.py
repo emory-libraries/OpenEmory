@@ -121,7 +121,7 @@ class TypedRelatedItem(mods.RelatedItem):
         # ignore these fields when checking if a related item is empty
         ignore = ['type', 'label']  # type and displayLabel attributes
 
-        for name in self._fields.iterkeys():
+        for name in self._fields.key():
             if name in ignore:
                 continue
             f = getattr(self, name)

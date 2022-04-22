@@ -133,7 +133,7 @@ class Command(BaseCommand):
         faculty from the database, and remove indexes for any that
         are no longer in the database.
         '''
-        for faculty in self.indexed_faculty_data.itervalues():
+        for faculty in self.indexed_faculty_data.values():
             if faculty['username'] not in self.active_faculty:
                 if self.verbosity >= self.v_all:
                     print('Removing deactivated faculty', faculty['username'])
