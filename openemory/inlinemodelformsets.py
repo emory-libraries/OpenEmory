@@ -94,9 +94,9 @@ class ModelForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        if hasattr(self.forms, 'inlines'):
+        if hasattr(self, 'Forms') and hasattr(self.Forms, 'inlines'):
             self.inlineformsets = {}
-            for key, FormSet in self.forms.inlines.items():
+            for key, FormSet in self.Forms.inlines.items():
                 try:
                     self.inlineformsets[key] = FormSet(self.data or None, self.files or None,
                                                        prefix=self._get_formset_prefix(key),
@@ -106,8 +106,8 @@ class ModelForm(ModelForm):
 
     def save(self, *args, **kwargs):
         instance = super(ModelForm, self).save(*args, **kwargs)
-        if hasattr(self.forms, 'inlines'):
-            for key, FormSet in self.forms.inlines.items():
+        if hasattr(self, 'Forms') and hasattr(self.Forms, 'inlines'):
+            for key, FormSet in self.Forms.inlines.items():
                 fset = FormSet(self.data, self.files, prefix=self._get_formset_prefix(key),
                                instance=instance)
                 if fset.is_valid():
@@ -119,11 +119,14 @@ class ModelForm(ModelForm):
         if has_changed:
             return True
         else:
-            for fset in self.inlineformsets.values():
-                for i in range(0, fset.total_form_count()):
-                    form = fset.forms[i]
-                    if form.has_changed():
-                        return True
+            if hasattr(self, 'inlineformsets'):
+                for fset in self.inlineformsets.values():
+                    for i in range(0, fset.total_form_count()):
+                        form = fset.forms[i]
+                        if form.has_changed():
+                            return True
+            else:
+                return False
         return False
 
     def _get_formset_prefix(self, key):
@@ -131,8 +134,9 @@ class ModelForm(ModelForm):
 
     def _clean_form(self):
         super(ModelForm, self)._clean_form()
-        for key, fset in self.inlineformsets.items():
-            for i in range(0, fset.total_form_count()):
-                f = fset.forms[i]
-                if f.errors:
-                    self._errors['_%s_%d' %(fset.prefix, i)] = f.non_field_errors
+        if hasattr(self, 'inlineformsets'):
+            for key, fset in self.inlineformsets.items():
+                for i in range(0, fset.total_form_count()):
+                    f = fset.forms[i]
+                    if f.errors:
+                        self._errors['_%s_%d' %(fset.prefix, i)] = f.non_field_errors

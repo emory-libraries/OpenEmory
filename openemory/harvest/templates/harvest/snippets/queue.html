@@ -11,9 +11,6 @@
 <div>
 {% for record in results.object_list %}
     <div class="queue-item">
-      <a class="ingest button" href="{% url 'publication:ingest' %}">ingest
-        <span class="pmcid" style="display:none">{{ record.pmcid }}</span>{# embed ID for JS #}
-      </a>
       <a class="ignore button" href="{% url 'harvest:record' record.id %}">ignore</a>
       
       <div class="record">

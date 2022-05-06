@@ -271,6 +271,7 @@ def public_profile(request, username):
                              for f in interest_formset.forms
                              if f.cleaned_data.get('interest', '') and
                                 not f.cleaned_data.get('DELETE', False)]
+            print(userprofile.research_interests)
             userprofile.research_interests.set(*new_interests)
             # if a new photo file was posted, resize it
             if 'photo' in request.FILES:
@@ -296,7 +297,7 @@ def public_profile(request, username):
         'form': form,
         'interest_formset': interest_formset,'esd_data': esd_data,
     })
-
+    print(form.inlineformsets)
     if request.is_ajax():
         # display a briefer version of the profile, for inclusion in faculty dash
         template_name = 'accounts/snippets/profile-tab.html'
