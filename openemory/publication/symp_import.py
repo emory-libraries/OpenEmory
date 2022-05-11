@@ -160,7 +160,7 @@ class OESympImportPublication(SympBase):
         # ignore these fields when checking if a related item is empty
         ignore = ['type_id', 'types']  # type attributes
 
-        for name in self._fields.key():
+        for name in self._fields.keys():
             if name in ignore:
                 continue
             f = getattr(self, name)
