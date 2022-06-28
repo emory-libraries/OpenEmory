@@ -233,19 +233,19 @@
      });
 
      {% if perms.publication.review_article %}
-       function get_publisher_policy_by_name() {
-         var name = $("input[name='journal-publisher']").val();
-         if (name) {
-           $.ajax({
-             url: "{% url 'publication:publisher-details' %}?name=" +
-                     encodeURI(name),
-             success: function(data) {
-               $('#id_journal-publisher').data('copyright-policy', data);
-               update_publisher_policy();
-             }
-           });
-         }
-       }
+       // function get_publisher_policy_by_name() {
+       //   var name = $("input[name='journal-publisher']").val();
+       //   if (name) {
+       //     $.ajax({
+       //       url: "{% url 'publication:publisher-details' %}?name=" +
+       //               encodeURI(name),
+       //       success: function(data) {
+       //         $('#id_journal-publisher').data('copyright-policy', data);
+       //         update_publisher_policy();
+       //       }
+       //     });
+       //   }
+       // }
        /* and then init this data when loading the page */
        get_publisher_policy_by_name();
 

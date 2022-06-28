@@ -586,7 +586,6 @@ def edit_metadata(request, pid):
 
             try:
                 obj.save('updated metadata')
-                
                 messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
                             {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                 # if submitted via 'publish' or 'save', redirect to article detail view

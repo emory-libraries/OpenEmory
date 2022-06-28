@@ -2542,8 +2542,8 @@ class ResearchFields(object):
 
     def __init__(self):
         with open(self.source) as rff:
-            print(self.source, "###################################")
-            self.graph = parse_rdf(rff.read(), self.source, format="application/rdf+xml")
+            rff_bytes = rff.read().encode()
+            self.graph = parse_rdf(rff_bytes, self.source, format="application/rdf+xml")
 
         # loop through all collections to get hierarchy information
         # and find the top-level collection

@@ -85,13 +85,15 @@ __all__ = [
     'Response', 'Journal', 'Publisher', 'Mandate', 'Copyright',
 ]
 
-API_BASE_URL = 'http://www.sherpa.ac.uk/romeo/api29.php'
+#API_BASE_URL = 'http://www.sherpa.ac.uk/romeo/api29.php'
+API_BASE_URL = 'https://v2.sherpa.ac.uk/cgi/retrieve'
 def call_api(**kwargs):
     if 'ak' not in kwargs:
         if hasattr(settings, 'ROMEO_API_KEY'):
-            kwargs['ak'] = settings.ROMEO_API_KEY
+            kwargs['api-key'] = settings.ROMEO_API_KEY
     query_args = urlencode(kwargs)
     url = '%s?%s' % (API_BASE_URL, query_args)
+    print(url)
     response_file = None
     response = None
     try:
@@ -123,7 +125,7 @@ def search_publisher_name(name, type=None, versions=None, funder_info=None):
         :rtype: list of matching :class:`Publisher` objects
     '''
     # always returns empty journals
-    kwargs = {'pub': name}
+    kwargs = {'pub': name, 'item-type': 'publisher'}
     if type is not None:
         kwargs['qtype'] = type
     if versions is not None:
@@ -141,7 +143,7 @@ def search_publisher_id(id, versions=None, funder_info=None):
         :param funder_info: see module notes on `funder_info`
         :rtype: matching :class:`Publisher`, or ``None``
     '''
-    kwargs = {'id': id}
+    kwargs = {'id': id, 'item-type': 'publisher'}
     if versions is not None:
         kwargs['versions'] = versions
     if funder_info is not None:
@@ -169,7 +171,7 @@ def search_journal_title(name, type=None, versions=None, funder_info=None):
     # publishers empty for multiple journals; included for single match.
     # truncates to 50 titles (outcome=excessJournals on trunc).
     # if romeopub specified, it can be used for a journal followup search
-    kwargs = {'jtitle': name}
+    kwargs = {'jtitle': name, 'item-type': 'publication'}
     if type is not None:
         kwargs['qtype'] = type
     if versions is not None:
@@ -198,6 +200,7 @@ def search_journal_followup(name, publisher_zetoc, publisher_romeo,
         'jtitle': name,
         'zetocpub': publisher_zetoc,
         'romeopub': publisher_romeo,
+        'item-type': 'publication'
     }
     if issn is not None:
         kwargs['issn'] = issn
@@ -220,7 +223,7 @@ def search_journal_issn(issn, versions=None, funder_info=None):
                          information will not be included
         :rtype: :class:`Journal` or ``None``
     '''
-    kwargs = {'issn': issn}
+    kwargs = {'issn': issn, 'item-type': 'publication'}
     if versions is not None:
         kwargs['versions'] = versions
     if funder_info is not None:
@@ -240,7 +243,7 @@ def all_publishers(versions=None, funder_info=None):
         :rtype: list of :class:`Publisher` objects
     '''
     # in alphabetical name order. empty journals
-    kwargs = {'all': 'yes'}
+    kwargs = {'all': 'yes', 'item-type': 'publisher'}
     if versions is not None:
         kwargs['versions'] = versions
     if funder_info is not None:
