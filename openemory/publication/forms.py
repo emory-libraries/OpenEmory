@@ -695,14 +695,14 @@ class PublicationModsEditForm(BaseXmlObjectForm):
         requires_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#requires")
         prohibits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#prohibits")
         comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
-        ns_url = 'http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns'
+        ns_url = 'https://creativecommons.org/schema.rdf'
 
 
         license_graph = Graph()
-        license_graph.parse(url)
+        license_graph.parse(url, format='xml')
 
         ns_graph = Graph()
-        ns_graph.parse(ns_url)
+        ns_graph.parse(ns_url, format='xml')
 
         lines = []
 
