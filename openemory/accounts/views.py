@@ -143,7 +143,7 @@ def _get_profile_user(username):
         # (check against UserProfile if there is one, for local profile override)
         if not profile.has_profile_page():
             raise Http404
-    except UserProfile.DoesNotExist:
+    except:
         # if local account doesn't exist, make sure ESD indicates the
         # user should have a profile before proceeding
         if not esdperson.has_profile_page():
@@ -159,7 +159,7 @@ def _get_profile_user(username):
         try:
             profile = user.userprofile
         except:
-            UserProfile.objects.create(user=user)
+            profile = UserProfile.objects.create(user=user)
 
     return user, profile
 
