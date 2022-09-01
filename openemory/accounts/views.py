@@ -49,7 +49,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import ProfileForm, InterestFormSet, FeedbackForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement, Position
+     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement, Position, UserProfile
 from openemory.util import paginate, solr_interface
 
 logger = logging.getLogger(__name__)
@@ -153,10 +153,13 @@ def _get_profile_user(username):
         # attempt to init local user & profile
 
         backend = EmoryLDAPBackend()
-        user_dn, user = backend.find_user(username)
+        user = backend.find_user(username)
         if not user:
             raise Http404
-        profile = user.userprofile
+        try:
+            profile = user.userprofile
+        except:
+            UserProfile.objects.create(user=user)
 
     return user, profile
 
