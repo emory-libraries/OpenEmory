@@ -1,0 +1,6 @@
+SHELL=/bin/bash
+PATH=/home/httpd/openemory/env/bin:/home/httpd/openemory/env:/usr/local/bin:/usr/bin:/bin
+0 1 * * * /usr/local/bin/embargo.sh > /tmp/embargo.out 2>&1
+*/10 * * * * /usr/local/bin/symplectic_import.sh > /tmp/symp_import.txt 2>&1
+30 1 * * * /usr/local/bin/indexfaculty.sh > /tmp/indexfaculty.txt 2>&1
+30 23 * * * /usr/local/bin/fpm.sh > /dev/null 2>&1
