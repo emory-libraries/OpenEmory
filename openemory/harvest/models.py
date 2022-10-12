@@ -109,7 +109,7 @@ class HarvestRecord(models.Model):
         if article.identifiable_authors():
             # record must be saved before we can add relation to authors
             record.save()
-            record.authors = article.identifiable_authors()
+            record.authors.set(article.identifiable_authors())
 
         # save article xml as a file associated with this record
         record.content.save('%d.xml' % article.docid,
