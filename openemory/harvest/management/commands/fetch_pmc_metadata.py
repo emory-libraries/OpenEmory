@@ -40,40 +40,16 @@ class Command(BaseCommand):
     finds articles that include Emory in their "Affiliation" metadata.
     '''
     help = __doc__
+    
+    def add_arguments(self, parser):  
+        parser.add_argument('-n', '--simulate', action='store_true', default=False, help='Simulate querying for articles')
+        parser.add_argument('-c', '--count', type=int, default=False, help='Number of Articles in a chunk to process at a time.')
+        parser.add_argument('-m', '--max-articles', default=None, help='Number of articles to harvest. If not specified, all available are harvested.')
+        parser.add_argument('--min-date', default=None, help='Search for records added on or after this date. Format YYYY/MM/DD.')
+        parser.add_argument('--max-date', default=None, help='Search for records added on or before this date. Format YYYY/MM/DD')
+        parser.add_argument('--auto-date', action='store_true', default=False, help='Calculate min and max dates based on most recently harvested records')
+        parser.add_argument('--progress', action='store_true', default=False, help='Displays a progress bar based on remaining records to process.')
 
-    option_list = BaseCommand.option_list + (
-        make_option('--simulate', '-n',
-                    action='store_true',
-                    default=False,
-                    help='Simulate querying for articles ' +
-                    '(use local static fixture response for testing/development)'),
-        make_option('--count', '-c',
-                    type='int',
-                    default=20,
-                    help='Number of Articles in a chunk to process at a time.'),
-        make_option('--max-articles', '-m',
-                    default=None,
-                    help='Number of articles to harvest. If not specified, all available are harvested.'),
-        make_option('--min-date',
-                    default=None,
-                    help='''Search for records added on or after this date. Format YYYY/MM/DD.
-                            When specified, max-date is required'''),
-        make_option('--max-date',
-                    default=None,
-                    help='''Search for records added on or before this date. Format YYYY/MM/DD
-                            When specified, min-date is required'''),
-        make_option('--auto-date',
-                    action='store_true',
-                    default=False,
-                    help='Calculate min and max dates based on most recently harvested records'),
-        make_option('--progress',
-                    action='store_true',
-                    default=False,
-                    help='''Displays a progress bar based on remaining records to process.
-                            If used with max-articles the process my finish earlier.
-                            If used with verbosity > 0 you should redirect stdout to a file so that the progress bar
-                            will display correctly'''),
-        )
     
     def handle(self, *args, **options):
         today = datetime.date.today()
