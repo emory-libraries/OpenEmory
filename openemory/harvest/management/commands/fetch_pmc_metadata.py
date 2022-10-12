@@ -43,7 +43,7 @@ class Command(BaseCommand):
     
     def add_arguments(self, parser):  
         parser.add_argument('-n', '--simulate', action='store_true', default=False, help='Simulate querying for articles')
-        parser.add_argument('-c', '--count', type=int, default=False, help='Number of Articles in a chunk to process at a time.')
+        parser.add_argument('-c', '--count', type=int, default=20, help='Number of Articles in a chunk to process at a time.')
         parser.add_argument('-m', '--max-articles', default=None, help='Number of articles to harvest. If not specified, all available are harvested.')
         parser.add_argument('--min-date', default=None, help='Search for records added on or after this date. Format YYYY/MM/DD.')
         parser.add_argument('--max-date', default=None, help='Search for records added on or before this date. Format YYYY/MM/DD')
