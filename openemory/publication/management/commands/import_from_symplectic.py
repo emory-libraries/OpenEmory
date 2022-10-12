@@ -51,21 +51,11 @@ class Command(BaseCommand):
     '''
     args = "[pid pid ...]"
     help = __doc__
-
-    option_list = BaseCommand.option_list + (
-        make_option('--noact', '-n',
-                    action='store_true',
-                    default=False,
-                    help='Reports the pid and total number of object that would be processed but does not really do anything.'),
-        make_option('--date', '-d',
-                    action='store',
-                    default=False,
-                    help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).'),
-        make_option('--force', '-f',
-                    action='store_true',
-                    default=False,
-                    help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
-        )
+    
+    def add_arguments(self, parser):  
+        parser.add_argument('-n', '--noact', action='store_true', default=False, help='Reports the pid and total number of object that would be processed')
+        parser.add_argument('-d', '--date',action='store', default=False, help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).')
+        parser.add_argument('-f', '--force', action='store_true', default=False, help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.')
 
 
     def handle(self, *args, **options):
@@ -220,7 +210,6 @@ class Command(BaseCommand):
                 # filter datastreams for only application/pdf
                 mime = None
                 mime_ds_list = None
-                print obj.descMetadata.content.genre
 
                 if obj.descMetadata.content.genre == "Article" or obj.descMetadata.content.genre == "Book" or obj.descMetadata.content.genre == "Chapter":
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
@@ -258,8 +247,6 @@ class Command(BaseCommand):
 
                     if mime:
                         mime_type =  obj.ds_list[mime].mimeType
-                        print mime_type
-                        print "####################################"
                         self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s' % mime_type,
                                                 mimeType=mime_type, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
