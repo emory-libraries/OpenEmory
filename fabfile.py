@@ -209,8 +209,10 @@ def setup_virtualenv(python=None):
             with bootstrap_unix_env():
                 pip_cmd = 'python -m pip install -r pip-req-django3.txt'
                 pip_local_cmd = 'python -m pip install -r pip-req-local-django3.txt'
+                pip_upgrade = 'pip install --upgrade pip'
                 if env.remote_proxy:
                     pip_cmd += ' --proxy=%(remote_proxy)s' % env
+                sudo(pip_upgrade, user=env.remote_acct)
                 sudo(pip_local_cmd, user=env.remote_acct)
                 sudo(pip_cmd, user=env.remote_acct)
                 sudo('python -m pip install lxml --upgrade --force-reinstall --no-binary :all:', user=env.remote_acct)
