@@ -90,44 +90,44 @@
           <h2>Assent to Submit and Display Work</h2>
           <div class="clear"></div>
 
-          <p>My use of the OpenEmory self-deposit method confirms that I grant to
-            Emory University (“Emory”) the non-exclusive, perpetual license to
-            preserve and reproduce the work, and to display, distribute and make
-            the work publicly available without charge from the open access
-            repository OpenEmory, or any successor initiative based at Emory, in
-            any format.  As used here, a work is a scholarly work including
-            all materials contained in your work, such as images.</p>
+          <p>My use of the OpenEmory self-deposit method confirms that
+             I grant to Emory University the non-exclusive, perpetual license
+              to preserve and reproduce the work, and to display, distribute
+               and make the work publicly available without charge from 
+               the open access repository OpenEmory, or any successor 
+               initiative based at Emory, in any format.
+          </p>
           <p>I represent and warrant to Emory that:</p>
           <ul>
-            <li>I have the right to submit the work to OpenEmory and to grant
-              Emory the license above, or I have unrestricted permission from the
-              copyright owner, such as a publisher, for the work to be
-              distributed in an open access repository.</li>
-            <li>Distribution from OpenEmory of the work does not infringe or
-              violate any copyright or other rights of a publisher or other third
-              party.</li>
-            <li>If the work contains material for which I do not hold copyright,
-              such as images, I have obtained all necessary rights for the work
-              and the material to be distributed in OpenEmory.</li>
-            <li>If the work was prepared jointly with other authors, I am
-              granting the license above on their behalf as well as my own, and
-              am authorized to do so.</li>
+            <li>I have the right to submit the work to OpenEmory and 
+              to grant Emory the license above, or I have unrestricted 
+              permission from the copyright owner, such as a publisher, 
+              for the work to be distributed in an open access repository.
+            </li>
+            <li>Distribution from OpenEmory of the work does not infringe 
+              or violate any copyright or other rights of a publisher or 
+              other third party.</li>
+            <li>If the work contains material for which I do not hold copyright, 
+              such as images, I have obtained all necessary rights for the work 
+              and the material to be distributed in OpenEmory.
+            </li>
+            <li>If the work was prepared jointly with other authors, I am 
+              granting the license above on their behalf as well as my own, 
+              and am authorized to do so.</li>
           </ul>
-          <p>I understand that I will have the option of specifying an embargo
-            date to comply with publisher or funder policies, and Emory will
-            delay making the work publicly available from OpenEmory until that
-            date. I understand that I may request to have public access to my
-            work restricted by removing public display to my work, and that Emory
-            may remove my work from public display if Emory deems distribution is
-            inappropriate, such as violating the rights of a third party.</p>
-          <p>I understand that this license is non-exclusive and does not prevent
-            me from entering into similar arrangements with other parties or from
-            exercising any rights that I may have in the work.  However, I
-            understand that I may need to inform subsequent publishers or others
-            that I have granted this license to distribute my work in
-            OpenEmory.</p>
-          <p>I understand that OpenEmory is currently only accepting journal
-            articles and books.</p>
+          <p>I understand that I will have the option of specifying an embargo 
+            date to comply with publisher or funder policies, and Emory will 
+            delay making the work publicly available from OpenEmory until that date. 
+            I understand that I may request to have public access to my work 
+            restricted by removing public display to my work, and that Emory 
+            may remove my work from public display if Emory deems distribution is inappropriate, 
+            such as violating the rights of a third party.</p>
+            <p>I understand that this license is non-exclusive and does not 
+              prevent me from entering into similar arrangements with other 
+              parties or from exercising any rights that I may have in the work. 
+              However, I understand that I may need to inform subsequent publishers 
+              or others that I have granted this license to distribute my work in OpenEmory.
+            </p>
         </div>
         {% comment %}
           LEGAL NOTE: the id assent-text-MEDIATED is used in js code above
@@ -156,7 +156,19 @@
            {% endif %}
         </div>
 
-        <div>
+        <div class="margin-15">
+          <label for="{{ form.content_model.field.name }}" class="tip">{{ form.content_model.label }}
+          
+          {% if form.content_model.help_text %}
+            <a class="tip" title="{{ form.content_model.help_text }}"></a>
+            {% endif %}
+            {{ form.content_model }}
+           {% if form.content_model.errors %}
+             <p class="error">{{ form.content_model.errors }}</p>
+           {% endif %}
+        </div>
+
+        <div class="margin-15">
           <label for="{{ form.pdf.field.name }}" class="tip">{{ form.pdf.label }}
           {% if form.pdf.field.required %}*{% endif %}
           {% if form.pdf.help_text %}<a class="tip" title="{{ form.pdf.help_text }}"></a>{% endif %}
@@ -166,11 +178,13 @@
             <p class="error">{{ form.pdf.errors }}</p>  {# TODO: formatting #}
           {% endif %}
         </div>
+        <div class="margin-15">
+          <input type='submit' class="submit" value='Continue'/>
+        </div>
+        <p>The preferred file type for OpenEmory is pdf. In addition to pdf, OpenEmory accepts Word documents, Excel spreadsheets, PowerPoint, and image files (jpg, png, tiff). If you do not want your scholarly work to be easily edited, please submit a pdf file. If you have questions, or would like us to convert your files to a pdf, please
+             <a href="{{ sitepages.staff.url }}">contact our office</a>.
 
-        <input type='submit' class="submit" value='Submit'/>
-
-        <p>If you have questions or you do not accept these terms, please
-          <a href="{{ sitepages.staff.url }}">contact OpenEmory staff</a>.</p>
+          </p>
       </div>
     </form>
     </div>

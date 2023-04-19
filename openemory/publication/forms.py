@@ -203,6 +203,16 @@ class LocalW3CDateWidget(W3CDateWidget):
 PDF_ERR_MSG = 'This document is not a valid PDF. Please upload a PDF, ' + \
               'or contact a system administrator for help.'
 
+INGEST_ERR_MSG = 'This document is not a valid file type. OpenEmory accepts Word documents, Excel spreadsheets, PowerPoint, and image files (jpg, png, tiff), ' + \
+              'or contact a system administrator for help.'
+
+_ContentChoices = (('Article', 'Article'),
+              ('Book', 'Book'),
+              ('Chapter', 'Book Chapter'),
+              ('Conference', 'Conference [Paper]'),
+              ('Poster', 'Poster'),
+              ('Presentation', 'Presentation'),
+              ('Report', 'Report'))
 class UploadForm(forms.Form):
     'Single-file upload form with assent to deposit checkbox.'
     # LEGAL NOTE: assent is currently a required field. Legal counsel
@@ -215,12 +225,13 @@ class UploadForm(forms.Form):
                   'This is required to submit an article.',
         error_messages={'required': 'You must indicate assent to upload an article'},
         widget=forms.CheckboxInput(attrs={'class': 'outline'}))
-    pdf = forms.FileField(label='Upload PDF',
+    content_model = forms.ChoiceField(choices= _ContentChoices, required=True,label='Type of Material',help_text='Please choose the option that best represents your work')
+    pdf = forms.FileField(label='File Upload',
          # customize default required message ('this field is required')
          error_messages={'required': 'A PDF file is required to submit an article.'},
-         widget=forms.FileInput(attrs={'class': 'text'}),
-         validators=[FileTypeValidator(types=['application/pdf'],
-                                       message=PDF_ERR_MSG)])
+         widget=forms.FileInput(attrs={'class': 'text', 'accept': '.pdf,.doc,.docx,.jpeg,.png,.ppt,.pptx,.tiff,.xls,.xlsx'}),
+         validators=[FileTypeValidator(types=['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.ms-powerpoint', 'image/jpeg', 'image/tiff', 'image/png', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+                                       message=INGEST_ERR_MSG)])
 
 class AdminUploadForm(UploadForm):
     '''Admin variant of :class:`UploadForm` with option to upload for

@@ -59,7 +59,7 @@ from openemory.publication.forms import UploadForm, AdminUploadForm, \
 
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
         ResearchFields, FeaturedArticle, Article
-from openemory.util import md5sum, solr_interface, paginate
+from openemory.util import md5sum, solr_interface, paginate, get_mime_type
 
 logger = logging.getLogger(__name__)
 
@@ -225,9 +225,12 @@ def ingest(request):
 
                 # set static MODS values that will be the same for all uploaded articles
                 obj.descMetadata.content.resource_type = 'text'
-                obj.descMetadata.content.genre = 'Article'
+                
+                obj.descMetadata.content.genre = form.cleaned_data.get('content_model', 'Article')
+
                 obj.descMetadata.content.create_physical_description()
-                obj.descMetadata.content.physical_description.media_type = 'application/pdf'
+                mimetype = get_mime_type(uploaded_file)
+                obj.descMetadata.content.physical_description.media_type = mimetype
 
                 # set current user as first author
                 if statement == 'AUTHOR':
