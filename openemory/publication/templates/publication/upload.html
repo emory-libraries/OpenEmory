@@ -4,7 +4,7 @@
 
 {% block contentdivclass %}document new{% endblock %}
 
-{% block sidebar-title %}Site Documents{% endblock %}
+{% block sidebar-title %}Related Content{% endblock %}
 {% block sidebar-content %}
   {% include "flatpages/snippets/list_docs.html" %}
 {% endblock %}
@@ -174,17 +174,19 @@
           {% if form.pdf.help_text %}<a class="tip" title="{{ form.pdf.help_text }}"></a>{% endif %}
           </label>
           <div>{{ form.pdf }}</div>
-          {% if form.pdf.errors %}
+          {% if form.pdf.errors and form.legal_statement %}
             <p class="error">{{ form.pdf.errors }}</p>  {# TODO: formatting #}
           {% endif %}
         </div>
         <div class="margin-15">
           <input type='submit' class="submit" value='Continue'/>
         </div>
+        {% if not form.legal_statement %}
         <p>The preferred file type for OpenEmory is pdf. In addition to pdf, OpenEmory accepts Word documents, Excel spreadsheets, PowerPoint, and image files (jpg, png, tiff). If you do not want your scholarly work to be easily edited, please submit a pdf file. If you have questions, or would like us to convert your files to a pdf, please
              <a href="{{ sitepages.staff.url }}">contact our office</a>.
 
           </p>
+        {% endif %}
       </div>
     </form>
     </div>
