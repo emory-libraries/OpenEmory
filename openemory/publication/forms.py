@@ -228,7 +228,7 @@ class UploadForm(forms.Form):
     content_model = forms.ChoiceField(choices= _ContentChoices, required=True,label='Type of Material',help_text='Please choose the option that best represents your work')
     pdf = forms.FileField(label='File Upload',
          # customize default required message ('this field is required')
-         error_messages={'required': 'A PDF file is required to submit an article.'},
+         error_messages={'required': 'The preferred file type for OpenEmory is pdf. In addition to pdf, OpenEmory accepts Word documents, Excel spreadsheets, PowerPoint, and image files (jpg, png, tiff).'},
          widget=forms.FileInput(attrs={'class': 'text', 'accept': '.pdf,.doc,.docx,.jpeg,.png,.ppt,.pptx,.tiff,.xls,.xlsx'}),
          validators=[FileTypeValidator(types=['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.ms-powerpoint', 'image/jpeg', 'image/tiff', 'image/png', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
                                        message=INGEST_ERR_MSG)])
