@@ -1,5 +1,6 @@
 {% extends "site_base.html" %}
 {% load search_utils %}
+{% load flatpages %}
 {% block style %} {{ block.super }}
   {% if user.is_authenticated %} {# jquery-ui for tag editing #}
   {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
@@ -63,13 +64,17 @@
             <div id="wrapper">
               <div id="slides">
                 <div class="slides_container">
-                  <a href="{{ sitepages.about.url }}" title="Welcome">
+                  {% get_flatpages '/about/' as about_page %}
+                  <a href="{{ about_page.first.url }}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_welcome.jpg" width="705" height="225" alt="Slide 1"/>
                   </a>
-                  <a href="{{ sitepages.getting_started.url}}" title="Welcome">
+                  {% get_flatpages '/how-to/submit/' as submit_page %}
+                  <a href="{{ submit_page.first.url }}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_submit.jpg" width="705" height="225" alt="Slide 2"/>
                   </a>
-                  <a href="{{ sitepages.howto.url }}" title="Welcome" target="_blank">
+                  
+                  {% get_flatpages '/how-to/' as how_to %}
+                    <a href="{{ how_to.first.url}}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started.jpg" width="705" height="225" alt="Slide 3"/>
                   </a>
                   {% if featured %}
@@ -80,7 +85,8 @@
                     {% endif %}
                   {# to be used for reatured article #}
                   {% comment %}
-                  <a href="{{ sitepages.about.url }}" title="Welcome" target="_blank">
+                  
+                  <a href="{{ about_page.first.url }}" title="Welcome" target="_blank">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="305" alt="Slide 3"/>
                   </a> -->
                   {% endcomment %}
@@ -92,7 +98,7 @@
           <div class="callouts">
             {% comment %}
             <div class="callout top">
-              <a href="{{ sitepages.getting_started.url}}">Submit your work to OpenEmory</a>
+              <a href="{{ submit_page.first.url}}">Submit your work to OpenEmory</a>
             </div>
             {% endcomment %}
             <div class="callout bottom">
