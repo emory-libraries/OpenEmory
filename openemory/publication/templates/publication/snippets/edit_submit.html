@@ -11,7 +11,7 @@
       {% if not article.is_published %}
       {#  <a class="tip" title="Save changes and publish this work the site so it will be publicly visible."></a> #}
       {% endif %}
-      {% if perms.publication.review_article %} {# admin save + review button #}
+      {% if perms.publication.review_article and category_id == 'edit' %} {# admin save + review button #}
          <input type="submit" name="review-record" value="Review" class="submit"/>
 {#         <a class="tip" title="Save changes and return to review list; work will remain {% if article.is_published %}published{% else %}unpublished{% endif %} on the site."></a> #}
       {% endif %}
