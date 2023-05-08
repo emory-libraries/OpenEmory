@@ -51,7 +51,7 @@ from PyPDF2.utils import PdfReadError
 from sunburnt import *
 from django.template import Context
 from django.core.mail import EmailMultiAlternatives
-
+from openemory.common.fedora import ManagementRepository
 from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
@@ -105,7 +105,10 @@ def ingest(request):
     context = {}
     if request.method == 'POST':
         # init repo with request to use logged-in user credentials for fedora access
-        repo = Repository(request=request)
+        if request.user.has_perm('publication.review_article'):
+            repo = ManagementRepository()
+        else:
+            repo = Repository(request=request)
 
         # Collection to which all articles will belong for use with OAI
         coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
@@ -318,7 +321,10 @@ def object_last_modified(request, pid):
 # TODO: consider renaming to get_article_or_404 for consistency with django
 def _get_article_for_request(request, pid):
     try:
-        repo = Repository(request=request)
+        if request.user.has_perm('publication.review_article'):
+            repo = ManagementRepository()
+        else:
+            repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Publication)
 
         # TODO: if object is not published (i.e. status != 'A'),
