@@ -916,14 +916,14 @@ class ArticleEditForm(PublicationModsEditForm):
 
     publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -995,14 +995,14 @@ class BookEditForm(PublicationModsEditForm):
 
     publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -1075,14 +1075,14 @@ class ChapterEditForm(PublicationModsEditForm):
 
     publisher = forms.CharField(widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher',required=True)
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -1153,14 +1153,14 @@ class ConferenceEditForm(PublicationModsEditForm):
 
     publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -1231,14 +1231,14 @@ class ReportEditForm(PublicationModsEditForm):
     publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -1309,14 +1309,14 @@ class PosterEditForm(PublicationModsEditForm):
             help_text='Reason for reinstating this article')
 
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,
@@ -1387,14 +1387,14 @@ class PresentationEditForm(PublicationModsEditForm):
             help_text='Reason for reinstating this article')
 
 
-    _embargo_choices = [('','no embargo'),
+    _embargo_choices = [(slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        ('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
                         ('18-months', '18 months'),
                         ('24-months', '24 months'),
                         ('36-months', '36 months'),
                         ('48-months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
 
     embargo_duration = forms.ChoiceField(choices=_embargo_choices,

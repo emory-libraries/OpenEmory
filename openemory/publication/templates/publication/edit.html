@@ -265,15 +265,6 @@
            version = 'pdf';
 
          var policy = copyright_policy[version];
-         if (policy.archiving) {
-           $('#publisher-copyright-status-value')
-             .text(policy.archiving)
-             .attr('class', policy.archiving);
-         } else {
-           $('#publisher-copyright-status-value')
-             .text('unknown')
-             .attr('class', 'unknown');
-         }
 
          var restrictions = $('#publisher-copyright-restrictions-items');
          restrictions.html('');
@@ -446,10 +437,6 @@
         {% if article.descMetadata.content.genre != "Report" and article.descMetadata.content.genre != "Poster"  and article.descMetadata.content.genre != "Presentation" %}
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         {% if perms.publication.review_article %}
-              <div id="publisher-copyright-status" class="formThird">
-                <label>Archiving</label>
-                <div id="publisher-copyright-status-value" class="unknown">unknown</div>
-              </div>
               <!-- inline style here should be overridden by jq toggle() on load -->
               <div id="publisher-copyright-restrictions" class="clearLeft"
                   style='display:none'>
@@ -673,12 +660,12 @@
         {% include "publication/snippets/edit_field.html" with field=form.subforms.copyright divclass="formWhole" %}
 
         {#  AdminNote  #}
-        {%if perms.publication.view_admin_metadata %}
+        {% if perms.publication.view_admin_metadata or category_id == 'ingest' %}
             {% include "publication/snippets/edit_field.html" with field=form.subforms.admin_note.text divclass="formWhole"%}
         {% endif %}
 
       </div><!-- /formWrapper -->
-      {% if perms.publication.review_article %}
+      {% if perms.publication.review_article and category_id == 'edit' %}
           <div id="mark-reviewed" class="formWhole">
           {% if article.provenance.content.review_event %}
             <p class="info">{{ article.provenance.content.review_event.detail }} on

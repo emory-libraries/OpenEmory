@@ -28,6 +28,7 @@ from rdflib.graph import Graph as RdfGraph, Namespace
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse
+from urllib.parse import urlencode
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.mail import mail_managers, send_mail
 from django.db.models import Sum
@@ -255,10 +256,12 @@ def ingest(request):
 
                     if saved:
                         messages.success(request,
-                            'Success! Your article was uploaded. Please complete the required fields in Citation Information and submit.',
+                            'Success! Your item was uploaded. Please complete the required fields in Citation Information and submit.',
                             extra_tags='upload')
                         next_url = reverse('publication:edit',
                                            kwargs={'pid': obj.pid})
+                        query_string =  urlencode({'category': 'ingest'})
+                        final_url = '{}?{}'.format(next_url, query_string)
 
                         #add uploaded premis event
                         obj.provenance.content.init_object(obj.pid, 'pid')
@@ -285,7 +288,7 @@ def ingest(request):
                                     legal_statement=statement)
                             obj.save('added upload event')
 
-                        return HttpResponseSeeOtherRedirect(next_url)
+                        return HttpResponseSeeOtherRedirect(final_url)
                 except RequestFailed as rf:
                     context['error'] = rf
 
@@ -406,7 +409,6 @@ def view_article(request, pid):
 
     obj = _get_article_for_request(request, pid)
 
-    print(obj.descMetadata.content.genre)
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
         if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
@@ -427,6 +429,7 @@ def edit_metadata(request, pid):
     """
     # response status should be 200 unless something goes wrong
     status_code = 200
+    category_id = request.GET.get('category', 'edit')
     obj = _get_article_for_request(request, pid)
 
     if request.user.username not in obj.owner  and \
@@ -442,7 +445,7 @@ def edit_metadata(request, pid):
         'featured' : FeaturedArticle.objects.filter(pid=obj.pid).exists()
     }
 
-    context = {'article': obj}
+    context = {'article': obj, 'category_id': category_id}
 
     # see if current user is in the Site Admin Group
     is_admin = 'Site Admin' in  [g.name for g in request.user.groups.all()]
@@ -921,7 +924,6 @@ def site_index(request):
         most_viewed = q.filter(pid_filter).execute()
         # re-sort the solr results according to stats order
         # most_viewed = []
-        print(most_viewed)
         # most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
         #                                                       pids.index(y['pid'])))
     else:
@@ -1067,8 +1069,6 @@ def search(request):
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
     q = solr.query().filter(**cm_filter)
-
-    print(q)
     people_q = solr.query().filter(record_type='accounts_esdperson')
     if item_terms:
         name_info = _parse_name(item_terms)
@@ -1163,7 +1163,7 @@ def search(request):
                 facets.append(facet)
 
     people = people_q.paginate(rows=100).execute()
-    print(results)
+
     return render(request, 'publication/search-results.html', {
             'results': results,
             'authors': people,
