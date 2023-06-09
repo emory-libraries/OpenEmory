@@ -122,14 +122,14 @@ class DigitalObject(models.DigitalObject):
             ark_uri = pidman.create_ark(settings.PIDMAN_DOMAIN, target, name=pid_name)
             # pidman returns the full, resolvable ark
             # parse into dictionary with nma, naan, and noid
-            parsed_ark = parse_ark(ark_uri)
+            parsed_ark = parse_ark(ark_uri.decode("utf-8"))
             naan = parsed_ark['naan']  # name authority number
             noid = parsed_ark['noid']  # nice opaque identifier
             ark = "ark:/%s/%s" % (naan, noid)
 
             # Add full uri ARK to dc:identifier and  descMetadata
-            self.dc.content.identifier_list.append(ark_uri)
-            self.descMetadata.content.ark_uri = ark_uri
+            self.dc.content.identifier_list.append(ark_uri.decode("utf-8"))
+            self.descMetadata.content.ark_uri = ark_uri.decode("utf-8")
             self.descMetadata.content.ark = ark
 
             # use the noid to construct a pid in the configured pidspace

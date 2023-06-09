@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^new/$', views.ingest, name='ingest'),
     url(r'^search/$', views.search, name='search'),
     url(r'^unreviewed/$', views.review_queue, name='review-list'),
-    url(r'^departments/$', views.departments, name='list-departments'),
     # we could probably be even more explicit with the pid pattern,
     # but at least require a colon between pidspace and identifier
     url(r'^(?P<pid>[^:]+:[^/]+)/$', views.view_article, name='view'),

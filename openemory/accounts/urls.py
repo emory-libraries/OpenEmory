@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', authviews.LogoutView.as_view(), name='logout'),
     # department browse
-    url(r'^profiles/departments/$', views.departments, name='list-departments'),
     url(r'^profiles/departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
         name='department'),
     # profile pages

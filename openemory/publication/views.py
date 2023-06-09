@@ -105,10 +105,7 @@ def ingest(request):
     context = {}
     if request.method == 'POST':
         # init repo with request to use logged-in user credentials for fedora access
-        if request.user.has_perm('publication.review_article'):
-            repo = ManagementRepository()
-        else:
-            repo = Repository(request=request)
+        repo = ManagementRepository()
 
         # Collection to which all articles will belong for use with OAI
         coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
@@ -244,8 +241,8 @@ def ingest(request):
                                                                     affiliation='Emory University'))
 
                 # calculate MD5 checksum for the uploaded file before ingest
-                obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
-                obj.pdf.checksum_type = 'MD5'
+                #obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
+                #obj.pdf.checksum_type = 'MD5'
 
                 # Add to OpenEmory Collection
                 obj.collection = coll
@@ -268,7 +265,7 @@ def ingest(request):
 
                         #add uploaded premis event
                         obj.provenance.content.init_object(obj.pid, 'pid')
-
+                        
                         if not obj.provenance.content.upload_event:
                             # LEGAL NOTE: Legal counsel recommends what we
                             # require assent to deposit before processing
@@ -319,9 +316,9 @@ def object_last_modified(request, pid):
         pass
 
 # TODO: consider renaming to get_article_or_404 for consistency with django
-def _get_article_for_request(request, pid):
+def _get_article_for_request(request, pid, category='edit'):
     try:
-        if request.user.has_perm('publication.review_article'):
+        if request.user.has_perm('publication.review_article') or category== 'ingest':
             repo = ManagementRepository()
         else:
             repo = Repository(request=request)
@@ -436,7 +433,7 @@ def edit_metadata(request, pid):
     # response status should be 200 unless something goes wrong
     status_code = 200
     category_id = request.GET.get('category', 'edit')
-    obj = _get_article_for_request(request, pid)
+    obj = _get_article_for_request(request, pid, category_id)
 
     if request.user.username not in obj.owner  and \
            not request.user.has_perm('publication.review_article'):

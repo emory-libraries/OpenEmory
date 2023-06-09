@@ -1,11 +1,11 @@
               <h1 class="toolsBg shadowLight">Faculty Tools:</h1>
               <ul class="tools">
-                {% if perms.publication.add_articlerecord %}
+                
                                 <li><a href="{% url 'publication:ingest' %}" class="upload">
                   <span>
                   </span>
                   Upload New Document</a></li>
-                                {% endif %}
+        
                                                                 {# FIXME: link to feedback form #}
                 <li><a href="{% url 'feedback' %}" class="viewPublished">
                   <span>
