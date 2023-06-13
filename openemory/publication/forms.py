@@ -794,7 +794,8 @@ class PublicationModsEditForm(BaseXmlObjectForm):
              # self.fields['version'].required = False
              self.fields['publication_date'].required = False
              self.fields['language_code'].required = False
-             self.subforms['journal'].fields['title'].required = False
+             if 'journal' in self.subforms:
+                self.subforms['journal'].fields['title'].required = False
              # self.subforms['journal'].fields['publisher'].required = False
 
          if is_admin and not is_nlm:
