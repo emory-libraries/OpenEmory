@@ -38,8 +38,18 @@
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 
+  {% if GOOGLE_ANALYTICS_ENABLED  %}
      <!-- google analytics -->
-     <script type="text/javascript" src="{{ STATIC_URL }}js/google-analytics.js"></script>
+     <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP219QL2"></script>
+     <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JPGP219QL2');
+    </script>
+  {% endif %}
 
    {% if GOOGLE_SITE_VERIFICATION %}
      <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION}}" />
@@ -310,8 +320,8 @@ www.352media.com
                     <ul>
                       <li><a href="{{ sitepages.howto_submit.url }}">{{ sitepages.howto_submit.title|default:"How to Submit" }}</a></li>
                       <li><a href="{{ sitepages.depositadvice.url }}">{{ sitepages.depositadvice.title|default:"Deposit Advice" }}</a></li>
+                      <li><a href="{{ sitepages.depositinstructions.url }}">{{ sitepages.depositadvice.title|default:"Deposit Instructions" }}</a></li>
                       <li><a href="{{ sitepages.author_rights.url }}">{{ sitepages.author_rights.title|default:"Author Rights" }}</a></li>
-                      <li><a href="/publishing-your-data/">{{ sitepages.publishing_your_data.title|default:"Publishing Your Data" }}</a></li>
                       <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
                       <li><a href="https://sco.library.emory.edu/open-access-publishing/emory-repositories/about-oa-policy.html" target="_blank">Emory Open Access Policy</a></li>
                       <li class="lastLi"><a href="http://sco.library.emory.edu/open-access-publishing/oa-funding-support/index.html">Open Access Fund</a></li>
@@ -324,7 +334,7 @@ www.352media.com
                       <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"About Us" }}</a></li>
                       <li><a href="{{ sitepages.citing_openemory_content.url }}">{{ sitepages.citing_openemory_content.title|default:"Citing Articles" }}</a></li>
                       <li><a href="http://sco.library.emory.edu/about/staff.html" target="_blank">Contact Us</a></li>
-                      <li><a href="http://web.library.emory.edu/about/privacy-policy/index.html " target="_blank">Privacy Policy</a></li>
+                      <li><a href="https://libraries.emory.edu/about/policies/emory-libraries-privacy-policy" target="_blank">Privacy Policy</a></li>
                       <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
                     </ul>
                   </li>

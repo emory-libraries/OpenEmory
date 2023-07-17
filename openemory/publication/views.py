@@ -324,6 +324,11 @@ def _get_article_for_request(request, pid, category='edit'):
             repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Publication)
 
+        if request.user.username in obj.owner:
+            repo = ManagementRepository()
+            obj = repo.get_object(pid=pid, type=Publication)
+
+
         # TODO: if object is not published (i.e. status != 'A'),
         # should probably only display to authors/admins
         if not obj.exists:
@@ -1360,7 +1365,7 @@ def review_queue(request):
     solr = solr_interface()
     q = solr.query().exclude(review_date__any=True).filter(state='A') # restrict to active (published) articles only
     # q = solr.query().exclude(review_date__any=False)
-    q = q.sort_by('created')
+    q = q.sort_by('-created')
     results, show_pages = paginate(request, q)
     template_name = 'publication/review-queue.html'
     # for ajax requests, only display the inner content

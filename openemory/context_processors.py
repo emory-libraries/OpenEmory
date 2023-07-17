@@ -57,6 +57,7 @@ def sitepages(request):
         'about': '/about/staff',
         'author_rights': '/about/author-rights/',
         'depositadvice': '/about/depositadvice/',
+        'depositinstructions': '/about/deposit-instructions/',
         'about_profiles': '/about/faculty-profiles/',
         'faq': '/about/faq/',
         'howto_submit': '/how-to/submit/',

@@ -80,12 +80,18 @@ def login(request):
             # to the harvest queue page
             profile = UserProfile.objects.filter(user=request.user).first()
             if not profile:
-                UserProfile.objects.create(user=request.user)
+                profile = UserProfile.objects.create(user=request.user)
+
             if request.user.groups.filter(name='Site Admin').count():
                 next_url = reverse('harvest:queue')
 
             # if the user has a profile page, redirect t
             elif request.user.userprofile.has_profile_page():
+                next_url = reverse('accounts:profile',
+                                   kwargs={'username': request.user.username})
+            else:
+                profile.nonfaculty_profile = True
+                profile.save()
                 next_url = reverse('accounts:profile',
                                    kwargs={'username': request.user.username})
 
@@ -274,7 +280,6 @@ def public_profile(request, username):
                              for f in interest_formset.forms
                              if f.cleaned_data.get('interest', '') and
                                 not f.cleaned_data.get('DELETE', False)]
-            print(userprofile.research_interests)
             userprofile.research_interests.set(*new_interests)
             # if a new photo file was posted, resize it
             if 'photo' in request.FILES:
@@ -300,7 +305,6 @@ def public_profile(request, username):
         'form': form,
         'interest_formset': interest_formset,'esd_data': esd_data,
     })
-    print(form.inlineformsets)
     if request.is_ajax():
         # display a briefer version of the profile, for inclusion in faculty dash
         template_name = 'accounts/snippets/profile-tab.html'

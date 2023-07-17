@@ -490,10 +490,7 @@ def validate_netid(value):
 
 
 class AuthorNameForm(BaseXmlObjectForm):
-    help_text = 'Add authors in the order they should be listed.  \
-                Use the suggestion field for Emory authors; click `add author` and  \
-                enter name and affiliation for non-Emory authors. \
-                You may drag and drop names to re-order them.'
+    help_text = 'Add authors in the order they should be listed using one of the options below. You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -702,20 +699,20 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     from http://creativecommons.org/ns and constructs a description of the license.
     '''
     def _license_desc( self, url):
-        permits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#permits")
-        requires_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#requires")
-        prohibits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#prohibits")
-        comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
-        ns_url = 'https://creativecommons.org/schema.rdf'
+        # permits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#permits")
+        # requires_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#requires")
+        # prohibits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#prohibits")
+        # comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
+        # ns_url = 'https://creativecommons.org/schema.rdf'
 
+        
+        # license_graph = Graph()
+        # license_graph.parse(url, format='xml')
 
-        license_graph = Graph()
-        license_graph.parse(url, format='xml')
+        # ns_graph = Graph()
+        # ns_graph.parse(ns_url, format='xml')
 
-        ns_graph = Graph()
-        ns_graph.parse(ns_url, format='xml')
-
-        lines = []
+        # lines = []
 
         title = License.objects.get(url=url).title
 
@@ -723,28 +720,28 @@ class PublicationModsEditForm(BaseXmlObjectForm):
         (%s).' % (title, url)
 
         # get permits terms
-        for t in license_graph.subject_objects(permits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
+        # for t in license_graph.subject_objects(permits_uri):
+        #     lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
 
-        if lines:
-            lines = filter(None, lines)
-            desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
+        # if lines:
+        #     lines = filter(None, lines)
+        #     desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
 
         # get requires terms
-        lines = []
-        for t in license_graph.subject_objects(requires_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
-        if lines:
-            lines = filter(None, lines)
-            desc += ' This license requires %s.' % (', '.join(lines))
+        # lines = []
+        # for t in license_graph.subject_objects(requires_uri):
+        #     lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
+        # if lines:
+        #     lines = filter(None, lines)
+        #     desc += ' This license requires %s.' % (', '.join(lines))
 
         # get prohibits terms
-        lines = []
-        for t in license_graph.subject_objects(prohibits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
-        if lines:
-            lines = filter(None, lines)
-            desc += ' This license prohibits %s.' % (', '.join(lines))
+        # lines = []
+        # for t in license_graph.subject_objects(prohibits_uri):
+        #     lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
+        # if lines:
+        #     lines = filter(None, lines)
+        #     desc += ' This license prohibits %s.' % (', '.join(lines))
 
         #remove tabs, newlines and extra spaces
         desc = re.sub('\t+|\n+', ' ', desc)

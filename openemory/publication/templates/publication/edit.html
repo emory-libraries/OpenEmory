@@ -91,7 +91,7 @@
 
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
-          addText: "+Add Non-Emory Faculty Member",
+          addText: "+Add More Authors",
           addCssClass: "addAuthor",
           formCssClass: "dynamic-authorformset",
           added: function(row) {
@@ -515,9 +515,11 @@
     <div class="citation-form">
       <div class="formWrapper">
         {% include "publication/snippets/edit_field.html" with field=form.subforms.final_version.url divclass="formHalf floatLeft" label=form.subforms.final_version.form_label %}
-        {% with form.subforms.final_version as final %}
-          {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf floatRight tip" %}
-        {% endwith %}
+        {% if category_id != 'ingest' %}
+          {% with form.subforms.final_version as final %}
+            {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf floatRight tip" %}
+          {% endwith %}
+        {% endif %}
       </div>
     </div>
     <h1>Additional Descriptive Information</h1>

@@ -22,19 +22,15 @@ from eulfedora.server import Repository
 from sunburnt import SolrError
 
 from openemory.accounts.models import UserProfile, EsdPerson
-from openemory.publication.models import Article
+from openemory.publication.models import Article, Publication
 from openemory.util import solr_interface
+from django.conf import settings
 
 
 class Command(BaseCommand):
     '''Index Faculty ESD information into Solr for searching.
     '''
     help = __doc__
-
-    option_list = BaseCommand.option_list + (
-        make_option('-i', '--index_url',
-                    help='Override the site default solr index URL.'),
-    )
 
     v_normal = 1  # 1 = normal, 0 = minimal, 2 = all
     v_all = 2
@@ -48,8 +44,8 @@ class Command(BaseCommand):
                     (EsdPerson.faculty.all().count(),))
 
         try:
-            solr_url = options.get('index_url', None)
-            self.solr = solr_interface(solr_url)
+            solr_url = options.get('index_url', settings.SOLR_SERVER_URL)
+            self.solr = solr_interface()
         except socket.error as se:
             raise CommandError('Failed to connect to Solr (%s)' % se)
 
