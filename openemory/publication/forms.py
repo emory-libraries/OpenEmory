@@ -795,9 +795,6 @@ class PublicationModsEditForm(BaseXmlObjectForm):
                 self.subforms['journal'].fields['title'].required = False
              # self.subforms['journal'].fields['publisher'].required = False
 
-         if is_admin and not is_nlm:
-             self.fields['rights_research_date'].required = True
-
          embargo = 'embargo_duration'
 
          if embargo not in self.initial or not self.initial[embargo]:

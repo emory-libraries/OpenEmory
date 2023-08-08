@@ -318,7 +318,7 @@ def object_last_modified(request, pid):
 # TODO: consider renaming to get_article_or_404 for consistency with django
 def _get_article_for_request(request, pid, category='edit'):
     try:
-        if request.user.has_perm('publication.review_article') or category== 'ingest':
+        if request.user.has_perm('publication.review_article') or category == 'ingest':
             repo = ManagementRepository()
         else:
             repo = Repository(request=request)
@@ -1365,7 +1365,7 @@ def review_queue(request):
     solr = solr_interface()
     q = solr.query().exclude(review_date__any=True).filter(state='A') # restrict to active (published) articles only
     # q = solr.query().exclude(review_date__any=False)
-    q = q.sort_by('-created')
+    q = q.sort_by('created')
     results, show_pages = paginate(request, q)
     template_name = 'publication/review-queue.html'
     # for ajax requests, only display the inner content

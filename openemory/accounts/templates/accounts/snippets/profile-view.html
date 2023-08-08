@@ -126,28 +126,11 @@
           {% if esd and not author.userprofile.suppress_esd_data %}
             {% include "accounts/snippets/contact-info.html" %}
           {% endif %}
-          <div class="floatLeft info">
-            <h2>School/Division:</h2>
-            <div class="clearfix"></div>
-            {% if not author.userprofile.suppress_esd_data %}
-              {% if esd.title %}
-                <p class="title" itemprop="jobTitle">{{ esd.title }}</p>
-              {% endif %}
-              {% if esd.department_name %}
-                <p class="affiliation" itemprop="affiliation">{{ esd.department_name }}</p>
-              {% endif %}
-              {% if esd.division_name and esd.division_name != esd.department_name %}
-                <p class="affiliation" itemprop="affiliation">{{ esd.division_name }}</p>
-              {% endif %}
-            {% endif %}
-            <div class="clearfix"></div>
-          </div>
-          <div class="clearfix"></div>
 
           {# affilations #}
           <div class="floatLeft info">
             <div class="readonly optional">
-              <h2>Other Affiliations:</h2>
+              <h2>Affiliations:</h2>
               {% if author.userprofile.position_set.count and not author.userprofile.suppress_esd_data %}
                 <div class="clearfix"></div>
                 <ul>
@@ -166,7 +149,7 @@
             </div>
             {% if form %}
             <div class="positionsList prepend-errors"> {# NOTE: could use itemprop=memberOf #}
-              <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.):</h2>
+              <h2>Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.):</h2>
               <div class="clearfix"></div>
               {{ form.inlineformsets.positions.management_form }}
               {% for positionform in form.inlineformsets.positions %}
@@ -189,8 +172,8 @@
 
           {# urls #}
           <div class="info">
-            <div class="readonly">
-              <h2>External Links (e.g. Departmental web site, iTunes lectures, etc.):</h2>
+            <div class="readonly" style="margin: 28px 0 0;">
+              <h2>External Links (e.g. Departmental web site):</h2>
               <div class="clearfix"></div>
               {% if author.userprofile.externallink_set.count %}
               <ul>
