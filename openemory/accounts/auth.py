@@ -73,7 +73,7 @@ def user_passes_test_401_or_403(test_func):
                                     status=code)
                 
             tpl = get_template('%s.html' % code)
-            return HttpResponse(tpl.render(RequestContext(request)),
+            return HttpResponse(tpl.render({}, request),
                                 status=code)
         return _wrapped_view
     return decorator

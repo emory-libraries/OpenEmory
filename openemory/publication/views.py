@@ -663,7 +663,7 @@ def download_pdf(request, pid):
             # only logged-in authors or site admins are allowed
             if not request.user.is_authenticated:
                 tpl = get_template('401.html')
-                return HttpResponse(tpl.render(RequestContext(request)), status=401)
+                return HttpResponse(tpl.render({}, request), status=401)
             if not (request.user.username in obj.owner \
                    or request.user.has_perm('publication.view_embargoed')):
                 tpl = get_template('403.html')
@@ -771,7 +771,7 @@ def view_private_datastream(request, pid, dsid):
             return HttpResponseForbidden(tpl.render(RequestContext(request)))
         else:
             tpl = get_template('401.html')
-            return HttpResponse(tpl.render(RequestContext(request)), status=401)
+            return HttpResponse(tpl.render({}, request), status=401)
     except RequestFailed:
         raise Http404
 
